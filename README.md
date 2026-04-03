@@ -1,2 +1,2 @@
-# deployments-homelab
-Homelab deployment
+# deployments
+Repository for the deployments
