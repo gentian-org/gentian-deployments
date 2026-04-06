@@ -546,7 +546,7 @@ seed_secrets() {
     export BAO_TOKEN
 
     info "Running seed-openbao.sh..."
-    bash "${GENTIAN_OS_DIR}/scripts/seed-openbao.sh" dev \
+    bash "${GENTIAN_OS_DIR}/scripts/seed-openbao.sh" \
         "$MASTER_PASSWORD" \
         "$OD_PRIVATE_REGISTRY_USERNAME" \
         "$OD_PRIVATE_REGISTRY_PASSWORD" \
