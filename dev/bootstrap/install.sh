@@ -103,7 +103,7 @@ prompt_credentials() {
         prompted=1
     fi
 
-    [[ "$prompted" -eq 1 ]] && echo ""
+    [[ "$prompted" -eq 1 ]] && echo "" || true
 }
 
 # ─── Runtime defaults ─────────────────────────────────────────────────────────
