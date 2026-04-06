@@ -1,0 +1,55 @@
+---
+# app-of-apps.yaml — Gentian OS orchestrator + AppProfiles + Tenants
+#
+# Multi-source ArgoCD Application that ties the three-repo architecture together:
+#   Repo 1 (gentian-os):          operator + AppProfile library + Helm chart
+#   Repo 2 (gentian-apps):        community AppProfiles (future)
+#   Repo 3 (gentian-deployments): this repo — env-specific config + Tenant CRs
+#
+# Sync order (via sync-wave):
+#   wave 0: CRDs + Helm chart (operator itself installs its own CRDs)
+#   wave 1: AppProfile CRs (operator reads these to deploy apps)
+#   wave 2: Tenant CRs (operator creates all per-tenant resources)
+#
+# Apply:
+#   kubectl apply -f dev/app-of-apps.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gentian-os
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: gentian
+  sources:
+  # ── Source 1: gentian-os Helm chart (operator) ────────────────────────────
+  - repoURL: https://github.com/gentian-org/gentian-os
+    targetRevision: develop
+    path: charts/gentian-os
+    helm:
+      valueFiles:
+      - $deploy/dev/kernel/values-dev.yaml
+  # ── Source 2: AppProfile CRs from gentian-os (built-in library) ──────────
+  - repoURL: https://github.com/gentian-org/gentian-os
+    targetRevision: develop
+    path: config/samples
+    directory:
+      include: "appprofile_*.yaml"
+  # ── Source 3: Tenant CRs from this deployment repo ───────────────────────
+  - repoURL: https://github.com/gentian-org/gentian-deployments
+    targetRevision: main
+    path: dev/tenants
+    ref: deploy
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: gentian-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true

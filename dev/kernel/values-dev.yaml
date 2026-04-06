@@ -1,0 +1,22 @@
+# values-dev.yaml — dev environment overrides for the gentian-os Helm chart
+#
+# Referenced by dev/app-of-apps.yaml → Source 1 helm.valueFiles
+# These override the defaults in charts/gentian-os/values.yaml.
+
+logLevel: debug
+
+openbao:
+  address: "http://openbao.openbao.svc.cluster.local:8200"
+  authPath: "kubernetes"
+
+argocd:
+  namespace: "argocd"
+  project: "gentian"
+
+defaults:
+  isolation:
+    mode: "namespace"
+
+metrics:
+  serviceMonitor:
+    enabled: false   # no Prometheus installed in dev by default
