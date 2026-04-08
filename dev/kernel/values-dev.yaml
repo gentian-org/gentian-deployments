@@ -6,7 +6,8 @@
 logLevel: debug
 
 image:
-  tag: develop   # track the develop branch image; update to a semver tag for production
+  tag: develop       # track the develop branch image; update to a semver tag for production
+  pullPolicy: Always  # always pull so rolling image updates are picked up without tag changes
 
 openbao:
   address: "http://openbao.openbao.svc.cluster.local:8200"
