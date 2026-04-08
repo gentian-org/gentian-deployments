@@ -232,7 +232,7 @@ install_tools() {
 create_namespaces() {
     banner "Step 2 — Creating namespaces"
 
-    local namespaces=(openbao external-secrets argocd tofu-system gentian-dev gentian-infra-dev gentian-system)
+    local namespaces=(openbao external-secrets argocd tofu-system gentian-dev gentian-infra-dev gentian-system cnpg-system platform-kernel)
     for ns in "${namespaces[@]}"; do
         if kubectl get namespace "$ns" &>/dev/null; then
             success "Namespace $ns already exists."
