@@ -1,6 +1,6 @@
 # gentian-deployments
 
-Deployment configuration repository for the Gentian homelab stack.
+Deployment configuration repository for the Gentian stack.
 
 This is **Repo 3** in the three-repo architecture (see [architecture §7](https://github.com/gentian-org/gentian-os/blob/develop/docs/architecture.md)):
 
