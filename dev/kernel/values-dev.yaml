@@ -5,6 +5,9 @@
 
 logLevel: debug
 
+image:
+  tag: develop   # track the develop branch image; update to a semver tag for production
+
 openbao:
   address: "http://openbao.openbao.svc.cluster.local:8200"
   authPath: "kubernetes"
