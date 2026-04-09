@@ -21,7 +21,7 @@ spec:
 
   isolation:
     mode: namespace
-    ldapOU: "ou=gtn-demo"
+    ldapOU: "ou=gtn-demo,${UDM_LDAP_BASE}"
     keycloakRealm: gtn-demo
     databasePrefix: gtn_
     s3Prefix: gtn-demo-
