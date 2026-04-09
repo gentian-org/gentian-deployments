@@ -35,7 +35,7 @@ spec:
   quotas:
     maxApps: 20
     storage: 100Gi
-    cpu: "24"
+    cpu: "32"
     memory: 32Gi
 
   deletionPolicy: Retain
