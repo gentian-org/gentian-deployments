@@ -43,3 +43,4 @@ spec:
   apps:
     - profile: ox-appsuite
     - profile: openproject
+    - profile: collabora
