@@ -3,7 +3,7 @@
 #
 # Multi-source ArgoCD Application that ties the three-repo architecture together:
 #   Repo 1 (gentian-os):          operator + AppProfile library + Helm chart
-#   Repo 2 (gentian-apps):        community AppProfiles (future)
+#   Repo 2 (gentian-apps):        app store catalogue (community AppProfiles)
 #   Repo 3 (gentian-deployments): this repo — env-specific config + Tenant CRs
 #
 # Sync order (via sync-wave):
@@ -38,7 +38,13 @@ spec:
     path: config/samples
     directory:
       include: "appprofile_*.yaml"
-  # ── Source 3: Tenant CRs from this deployment repo ───────────────────────
+  # ── Source 3: AppProfile CRs from gentian-apps (app store catalogue) ─────
+  - repoURL: https://github.com/gentian-org/gentian-apps
+    targetRevision: main
+    path: profiles
+    directory:
+      include: "*.yaml"
+  # ── Source 4: Tenant CRs from this deployment repo ───────────────────────
   - repoURL: https://github.com/gentian-org/gentian-deployments
     targetRevision: main
     path: dev/tenants
