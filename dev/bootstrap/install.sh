@@ -386,6 +386,15 @@ spec:
     - "*.${domain}"
 EOF
     success "Wildcard Certificate CR applied in ${ns}."
+
+    # Wait for the Certificate to be issued (DNS-01 can take a few minutes).
+    info "Waiting for wildcard-tls certificate to be Ready (up to 5 min)..."
+    if kubectl wait --for=condition=Ready certificate/wildcard-tls \
+        -n "${ns}" --timeout=300s 2>/dev/null; then
+        success "Wildcard TLS certificate issued successfully."
+    else
+        warn "Certificate not ready after 5 min. Check: kubectl describe certificate wildcard-tls -n ${ns}"
+    fi
 }
 
 # =============================================================================
