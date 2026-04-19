@@ -270,6 +270,85 @@ create_namespaces() {
 }
 
 # =============================================================================
+# 2b. Ensure ingress controller has a ClusterIP Service (hairpin DNS)
+# =============================================================================
+ensure_ingress_service() {
+    banner "Step 2b — Ensuring ingress controller ClusterIP Service"
+
+    # The operator uses this Service to set up in-cluster hairpin DNS so that
+    # pods can reach tenant services via their public Ingress hostnames.
+    local svc_name="ingress-controller"
+    local ns="${INGRESS_NAMESPACE:-ingress}"
+
+    if kubectl get svc "${svc_name}" -n "${ns}" &>/dev/null; then
+        success "Service ${svc_name} already exists in namespace ${ns}."
+        return
+    fi
+
+    if ! kubectl get namespace "${ns}" &>/dev/null; then
+        error "Ingress namespace '${ns}' does not exist."
+        error "Please install an ingress controller (e.g. ingress-nginx) before running bootstrap."
+        exit 1
+    fi
+
+    # Auto-detect the ingress controller pod selector by inspecting existing pods.
+    local selector=""
+    # Try common selectors in order of prevalence
+    for label in "app.kubernetes.io/component=controller" "name=nginx-ingress-microk8s" "app=ingress-nginx"; do
+        if kubectl get pods -n "${ns}" -l "${label}" --no-headers 2>/dev/null | grep -q .; then
+            selector="${label}"
+            break
+        fi
+    done
+
+    if [[ -z "${selector}" ]]; then
+        warn "Could not auto-detect ingress controller pod selector."
+        warn "Set INGRESS_SELECTOR to override (e.g. INGRESS_SELECTOR='app.kubernetes.io/name=ingress-nginx')."
+        if [[ -n "${INGRESS_SELECTOR:-}" ]]; then
+            selector="${INGRESS_SELECTOR}"
+        else
+            error "Cannot create ingress-controller Service without a valid selector."
+            exit 1
+        fi
+    fi
+
+    info "Creating ClusterIP Service '${svc_name}' in namespace '${ns}' (selector: ${selector})..."
+
+    # Parse the selector into a YAML-friendly format
+    local selector_yaml=""
+    IFS=',' read -ra pairs <<< "${selector}"
+    for pair in "${pairs[@]}"; do
+        local key="${pair%%=*}"
+        local val="${pair#*=}"
+        selector_yaml="${selector_yaml}      ${key}: \"${val}\""$'\n'
+    done
+
+    kubectl apply -f - <<EOF
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${svc_name}
+  namespace: ${ns}
+  labels:
+    app.kubernetes.io/managed-by: gentian-os
+spec:
+  type: ClusterIP
+  selector:
+${selector_yaml}  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+      protocol: TCP
+    - name: https
+      port: 443
+      targetPort: 443
+      protocol: TCP
+EOF
+
+    success "Service '${svc_name}' created in namespace '${ns}'."
+}
+
+# =============================================================================
 # 3. Install External Secrets Operator via Helm
 # =============================================================================
 install_eso() {
@@ -681,6 +760,7 @@ main() {
     check_prereqs
     install_tools
     create_namespaces
+    ensure_ingress_service
     install_eso
     install_argocd
     setup_argocd_repos
