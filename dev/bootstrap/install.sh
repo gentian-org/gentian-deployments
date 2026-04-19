@@ -5,6 +5,7 @@
 # Installs and configures every component in the correct order:
 #   1. CLI tools (tofu, bao)
 #   2. Kubernetes namespaces
+#  2b. cert-manager ClusterIssuer + Cloudflare DNS solver + wildcard Certificate
 #   3. External Secrets Operator (ESO) via Helm
 #   4. ArgoCD + AppProject
 #   5. ArgoCD OCI registry secrets
@@ -24,14 +25,15 @@
 #   OD_PRIVATE_REGISTRY_PASSWORD   — registry.opencode.de password or token
 #   OD_SMTP_RELAY_USERNAME         — SMTP relay username (e.g. Gmail address)
 #   OD_SMTP_RELAY_PASSWORD         — SMTP relay password (e.g. Gmail App Password)
+#   ACME_EMAIL                     — email for Let's Encrypt ACME registration
+#   CLOUDFLARE_API_TOKEN           — Cloudflare API token (Zone:DNS:Edit scope)
 #
 # Optional environment variables:
 #   GENTIAN_OS_DIR    — path to gentian-os checkout (default: auto-detected)
 #   NODE_IP           — cluster node IP (default: auto-detected)
 #   SKIP_TOOLS        — set to "1" to skip CLI tool installation
 #   OPENBAO_INIT_FILE — path to save OpenBao init keys (default: /tmp/openbao-init.json)
-#   BAO_PORT_FORWARD  — local port for OpenBao port-forward (default: 8200)
-#
+#   BAO_PORT_FORWARD  — local port for OpenBao port-forward (default: 8200)#   TENANT_DOMAIN     — tenant domain for wildcard cert (default: desk.gentian.org)#
 # Usage:
 #   ./install.sh
 #   # — or — pre-export any subset of the required variables to skip prompts:
@@ -104,6 +106,18 @@ prompt_credentials() {
         prompted=1
     fi
 
+    if [[ -z "${ACME_EMAIL:-}" ]]; then
+        read -rp "  ACME_EMAIL (Let's Encrypt registration email): " ACME_EMAIL; echo ""
+        export ACME_EMAIL
+        prompted=1
+    fi
+
+    if [[ -z "${CLOUDFLARE_API_TOKEN:-}" ]]; then
+        read -rp "  CLOUDFLARE_API_TOKEN (Zone:DNS:Edit): " CLOUDFLARE_API_TOKEN; echo ""
+        export CLOUDFLARE_API_TOKEN
+        prompted=1
+    fi
+
     if [[ "$prompted" -eq 1 ]]; then
         echo ""
         read -rp "  Save credentials to ${GENTIAN_CONFIG_FILE} for future runs? [yes/no]: " save_creds
@@ -118,6 +132,8 @@ export OD_PRIVATE_REGISTRY_USERNAME="${OD_PRIVATE_REGISTRY_USERNAME}"
 export OD_PRIVATE_REGISTRY_PASSWORD="${OD_PRIVATE_REGISTRY_PASSWORD}"
 export OD_SMTP_RELAY_USERNAME="${OD_SMTP_RELAY_USERNAME}"
 export OD_SMTP_RELAY_PASSWORD="${OD_SMTP_RELAY_PASSWORD}"
+export ACME_EMAIL="${ACME_EMAIL}"
+export CLOUDFLARE_API_TOKEN="${CLOUDFLARE_API_TOKEN}"
 EOF
             chmod 600 "${GENTIAN_CONFIG_FILE}"
             success "Credentials saved to ${GENTIAN_CONFIG_FILE}"
@@ -195,6 +211,20 @@ check_prereqs() {
         success "OD_SMTP_RELAY_PASSWORD set"
     fi
 
+    if [[ -z "${ACME_EMAIL:-}" ]]; then
+        error "ACME_EMAIL is not set (Let's Encrypt registration email)"
+        missing=$((missing + 1))
+    else
+        success "ACME_EMAIL set"
+    fi
+
+    if [[ -z "${CLOUDFLARE_API_TOKEN:-}" ]]; then
+        error "CLOUDFLARE_API_TOKEN is not set (Cloudflare API token with Zone:DNS:Edit scope)"
+        missing=$((missing + 1))
+    else
+        success "CLOUDFLARE_API_TOKEN set"
+    fi
+
     if [[ "$missing" -gt 0 ]]; then
         error "$missing prerequisite(s) missing. Aborting."
         exit 1
@@ -270,82 +300,92 @@ create_namespaces() {
 }
 
 # =============================================================================
-# 2b. Ensure ingress controller has a ClusterIP Service (hairpin DNS)
+# 2b. Set up cert-manager ClusterIssuer and Cloudflare DNS solver
 # =============================================================================
-ensure_ingress_service() {
-    banner "Step 2b — Ensuring ingress controller ClusterIP Service"
+setup_cert_manager() {
+    banner "Step 2b — Setting up cert-manager TLS certificate issuance"
 
-    # The operator uses this Service to set up in-cluster hairpin DNS so that
-    # pods can reach tenant services via their public Ingress hostnames.
-    local svc_name="ingress-controller"
-    local ns="${INGRESS_NAMESPACE:-ingress}"
+    local cm_ns="cert-manager"
 
-    if kubectl get svc "${svc_name}" -n "${ns}" &>/dev/null; then
-        success "Service ${svc_name} already exists in namespace ${ns}."
-        return
+    # Ensure cert-manager namespace exists (may be created by addon/Helm)
+    if ! kubectl get namespace "${cm_ns}" &>/dev/null; then
+        warn "cert-manager namespace does not exist. Ensure cert-manager is installed"
+        warn "(e.g. 'microk8s enable cert-manager' or Helm install)."
+        return 1
     fi
 
-    if ! kubectl get namespace "${ns}" &>/dev/null; then
-        error "Ingress namespace '${ns}' does not exist."
-        error "Please install an ingress controller (e.g. ingress-nginx) before running bootstrap."
-        exit 1
+    # Create or update the Cloudflare API token secret
+    if kubectl get secret cloudflare-api-token -n "${cm_ns}" &>/dev/null; then
+        success "Secret cloudflare-api-token already exists in ${cm_ns}."
+    else
+        info "Creating cloudflare-api-token secret in ${cm_ns}..."
+        kubectl create secret generic cloudflare-api-token \
+            -n "${cm_ns}" \
+            --from-literal=api-token="${CLOUDFLARE_API_TOKEN}"
+        success "cloudflare-api-token secret created."
     fi
 
-    # Auto-detect the ingress controller pod selector by inspecting existing pods.
-    local selector=""
-    # Try common selectors in order of prevalence
-    for label in "app.kubernetes.io/component=controller" "name=nginx-ingress-microk8s" "app=ingress-nginx"; do
-        if kubectl get pods -n "${ns}" -l "${label}" --no-headers 2>/dev/null | grep -q .; then
-            selector="${label}"
+    # Create the ClusterIssuer
+    info "Applying ClusterIssuer letsencrypt-prod..."
+    kubectl apply -f - <<EOF
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: ${ACME_EMAIL}
+    privateKeySecretRef:
+      name: letsencrypt-prod-key
+    solvers:
+      - dns01:
+          cloudflare:
+            apiTokenSecretRef:
+              name: cloudflare-api-token
+              key: api-token
+EOF
+    success "ClusterIssuer letsencrypt-prod applied."
+
+    # Wait for the ClusterIssuer to become ready
+    info "Waiting for ClusterIssuer to register with ACME..."
+    local retries=0
+    while [[ $retries -lt 30 ]]; do
+        local ready
+        ready=$(kubectl get clusterissuer letsencrypt-prod -o jsonpath='{.status.conditions[?(@.type=="Ready")].status}' 2>/dev/null)
+        if [[ "$ready" == "True" ]]; then
+            success "ClusterIssuer letsencrypt-prod is ready."
             break
         fi
+        sleep 2
+        retries=$((retries + 1))
     done
-
-    if [[ -z "${selector}" ]]; then
-        warn "Could not auto-detect ingress controller pod selector."
-        warn "Set INGRESS_SELECTOR to override (e.g. INGRESS_SELECTOR='app.kubernetes.io/name=ingress-nginx')."
-        if [[ -n "${INGRESS_SELECTOR:-}" ]]; then
-            selector="${INGRESS_SELECTOR}"
-        else
-            error "Cannot create ingress-controller Service without a valid selector."
-            exit 1
-        fi
+    if [[ $retries -ge 30 ]]; then
+        warn "ClusterIssuer did not become ready within 60s. Check: kubectl describe clusterissuer letsencrypt-prod"
     fi
 
-    info "Creating ClusterIP Service '${svc_name}' in namespace '${ns}' (selector: ${selector})..."
-
-    # Parse the selector into a YAML-friendly format
-    local selector_yaml=""
-    IFS=',' read -ra pairs <<< "${selector}"
-    for pair in "${pairs[@]}"; do
-        local key="${pair%%=*}"
-        local val="${pair#*=}"
-        selector_yaml="${selector_yaml}      ${key}: \"${val}\""$'\n'
-    done
-
+    # Create a wildcard Certificate for the dev namespace.
+    # All ingresses (nubus, nextcloud, ICS) reference the resulting Secret
+    # ("wildcard-tls") so they serve valid certs without per-chart cert-manager.
+    local domain="${TENANT_DOMAIN:-desk.gentian.org}"
+    local ns="${DEV_NAMESPACE:-gentian-dev}"
+    info "Creating wildcard Certificate for *.${domain} in ${ns}..."
     kubectl apply -f - <<EOF
-apiVersion: v1
-kind: Service
+apiVersion: cert-manager.io/v1
+kind: Certificate
 metadata:
-  name: ${svc_name}
+  name: wildcard-tls
   namespace: ${ns}
-  labels:
-    app.kubernetes.io/managed-by: gentian-os
 spec:
-  type: ClusterIP
-  selector:
-${selector_yaml}  ports:
-    - name: http
-      port: 80
-      targetPort: 80
-      protocol: TCP
-    - name: https
-      port: 443
-      targetPort: 443
-      protocol: TCP
+  secretName: wildcard-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+    - "${domain}"
+    - "*.${domain}"
 EOF
-
-    success "Service '${svc_name}' created in namespace '${ns}'."
+    success "Wildcard Certificate CR applied in ${ns}."
 }
 
 # =============================================================================
@@ -760,7 +800,7 @@ main() {
     check_prereqs
     install_tools
     create_namespaces
-    ensure_ingress_service
+    setup_cert_manager
     install_eso
     install_argocd
     setup_argocd_repos
