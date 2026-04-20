@@ -7,7 +7,6 @@ spec:
   apps:
   - profile: ox-appsuite
   - profile: openproject
-  - profile: collabora
   deletionPolicy: Retain
   displayName: Gentian Demo
   domain: desk.gentian.org
