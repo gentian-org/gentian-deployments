@@ -5,6 +5,7 @@ metadata:
 spec:
   adminEmail: admin@gentian.org
   apps:
+  - profile: element
   - profile: collabora
   - profile: ox-appsuite
   - profile: openproject
