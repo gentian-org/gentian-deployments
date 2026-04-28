@@ -7,15 +7,13 @@ spec:
   apps:
   - profile: element
   - profile: collabora
-  - profile: ox-appsuite
-  - profile: openproject
   deletionPolicy: Retain
   displayName: Gentian Demo
   domain: desk.gentian.org
   isolation:
     databasePrefix: gtn_
     keycloakRealm: gtn-demo
-    ldapOU: ou=gtn-demo,${UDM_LDAP_BASE}
+    ldapOU: ou=gtn-demo
     mode: namespace
     s3Prefix: gtn-demo-
   mail:
