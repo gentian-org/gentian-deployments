@@ -6,8 +6,10 @@
 logLevel: debug
 
 image:
-  tag: develop       # track the develop branch image; update to a semver tag for production
-  pullPolicy: Always  # always pull so rolling image updates are picked up without tag changes
+  # Pin to immutable digest for deterministic GitOps rollouts.
+  # Update this digest via PR when promoting a new operator build.
+  digest: "sha256:fd90b798cf77aef25d01faf8b3224f62760bdc0a49d60da1eaf7fbcc21c82dfe"
+  pullPolicy: IfNotPresent
 
 openbao:
   address: "http://openbao.openbao.svc.cluster.local:8200"
