@@ -1,10 +1,12 @@
 ---
 # app-of-apps.yaml — Gentian OS orchestrator + AppProfiles + Tenants
 #
-# Multi-source ArgoCD Application that ties the three-repo architecture together:
-#   Repo 1 (gentian-os):          operator + AppProfile library + Helm chart
-#   Repo 2 (gentian-apps):        app store catalogue (community AppProfiles)
-#   Repo 3 (gentian-deployments): this repo — env-specific config + Tenant CRs
+# Multi-source ArgoCD Application that ties the deployment architecture together:
+#   Repo 1 (gentian-os):          operator + built-in sample AppProfiles + Helm chart
+#   Repo 2 (gentian-deployments): this repo — env-specific config + Tenant CRs
+#
+# Community AppProfiles from gentian-apps are managed by the separate
+# `gentian-appprofiles` Application installed by gentian-os/install.sh.
 #
 # Sync order (via sync-wave):
 #   wave 0: CRDs + Helm chart (operator itself installs its own CRDs)
@@ -44,18 +46,12 @@ spec:
     path: config/samples
     directory:
       include: "appprofile_*.yaml"
-  # ── Source 3: AppProfile CRs from gentian-apps (app store catalogue) ─────
-  - repoURL: https://github.com/gentian-org/gentian-apps
-    targetRevision: main
-    path: profiles
-    directory:
-      include: "*.yaml"
-  # ── Source 4: Tenant CRs from this deployment repo ───────────────────────
+  # ── Source 3: Tenant CRs from this deployment repo ───────────────────────
   - repoURL: https://github.com/gentian-org/gentian-deployments
     targetRevision: main
     path: dev/tenants
     ref: deploy
-  # ── Source 5: Environment kernel config (ImageUpdater CRs) ───────────────
+  # ── Source 4: Environment kernel config (ImageUpdater CRs) ───────────────
   - repoURL: https://github.com/gentian-org/gentian-deployments
     targetRevision: main
     path: dev/kernel
