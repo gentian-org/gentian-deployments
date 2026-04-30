@@ -6,10 +6,10 @@
 logLevel: debug
 
 image:
-  # Pin to immutable digest for deterministic GitOps rollouts.
-  # Update this digest via PR when promoting a new operator build.
-  digest: "sha256:fd90b798cf77aef25d01faf8b3224f62760bdc0a49d60da1eaf7fbcc21c82dfe"
-  pullPolicy: IfNotPresent
+  # Dev tracks the latest develop build; Argo CD Image Updater mutates image.tag.
+  tag: "develop"
+  digest: ""
+  pullPolicy: Always
 
 openbao:
   address: "http://openbao.openbao.svc.cluster.local:8200"
