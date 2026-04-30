@@ -1,120 +1,108 @@
-# gentian-deployments
+# Gentian Deployments - Tenant Admin Guide
 
-Deployment configuration repository for the Gentian stack.
+This document is for tenant admins who manage apps for an existing tenant.
 
-This is **Repo 3** in the three-repo architecture (see [architecture §7](https://github.com/gentian-org/gentian-os/blob/develop/docs/architecture.md)):
+Cluster bootstrap is done separately by the cluster admin using the shared OS installer in the gentian-os repository.
 
-| Repo | Purpose |
-|------|---------|
-| [gentian-os](https://github.com/gentian-org/gentian-os) | Operator, CRDs, Helm chart, kernel services config |
-| [gentian-apps](https://github.com/gentian-org/gentian-apps) | Community AppProfiles (future) |
-| **gentian-deployments** | This repo — environment-specific config, Tenant CRs |
+## What You Can Do
 
----
+As tenant admin, you can:
 
-## Repository structure
+- list available app profiles
+- install an app for your tenant
+- uninstall an app from your tenant
+- check tenant and app reconciliation status
 
-```
-gentian-deployments/
-├── dev/
-│   ├── bootstrap/
-│   │   └── install.sh           # Full bootstrap: installs all dependencies on a fresh cluster
-│   ├── kernel/
-│   │   ├── values-dev.yaml      # gentian-os Helm chart overrides for dev
-│   │   └── tofu.tfvars          # OpenTofu variables (env, chart registry)
-│   ├── app-of-apps.yaml         # ArgoCD Application: orchestrator + AppProfiles + Tenants
-│   └── tenants/
-│       └── dev-tenant.yaml      # gtn-demo Tenant CR
-└── README.md
-```
+As tenant admin, you do not install the OS and you do not manage kernel components.
 
----
+## Login and User Provisioning
 
-## Prerequisites
+The platform UIs are served under the cluster kernel domain:
 
-- [microk8s](https://microk8s.io/) or any Kubernetes ≥ 1.27
-- `kubectl`, `helm`, `jq`, `openssl`, `curl` available on the machine running the bootstrap
-- Access to `registry.opencode.de` (OpenDesk chart registry)
+- Portal: https://portal.<KERNEL_DOMAIN>
+- Identity admin: https://id.<KERNEL_DOMAIN>
+- ArgoCD (read-only for most tenant admins): URL shared by cluster admin
 
-You need both this repo **and** the [gentian-os](https://github.com/gentian-org/gentian-os) repo checked out. The bootstrap script auto-detects `gentian-os` as a sibling directory or you can set `GENTIAN_OS_DIR`.
+Typical user provisioning flow:
 
----
+1. Sign in to Identity admin (Keycloak/Nubus) with credentials provided by cluster admin.
+2. Open your tenant realm (for example gtn-demo).
+3. Create users and groups for your tenant.
+4. Assign roles/groups required by installed apps.
 
-## Fresh cluster bootstrap
+If you do not have identity admin access, ask cluster admin to provision users/groups for your tenant.
 
-```bash
-# Clone both repos side by side
-git clone https://github.com/gentian-org/gentian-os
-git clone https://github.com/gentian-org/gentian-deployments
+## Required Local Setup
 
-# Run the bootstrap script (prompts for credentials interactively)
-bash gentian-deployments/dev/bootstrap/install.sh
-```
+The Gentian OS command interface (`kubectl gentian ...`) reads deployment repository settings from `~/.gentian/config`:
 
-The bootstrap performs 13 ordered steps:
+- GENTIAN_DEPLOYMENTS_PATH (local checkout path)
+- GENTIAN_DEPLOYMENTS_REPO (remote URL)
 
-| Step | Action |
-|------|--------|
-| 0 | Pre-flight checks |
-| 1 | Install CLI tools (`tofu`, `bao`) |
-| 2 | Create Kubernetes namespaces |
-| 3 | Install External Secrets Operator |
-| 4 | Install ArgoCD + AppProject |
-| 5 | Configure ArgoCD OCI registry secrets |
-| 6 | Deploy OpenBao transit seal instance |
-| 7 | Init transit instance + auto-unseal secret |
-| 8 | Apply remaining ArgoCD bootstrap Applications |
-| 9 | Initialize primary OpenBao |
-| 10 | Configure OpenBao via Tofu (KV engine, K8s auth, ESO policy) |
-| 11 | Seed application secrets |
-| 12 | Apply kernel ApplicationSet → ArgoCD syncs kernel services |
-| 13 | Apply `app-of-apps.yaml` → deploy orchestrator + AppProfiles + Tenants |
-
-### Credentials
-
-The following environment variables are prompted interactively if not pre-exported:
-
-| Variable | Description |
-|----------|-------------|
-| `MASTER_PASSWORD` | HMAC master secret for deriving all application passwords |
-| `OD_PRIVATE_REGISTRY_USERNAME` | `registry.opencode.de` username |
-| `OD_PRIVATE_REGISTRY_PASSWORD` | `registry.opencode.de` password or token |
-| `OD_SMTP_RELAY_USERNAME` | SMTP relay username (e.g. Gmail address) |
-| `OD_SMTP_RELAY_PASSWORD` | SMTP relay password (e.g. Gmail App Password) |
-
-### Optional environment variables
-
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `GENTIAN_OS_DIR` | `../../gentian-os` (auto-detected) | Path to gentian-os checkout |
-| `NODE_IP` | auto-detected | Cluster node IP for access info output |
-| `SKIP_TOOLS` | `0` | Set to `1` to skip CLI tool installation |
-| `OPENBAO_INIT_FILE` | `/tmp/openbao-init.json` | File to save OpenBao init keys |
-
----
-
-## Day-2 operations
-
-### Apply app-of-apps manually (after cluster is running)
+Example:
 
 ```bash
-kubectl apply -f dev/app-of-apps.yaml
+cat ~/.gentian/config
 ```
 
-### Add a new Tenant
+## App Management Commands
 
-1. Create a new file in `dev/tenants/`
-2. Commit and push
-3. ArgoCD auto-syncs the `gentian-os` Application
+List available app profiles:
 
-### Update the orchestrator version
+```bash
+kubectl gentian apps list
+```
 
-1. Edit the `targetRevision` in `dev/app-of-apps.yaml` (Source 1)
-2. Commit and push
+Install app for a tenant:
 
----
+```bash
+kubectl gentian apps install openproject --tenant gtn-demo
+```
 
-## Architecture
+Uninstall app for a tenant:
 
-See [gentian-os docs/architecture.md](https://github.com/gentian-org/gentian-os/blob/develop/docs/architecture.md) for the full system architecture.
+```bash
+kubectl gentian apps uninstall openproject --tenant gtn-demo
+```
 
+What happens behind the scenes:
+
+1. The Gentian OS command interface updates your tenant manifest in this repository
+2. It commits and pushes the change
+3. It applies the tenant manifest to Kubernetes
+4. Operator reconciles app resources
+
+## Useful Operational Checks
+
+Check tenant objects:
+
+```bash
+kubectl get tenants
+kubectl get tenant gtn-demo -o yaml
+```
+
+Check ArgoCD app sync status:
+
+```bash
+kubectl get applications -n argocd
+```
+
+Check operator logs:
+
+```bash
+kubectl logs -n gentian-system deploy/gentian-os -f
+```
+
+## Tenant Manifests
+
+Tenant manifests are stored under environment folders, for example:
+
+- dev/tenants/dev-tenant.yaml
+
+Only edit manifests for tenants you are responsible for.
+
+## Related Docs
+
+Cluster-admin OS commands are documented in:
+
+- ../gentian-os/docs/commands.md
