@@ -95,9 +95,12 @@ kubectl logs -n gentian-system deploy/gentian-os -f
 
 ## Tenant Manifests
 
-Tenant manifests are stored under environment folders, for example:
+Tenant manifests are stored under environment folders using a definition/
+instance layout, for example:
 
-- dev/tenants/dev-tenant.yaml
+- dev/tenants/definitions/gtn-demo-base/tenant.yaml
+- dev/tenants/instances/gtn-demo/patch.yaml
+- dev/tenants/kustomization.yaml
 
 Only edit manifests for tenants you are responsible for.
 
