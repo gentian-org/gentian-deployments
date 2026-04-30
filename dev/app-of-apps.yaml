@@ -43,6 +43,7 @@ spec:
     name: gentian-os
     namespace: gentian-system
     jsonPointers:
+    - /metadata/annotations
     - /spec/template/metadata/annotations/kubectl.kubernetes.io~1restartedAt
   sources:
   # ── Source 1: gentian-os Helm chart (operator) ────────────────────────────
