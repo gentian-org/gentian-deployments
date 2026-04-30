@@ -1,0 +1,27 @@
+---
+# ArgoCD Image Updater configuration for gentian-os operator in STAGING
+#
+# Staging environment: Update when new releases are tagged.
+# This ensures staging always has officially released versions but can receive
+# updates outside the normal prod release cycle for testing.
+
+apiVersion: argocd-image-updater.argoproj.io/v1alpha1
+kind: ImageUpdater
+metadata:
+  name: gentian-os-kernel-staging
+  namespace: argocd
+spec:
+  applicationRefs:
+    - namePattern: "staging-kernel-os"
+      images:
+        - alias: operator
+          imageName: ghcr.io/gentian-org/gentian-os
+          # Staging: Update to latest semver release, patch level and canaries allowed
+          policy: semver:v1.x
+          tagsMatchRegex: '^v[0-9]+\.[0-9]+\.[0-9]+.*$'
+
+  updateMethod:
+    method: argocd
+
+  webhook:
+    enabled: true

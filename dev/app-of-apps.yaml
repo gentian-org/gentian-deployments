@@ -49,6 +49,12 @@ spec:
     targetRevision: main
     path: dev/tenants
     ref: deploy
+  # ── Source 5: Environment kernel config (ImageUpdater CRs) ───────────────
+  - repoURL: https://github.com/gentian-org/gentian-deployments
+    targetRevision: main
+    path: dev/kernel
+    directory:
+      include: "image-updater.yaml"
   destination:
     server: https://kubernetes.default.svc
     namespace: gentian-system

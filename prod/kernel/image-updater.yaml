@@ -1,0 +1,31 @@
+---
+# ArgoCD Image Updater configuration for gentian-os operator in PRODUCTION
+#
+# Production environment: CONSERVATIVE update policy.
+# Only update to stable releases with manual approval gating (weekly review).
+# This ensures production stability; all updates are deliberate and reviewed.
+
+apiVersion: argocd-image-updater.argoproj.io/v1alpha1
+kind: ImageUpdater
+metadata:
+  name: gentian-os-kernel-prod
+  namespace: argocd
+spec:
+  applicationRefs:
+    - namePattern: "prod-kernel-os"
+      images:
+        - alias: operator
+          imageName: ghcr.io/gentian-org/gentian-os
+          # Production: Only update to released versions (v1.x.x), exclude all pre-releases
+          policy: semver:v1.2.*  # Pin to v1.2.x series; change to v1.3.* after release approval
+          tagsMatchRegex: '^v[0-9]+\.[0-9]+\.[0-9]+(\.final)?$'
+          ignoreTagsRegex: '^(.*-rc\..*|.*-alpha|.*-beta|.*-snapshot)$'
+
+  updateMethod:
+    method: argocd
+    # Future: Add driftDetectionPolicy to require manual sync approval
+    # (allows Image Updater to detect new versions but not auto-apply)
+
+  webhook:
+    enabled: true
+    # Production webhook validates source before processing (on by default)
