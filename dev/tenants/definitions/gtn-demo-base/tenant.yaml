@@ -3,7 +3,7 @@ kind: Tenant
 metadata:
   name: gtn-demo
 spec:
-  adminEmail: admin@gentian.org
+  adminEmail: admin-gtn-demo@gentian.org
   apps:
   - profile: element
   - profile: collabora
