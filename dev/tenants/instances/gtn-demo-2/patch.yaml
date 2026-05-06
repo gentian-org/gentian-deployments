@@ -1,0 +1,12 @@
+apiVersion: gentianos.io/v1alpha1
+kind: Tenant
+metadata:
+  name: gtn-demo-2
+spec:
+  displayName: Gentian Demo 2
+  isolation:
+    databasePrefix: gtn2_
+    keycloakRealm: gtn-demo-2
+    ldapOU: ou=gtn-demo-2
+    mode: namespace
+    s3Prefix: gtn-demo-2-
