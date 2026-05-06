@@ -3,6 +3,7 @@ kind: Tenant
 metadata:
   name: gtn-demo-2
 spec:
+  adminEmail: admin-gtn-demo-2@gentian.org
   displayName: Gentian Demo 2
   isolation:
     databasePrefix: gtn2_
