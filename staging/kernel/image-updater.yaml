@@ -12,7 +12,7 @@ metadata:
   namespace: argocd
 spec:
   applicationRefs:
-    - namePattern: "staging-kernel-os"
+    - namePattern: "gentian-os"
       images:
         - alias: operator
           imageName: ghcr.io/gentian-org/gentian-os
