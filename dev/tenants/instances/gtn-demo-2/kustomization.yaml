@@ -6,9 +6,3 @@ patches:
 - path: patch.yaml
   target:
     kind: Tenant
-- patch: |-
-    - op: replace
-      path: /metadata/name
-      value: gtn-demo-2
-  target:
-    kind: Tenant
