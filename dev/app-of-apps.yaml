@@ -53,18 +53,12 @@ spec:
     helm:
       valueFiles:
       - $deploy/dev/kernel/values-dev.yaml
-  # ── Source 2: AppProfile CRs from gentian-os (built-in library) ──────────
-  - repoURL: https://github.com/gentian-org/gentian-os
-    targetRevision: develop
-    path: config/samples
-    directory:
-      include: "appprofile_*.yaml"
-  # ── Source 3: Tenant CRs from this deployment repo ───────────────────────
+  # ── Source 2: Tenant CRs from this deployment repo ───────────────────────
   - repoURL: https://github.com/gentian-org/gentian-deployments
     targetRevision: main
     path: dev/tenants
     ref: deploy
-  # ── Source 4: Environment kernel config (ImageUpdater CRs) ───────────────
+  # ── Source 3: Environment kernel config (ImageUpdater CRs) ───────────────
   - repoURL: https://github.com/gentian-org/gentian-deployments
     targetRevision: main
     path: dev/kernel
