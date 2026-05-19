@@ -7,7 +7,7 @@ spec:
   apps:
   - profile: element
   - profile: collabora
-  deletionPolicy: Retain
+  deletionPolicy: Delete
   displayName: Gentian Demo
   domain: desk.gentian.org
   isolation:
