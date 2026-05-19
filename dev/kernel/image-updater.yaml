@@ -4,11 +4,14 @@
 # This CR tells the controller to manage the Argo Application named
 # "gentian-os" in the argocd namespace. Per-image update behavior is driven by
 # annotations on that Application.
+#
+# NOTE: must live in the argocd-image-updater namespace — the controller runs
+# with "Watching controller namespace only" and ignores CRs in other namespaces.
 apiVersion: argocd-image-updater.argoproj.io/v1alpha1
 kind: ImageUpdater
 metadata:
   name: gentian-os
-  namespace: argocd
+  namespace: argocd-image-updater
 spec:
   writeBackConfig:
     method: argocd
