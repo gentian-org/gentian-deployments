@@ -9,6 +9,7 @@ spec:
   - profile: collabora
   deletionPolicy: Retain
   displayName: Gentian Demo 2
+  domain: desk.gentian.org
   isolation:
     databasePrefix: gtn2_
     keycloakRealm: gtn-demo-2
