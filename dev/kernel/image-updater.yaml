@@ -5,13 +5,15 @@
 # "gentian-os" in the argocd namespace. Per-image update behavior is driven by
 # annotations on that Application.
 #
-# NOTE: must live in the argocd-image-updater namespace — the controller runs
-# with "Watching controller namespace only" and ignores CRs in other namespaces.
+# NOTE: must live in the argocd namespace because the controller is configured
+# with watch.namespaces=argocd (IMAGE_UPDATER_WATCH_NAMESPACES).  The controller
+# then also looks for Applications in that same namespace, which is where ArgoCD
+# keeps its Application resources.
 apiVersion: argocd-image-updater.argoproj.io/v1alpha1
 kind: ImageUpdater
 metadata:
   name: gentian-os
-  namespace: argocd-image-updater
+  namespace: argocd
 spec:
   writeBackConfig:
     method: argocd
