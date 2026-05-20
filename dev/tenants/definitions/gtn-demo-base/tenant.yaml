@@ -6,8 +6,6 @@ spec:
   adminEmail: admin-gtn-demo@gentian.org
   apps:
   - profile: element
-  office:
-    enabled: true
   deletionPolicy: Retain
   mail:
     domain: gentian.org
