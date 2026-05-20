@@ -6,7 +6,8 @@ spec:
   adminEmail: admin-gtn-demo@gentian.org
   apps:
   - profile: element
-  - profile: collabora
+  office:
+    enabled: true
   deletionPolicy: Delete
   displayName: Gentian Demo
   domain: desk.gentian.org
