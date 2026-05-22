@@ -1,14 +1,14 @@
 apiVersion: gentianos.io/v1alpha1
 kind: Tenant
 metadata:
-  name: gtn-demo
+  name: placeholder  # matched via target selector above; name is ignored
   annotations:
     argocd.argoproj.io/sync-wave: "2"
 spec:
-  adminEmail: admin-gtn-demo@gentian.org
-  apps:
-  - profile: element
   deletionPolicy: Retain
+  domain: desk.gentian.org
+  isolation:
+    mode: namespace
   mail:
     domain: gentian.org
     mode: selfhosted
