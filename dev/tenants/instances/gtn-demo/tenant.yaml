@@ -7,6 +7,12 @@ spec:
   apps:
   - profile: element
     isolationMode: shared
+    config:
+      extraValues:
+        configuration:
+          homeserver:
+            user_directory:
+              search_all_users: false
   deletionPolicy: Retain
   displayName: Gentian Demo
   domain: desk.gentian.org
