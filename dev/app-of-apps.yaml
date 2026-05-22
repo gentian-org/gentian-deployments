@@ -1,17 +1,19 @@
 ---
-# app-of-apps.yaml — Gentian OS orchestrator + AppProfiles + Tenants
+# app-of-apps.yaml — Gentian OS ArgoCD Applications
 #
-# Multi-source ArgoCD Application that ties the deployment architecture together:
-#   Repo 1 (gentian-os):          operator + built-in sample AppProfiles + Helm chart
-#   Repo 2 (gentian-deployments): this repo — env-specific config + Tenant CRs
+# Two separate Applications so that Tenant provisioning state never blocks
+# operator image rollouts:
+#
+#   gentian-os      (wave 0): operator Helm chart + ImageUpdater CR only.
+#                             argocd-image-updater targets this app exclusively,
+#                             giving it a clean sync surface: new image → deployed
+#                             in seconds regardless of tenant health.
+#
+#   gentian-tenants (wave 2): Tenant CRs only.
+#                             Long-running provisioning jobs stay isolated here.
 #
 # Community AppProfiles from gentian-apps are managed by the separate
 # `gentian-appprofiles` Application installed by gentian-os/install.sh.
-#
-# Sync order (via sync-wave):
-#   wave 0: CRDs + Helm chart (operator itself installs its own CRDs)
-#   wave 1: AppProfile CRs (operator reads these to deploy apps)
-#   wave 2: Tenant CRs (operator creates all per-tenant resources)
 #
 # Apply:
 #   kubectl apply -f dev/app-of-apps.yaml
@@ -46,19 +48,18 @@ spec:
     - /metadata/annotations
     - /spec/template/metadata/annotations/kubectl.kubernetes.io~1restartedAt
   sources:
-  # ── Source 1: gentian-os Helm chart (operator) ────────────────────────────
+  # Source 1: gentian-os Helm chart (operator)
   - repoURL: https://github.com/gentian-org/gentian-os
     targetRevision: develop
     path: charts/gentian-os
     helm:
       valueFiles:
       - $deploy/dev/kernel/values-dev.yaml
-  # ── Source 2: Tenant CRs from this deployment repo ───────────────────────
+  # Source 2: deployments ref only (provides $deploy variable, no manifests)
   - repoURL: https://github.com/gentian-org/gentian-deployments
     targetRevision: main
-    path: dev/tenants
     ref: deploy
-  # ── Source 3: Environment kernel config (ImageUpdater CRs) ───────────────
+  # Source 3: Environment kernel config (ImageUpdater CR)
   - repoURL: https://github.com/gentian-org/gentian-deployments
     targetRevision: main
     path: dev/kernel
@@ -71,12 +72,34 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    retry:
-      limit: 5
-      backoff:
-        duration: 10s
-        factor: 2
-        maxDuration: 3m
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
+---
+# Tenant CRs — kept in a separate Application so provisioning state cannot
+# stall the operator image rollout above.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gentian-tenants
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: gentian
+  source:
+    repoURL: https://github.com/gentian-org/gentian-deployments
+    targetRevision: main
+    path: dev/tenants
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: gentian-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
     syncOptions:
     - CreateNamespace=true
     - ServerSideApply=true
