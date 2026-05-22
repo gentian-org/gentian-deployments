@@ -7,7 +7,7 @@ spec:
   apps:
   - profile: element
     isolationMode: shared
-  deletionPolicy: Delete
+  deletionPolicy: Retain
   displayName: Gentian Demo 2
   domain: desk.gentian.org
   isolation:
