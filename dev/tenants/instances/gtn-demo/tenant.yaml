@@ -6,7 +6,7 @@ spec:
   adminEmail: admin-gtn-demo@gentian.org
   apps:
   - profile: element
-    isolationMode: shared
+    isolationMode: primary
     config:
       extraValues:
         configuration:
