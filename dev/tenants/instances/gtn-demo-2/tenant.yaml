@@ -12,4 +12,4 @@ spec:
     s3Prefix: gtn-demo-2-
   apps:
   - profile: element
-    isolationMode: shared
+    isolationMode: dedicated
