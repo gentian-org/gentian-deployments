@@ -11,7 +11,6 @@ spec:
     ldapOU: ou=gtn-demo
     s3Prefix: gtn-demo-
   apps:
-  - profile: jitsi
   - profile: ox-appsuite
   - profile: element
     isolationMode: shared
