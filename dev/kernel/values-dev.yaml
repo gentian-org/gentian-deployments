@@ -30,6 +30,11 @@ defaults:
 kernelDomain: "desk.gentian.org"
 kernelRealm: "kernel"
 
+kernelServices:
+  s3Endpoint: "http://minio-dev.gentian-infra-dev.svc.cluster.local:9000"
+  mysqlHost: "opendesk-mariadb-dev.gentian-infra-dev.svc.cluster.local"
+  redisHost: "redis-dev-master.gentian-infra-dev.svc.cluster.local"
+
 metrics:
   serviceMonitor:
     enabled: false   # no Prometheus installed in dev by default
