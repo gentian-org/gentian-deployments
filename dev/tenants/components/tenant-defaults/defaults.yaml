@@ -6,7 +6,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "2"
 spec:
   deletionPolicy: Retain
-  domain: desk.gentian.org
   isolation:
     mode: namespace
   mail:
