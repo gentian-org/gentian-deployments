@@ -16,4 +16,3 @@ spec:
   - profile: jitsi
   - profile: ox-appsuite
   - profile: element
-    isolationMode: shared

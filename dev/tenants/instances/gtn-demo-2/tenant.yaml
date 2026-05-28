@@ -15,4 +15,3 @@ spec:
   apps:
   - profile: ox-appsuite
   - profile: element
-    isolationMode: dedicated
