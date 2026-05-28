@@ -11,6 +11,7 @@ spec:
     keycloakRealm: gtn-demo
     ldapOU: ou=gtn-demo
     s3Prefix: gtn-demo-
+  deletionPolicy: Delete
   apps:
   - profile: jitsi
   - profile: ox-appsuite
