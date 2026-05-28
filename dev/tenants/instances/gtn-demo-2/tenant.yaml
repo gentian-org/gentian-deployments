@@ -13,5 +13,4 @@ spec:
     s3Prefix: gtn-demo-2-
   deletionPolicy: Retain
   apps:
-  - profile: ox-appsuite
   - profile: element
