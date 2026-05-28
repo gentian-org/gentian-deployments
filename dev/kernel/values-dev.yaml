@@ -25,6 +25,7 @@ cloudflare:
   apiTokenSecretRef:
     name: "cloudflare-api-token-gentian-system"
     key: "api-token"
+    openbaoPath: "gentian-os/kernel/dns/cloudflare"
 
 argocd:
   namespace: "argocd"
