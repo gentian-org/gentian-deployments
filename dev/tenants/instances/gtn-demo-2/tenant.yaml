@@ -13,5 +13,6 @@ spec:
     s3Prefix: gtn-demo-2-
   deletionPolicy: Retain
   apps:
+  - profile: cryptpad
   - profile: jitsi
   - profile: element
