@@ -11,7 +11,7 @@ spec:
     keycloakRealm: gtn-demo-2
     ldapOU: ou=gtn-demo-2
     s3Prefix: gtn-demo-2-
-  deletionPolicy: Retain
+  deletionPolicy: Delete
   apps:
   - profile: cryptpad
   - profile: jitsi
