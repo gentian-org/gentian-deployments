@@ -1,0 +1,15 @@
+apiVersion: gentianos.io/v1alpha1
+kind: Tenant
+metadata:
+  name: demo
+spec:
+  domain: desk.gentian.org
+  adminEmail: admin-demo@gentian.org
+  displayName: Demo
+  isolation:
+    databasePrefix: demo_
+    keycloakRealm: demo
+    ldapOU: ou=demo
+    s3Prefix: demo-
+  deletionPolicy: Retain
+  apps:
