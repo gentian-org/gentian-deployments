@@ -13,4 +13,3 @@ spec:
     s3Prefix: demo-
   deletionPolicy: Retain
   apps:
-  - profile: jitsi
