@@ -25,9 +25,9 @@ The platform UIs are served under the cluster kernel domain:
 
 Typical user provisioning flow:
 
-1. Sign in to Identity admin (Keycloak/Nubus) with credentials provided by cluster admin.
-2. Open your tenant realm (for example gtn-demo).
-3. Create users and groups for your tenant.
+1. Sign in at the shared portal: https://portal.<KERNEL_DOMAIN>/login/
+2. Tenant admins manage users via UMC at https://portal.<KERNEL_DOMAIN>/univention/management/
+3. Or use Identity admin (Keycloak) for your tenant realm (for example demo).
 4. Assign roles/groups required by installed apps.
 
 If you do not have identity admin access, ask cluster admin to provision users/groups for your tenant.
@@ -56,13 +56,13 @@ kubectl gentian apps list
 Install app for a tenant:
 
 ```bash
-kubectl gentian apps install openproject --tenant gtn-demo
+kubectl gentian apps install openproject --tenant demo
 ```
 
 Uninstall app for a tenant:
 
 ```bash
-kubectl gentian apps uninstall openproject --tenant gtn-demo
+kubectl gentian apps uninstall openproject --tenant demo
 ```
 
 What happens behind the scenes:
@@ -78,7 +78,7 @@ Check tenant objects:
 
 ```bash
 kubectl get tenants
-kubectl get tenant gtn-demo -o yaml
+kubectl get tenant demo -o yaml
 ```
 
 Check ArgoCD app sync status:
@@ -95,11 +95,9 @@ kubectl logs -n gentian-system deploy/gentian-os -f
 
 ## Tenant Manifests
 
-Tenant manifests are stored under environment folders using a definition/
-instance layout, for example:
+Tenant manifests live under each environment folder, for example:
 
-- dev/tenants/definitions/gtn-demo-base/tenant.yaml
-- dev/tenants/instances/gtn-demo/patch.yaml
+- dev/tenants/instances/demo/tenant.yaml
 - dev/tenants/kustomization.yaml
 
 Only edit manifests for tenants you are responsible for.
