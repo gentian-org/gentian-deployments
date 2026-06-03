@@ -10,6 +10,6 @@ spec:
     keycloakRealm: demo
     ldapOU: ou=demo
     s3Prefix: demo-
-  deletionPolicy: Delete
+  deletionPolicy: Retain
   apps:
   - profile: jitsi
