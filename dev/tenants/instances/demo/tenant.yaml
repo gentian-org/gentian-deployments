@@ -13,4 +13,3 @@ spec:
   deletionPolicy: Retain
   apps:
   - profile: cryptpad
-  - profile: jitsi
