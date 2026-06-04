@@ -102,8 +102,19 @@ Tenant manifests live under each environment folder, for example:
 
 Only edit manifests for tenants you are responsible for.
 
+## Tenant app URLs and TLS
+
+Installed apps are served at `{subdomain}.{tenant}.{KERNEL_DOMAIN}` unless your
+tenant manifest sets `spec.domain` (custom vanity zone). For example, Jitsi on
+tenant `demo` is typically `https://meet.demo.desk.gentian.org`.
+
+The Gentian OS operator issues a per-tenant wildcard certificate for that zone.
+Cluster admins must configure DNS and `TENANT_DNS01_CLUSTER_ISSUER` on the
+operator; see [multi-tenancy TLS](../gentian-os/docs/design/multi-tenancy.md) §3.
+
 ## Related Docs
 
 Cluster-admin OS commands are documented in:
 
 - ../gentian-os/docs/commands.md
+- ../gentian-os/docs/design/multi-tenancy.md (domains and TLS)
