@@ -67,10 +67,10 @@ kubectl gentian apps uninstall openproject --tenant demo
 
 What happens behind the scenes:
 
-1. The Gentian OS command interface updates your tenant manifest in this repository
-2. It commits and pushes the change
-3. It applies the tenant manifest to Kubernetes
-4. Operator reconciles app resources
+1. The Gentian OS command interface updates `spec.apps` in your tenant manifest
+2. It commits and pushes the change (Git source of truth for ArgoCD)
+3. It applies the tenant manifest to Kubernetes (immediate reconcile)
+4. The gentian-os operator creates/updates `App` claims; Crossplane deploys helm Releases
 
 ## Useful Operational Checks
 
@@ -81,7 +81,14 @@ kubectl get tenants
 kubectl get tenant demo -o yaml
 ```
 
-Check ArgoCD app sync status:
+Check tenant app installs:
+
+```bash
+kubectl get apps -n tenant-demo
+kubectl get releases.helm.crossplane.io -n tenant-demo
+```
+
+Check ArgoCD (kernel + catalogue sync, not per-tenant app charts):
 
 ```bash
 kubectl get applications -n argocd
@@ -116,9 +123,22 @@ operator; see [multi-tenancy TLS](../gentian-os/docs/design/multi-tenancy.md) §
 set `ACME_ENV=staging` in `install.env` and run `./update.sh --acme-issuers`.
 See [dev/kernel/README.md](dev/kernel/README.md).
 
+## Tenant instance lifecycle (cluster admin)
+
+Adding or removing a tenant **instance** (folder under `dev/tenants/instances/`)
+is a cluster-admin task via `kubectl gentian tenants deploy|undeploy` — see
+[gentian-os/docs/commands.md](../gentian-os/docs/commands.md).
+
+## Environments
+
+Today only **`dev/tenants`** carries tenant instances. **`prod/`** and
+**`staging/`** currently hold kernel image-updater config only; tenant
+instances there are optional/future.
+
 ## Related Docs
 
-Cluster-admin OS commands are documented in:
+Cluster-admin OS commands:
 
-- ../gentian-os/docs/commands.md
-- ../gentian-os/docs/design/multi-tenancy.md (domains and TLS)
+- [gentian-os/docs/commands.md](../gentian-os/docs/commands.md)
+- [gentian-os/docs/design/multi-tenancy.md](../gentian-os/docs/design/multi-tenancy.md) (domains and TLS)
+- [gentian-os/docs/roadmap.md](../gentian-os/docs/roadmap.md) (planned features)
