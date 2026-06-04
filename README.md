@@ -112,6 +112,10 @@ The Gentian OS operator issues a per-tenant wildcard certificate for that zone.
 Cluster admins must configure DNS and `TENANT_DNS01_CLUSTER_ISSUER` on the
 operator; see [multi-tenancy TLS](../gentian-os/docs/design/multi-tenancy.md) §3.
 
+**Dev:** `dev/kernel/values-dev.yaml` points the operator at Let's Encrypt staging;
+set `ACME_ENV=staging` in `install.env` and run `./update.sh --acme-issuers`.
+See [dev/kernel/README.md](dev/kernel/README.md).
+
 ## Related Docs
 
 Cluster-admin OS commands are documented in:

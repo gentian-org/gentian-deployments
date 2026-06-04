@@ -38,6 +38,10 @@ defaults:
 kernelDomain: "desk.gentian.org"
 kernelRealm: "kernel"
 
+# Dev uses Let's Encrypt staging (pair with ACME_ENV=staging in install.env).
+# Certs are untrusted in browsers but avoid production rate limits on reinstall.
+tenantDNS01ClusterIssuer: "letsencrypt-staging-dns01-cloudflare"
+
 kernelServices:
   s3Endpoint: "http://minio-dev.gentian-infra-dev.svc.cluster.local:9000"
   mysqlHost: "opendesk-mariadb-dev.gentian-infra-dev.svc.cluster.local"
