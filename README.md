@@ -111,9 +111,17 @@ Only edit manifests for tenants you are responsible for.
 
 ## Tenant app URLs and TLS
 
-Installed apps are served at `{subdomain}.{tenant}.{KERNEL_DOMAIN}` unless your
-tenant manifest sets `spec.domain` (custom vanity zone). For example, Jitsi on
-tenant `demo` is typically `https://meet.demo.desk.gentian.org`.
+Installed apps are served at `{subdomain}.{effectiveDomain}`. The effective domain
+depends on cluster **`TENANCY_MODE`** (operator Helm `tenancyMode` / `install.env`):
+
+| Mode | Default effective domain | Example Jitsi on tenant `demo` |
+|---|---|---|
+| **`multi`** (shared cluster) | `demo.<KERNEL_DOMAIN>` | `https://meet.demo.desk.gentian.org` |
+| **`single`** (dedicated cluster) | `<KERNEL_DOMAIN>` (flat) | `https://meet.desk.gentian.org` (tenant must be named `default`) |
+
+Override with `spec.domain` in the tenant manifest for customer vanity zones (e.g.
+`acme.com`). Central IdP remains `https://id.<KERNEL_DOMAIN>/realms/<tenant>` in
+both modes.
 
 The Gentian OS operator issues a per-tenant wildcard certificate for that zone.
 Cluster admins must configure DNS and `TENANT_DNS01_CLUSTER_ISSUER` on the
