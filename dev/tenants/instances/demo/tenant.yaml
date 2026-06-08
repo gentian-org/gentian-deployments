@@ -13,4 +13,3 @@ spec:
   deletionPolicy: Retain
   apps:
   - profile: element
-  - profile: jitsi
