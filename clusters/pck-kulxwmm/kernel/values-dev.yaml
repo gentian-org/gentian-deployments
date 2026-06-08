@@ -1,7 +1,8 @@
-# values-dev.yaml — dev environment overrides for the gentian-os Helm chart
+# values-dev.yaml — dev stage overlay for gentian-os Helm chart
 #
-# Referenced by dev/app-of-apps.yaml → Source 1 helm.valueFiles
-# These override the defaults in charts/gentian-os/values.yaml.
+# Merge order:
+#   1) values-base.yaml
+#   2) values-dev.yaml (this file)
 
 logLevel: debug
 
@@ -10,10 +11,6 @@ image:
   tag: "develop"
   digest: ""
   pullPolicy: Always
-
-openbao:
-  address: "http://openbao.openbao.svc.cluster.local:8200"
-  authPath: "kubernetes"
 
 ldap:
   server: "ldap://nubus-dev-ldap-server.gentian-dev.svc.cluster.local:389"
@@ -26,14 +23,6 @@ cloudflare:
     name: "cloudflare-api-token-gentian-system"
     key: "api-token"
     openbaoPath: "gentian-os/kernel/dns/cloudflare"
-
-argocd:
-  namespace: "argocd"
-  project: "gentianos-tenants"
-
-defaults:
-  isolation:
-    mode: "namespace"
 
 kernelDomain: "desk.gentian.org"
 kernelRealm: "kernel"

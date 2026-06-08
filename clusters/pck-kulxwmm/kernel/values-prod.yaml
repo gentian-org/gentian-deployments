@@ -1,0 +1,16 @@
+# values-prod.yaml — production stage overlay for gentian-os operator chart
+#
+# Merge order:
+#   1) values-base.yaml
+#   2) values-prod.yaml (this file)
+
+logLevel: info
+
+image:
+  tag: "main"
+  digest: ""
+  pullPolicy: IfNotPresent
+
+# TODO: set production domain and issuer before using this stage.
+kernelDomain: "example.com"
+tenantDNS01ClusterIssuer: "letsencrypt-dns01-cloudflare"

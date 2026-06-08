@@ -1,152 +1,73 @@
-# Gentian Deployments - Tenant Admin Guide
+# Gentian Deployments
 
-This document is for tenant admins who manage apps for an existing tenant.
+This repository is the GitOps source of truth for cluster-specific Gentian
+configuration and tenant manifests.
 
-Cluster bootstrap is done separately by the cluster admin using the shared OS installer in the gentian-os repository.
+## Repository layout
 
-## What You Can Do
+The structure is cluster-first and tenant-centric:
 
-As tenant admin, you can:
-
-- list available app profiles
-- install an app for your tenant
-- uninstall an app from your tenant
-- check tenant and app reconciliation status
-
-As tenant admin, you do not install the OS and you do not manage kernel components.
-
-## Login and User Provisioning
-
-The platform UIs are served under the cluster kernel domain:
-
-- Portal: https://portal.<KERNEL_DOMAIN>
-- Identity admin: https://id.<KERNEL_DOMAIN>
-- ArgoCD (read-only for most tenant admins): URL shared by cluster admin
-
-Typical user provisioning flow:
-
-1. Sign in at the shared portal: https://portal.<KERNEL_DOMAIN>/login/
-2. Tenant admins manage users via UMC at https://portal.<KERNEL_DOMAIN>/univention/management/
-3. Or use Identity admin (Keycloak) for your tenant realm (for example demo).
-4. Assign roles/groups required by installed apps.
-
-If you do not have identity admin access, ask cluster admin to provision users/groups for your tenant.
-
-## Required Local Setup
-
-The Gentian OS command interface (`kubectl gentian ...`) reads deployment repository settings from `~/.gentian/config`:
-
-- GENTIAN_DEPLOYMENTS_PATH (local checkout path)
-- GENTIAN_DEPLOYMENTS_REPO (remote URL)
-
-Example:
-
-```bash
-cat ~/.gentian/config
+```text
+clusters/
+  <cluster>/
+    kernel/
+      values-base.yaml
+      values-<stage>.yaml
+      image-updater-<stage>.yaml
+      app-of-apps-<stage>.yaml
+    tenants/
+      components/
+      <tenant>/
+        dev/
+        staging/
+        prod/
 ```
 
-## App Management Commands
+Current cluster in this repository:
 
-List available app profiles:
+- `clusters/pck-kulxwmm`
+- `clusters/test`
+
+## How bootstrap resolves paths
+
+`gentian-os/install.sh` and `update.sh` render Argo Applications from:
+
+- `clusters/<cluster>/kernel/values-base.yaml`
+- `clusters/<cluster>/kernel/values-<stage>.yaml`
+- `clusters/<cluster>/kernel/image-updater-<stage>.yaml`
+- `clusters/<cluster>/tenants/*/<stage>` (ApplicationSet git directory generator)
+
+where `<cluster>` and `<stage>` come from:
+
+- `GENTIAN_DEPLOYMENTS_CLUSTER`
+- `GENTIAN_DEPLOYMENTS_STAGE`
+
+## Tenant manifests
+
+Tenant definitions live under:
+
+- `clusters/<cluster>/tenants/<tenant>/<stage>/tenant.yaml`
+
+Argo discovers and deploys these tenant stage directories automatically through
+the `gentian-tenants` ApplicationSet.
+
+## Operator and app commands
 
 ```bash
+kubectl gentian tenants list
+kubectl gentian tenants deploy demo
+kubectl gentian tenants undeploy demo
 kubectl gentian apps list
-```
-
-Install app for a tenant:
-
-```bash
 kubectl gentian apps install openproject --tenant demo
 ```
 
-Uninstall app for a tenant:
+## Security note
 
-```bash
-kubectl gentian apps uninstall openproject --tenant demo
-```
+This repository can be public for demo setups, but never commit raw secrets.
+Use OpenBao + External Secrets and keep credentials outside Git.
 
-What happens behind the scenes:
-
-1. The Gentian OS command interface updates `spec.apps` in your tenant manifest
-2. It commits and pushes the change (Git source of truth for ArgoCD)
-3. It applies the tenant manifest to Kubernetes (immediate reconcile)
-4. The gentian-os operator creates/updates `App` claims; Crossplane deploys helm Releases
-
-## Useful Operational Checks
-
-Check tenant objects:
-
-```bash
-kubectl get tenants
-kubectl get tenant demo -o yaml
-```
-
-Check tenant app installs:
-
-```bash
-kubectl get apps -n tenant-demo
-kubectl get releases.helm.crossplane.io -n tenant-demo
-```
-
-Check ArgoCD (kernel + catalogue sync, not per-tenant app charts):
-
-```bash
-kubectl get applications -n argocd
-```
-
-Check operator logs:
-
-```bash
-kubectl logs -n gentian-system deploy/gentian-os -f
-```
-
-## Tenant Manifests
-
-Tenant manifests live under each environment folder, for example:
-
-- dev/tenants/instances/demo/tenant.yaml
-- dev/tenants/kustomization.yaml
-
-Only edit manifests for tenants you are responsible for.
-
-## Tenant app URLs and TLS
-
-Installed apps are served at `{subdomain}.{effectiveDomain}`. The effective domain
-depends on cluster **`TENANCY_MODE`** (operator Helm `tenancyMode` / `install.env`):
-
-| Mode | Default effective domain | Example Jitsi on tenant `demo` |
-|---|---|---|
-| **`multi`** (shared cluster) | `demo.<KERNEL_DOMAIN>` | `https://meet.demo.desk.gentian.org` |
-| **`single`** (dedicated cluster) | `<KERNEL_DOMAIN>` (flat) | `https://meet.desk.gentian.org` (tenant must be named `default`) |
-
-Override with `spec.domain` in the tenant manifest for customer vanity zones (e.g.
-`acme.com`). Central IdP remains `https://id.<KERNEL_DOMAIN>/realms/<tenant>` in
-both modes.
-
-The Gentian OS operator issues a per-tenant wildcard certificate for that zone.
-Cluster admins must configure DNS and `TENANT_DNS01_CLUSTER_ISSUER` on the
-operator; see [multi-tenancy TLS](../gentian-os/docs/design/multi-tenancy.md) §3.
-
-**Dev:** `dev/kernel/values-dev.yaml` points the operator at Let's Encrypt staging;
-set `ACME_ENV=staging` in `install.env` and run `./update.sh --acme-issuers`.
-See [dev/kernel/README.md](dev/kernel/README.md).
-
-## Tenant instance lifecycle (cluster admin)
-
-Adding or removing a tenant **instance** (folder under `dev/tenants/instances/`)
-is a cluster-admin task via `kubectl gentian tenants deploy|undeploy` — see
-[gentian-os/docs/commands.md](../gentian-os/docs/commands.md).
-
-## Environments
-
-Today only **`dev/tenants`** carries tenant instances. **`prod/`** and
-**`staging/`** currently hold kernel image-updater config only; tenant
-instances there are optional/future.
-
-## Related Docs
-
-Cluster-admin OS commands:
+## Related docs
 
 - [gentian-os/docs/commands.md](../gentian-os/docs/commands.md)
-- [gentian-os/docs/design/multi-tenancy.md](../gentian-os/docs/design/multi-tenancy.md) (domains and TLS)
-- [gentian-os/docs/roadmap.md](../gentian-os/docs/roadmap.md) (planned features)
+- [gentian-os/docs/design/multi-tenancy.md](../gentian-os/docs/design/multi-tenancy.md)
+- [gentian-os/docs/design/security.md](../gentian-os/docs/design/security.md)

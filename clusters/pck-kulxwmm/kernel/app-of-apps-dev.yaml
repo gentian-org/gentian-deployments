@@ -16,7 +16,7 @@
 # `gentian-appprofiles` Application installed by gentian-os/install.sh.
 #
 # Apply:
-#   kubectl apply -f dev/app-of-apps.yaml
+#   kubectl apply -f clusters/pck-kulxwmm/kernel/app-of-apps-dev.yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -71,17 +71,18 @@ spec:
     path: charts/gentian-os
     helm:
       valueFiles:
-      - $deploy/dev/kernel/values-dev.yaml
+      - $deploy/clusters/pck-kulxwmm/kernel/values-base.yaml
+      - $deploy/clusters/pck-kulxwmm/kernel/values-dev.yaml
   # Source 2: deployments ref only (provides $deploy variable, no manifests)
   - repoURL: https://github.com/gentian-org/gentian-deployments
     targetRevision: main
     ref: deploy
-  # Source 3: Environment kernel config (ImageUpdater CR)
+  # Source 3: Cluster kernel config (stage-specific ImageUpdater CR)
   - repoURL: https://github.com/gentian-org/gentian-deployments
     targetRevision: main
-    path: dev/kernel
+    path: clusters/pck-kulxwmm/kernel
     directory:
-      include: "image-updater.yaml"
+      include: "image-updater-dev.yaml"
   destination:
     server: https://kubernetes.default.svc
     namespace: gentian-system
@@ -93,30 +94,42 @@ spec:
     - CreateNamespace=true
     - ServerSideApply=true
 ---
-# Tenant CRs — kept in a separate Application so provisioning state cannot
+# Tenant CRs — kept in a separate ApplicationSet so provisioning state cannot
 # stall the operator image rollout above.
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: ApplicationSet
 metadata:
   name: gentian-tenants
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "2"
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
 spec:
-  project: gentian
-  source:
-    repoURL: https://github.com/gentian-org/gentian-deployments
-    targetRevision: main
-    path: dev/tenants
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: gentian-system
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-    - CreateNamespace=true
-    - ServerSideApply=true
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - git:
+      repoURL: https://github.com/gentian-org/gentian-deployments
+      revision: main
+      directories:
+      - path: clusters/pck-kulxwmm/tenants/*/dev
+  template:
+    metadata:
+      name: '{{ .path.path | replace "/" "-" }}'
+      finalizers:
+      - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: gentian
+      source:
+        repoURL: https://github.com/gentian-org/gentian-deployments
+        targetRevision: main
+        path: '{{ .path.path }}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: gentian-system
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
+        - ServerSideApply=true

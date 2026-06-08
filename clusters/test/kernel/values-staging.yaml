@@ -1,0 +1,16 @@
+# values-staging.yaml — staging stage overlay for gentian-os operator chart
+#
+# Merge order:
+#   1) values-base.yaml
+#   2) values-staging.yaml (this file)
+
+logLevel: info
+
+image:
+  tag: "develop"
+  digest: ""
+  pullPolicy: Always
+
+# TODO: set staging domain and issuer before using this stage.
+kernelDomain: "staging.example.com"
+tenantDNS01ClusterIssuer: "letsencrypt-staging-dns01-cloudflare"

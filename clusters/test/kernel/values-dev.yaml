@@ -1,0 +1,41 @@
+# values-dev.yaml — dev stage overlay for gentian-os Helm chart
+#
+# Merge order:
+#   1) values-base.yaml
+#   2) values-dev.yaml (this file)
+
+logLevel: debug
+
+image:
+  # Dev tracks the latest develop build; Argo CD Image Updater mutates image.tag.
+  tag: "develop"
+  digest: ""
+  pullPolicy: Always
+
+ldap:
+  server: "ldap://nubus-dev-ldap-server.gentian-dev.svc.cluster.local:389"
+  base: "dc=swp-ldap,dc=internal"
+
+cloudflare:
+  zoneID: "03bed96926ccd1830ec74c1a9f9b00cd"
+  tunnelCNAME: "e053a404-0dc1-4b56-bc8c-e0033dd4a016.cfargotunnel.com"
+  apiTokenSecretRef:
+    name: "cloudflare-api-token-gentian-system"
+    key: "api-token"
+    openbaoPath: "gentian-os/kernel/dns/cloudflare"
+
+kernelDomain: "desk.gentian.org"
+kernelRealm: "kernel"
+
+# Dev uses Let's Encrypt staging (pair with ACME_ENV=staging in install.env).
+# Certs are untrusted in browsers but avoid production rate limits on reinstall.
+tenantDNS01ClusterIssuer: "letsencrypt-staging-dns01-cloudflare"
+
+kernelServices:
+  s3Endpoint: "http://minio-dev.gentian-infra-dev.svc.cluster.local:9000"
+  mysqlHost: "opendesk-mariadb-dev.gentian-infra-dev.svc.cluster.local"
+  redisHost: "redis-dev-master.gentian-infra-dev.svc.cluster.local"
+
+metrics:
+  serviceMonitor:
+    enabled: false   # no Prometheus installed in dev by default
