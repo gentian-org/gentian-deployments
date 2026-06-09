@@ -18,3 +18,6 @@ kubectl gentian tenants deploy demo
 ```
 
 The `gentian-tenants` ApplicationSet only watches `clusters/<cluster>/tenants/*/<stage>`.
+
+`kubectl gentian tenants list` shows example templates as `ACTIVE=no` until you
+deploy them into `tenants/`.
