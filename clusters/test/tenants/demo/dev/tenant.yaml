@@ -13,4 +13,4 @@ spec:
   deletionPolicy: Retain
   apps:
   - profile: element
-  - profile: jitsi
+    # Jitsi is bundled as an Element sidecar (see gentian-apps/profiles/element.yaml).
