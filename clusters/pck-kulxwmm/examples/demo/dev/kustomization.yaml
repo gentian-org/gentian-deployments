@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
 - tenant.yaml
 components:
-- ../../components/tenant-defaults
+- ../../../tenants/components/tenant-defaults

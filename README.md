@@ -15,6 +15,9 @@ clusters/
       values-<stage>.yaml
       image-updater-<stage>.yaml
       app-of-apps-<stage>.yaml
+    examples/
+      <tenant>/
+        dev/
     tenants/
       components/
       <tenant>/
@@ -44,18 +47,25 @@ where `<cluster>` and `<stage>` come from:
 
 ## Tenant manifests
 
-Tenant definitions live under:
+Fresh installs leave `clusters/<cluster>/tenants/` **empty**. Nothing under
+`tenants/*/<stage>` is deployed until a cluster admin adds manifests.
+
+Reference examples (not auto-deployed) live under:
+
+- `clusters/<cluster>/examples/<tenant>/<stage>/`
+
+Live tenant definitions belong under:
 
 - `clusters/<cluster>/tenants/<tenant>/<stage>/tenant.yaml`
 
-Argo discovers and deploys these tenant stage directories automatically through
-the `gentian-tenants` ApplicationSet.
+Argo discovers and deploys tenant stage directories through the
+`gentian-tenants` ApplicationSet once they exist under `tenants/`.
 
 ## Operator and app commands
 
 ```bash
 kubectl gentian tenants list
-kubectl gentian tenants deploy demo
+kubectl gentian tenants deploy demo    # scaffolds from examples/demo/<stage>/ on first run
 kubectl gentian tenants undeploy demo
 kubectl gentian apps list
 kubectl gentian apps install openproject --tenant demo
