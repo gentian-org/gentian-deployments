@@ -3,6 +3,11 @@
 # Stage overlays (values-dev.yaml / values-staging.yaml / values-prod.yaml)
 # should contain only stage-specific deltas.
 
+# Edge routing: ingress (legacy) or gateway (Gateway API + Envoy Gateway).
+# Dev/staging enable gateway for migration validation; prod may stay on ingress
+# until cutover (see docs/gateway-migration.md).
+routingMode: gateway
+
 openbao:
   address: "http://openbao.openbao.svc.cluster.local:8200"
   authPath: "kubernetes"
