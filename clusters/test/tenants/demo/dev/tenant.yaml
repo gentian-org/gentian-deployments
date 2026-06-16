@@ -10,7 +10,7 @@ spec:
     keycloakRealm: demo
     ldapOU: ou=demo
     s3Prefix: demo-
-  deletionPolicy: Retain
+  deletionPolicy: Delete
   apps:
   - profile: element
     # Jitsi is bundled as an Element sidecar (see gentian-apps/profiles/element.yaml).
