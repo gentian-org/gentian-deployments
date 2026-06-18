@@ -6,6 +6,8 @@
 
 logLevel: debug
 
+stage: dev
+
 image:
   # Dev tracks the latest develop build; Argo CD Image Updater mutates image.tag.
   tag: "develop"

@@ -3,6 +3,9 @@
 # Stage overlays (values-dev.yaml / values-staging.yaml / values-prod.yaml)
 # should contain only stage-specific deltas.
 
+# Edge routing: Gateway API + Envoy Gateway (see gentian-os/docs/design/gateway.md).
+routingMode: gateway
+
 openbao:
   address: "http://openbao.openbao.svc.cluster.local:8200"
   authPath: "kubernetes"

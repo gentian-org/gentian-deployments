@@ -79,5 +79,6 @@ Use OpenBao + External Secrets and keep credentials outside Git.
 ## Related docs
 
 - [gentian-os/docs/commands.md](../gentian-os/docs/commands.md)
+- [gentian-os/docs/design/gateway.md](../gentian-os/docs/design/gateway.md)
 - [gentian-os/docs/design/multi-tenancy.md](../gentian-os/docs/design/multi-tenancy.md)
 - [gentian-os/docs/design/security.md](../gentian-os/docs/design/security.md)

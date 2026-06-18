@@ -6,6 +6,8 @@
 
 logLevel: debug
 
+stage: dev
+
 image:
   # Dev tracks the latest develop build; Argo CD Image Updater mutates image.tag.
   tag: "develop"
@@ -18,7 +20,7 @@ ldap:
 
 cloudflare:
   zoneID: "03bed96926ccd1830ec74c1a9f9b00cd"
-  tunnelCNAME: "e053a404-0dc1-4b56-bc8c-e0033dd4a016.cfargotunnel.com"
+  tunnelCNAME: "3bb57659-9a7f-4613-81d9-7b785d2a177a.cfargotunnel.com"
   apiTokenSecretRef:
     name: "cloudflare-api-token-gentian-system"
     key: "api-token"
