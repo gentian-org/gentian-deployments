@@ -6,6 +6,9 @@
 # Edge routing: Gateway API + Envoy Gateway (see gentian-os/docs/design/gateway.md).
 routingMode: gateway
 
+servicesNamespace: gentian-dev
+infraNamespace: gentian-infra-dev
+
 openbao:
   address: "http://openbao.openbao.svc.cluster.local:8200"
   authPath: "kubernetes"
