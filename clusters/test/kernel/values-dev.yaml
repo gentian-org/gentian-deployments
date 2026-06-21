@@ -17,6 +17,8 @@ image:
 ldap:
   server: "ldap://nubus-dev-ldap-server.gentian-dev.svc.cluster.local:389"
   base: "dc=swp-ldap,dc=internal"
+  # Service account for OX App Suite directory lookups (non-secret; password in OpenBao).
+  bindSearchDn: "uid=ldapsearch_ox,cn=users,dc=swp-ldap,dc=internal"
 
 cloudflare:
   zoneID: "03bed96926ccd1830ec74c1a9f9b00cd"
