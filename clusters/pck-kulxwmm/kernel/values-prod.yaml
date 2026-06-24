@@ -3,14 +3,52 @@
 # Merge order:
 #   1) values-base.yaml
 #   2) values-prod.yaml (this file)
+#
+# Bootstrap: GENTIAN_DEPLOYMENTS_CLUSTER=pck-kulxwmm GENTIAN_DEPLOYMENTS_STAGE=prod
+# Pair with ACME_ENV=production in install.env (default).
 
 logLevel: info
 
+stage: prod
+
+tenancyMode: multi
+
 image:
+  # Pin until the first semver release is tagged; Image Updater adopts v* tags.
   tag: "main"
   digest: ""
   pullPolicy: IfNotPresent
 
-# TODO: set production domain and issuer before using this stage.
-kernelDomain: "example.com"
+ldap:
+  server: "ldap://nubus-dev-ldap-server.gentian-dev.svc.cluster.local:389"
+  base: "dc=swp-ldap,dc=internal"
+  bindSearchDn: "uid=ldapsearch_ox,cn=users,dc=swp-ldap,dc=internal"
+
+# Static-IP exposure (NETWORK_MODE=static-ip): DNS A/AAAA records for
+# *.gentian.cloud and tenant zones must point at the cluster LoadBalancer IP.
+# Operator Cloudflare CNAME/tunnel wiring is disabled without tunnelCNAME.
+cloudflare:
+  # Zone ID for gentian.cloud (Cloudflare dashboard → zone overview).
+  # Required only when enabling operator edge-DNS/tunnel mode; cert-manager
+  # DNS-01 uses the API token from OpenBao via apiTokenSecretRef below.
+  zoneID: ""
+  tunnelCNAME: ""
+  apiTokenSecretRef:
+    name: "cloudflare-api-token-gentian-system"
+    key: "api-token"
+    openbaoPath: "gentian-os/kernel/dns/cloudflare"
+
+kernelDomain: "gentian.cloud"
+kernelRealm: "kernel"
+
 tenantDNS01ClusterIssuer: "letsencrypt-dns01-cloudflare"
+
+kernelServices:
+  s3Endpoint: "http://minio-dev.gentian-infra-dev.svc.cluster.local:9000"
+  mysqlHost: "opendesk-mariadb-dev.gentian-infra-dev.svc.cluster.local"
+  redisHost: "redis-dev-master.gentian-infra-dev.svc.cluster.local"
+  smtpHost: "postfix-dev.gentian-dev.svc.cluster.local"
+
+metrics:
+  serviceMonitor:
+    enabled: false

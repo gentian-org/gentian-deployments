@@ -16,8 +16,8 @@ spec:
       images:
         - alias: operator
           imageName: ghcr.io/gentian-org/gentian-os
-          # Production: Only update to released versions (v1.x.x), exclude all pre-releases
-          policy: semver:v1.2.*  # Pin to v1.2.x series; change to v1.3.* after release approval
+          # Production: only stable semver releases; exclude all pre-releases
+          policy: semver:v1.*
           tagsMatchRegex: '^v[0-9]+\.[0-9]+\.[0-9]+(\.final)?$'
           ignoreTagsRegex: '^(.*-rc\..*|.*-alpha|.*-beta|.*-snapshot)$'
 
