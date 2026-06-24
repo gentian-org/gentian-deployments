@@ -19,3 +19,6 @@ Argo bootstrap in `gentian-os` uses these paths:
 - `clusters/test/kernel/values-<stage>.yaml`
 - `clusters/test/kernel/image-updater-<stage>.yaml`
 - `clusters/test/tenants/*/<stage>` (ApplicationSet directory generator)
+
+See [gentian-os/docs/deployment.md](../../../gentian-os/docs/deployment.md) for
+how cluster and stage map to environments and promotion flows.
