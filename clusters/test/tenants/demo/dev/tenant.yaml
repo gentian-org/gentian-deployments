@@ -12,5 +12,4 @@ spec:
     s3Prefix: demo-
   deletionPolicy: Retain
   apps:
-  - profile: xwiki
     # Jitsi is bundled as an Element sidecar (see gentian-apps/profiles/element.yaml).
