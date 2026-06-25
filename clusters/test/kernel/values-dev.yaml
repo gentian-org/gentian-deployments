@@ -50,3 +50,4 @@ appLifecycle:
     enabled: true
     cluster: test
     stage: dev
+    gitCredentialsSecret: gentian-deployments-git-credentials

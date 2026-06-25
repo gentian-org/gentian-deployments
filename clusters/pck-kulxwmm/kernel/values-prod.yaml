@@ -58,3 +58,4 @@ appLifecycle:
     enabled: true
     cluster: pck-kulxwmm
     stage: prod
+    gitCredentialsSecret: gentian-deployments-git-credentials
