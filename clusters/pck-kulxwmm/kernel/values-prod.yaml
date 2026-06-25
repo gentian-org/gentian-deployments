@@ -52,3 +52,9 @@ kernelServices:
 metrics:
   serviceMonitor:
     enabled: false
+
+appLifecycle:
+  deployments:
+    enabled: true
+    cluster: pck-kulxwmm
+    stage: prod

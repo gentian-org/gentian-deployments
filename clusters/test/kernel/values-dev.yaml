@@ -44,3 +44,9 @@ kernelServices:
 metrics:
   serviceMonitor:
     enabled: false   # no Prometheus installed in dev by default
+
+appLifecycle:
+  deployments:
+    enabled: true
+    cluster: test
+    stage: dev
