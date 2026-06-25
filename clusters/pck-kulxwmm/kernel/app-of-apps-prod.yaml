@@ -91,6 +91,11 @@ spec:
       - resources-finalizer.argocd.argoproj.io
     spec:
       project: gentian
+      ignoreDifferences:
+      - group: gentianos.io
+        kind: Tenant
+        jsonPointers:
+        - /spec/apps
       source:
         repoURL: https://github.com/gentian-org/gentian-deployments
         targetRevision: main

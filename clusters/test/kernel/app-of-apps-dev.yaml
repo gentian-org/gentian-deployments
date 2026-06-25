@@ -119,6 +119,13 @@ spec:
       - resources-finalizer.argocd.argoproj.io
     spec:
       project: gentian
+      # App Store (installMode: k8s) patches Tenant.spec.apps in-cluster. Without
+      # ignoreDifferences, Argo CD selfHeal reverts those installs within seconds.
+      ignoreDifferences:
+      - group: gentianos.io
+        kind: Tenant
+        jsonPointers:
+        - /spec/apps
       source:
         repoURL: https://github.com/gentian-org/gentian-deployments
         targetRevision: main
