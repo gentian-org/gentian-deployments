@@ -104,8 +104,8 @@ spec:
                 cpu: "50m"
                 memory: "192Mi"
   quotas:
-    cpu: "16"
-    memory: 16Gi
+    cpu: "32"
+    memory: 32Gi
     storage: 100Gi
     maxApps: 10
     maxPods: 40

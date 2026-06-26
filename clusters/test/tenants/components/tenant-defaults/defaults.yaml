@@ -14,7 +14,7 @@ spec:
     quotaPerUser: 5Gi
     rateLimit: 100/h
   quotas:
-    cpu: 16
+    cpu: 32
     maxApps: 20
-    memory: 16Gi
+    memory: 32Gi
     storage: 100Gi
