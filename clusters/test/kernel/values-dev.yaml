@@ -50,4 +50,6 @@ appLifecycle:
     enabled: true
     cluster: test
     stage: dev
-    gitCredentialsSecret: gentian-deployments-git-credentials
+    # Set after install.secrets.env has GENTIAN_DEPLOYMENTS_GIT_TOKEN and
+    # create-deployments-git-credentials.sh has run (install.sh step 15).
+    gitCredentialsSecret: ""
