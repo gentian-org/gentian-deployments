@@ -12,6 +12,7 @@ spec:
     s3Prefix: demo-
   deletionPolicy: Retain
   apps:
+  - profile: xwiki
   - profile: openproject
   - profile: element
   - profile: app-store
