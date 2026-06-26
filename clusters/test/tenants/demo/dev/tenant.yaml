@@ -14,6 +14,7 @@ spec:
   apps:
   - profile: app-store
   - profile: ox-appsuite
+  - profile: openproject
     # Jitsi is bundled as an Element sidecar (see gentian-apps/profiles/element.yaml).
   quotas:
     cpu: "32"

@@ -12,5 +12,4 @@ spec:
     s3Prefix: demo-
   deletionPolicy: Delete
   apps:
-  - profile: openproject
   - profile: element
