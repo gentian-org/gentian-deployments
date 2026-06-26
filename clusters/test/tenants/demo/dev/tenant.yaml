@@ -15,3 +15,9 @@ spec:
   - profile: app-store
   - profile: ox-appsuite
     # Jitsi is bundled as an Element sidecar (see gentian-apps/profiles/element.yaml).
+  quotas:
+    cpu: "32"
+    memory: 32Gi
+    storage: 100Gi
+    maxApps: 10
+    maxPods: 45
