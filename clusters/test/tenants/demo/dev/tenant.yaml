@@ -12,7 +12,6 @@ spec:
     s3Prefix: demo-
   deletionPolicy: Retain
   apps:
-  - profile: element
   - profile: app-store
   - profile: ox-appsuite
     # Jitsi is bundled as an Element sidecar (see gentian-apps/profiles/element.yaml).
