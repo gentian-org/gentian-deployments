@@ -15,12 +15,97 @@ spec:
   - profile: xwiki
   - profile: openproject
   - profile: element
+    config:
+      extraValues:
+        synapse:
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+        synapseWeb:
+          resources:
+            limits:
+              cpu: "100m"
+              memory: "128Mi"
+            requests:
+              cpu: "25m"
+              memory: "32Mi"
+        jitsi:
+          jvb:
+            resources:
+              limits:
+                cpu: "500m"
+                memory: "512Mi"
+              requests:
+                cpu: "50m"
+                memory: "128Mi"
+          jicofo:
+            resources:
+              limits:
+                cpu: "250m"
+                memory: "256Mi"
+              requests:
+                cpu: "25m"
+                memory: "64Mi"
+          prosody:
+            resources:
+              limits:
+                cpu: "250m"
+                memory: "256Mi"
+              requests:
+                cpu: "25m"
+                memory: "64Mi"
+          web:
+            resources:
+              limits:
+                cpu: "100m"
+                memory: "128Mi"
+              requests:
+                cpu: "25m"
+                memory: "32Mi"
   - profile: app-store
   - profile: ox-appsuite
-    # Jitsi is bundled as an Element sidecar (see gentian-apps/profiles/element.yaml).
+    config:
+      extraValues:
+        appsuite:
+          core-mw:
+            resources:
+              limits:
+                cpu: "500m"
+                memory: "2Gi"
+              requests:
+                cpu: "100m"
+                memory: "1Gi"
+          core-documentconverter:
+            resources:
+              limits:
+                cpu: "250m"
+                memory: "1Gi"
+              requests:
+                cpu: "50m"
+                memory: "512Mi"
+          core-imageconverter:
+            resources:
+              limits:
+                cpu: "250m"
+                memory: "1Gi"
+              requests:
+                cpu: "50m"
+                memory: "512Mi"
+          core-ui-middleware:
+            resources:
+              limits:
+                cpu: "250m"
+                memory: "512Mi"
+              requests:
+                cpu: "50m"
+                memory: "192Mi"
   quotas:
-    cpu: "32"
-    memory: 32Gi
+    cpu: "16"
+    memory: 16Gi
     storage: 100Gi
     maxApps: 10
-    maxPods: 45
+    maxPods: 40
