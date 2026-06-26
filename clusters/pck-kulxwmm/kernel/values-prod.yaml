@@ -14,8 +14,8 @@ stage: prod
 tenancyMode: multi
 
 image:
-  # Pin until the first semver release is tagged; Image Updater adopts v* tags.
-  tag: "main"
+  # Pin initial prod rollout; Image Updater adopts v0.1.x semver tags.
+  tag: "v0.1.2"
   digest: ""
   pullPolicy: IfNotPresent
 
