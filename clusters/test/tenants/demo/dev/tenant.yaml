@@ -10,7 +10,7 @@ spec:
     keycloakRealm: demo
     ldapOU: ou=demo
     s3Prefix: demo-
-  deletionPolicy: Retain
+  deletionPolicy: Delete
   apps:
   - profile: xwiki
   - profile: openproject
