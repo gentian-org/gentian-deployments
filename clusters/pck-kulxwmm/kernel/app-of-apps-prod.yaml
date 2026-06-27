@@ -4,7 +4,8 @@
 # Apply after bootstrap with GENTIAN_DEPLOYMENTS_STAGE=prod:
 #   kubectl apply -f clusters/pck-kulxwmm/kernel/app-of-apps-prod.yaml
 #
-# Operator image rollouts are isolated from tenant provisioning (see app-of-apps-dev.yaml).
+# Operator image rollouts are isolated from tenant provisioning.
+# Chart pinned to release tag v0.1.2; gentian-deployments stays on main.
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -43,7 +44,7 @@ spec:
     - .spec.target.deletionPolicy
   sources:
   - repoURL: https://github.com/gentian-org/gentian-os
-    targetRevision: main
+    targetRevision: v0.1.2
     path: charts/gentian-os
     helm:
       valueFiles:
