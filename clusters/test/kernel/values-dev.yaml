@@ -36,6 +36,7 @@ kernelRealm: "kernel"
 tenantDNS01ClusterIssuer: "letsencrypt-staging-dns01-cloudflare"
 
 kernelServices:
+  keycloakInternalURL: "http://gentian-idp-keycloak-keycloakx-http.platform-kernel.svc.cluster.local:8080/auth"
   s3Endpoint: "http://minio-dev.gentian-infra-dev.svc.cluster.local:9000"
   mysqlHost: "opendesk-mariadb-dev.gentian-infra-dev.svc.cluster.local"
   redisHost: "redis-dev-master.gentian-infra-dev.svc.cluster.local"
