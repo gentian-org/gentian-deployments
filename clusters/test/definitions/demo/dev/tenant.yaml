@@ -8,7 +8,6 @@ spec:
   isolation:
     databasePrefix: demo_
     keycloakRealm: demo
-    ldapOU: ou=demo
     s3Prefix: demo-
   deletionPolicy: Retain
   apps:
