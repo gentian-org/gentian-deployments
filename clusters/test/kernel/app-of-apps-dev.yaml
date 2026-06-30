@@ -12,6 +12,8 @@
 #   gentian-tenants (wave 2): Tenant CRs only.
 #                             Long-running provisioning jobs stay isolated here.
 #
+#   gentian-portal (wave 1): Portal shell Helm chart — see gentian-portal-dev.yaml
+#
 # Community AppProfiles from gentian-apps are managed by the separate
 # `gentian-appprofiles` Application installed by gentian-os/install.sh.
 #
