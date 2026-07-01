@@ -11,4 +11,4 @@ spec:
     s3Prefix: demo-
   deletionPolicy: Delete
   apps:
-  - profile: element
+  - profile: od-element
