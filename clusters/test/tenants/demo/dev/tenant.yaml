@@ -9,7 +9,7 @@ spec:
     databasePrefix: demo_
     keycloakRealm: demo
     s3Prefix: demo-
-  deletionPolicy: Retain
+  deletionPolicy: Delete
   apps:
   - profile: app-store
   - profile: nextcloud
