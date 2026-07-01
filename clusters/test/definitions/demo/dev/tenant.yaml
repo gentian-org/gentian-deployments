@@ -12,5 +12,3 @@ spec:
   deletionPolicy: Retain
   apps:
   - profile: app-store
-  - profile: od-element
-    # Jitsi is bundled as an Element sidecar (see gentian-apps/profiles/od-element/).
