@@ -31,6 +31,14 @@ cloudflare:
 kernelDomain: "desk.gentian.org"
 kernelRealm: "kernel"
 
+infraNamespace: platform-kernel
+servicesNamespace: platform-kernel
+
+authzBridge:
+  enabled: true
+  openfgaURL: "http://gentian-openfga.platform-kernel.svc.cluster.local:8080"
+  # openfgaToken is injected at install time via Argo CD Helm parameters (not stored in git).
+
 # Dev uses Let's Encrypt staging (pair with ACME_ENV=staging in install.env).
 # Certs are untrusted in browsers but avoid production rate limits on reinstall.
 tenantDNS01ClusterIssuer: "letsencrypt-staging-dns01-cloudflare"
