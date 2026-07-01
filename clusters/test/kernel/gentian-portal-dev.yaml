@@ -35,6 +35,7 @@ spec:
     - .status
     - .metadata.annotations
     - .spec.parentRefs[].group
+    - .spec.parentRefs[].kind
     - .spec.rules[].backendRefs[].group
     - .spec.rules[].backendRefs[].kind
     - .spec.rules[].backendRefs[].weight
