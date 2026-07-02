@@ -11,5 +11,6 @@ spec:
     s3Prefix: demo-
   deletionPolicy: Retain
   apps:
+  - profile: nextcloud
   - profile: nextcloud-test
   - profile: app-store
