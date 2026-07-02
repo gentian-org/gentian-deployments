@@ -12,5 +12,4 @@ spec:
   deletionPolicy: Retain
   apps:
   - profile: nextcloud
-  - profile: nextcloud-test
   - profile: app-store
