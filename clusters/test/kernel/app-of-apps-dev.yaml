@@ -72,6 +72,10 @@ spec:
     targetRevision: develop
     path: charts/gentian-os
     helm:
+      parameters:
+      # Override stale install-time patches that incorrectly pinned platform-kernel.
+      - name: infraNamespace
+        value: gentian-infra-dev
       valueFiles:
       - $deploy/clusters/test/kernel/values-base.yaml
       - $deploy/clusters/test/kernel/values-dev.yaml

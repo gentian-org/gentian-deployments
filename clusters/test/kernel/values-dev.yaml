@@ -31,7 +31,9 @@ cloudflare:
 kernelDomain: "desk.gentian.org"
 kernelRealm: "kernel"
 
-infraNamespace: platform-kernel
+# Infra (MinIO, MariaDB, Redis) lives in gentian-infra-dev — see values-base.yaml and
+# cluster-settings.env MINIO_ENDPOINT. Do not override infraNamespace here with
+# platform-kernel (breaks app-init s3-init egress to MinIO).
 servicesNamespace: platform-kernel
 
 authzBridge:
