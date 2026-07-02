@@ -11,5 +11,6 @@ spec:
     s3Prefix: demo-
   deletionPolicy: Retain
   apps:
+  - profile: openproject
   - profile: nextcloud
   - profile: app-store
