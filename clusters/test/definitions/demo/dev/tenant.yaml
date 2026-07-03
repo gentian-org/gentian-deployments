@@ -12,3 +12,6 @@ spec:
   deletionPolicy: Retain
   apps:
   - profile: app-store
+  # Gentian Subscriptions (ApiProfile) — commerce/billing tile, installed by
+  # default (opt-out). Requires gentian-os with the api deployment method (Phase B).
+  - profile: gentian-subscriptions
