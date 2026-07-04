@@ -62,3 +62,4 @@ appLifecycle:
     cluster: test
     stage: dev
     gitCredentialsSecret: gentian-deployments-git-credentials
+    repo: https://github.com/gentian-org/gentian-deployments
