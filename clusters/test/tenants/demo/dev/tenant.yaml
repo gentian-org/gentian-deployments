@@ -13,6 +13,9 @@ spec:
   apps:
   - profile: gentian-subscriptions
   - profile: xwiki
+    config:
+      extraValues:
+        reconcileTrigger: "1"
   - profile: openproject
   - profile: nextcloud
   - profile: app-store
