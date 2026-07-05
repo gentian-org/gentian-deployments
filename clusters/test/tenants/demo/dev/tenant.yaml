@@ -17,4 +17,3 @@ spec:
   - profile: openproject
   - profile: nextcloud
   - profile: app-store
-  - profile: od-xwiki
