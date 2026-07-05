@@ -14,10 +14,6 @@ spec:
   deletionPolicy: Retain
   apps:
   - profile: gentian-subscriptions
-  - profile: xwiki
-    config:
-      extraValues:
-        reconcileTrigger: "3"
   - profile: openproject
   - profile: nextcloud
   - profile: app-store
