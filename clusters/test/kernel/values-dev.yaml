@@ -63,3 +63,10 @@ appLifecycle:
     stage: dev
     gitCredentialsSecret: gentian-deployments-git-credentials
     repo: https://github.com/gentian-org/gentian-deployments
+
+commerce:
+  enabled: true
+  corpAPIURL: "http://gentian-corp.gentian-corp.svc.cluster.local:8000"
+  operatorToken: "gentian-operator-token-secret-change-me"
+  meteringInterval: "2m"
+
