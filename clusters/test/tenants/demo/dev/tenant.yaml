@@ -13,6 +13,7 @@ spec:
     s3Prefix: demo-
   deletionPolicy: Retain
   apps:
+  - profile: xwiki
   - profile: gentian-subscriptions
   - profile: openproject
   - profile: nextcloud
