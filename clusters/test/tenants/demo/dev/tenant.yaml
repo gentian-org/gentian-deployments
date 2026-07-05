@@ -15,7 +15,7 @@ spec:
   - profile: xwiki
     config:
       extraValues:
-        reconcileTrigger: "1"
+        reconcileTrigger: "2"
   - profile: openproject
   - profile: nextcloud
   - profile: app-store
