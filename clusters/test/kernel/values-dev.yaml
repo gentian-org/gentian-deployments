@@ -70,3 +70,12 @@ commerce:
   operatorToken: "gentian-operator-token-secret-change-me"
   meteringInterval: "2m"
 
+platformSecurityPolicy:
+  allowedMacWaivers:
+    - profile: element
+      policy: gentian-require-non-root
+      scope: sidecar-jitsi
+    - profile: element
+      policy: gentian-restrict-capabilities
+      scope: sidecar-jitsi
+
