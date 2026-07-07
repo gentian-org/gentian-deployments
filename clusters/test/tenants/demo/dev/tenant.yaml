@@ -13,6 +13,7 @@ spec:
     s3Prefix: demo-
   deletionPolicy: Retain
   apps:
+  - profile: odoo-cb-base
   - profile: element
   - profile: xwiki
   - profile: gentian-subscriptions
