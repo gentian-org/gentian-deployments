@@ -13,6 +13,7 @@ spec:
     s3Prefix: demo-
   deletionPolicy: Retain
   apps:
+  - profile: nextcloud-suite
   - profile: odoo-cb-contacts
   - profile: odoo-cb-crm
   - profile: odoo-cb-base
