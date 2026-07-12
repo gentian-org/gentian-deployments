@@ -1,0 +1,14 @@
+apiVersion: gentianos.io/v1alpha1
+kind: Tenant
+metadata:
+  name: otro
+spec:
+  adminEmail: admin-otro@desk.gentian.org
+  displayName: Otro
+  isolation:
+    databasePrefix: otro_
+    keycloakRealm: otro
+    s3Prefix: otro-
+  deletionPolicy: Retain
+  apps:
+  - profile: app-store
