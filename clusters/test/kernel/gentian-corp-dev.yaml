@@ -18,9 +18,9 @@ metadata:
 spec:
   project: gentian
   source:
-    repoURL: https://github.com/gentian-org/gentian-corp
+    repoURL: https://github.com/gentian-org/gentian-deployments
     targetRevision: main
-    path: deploy
+    path: clusters/test/kernel/gentian-corp
   destination:
     server: https://kubernetes.default.svc
     namespace: gentian-corp
