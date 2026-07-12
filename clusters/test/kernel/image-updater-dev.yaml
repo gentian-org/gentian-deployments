@@ -22,3 +22,5 @@ spec:
       useAnnotations: true
     - namePattern: "gentian-portal"
       useAnnotations: true
+    - namePattern: "gentian-corp"
+      useAnnotations: true
