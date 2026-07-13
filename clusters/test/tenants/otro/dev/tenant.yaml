@@ -11,6 +11,7 @@ spec:
     s3Prefix: otro-
   deletionPolicy: Retain
   apps:
+  - profile: odoo-cb-inventory
   - profile: odoo-cb-employees
   - profile: odoo-cb-accounting
   - profile: odoo-cb-crm
