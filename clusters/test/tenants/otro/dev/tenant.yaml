@@ -11,6 +11,7 @@ spec:
     s3Prefix: otro-
   deletionPolicy: Retain
   apps:
+  - profile: odoo-cb-accounting
   - profile: odoo-cb-crm
   - profile: nextcloud-office-plus
   - profile: app-store
