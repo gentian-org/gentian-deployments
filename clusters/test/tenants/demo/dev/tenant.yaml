@@ -14,7 +14,6 @@ spec:
   deletionPolicy: Retain
   apps:
   - profile: odoo-cb-mrp
-  - profile: odoo-cb-mrp
   - profile: odoo-cb-accounting
   - profile: odoo-cb-purchase
   - profile: open-webui
