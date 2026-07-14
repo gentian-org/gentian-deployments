@@ -18,6 +18,7 @@ spec:
   - profile: odoo-cb-mrp
   - profile: odoo-cb-mrp
   - profile: odoo-cb-mrp
+  - profile: odoo-cb-mrp
   - profile: odoo-cb-accounting
   - profile: odoo-cb-mrp
   - profile: odoo-cb-purchase
