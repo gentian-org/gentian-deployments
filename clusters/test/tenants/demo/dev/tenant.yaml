@@ -13,6 +13,7 @@ spec:
     s3Prefix: demo-
   deletionPolicy: Retain
   apps:
+  - profile: odoo-cb-purchase
   - profile: open-webui
   - profile: activepieces
   - profile: odoo-cb-employees
