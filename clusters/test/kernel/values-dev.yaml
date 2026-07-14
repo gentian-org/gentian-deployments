@@ -97,3 +97,5 @@ platformSecurityPolicy:
       policy: gentian-restrict-capabilities
       scope: collabora
 
+llmSupport: true
+
