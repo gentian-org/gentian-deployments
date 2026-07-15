@@ -30,4 +30,6 @@ spec:
   - profile: gentian-subscriptions
   - profile: openproject
   - profile: app-store
-  - profile: litellm
+  # litellm: tenant-level access disabled for now — LLM admin is a
+  # platform-admin-only capability (kernel-llm route + SSO). Re-add once
+  # per-tenant LLM access is designed (see gentian-os/docs/design/llms.md).
