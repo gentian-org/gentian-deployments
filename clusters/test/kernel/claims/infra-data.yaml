@@ -1,0 +1,8 @@
+apiVersion: gentianos.io/v1alpha1
+kind: InfraData
+metadata:
+  name: dev-infra-data
+  namespace: crossplane-system
+spec:
+  environment: dev
+  compositeDeletePolicy: Background

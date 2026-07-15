@@ -1,0 +1,19 @@
+# Cluster overlay — only what's unique to THIS cluster. Tier-wide policy
+# lives in gentian-deployments/profiles/dev.yaml (Layer 2); chart
+# defaults live in gentian-os/charts/gentian-os/values.yaml (Layer 1).
+# Also read directly by the gentian-portal Application for kernelDomain
+# (portal chart is separate from the operator chart but shares this file).
+kernelDomain: desk.gentian.org
+stage: dev
+
+image:
+  tag: "develop"
+
+# Uncomment and fill in for Cloudflare edge-DNS/tunnel mode:
+# cloudflare:
+#   zoneID: ""
+#   tunnelCNAME: ""
+
+api:
+  env:
+    BACKEND_CORS_ORIGINS: https://portal.desk.gentian.org

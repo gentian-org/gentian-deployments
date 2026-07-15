@@ -1,0 +1,7 @@
+apiVersion: gentianos.io/v1alpha1
+kind: Cluster
+metadata:
+  name: dev-cluster
+  namespace: crossplane-system
+spec:
+  kernelDomain: desk.gentian.org
