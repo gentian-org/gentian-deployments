@@ -30,3 +30,4 @@ spec:
   - profile: gentian-subscriptions
   - profile: openproject
   - profile: app-store
+  - profile: litellm
