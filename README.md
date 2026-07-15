@@ -20,9 +20,6 @@ clusters/
         infra-data.yaml
         suze.yaml
       values.yaml             # cluster-unique Helm overlay (deltas only — see kernelDomain above)
-      app-of-apps.yaml         # kernel infra — scaffolded (gentian-os operator + gentian-tenants)
-      image-updater.yaml       # kernel infra — scaffolded
-      gentian-portal.yaml      # kernel infra — scaffolded
       gentian-corp.yaml         # optional add-on — NOT scaffolded, hand-added (see below)
     definitions/
       <tenant>/
@@ -39,18 +36,27 @@ Current cluster in this repository:
 
 - `clusters/test`
 
-**Kernel infrastructure vs. optional add-ons vs. tenant apps.** All three
-can look like they belong under `kernel/`, but only the first two actually
-do:
+Note what's **not** here: `app-of-apps.yaml`, `gentian-portal.yaml`,
+`image-updater.yaml`. Those ArgoCD `Application`/`ImageUpdater` objects are
+near-identical across every cluster, so instead of committing a copy per
+cluster they live as `.tmpl` files in `gentian-os` itself
+(`kernel/bootstrap/gentian-os-application.yaml.tmpl`,
+`gentian-portal-application.yaml.tmpl`), rendered with `%CLUSTER%`/`%STAGE%`
+and `kubectl apply`'d directly by `install.sh` — never committed here at
+all. See
+[gentian-os/docs/deployment.md](../gentian-os/docs/deployment.md) §3.1.
 
-- **Kernel infrastructure** — every cluster needs it (the `gentian-os`
-  operator, Gentian Portal, Image Updater, Crossplane Claims). Scaffolded
-  automatically by `gentian-os/install.sh` on first bootstrap (from
-  `KERNEL_DOMAIN` + `GENTIAN_DEPLOYMENTS_STAGE` in `install.env`),
-  committed straight to `main` — no PR, since nothing is running yet at
-  that point. `cluster-settings.env` is the one exception: hand-maintained,
-  never generated, since network mode/storage class/mail config aren't
-  derivable from those two inputs.
+**Kernel instance data vs. optional add-ons vs. tenant apps.** All three
+can look like they belong under `kernel/`, but only the first two are
+committed here:
+
+- **Kernel instance data** — genuinely unique per cluster (Crossplane
+  Claims, `values.yaml`). Scaffolded automatically by `gentian-os/install.sh`
+  on first bootstrap (from `KERNEL_DOMAIN` + `GENTIAN_DEPLOYMENTS_STAGE` in
+  `install.env`), committed straight to `main` — no PR, since nothing is
+  running yet at that point. `cluster-settings.env` is the one exception:
+  hand-maintained, never generated, since network mode/storage
+  class/mail config aren't derivable from those two inputs.
 - **Optional cluster add-ons** — `gentian-corp.yaml` is the example here: a
   private, org-specific app that most gentian-os deployments don't run.
   Same directory, same ArgoCD `Application` shape, but nothing scaffolds it
