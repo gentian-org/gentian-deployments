@@ -1,77 +1,21 @@
-# profiles/dev.yaml — tier-wide policy shared by every dev-stage cluster.
+# profiles/dev.yaml — dev-stage-specific policy only.
 #
 # Layer 2 of 3 in the config model (see gentian-os/docs/deployment.md §1):
 #   1) gentian-os/charts/gentian-os/values.yaml   — chart defaults
-#   2) this file                                   — dev-tier policy
+#   2) profiles/_base.yaml, then this file         — shared, then dev-tier
 #   3) clusters/<cluster>/kernel/values.yaml       — cluster-unique deltas
 #
-# Only values that genuinely differ from the chart default belong here.
-# Anything already equal to the chart default (e.g. routingMode: gateway,
-# defaults.isolation.mode: namespace) is intentionally omitted.
+# Everything that's the same across every stage lives in _base.yaml (or, if
+# it's truly universal regardless of deployer, in the chart's own defaults)
+# — not repeated here. This file holds only what genuinely differs for dev.
 
 logLevel: debug
-
-image:
-  pullPolicy: IfNotPresent
-
-# Fixed kernel-services namespace convention for this platform (not
-# stage-derived — every stage uses "platform-kernel" for kernel-level
-# services; gentian-infra-<stage> stays the per-stage infra namespace,
-# derived automatically by the chart when unset).
-servicesNamespace: platform-kernel
-
-openbao:
-  address: "https://openbao.openbao.svc.cluster.local:8200"
-  authPath: "kubernetes"
-
-argocd:
-  namespace: "argocd"
-  project: "gentianos-tenants"
-
-authzBridge:
-  enabled: true
-  openfgaURL: "http://gentian-openfga.platform-kernel.svc.cluster.local:8080"
 
 # Dev uses Let's Encrypt staging: certs are untrusted in browsers but avoid
 # production rate limits on reinstall.
 tenantDNS01ClusterIssuer: "letsencrypt-staging-dns01-cloudflare"
 
-metrics:
-  serviceMonitor:
-    enabled: false   # no Prometheus installed in dev by default
-
-# Kyverno MAC policy waivers for apps whose upstream images need relaxed
-# pod security (sidecar containers, etc.) — platform-wide, not per-cluster.
-platformSecurityPolicy:
-  allowedMacWaivers:
-    - profile: element
-      policy: gentian-require-non-root
-      scope: sidecar-jitsi
-    - profile: element
-      policy: gentian-restrict-capabilities
-      scope: sidecar-jitsi
-    - profile: nextcloud-office
-      policy: gentian-disallow-privilege-escalation
-      scope: collabora
-    - profile: nextcloud-office
-      policy: gentian-restrict-capabilities
-      scope: collabora
-    - profile: nextcloud-office-plus
-      policy: gentian-disallow-privilege-escalation
-      scope: collabora
-    - profile: nextcloud-office-plus
-      policy: gentian-restrict-capabilities
-      scope: collabora
-    - profile: nextcloud-suite
-      policy: gentian-disallow-privilege-escalation
-      scope: collabora
-    - profile: nextcloud-suite
-      policy: gentian-restrict-capabilities
-      scope: collabora
-
 # NOT included here (deliberately, see gentian-os/docs/deployment.md §1):
-# - appLifecycle.deployments.* — cluster/stage fields are cluster-unique;
-#   add the whole block to clusters/<cluster>/kernel/values.yaml if needed.
-# - commerce.* — same, cluster-specific corp API wiring.
-# - llmSupport / GPU_ACCELERATION — depend on the specific cluster's
-#   hardware, not the stage tier; set per-cluster.
+# - appLifecycle.deployments.* / commerce.* — cluster-specific, add to
+#   clusters/<cluster>/kernel/values.yaml if needed.
+# - llmSupport / GPU_ACCELERATION — depend on cluster hardware, not stage.

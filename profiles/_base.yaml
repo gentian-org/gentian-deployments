@@ -1,0 +1,39 @@
+# profiles/_base.yaml — shared by every stage profile (loaded before
+# profiles/<stage>.yaml in the Helm valueFiles chain).
+#
+# Exists for values that are the same across all stages of this deployment
+# but too app/catalogue-specific to belong in gentian-os's own chart
+# defaults (which must stay app-agnostic — see gentian-os/docs/deployment.md
+# §1). If a value is truly universal regardless of deployer, it belongs in
+# the chart instead of here; if it's stage-specific, it belongs in
+# profiles/<stage>.yaml instead.
+
+# Kyverno MAC policy waivers for catalogue apps whose upstream images need
+# relaxed pod security (sidecar containers, etc.) — depends on which apps
+# this deployment's tenants use, not on stage.
+platformSecurityPolicy:
+  allowedMacWaivers:
+    - profile: element
+      policy: gentian-require-non-root
+      scope: sidecar-jitsi
+    - profile: element
+      policy: gentian-restrict-capabilities
+      scope: sidecar-jitsi
+    - profile: nextcloud-office
+      policy: gentian-disallow-privilege-escalation
+      scope: collabora
+    - profile: nextcloud-office
+      policy: gentian-restrict-capabilities
+      scope: collabora
+    - profile: nextcloud-office-plus
+      policy: gentian-disallow-privilege-escalation
+      scope: collabora
+    - profile: nextcloud-office-plus
+      policy: gentian-restrict-capabilities
+      scope: collabora
+    - profile: nextcloud-suite
+      policy: gentian-disallow-privilege-escalation
+      scope: collabora
+    - profile: nextcloud-suite
+      policy: gentian-restrict-capabilities
+      scope: collabora
