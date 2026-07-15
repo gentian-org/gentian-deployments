@@ -1,0 +1,75 @@
+# profiles/prod.yaml — tier-wide policy shared by every prod-stage cluster.
+#
+# Layer 2 of 3 in the config model (see gentian-os/docs/deployment.md §1):
+#   1) gentian-os/charts/gentian-os/values.yaml   — chart defaults
+#   2) this file                                   — prod-tier policy
+#   3) clusters/<cluster>/kernel/values.yaml       — cluster-unique deltas
+#
+# logLevel and tenancyMode are omitted — they already equal the chart's own
+# defaults ("info" and "multi"), so repeating them here would be pure
+# duplication.
+
+image:
+  pullPolicy: IfNotPresent
+
+# Fixed kernel-services namespace convention (see profiles/dev.yaml — not
+# stage-derived; gentian-infra-<stage> stays the per-stage infra namespace).
+servicesNamespace: platform-kernel
+
+openbao:
+  address: "https://openbao.openbao.svc.cluster.local:8200"
+  authPath: "kubernetes"
+
+argocd:
+  namespace: "argocd"
+  project: "gentianos-tenants"
+
+authzBridge:
+  enabled: true
+  openfgaURL: "http://gentian-openfga.platform-kernel.svc.cluster.local:8080"
+
+# Production ACME issuer — no staging fallback, subject to LE rate limits.
+tenantDNS01ClusterIssuer: "letsencrypt-dns01-cloudflare"
+
+# TODO: revisit once Prometheus is deployed on a prod cluster — currently
+# false because no prod cluster has metrics infra set up yet, same as dev.
+metrics:
+  serviceMonitor:
+    enabled: false
+
+# Kyverno MAC policy waivers — identical to profiles/dev.yaml. These are
+# platform-wide (driven by what specific apps' upstream images need), not
+# stage-dependent; the previous per-cluster values-prod.yaml was missing
+# this block entirely, which would have broken those apps' pods on a prod
+# cluster the same way it doesn't on dev — not a deliberate prod choice.
+platformSecurityPolicy:
+  allowedMacWaivers:
+    - profile: element
+      policy: gentian-require-non-root
+      scope: sidecar-jitsi
+    - profile: element
+      policy: gentian-restrict-capabilities
+      scope: sidecar-jitsi
+    - profile: nextcloud-office
+      policy: gentian-disallow-privilege-escalation
+      scope: collabora
+    - profile: nextcloud-office
+      policy: gentian-restrict-capabilities
+      scope: collabora
+    - profile: nextcloud-office-plus
+      policy: gentian-disallow-privilege-escalation
+      scope: collabora
+    - profile: nextcloud-office-plus
+      policy: gentian-restrict-capabilities
+      scope: collabora
+    - profile: nextcloud-suite
+      policy: gentian-disallow-privilege-escalation
+      scope: collabora
+    - profile: nextcloud-suite
+      policy: gentian-restrict-capabilities
+      scope: collabora
+
+# NOT included here (deliberately, see profiles/dev.yaml for the same note):
+# - appLifecycle.deployments.* / commerce.* — cluster-specific, add to
+#   clusters/<cluster>/kernel/values.yaml if needed.
+# - llmSupport / GPU_ACCELERATION — depend on cluster hardware, not stage.

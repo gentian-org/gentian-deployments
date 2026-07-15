@@ -2,7 +2,7 @@
 # Gentian front-office app (gentian-corp) — ArgoCD Application (test / dev cluster).
 #
 # Apply to cluster manually to initialize GitOps management:
-#   kubectl apply -f clusters/test/kernel/gentian-corp-dev.yaml
+#   kubectl apply -f clusters/test/kernel/gentian-corp.yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

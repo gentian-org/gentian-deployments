@@ -8,13 +8,19 @@ configuration and tenant manifests.
 The structure is cluster-first and tenant-centric:
 
 ```text
+profiles/
+  <stage>.yaml            # tier-wide policy, shared by every cluster of that stage
 clusters/
   <cluster>/
     kernel/
-      values-base.yaml
-      values-<stage>.yaml
-      image-updater-<stage>.yaml
-      app-of-apps-<stage>.yaml
+      cluster-settings.env   # hand-maintained: network mode, storage class, mail, etc.
+      claims/
+        cluster.yaml          # kernelDomain — the single source of truth for this cluster
+        infra-data.yaml
+        suze.yaml
+      values.yaml             # cluster-unique Helm overlay (deltas only — see kernelDomain above)
+      app-of-apps.yaml
+      image-updater.yaml
     definitions/
       <tenant>/
         dev/
@@ -28,16 +34,23 @@ clusters/
 
 Current cluster in this repository:
 
-- `clusters/pck-kulxwmm`
 - `clusters/test`
+
+Everything under a cluster's `kernel/` directory except `cluster-settings.env`
+is scaffolded automatically by `gentian-os/install.sh` on first bootstrap
+(from `KERNEL_DOMAIN` + `GENTIAN_DEPLOYMENTS_STAGE` in `install.env`) and
+committed straight to `main` — no PR, since nothing is running yet at that
+point. See
+[gentian-os/docs/deployment.md](../gentian-os/docs/deployment.md) §1/§3 for
+the full layered-config model and bootstrap sequence.
 
 ## How bootstrap resolves paths
 
 `gentian-os/install.sh` and `update.sh` render Argo Applications from:
 
-- `clusters/<cluster>/kernel/values-base.yaml`
-- `clusters/<cluster>/kernel/values-<stage>.yaml`
-- `clusters/<cluster>/kernel/image-updater-<stage>.yaml`
+- `profiles/<stage>.yaml` (Layer 2 — tier policy)
+- `clusters/<cluster>/kernel/values.yaml` (Layer 3 — cluster overlay)
+- `clusters/<cluster>/kernel/claims/*.yaml` (Crossplane Claims)
 - `clusters/<cluster>/tenants/*/<stage>` (ApplicationSet git directory generator)
 
 where `<cluster>` and `<stage>` come from:
