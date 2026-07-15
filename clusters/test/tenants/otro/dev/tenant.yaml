@@ -9,7 +9,7 @@ spec:
     databasePrefix: otro_
     keycloakRealm: otro
     s3Prefix: otro-
-  deletionPolicy: Retain
+  deletionPolicy: Delete
   apps:
   - profile: odoo-cb-purchase
   - profile: odoo-cb-pos
