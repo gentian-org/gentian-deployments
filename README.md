@@ -9,7 +9,8 @@ The structure is cluster-first and tenant-centric:
 
 ```text
 profiles/
-  <stage>.yaml            # tier-wide policy, shared by every cluster of that stage
+  _base.yaml               # shared across every stage (app-catalogue-specific, not chart-generic)
+  <stage>.yaml              # tier-wide policy, shared by every cluster of that stage
 clusters/
   <cluster>/
     kernel/
@@ -19,8 +20,10 @@ clusters/
         infra-data.yaml
         suze.yaml
       values.yaml             # cluster-unique Helm overlay (deltas only — see kernelDomain above)
-      app-of-apps.yaml
-      image-updater.yaml
+      app-of-apps.yaml         # kernel infra — scaffolded (gentian-os operator + gentian-tenants)
+      image-updater.yaml       # kernel infra — scaffolded
+      gentian-portal.yaml      # kernel infra — scaffolded
+      gentian-corp.yaml         # optional add-on — NOT scaffolded, hand-added (see below)
     definitions/
       <tenant>/
         dev/
@@ -36,19 +39,34 @@ Current cluster in this repository:
 
 - `clusters/test`
 
-Everything under a cluster's `kernel/` directory except `cluster-settings.env`
-is scaffolded automatically by `gentian-os/install.sh` on first bootstrap
-(from `KERNEL_DOMAIN` + `GENTIAN_DEPLOYMENTS_STAGE` in `install.env`) and
-committed straight to `main` — no PR, since nothing is running yet at that
-point. See
-[gentian-os/docs/deployment.md](../gentian-os/docs/deployment.md) §1/§3 for
-the full layered-config model and bootstrap sequence.
+**Kernel infrastructure vs. optional add-ons vs. tenant apps.** All three
+can look like they belong under `kernel/`, but only the first two actually
+do:
+
+- **Kernel infrastructure** — every cluster needs it (the `gentian-os`
+  operator, Gentian Portal, Image Updater, Crossplane Claims). Scaffolded
+  automatically by `gentian-os/install.sh` on first bootstrap (from
+  `KERNEL_DOMAIN` + `GENTIAN_DEPLOYMENTS_STAGE` in `install.env`),
+  committed straight to `main` — no PR, since nothing is running yet at
+  that point. `cluster-settings.env` is the one exception: hand-maintained,
+  never generated, since network mode/storage class/mail config aren't
+  derivable from those two inputs.
+- **Optional cluster add-ons** — `gentian-corp.yaml` is the example here: a
+  private, org-specific app that most gentian-os deployments don't run.
+  Same directory, same ArgoCD `Application` shape, but nothing scaffolds it
+  — add it by hand only on the cluster(s) that actually want it.
+- **Tenant apps** (Nextcloud, OpenProject, ...) aren't in `kernel/` at all
+  — see "Tenant definitions" below.
+
+See [gentian-os/docs/deployment.md](../gentian-os/docs/deployment.md)
+§1/§3 for the full layered-config model, bootstrap sequence, and the
+kernel/add-on/tenant distinction in detail.
 
 ## How bootstrap resolves paths
 
 `gentian-os/install.sh` and `update.sh` render Argo Applications from:
 
-- `profiles/<stage>.yaml` (Layer 2 — tier policy)
+- `profiles/_base.yaml` then `profiles/<stage>.yaml` (Layer 2 — shared, then tier policy)
 - `clusters/<cluster>/kernel/values.yaml` (Layer 3 — cluster overlay)
 - `clusters/<cluster>/kernel/claims/*.yaml` (Crossplane Claims)
 - `clusters/<cluster>/tenants/*/<stage>` (ApplicationSet git directory generator)

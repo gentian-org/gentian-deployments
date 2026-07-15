@@ -78,7 +78,7 @@ spec:
     helm:
       releaseName: gentian-portal
       valueFiles:
-      - $values/kernel/services/gentian-portal-web/values/dev.yaml
+      - $values/kernel/services/gentian-portal-web/values/_base.yaml
       # kernelDomain + api.env.BACKEND_CORS_ORIGINS — cluster-specific,
       # scaffolded by install.sh from KERNEL_DOMAIN (see docs/deployment.md §1/§3).
       - $deploy/clusters/test/kernel/values.yaml
