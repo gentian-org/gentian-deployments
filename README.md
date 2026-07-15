@@ -20,17 +20,23 @@ clusters/
         infra-data.yaml
         suze.yaml
       values.yaml             # cluster-unique Helm overlay (deltas only — see kernelDomain above)
-      gentian-corp.yaml         # optional add-on — NOT scaffolded, hand-added (see below)
+      addons/
+        gentian-corp/
+          application.yaml     # optional add-on — NOT scaffolded, hand-added (see below)
     definitions/
+      components/tenant-defaults/  # cluster-wide defaults applied to every tenant at activation
       <tenant>/
-        dev/
+        tenant.yaml
     tenants/
-      components/
       <tenant>/
-        dev/
-        staging/
-        prod/
+        tenant.yaml
 ```
+
+No `<stage>/` subdirectory under `definitions/<tenant>/` or `tenants/<tenant>/`
+— a cluster has exactly one stage for its whole lifetime (see
+[deployment.md](../gentian-os/docs/deployment.md) §1), so
+`clusters/<cluster>/...` already scopes everything under it to that one
+stage; nesting it a second time underneath would disambiguate nothing.
 
 Current cluster in this repository:
 
@@ -57,10 +63,14 @@ committed here:
   running yet at that point. `cluster-settings.env` is the one exception:
   hand-maintained, never generated, since network mode/storage
   class/mail config aren't derivable from those two inputs.
-- **Optional cluster add-ons** — `gentian-corp.yaml` is the example here: a
-  private, org-specific app that most gentian-os deployments don't run.
-  Same directory, same ArgoCD `Application` shape, but nothing scaffolds it
-  — add it by hand only on the cluster(s) that actually want it.
+- **Optional cluster add-ons** — `addons/gentian-corp/application.yaml` is
+  the example here: a private, org-specific app that most gentian-os
+  deployments don't run. Nothing scaffolds it — add it by hand only on the
+  cluster(s) that actually want it. Its manifests aren't even here: they
+  live in the `gentian-corp` repo itself
+  (`gentian-corp/deploy/gentian-corp.yaml`); `application.yaml` is just the
+  ArgoCD pointer plus an inline Kustomize patch for the one value
+  (`kernelDomain`) that repo can't know on its own.
 - **Tenant apps** (Nextcloud, OpenProject, ...) aren't in `kernel/` at all
   — see "Tenant definitions" below.
 
@@ -75,7 +85,9 @@ kernel/add-on/tenant distinction in detail.
 - `profiles/_base.yaml` then `profiles/<stage>.yaml` (Layer 2 — shared, then tier policy)
 - `clusters/<cluster>/kernel/values.yaml` (Layer 3 — cluster overlay)
 - `clusters/<cluster>/kernel/claims/*.yaml` (Crossplane Claims)
-- `clusters/<cluster>/tenants/*/<stage>` (ApplicationSet git directory generator)
+- `clusters/<cluster>/tenants/*` (ApplicationSet git directory generator — no
+  stage segment, a cluster's own tenants/ tree is already implicitly its one
+  stage)
 
 where `<cluster>` and `<stage>` come from:
 
@@ -86,7 +98,7 @@ where `<cluster>` and `<stage>` come from:
 
 Each cluster keeps tenant **definitions** under:
 
-- `clusters/<cluster>/definitions/<tenant>/<stage>/tenant.yaml`
+- `clusters/<cluster>/definitions/<tenant>/tenant.yaml`
 
 Fresh installs leave `clusters/<cluster>/tenants/` **empty** until a definition
 is deployed. `kubectl gentian tenants list` shows all definitions;
@@ -94,7 +106,7 @@ is deployed. `kubectl gentian tenants list` shows all definitions;
 
 Deploy path (GitOps sync target):
 
-- `clusters/<cluster>/tenants/<tenant>/<stage>/tenant.yaml`
+- `clusters/<cluster>/tenants/<tenant>/tenant.yaml`
 
 Argo discovers activated tenants through the `gentian-tenants` ApplicationSet.
 

@@ -1,0 +1,66 @@
+---
+# gentian-corp — optional cluster add-on (private, org-specific app; most
+# gentian-os deployments don't run this). Hand-added, not scaffolded — see
+# gentian-os/docs/deployment.md §3.1.
+#
+# Manifests live in the gentian-corp repo itself (deploy/gentian-corp.yaml),
+# not here — this Application is just the ArgoCD pointer plus the one
+# cluster-specific value (kernelDomain) that repo can't know on its own,
+# applied via an inline Kustomize patch.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gentian-corp
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+    # Image updater: follow new builds published for main branch and patch image tag
+    argocd-image-updater.argoproj.io/image-list: app=ghcr.io/gentian-org/gentian-corp:main
+    argocd-image-updater.argoproj.io/app.update-strategy: newest-build
+    # Write back parameter overrides to ArgoCD directly
+    argocd-image-updater.argoproj.io/write-back-method: argocd
+spec:
+  project: gentian
+  source:
+    repoURL: https://github.com/gentian-org/gentian-corp
+    targetRevision: main
+    path: deploy
+    kustomize:
+      patches:
+        - target:
+            kind: ConfigMap
+            name: gentian-corp-config
+          patch: |-
+            apiVersion: v1
+            kind: ConfigMap
+            metadata:
+              name: gentian-corp-config
+            data:
+              KERNEL_DOMAIN: "desk.gentian.org"
+        - target:
+            kind: HTTPRoute
+            name: gentian-corp
+          patch: |-
+            apiVersion: gateway.networking.k8s.io/v1
+            kind: HTTPRoute
+            metadata:
+              name: gentian-corp
+            spec:
+              hostnames:
+              - "corp.desk.gentian.org"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: gentian-corp
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      limit: 10
+      backoff:
+        duration: 15s
+        factor: 2
+        maxDuration: 2m
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
