@@ -62,7 +62,9 @@ committed here:
   `install.env`), committed straight to `main` — no PR, since nothing is
   running yet at that point. `cluster-settings.env` is the one exception:
   hand-maintained, never generated, since network mode/storage
-  class/mail config aren't derivable from those two inputs.
+  class/mail config aren't derivable from those two inputs. When adding a
+  new cluster, start from
+  [`gentian-os/cluster-settings.env.template`](../gentian-os/cluster-settings.env.template).
 - **Optional cluster add-ons** — `addons/gentian-corp/application.yaml` is
   the example here: a private, org-specific app that most gentian-os
   deployments don't run. Nothing scaffolds it — add it by hand only on the
