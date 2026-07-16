@@ -5,6 +5,7 @@
 # (portal chart is separate from the operator chart but shares this file).
 kernelDomain: desk.gentian.org
 stage: dev
+llmSupport: true
 
 image:
   tag: "develop"
