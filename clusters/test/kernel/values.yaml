@@ -9,11 +9,6 @@ stage: dev
 image:
   tag: "develop"
 
-# Uncomment and fill in for Cloudflare edge-DNS/tunnel mode:
-# cloudflare:
-#   zoneID: ""
-#   tunnelCNAME: ""
-
 api:
   env:
     BACKEND_CORS_ORIGINS: https://portal.desk.gentian.org
