@@ -17,3 +17,7 @@ image:
 api:
   env:
     BACKEND_CORS_ORIGINS: https://portal.desk.gentian.org
+
+appLifecycle:
+  deployments:
+    repo: https://github.com/gentian-org/gentian-deployments.git
