@@ -11,6 +11,7 @@ spec:
     s3Prefix: demo-
   deletionPolicy: Retain
   apps:
+  - profile: activepieces
   - profile: open-webui
   - profile: app-store
   # Gentian Subscriptions (ApiProfile) — commerce/billing tile, installed by
