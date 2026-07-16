@@ -15,4 +15,6 @@ api:
 
 appLifecycle:
   deployments:
+    enabled: true
     repo: https://github.com/gentian-org/gentian-deployments.git
+    gitCredentialsSecret: gentian-deployments-git-credentials
