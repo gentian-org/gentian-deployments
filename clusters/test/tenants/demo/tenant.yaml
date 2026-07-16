@@ -11,6 +11,7 @@ spec:
     s3Prefix: demo-
   deletionPolicy: Retain
   apps:
+  - profile: odoo-cb-accounting
   - profile: nextcloud-suite
   - profile: activepieces
   - profile: open-webui
