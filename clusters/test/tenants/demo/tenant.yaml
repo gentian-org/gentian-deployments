@@ -12,7 +12,6 @@ spec:
   deletionPolicy: Retain
   apps:
   - profile: odoo-cb-accounting
-  - profile: activepieces
   - profile: open-webui
   - profile: app-store
   # Gentian Subscriptions (ApiProfile) — commerce/billing tile, installed by
