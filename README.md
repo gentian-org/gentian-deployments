@@ -129,6 +129,7 @@ Use OpenBao + External Secrets and keep credentials outside Git.
 
 ## Related docs
 
+- [AGENTS.md](AGENTS.md) — repo rules for coding agents
 - [gentian-os/docs/deployment.md](../gentian-os/docs/deployment.md)
 - [gentian-os/docs/commands.md](../gentian-os/docs/commands.md)
 - [gentian-os/docs/design/gateway.md](../gentian-os/docs/design/gateway.md)
