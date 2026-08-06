@@ -25,12 +25,6 @@ platformSecurityPolicy:
     - profile: nextcloud-office-ce
       policy: gentian-restrict-capabilities
       scope: collabora
-    - profile: nextcloud-suite-ce
-      policy: gentian-disallow-privilege-escalation
-      scope: collabora
-    - profile: nextcloud-suite-ce
-      policy: gentian-restrict-capabilities
-      scope: collabora
     - profile: nextcloud-suite-me
       policy: gentian-disallow-privilege-escalation
       scope: collabora
