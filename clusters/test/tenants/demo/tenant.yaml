@@ -11,6 +11,7 @@ spec:
     s3Prefix: demo-
   deletionPolicy: Retain
   apps:
+  - profile: nextcloud-base-ce
   - profile: open-webui
   - profile: app-store-me
   # Gentian Subscriptions (ApiProfile) — commerce/billing tile, installed by
