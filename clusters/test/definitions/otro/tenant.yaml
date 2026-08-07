@@ -11,4 +11,4 @@ spec:
     s3Prefix: otro-
   deletionPolicy: Retain
   apps:
-  - profile: app-store
+  - profile: app-store-me

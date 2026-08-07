@@ -13,10 +13,10 @@
 # this deployment's tenants use, not on stage.
 platformSecurityPolicy:
   allowedMacWaivers:
-    - profile: element
+    - profile: element-ce
       policy: gentian-require-non-root
       scope: sidecar-jitsi
-    - profile: element
+    - profile: element-ce
       policy: gentian-restrict-capabilities
       scope: sidecar-jitsi
     - profile: nextcloud-office-ce
