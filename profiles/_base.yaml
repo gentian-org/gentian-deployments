@@ -19,15 +19,9 @@ platformSecurityPolicy:
     - profile: element-ce
       policy: gentian-restrict-capabilities
       scope: sidecar-jitsi
-    - profile: nextcloud-office-ce
+    - profile: nextcloud-base-ce
       policy: gentian-disallow-privilege-escalation
       scope: collabora
-    - profile: nextcloud-office-ce
-      policy: gentian-restrict-capabilities
-      scope: collabora
-    - profile: nextcloud-suite-me
-      policy: gentian-disallow-privilege-escalation
-      scope: collabora
-    - profile: nextcloud-suite-me
+    - profile: nextcloud-base-ce
       policy: gentian-restrict-capabilities
       scope: collabora
