@@ -12,6 +12,12 @@ spec:
   deletionPolicy: Retain
   apps:
   - profile: odoo-base-ce
+    addons:
+    - odoo-accounting-ce
+    - odoo-crm-ce
+    - odoo-employees-ce
+    - odoo-pos-ce
+    - odoo-purchase-ce
   - profile: nextcloud-base-ce
     addons:
     - nextcloud-calendar-ce
