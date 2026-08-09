@@ -11,7 +11,6 @@ spec:
     s3Prefix: demo-
   deletionPolicy: Retain
   apps:
-  - profile: odoo-base-ce
     addons:
     - odoo-accounting-ce
     - odoo-crm-ce
