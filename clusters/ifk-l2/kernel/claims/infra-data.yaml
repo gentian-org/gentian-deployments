@@ -1,7 +1,7 @@
 apiVersion: gentianos.io/v1alpha1
 kind: InfraData
 metadata:
-  name: dev-infra-data
+  name: ifk-l2-prod-infra-data
   namespace: crossplane-system
 spec:
   environment: prod

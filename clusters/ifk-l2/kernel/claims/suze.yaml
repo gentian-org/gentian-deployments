@@ -1,7 +1,7 @@
 apiVersion: gentianos.io/v1alpha1
 kind: Suze
 metadata:
-  name: dev-suze
+  name: ifk-l2-prod-suze
   namespace: crossplane-system
 spec:
   environment: prod
