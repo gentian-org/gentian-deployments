@@ -1,0 +1,31 @@
+apiVersion: gentianos.io/v1alpha1
+kind: Tenant
+metadata:
+  name: placeholder  # matched via the target selector in kustomization.yaml
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  # deletionPolicy is set per instance in tenant.yaml (Retain default).
+  isolation:
+    mode: namespace
+  mail:
+    domain: gtn.host
+    mode: selfhosted
+    quotaPerUser: 2Gi
+    rateLimit: 100/h
+  # Sized against this cluster, not copied from another one.
+  #
+  # 3 nodes give 5.8 vCPU / 8.3Gi allocatable; the kernel itself already
+  # requests 2.5 vCPU / 5.5Gi, leaving roughly 3.5 vCPU / 2.8Gi. These are
+  # per-tenant CEILINGS on total namespace requests, so they are deliberately
+  # set so a single tenant cannot exhaust that headroom on its own — the
+  # previous 32 vCPU / 32Gi was about eleven times what the hardware can
+  # actually deliver, which means a tenant could be admitted and then never
+  # schedule.
+  #
+  # Adding a second sizeable tenant needs more nodes, not a bigger number here.
+  quotas:
+    cpu: 2
+    maxApps: 10
+    memory: 2Gi
+    storage: 50Gi
