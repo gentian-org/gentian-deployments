@@ -25,3 +25,16 @@ platformSecurityPolicy:
     - profile: nextcloud-base-ce
       policy: gentian-restrict-capabilities
       scope: collabora
+    - profile: nextcloud-base-ce
+      policy: gentian-require-seccomp
+      scope: collabora
+      # Collabora's own coolmount tool bind-mounts its systemplate into each
+      # per-document jail; RuntimeDefault's seccomp filter blocks the mount()
+      # syscall outright regardless of capabilities, so it falls back to
+      # copying that folder on every single document open — the fallback
+      # upstream's own chart comment documents as much slower. Confirmed live:
+      # `coolmount: Operation not permitted` on every jail setup, and Nextcloud
+      # richdocuments retrying its WOPI token fetch four times over 47s waiting
+      # for one to finish. Scoped to this one container, which already runs
+      # non-root with every capability dropped except CHOWN/FOWNER/SYS_CHROOT —
+      # see profiles/nextcloud/base/base-ce/profile.yaml.
