@@ -25,7 +25,22 @@ spec:
   #
   # Adding a second sizeable tenant needs more nodes, not a bigger number here.
   quotas:
-    cpu: 2
+    # Sized from what the installed apps actually request, measured on this
+    # cluster rather than estimated:
+    #
+    #   nextcloud            1000m / 1Gi   (+ its cron container)
+    #   app-store api+web     700m / 384Mi
+    #   nextcloud MCP         250m / 128Mi
+    #                       ------------------
+    #                        ~2450m / ~1.6Gi
+    #
+    # The previous 2 vCPU ceiling sat just under that, so Nextcloud was rejected
+    # at admission — "exceeded quota: tenant-quota, requested: limits.cpu=1500m,
+    # used: 950m, limited: 2" — its Deployment stayed at 0/1, the Service had no
+    # endpoints, and the gateway answered 500 with nothing in the app to explain
+    # it. A quota that lands between "one app" and "one app plus the platform's
+    # own sidecars" fails in exactly that silent way.
+    cpu: 4
     maxApps: 10
-    memory: 2Gi
-    storage: 50Gi
+    memory: 4Gi
+    storage: 100Gi
