@@ -1,14 +1,14 @@
 apiVersion: gentianos.io/v1alpha1
 kind: Tenant
 metadata:
-  name: gtn
+  name: corp
 spec:
-  adminEmail: admin-gtn@gtn.host
+  adminEmail: admin-corp@gtn.host
   displayName: Gentian
   isolation:
-    databasePrefix: gtn_
-    keycloakRealm: gtn
-    s3Prefix: gtn-
+    databasePrefix: corp_
+    keycloakRealm: corp
+    s3Prefix: corp-
   deletionPolicy: Retain
   apps:
   - profile: app-store-me
