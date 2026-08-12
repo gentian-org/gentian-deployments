@@ -12,7 +12,6 @@ spec:
   deletionPolicy: Retain
   apps:
   - profile: docmost-ce
-  - profile: mathesar-ce
   - profile: activepieces-me
   - profile: odoo-base-ce
     addons:
