@@ -11,7 +11,6 @@ spec:
     s3Prefix: demo-
   deletionPolicy: Retain
   apps:
-  - profile: docmost-ce
   - profile: activepieces-me
   - profile: odoo-base-ce
     addons:
