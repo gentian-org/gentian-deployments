@@ -1,0 +1,11 @@
+apiVersion: gentianos.io/v1alpha1
+kind: Suze
+metadata:
+  name: ifk-w4h-prod-suze
+  namespace: crossplane-system
+spec:
+  environment: prod
+  idpNamespace: platform-kernel
+  compositeDeletePolicy: Background
+  openfga:
+    chartVersion: "0.3.10"

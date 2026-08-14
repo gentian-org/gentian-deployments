@@ -1,0 +1,7 @@
+apiVersion: gentianos.io/v1alpha1
+kind: Cluster
+metadata:
+  name: ifk-w4h-prod
+  namespace: crossplane-system
+spec:
+  kernelDomain: gtn.host
