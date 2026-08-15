@@ -7,8 +7,12 @@ kernelDomain: gtn.host
 stage: prod
 llmSupport: false
 
+# There is no stage-named tag: CI publishes v1.2.3 for a release, develop/main
+# for a branch, and develop-abc1234 for a commit on one. A prod cluster should
+# name an immutable build — a digest, or a v1.2.3 once released — rather than
+# follow a branch. See gentian-os/docs/deployment.md §4.
 image:
-  tag: "prod"
+  tag: "develop"
 
 api:
   env:
