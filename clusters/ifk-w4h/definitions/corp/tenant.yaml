@@ -3,7 +3,6 @@ kind: Tenant
 metadata:
   name: corp
 spec:
-  adminEmail: admin-corp@desk.gentian.org
   displayName: Gentian Corp
   isolation:
     databasePrefix: corp_
