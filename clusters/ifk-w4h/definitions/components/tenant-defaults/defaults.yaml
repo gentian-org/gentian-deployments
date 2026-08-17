@@ -9,7 +9,15 @@ spec:
   isolation:
     mode: namespace
   mail:
-    domain: gtn.host
+    # No domain here. Absent, the operator derives it from the tenant and the
+    # cluster's kernel domain — corp.gtn.host under TENANCY_MODE=multi — which
+    # is the same domain the platform derives the admin address in
+    # (admin@corp.gtn.host).
+    #
+    # Hardcoding the kernel domain gave every tenant the same mail domain, so
+    # Postfix accepted gtn.host and refused corp.gtn.host, and the registry held
+    # one entry per tenant all naming it. Set this per tenant only where a
+    # tenant genuinely owns a different domain.
     mode: selfhosted
     quotaPerUser: 5Gi
     rateLimit: 100/h
