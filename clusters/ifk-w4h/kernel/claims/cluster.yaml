@@ -5,3 +5,10 @@ metadata:
   namespace: crossplane-system
 spec:
   kernelDomain: gtn.host
+  tenancyMode: multi
+  networkMode: static-ip
+  nodeIp: 179.237.73.52
+  routingMode: gateway
+  secretMode: derived
+  mail:
+    serviceMode: kernel
