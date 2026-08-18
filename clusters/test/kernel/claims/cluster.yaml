@@ -46,6 +46,13 @@ spec:
     # external route on this cluster, so this only matters for logging into
     # OpenBao's own UI; the credential manager exchanges tokens server-side.
     externalUrl: https://bao.desk.gentian.org
+    # The group D-05-portal-login puts administrator@<kernelDomain> into.
+    #
+    # Set explicitly rather than left to the XRD default: a default is
+    # materialised into the object at admission, so changing it later does not
+    # migrate a claim that already exists — this one was created while the
+    # default was /platform-admins, a group nothing ever joins.
+    clusterAdminGroup: "/gentian:platform:superadmin"
 
   llm:
     enabled: true
