@@ -36,5 +36,19 @@ spec:
   # secretMode:   derived    every kernel secret reproducible from the master password; random = independent
   # routingMode:  gateway    Envoy Gateway plus the Gateway API; the only supported value
   # storageClass: ""         empty means the clusters default StorageClass
-  # llm:
-  #   enabled: false            set true on a cluster that serves models
+  llm:
+    enabled: true
+    gpuAcceleration: true
+    # Matches the time-slicing already configured on this node: one physical
+    # RTX 4090 presented as four shares. Lowering it would reduce the node's
+    # GPU capacity for everything else.
+    gpuTimeSliceReplicas: 4
+    instances:
+      - name: qwen
+        modelId: Qwen/Qwen2.5-7B-Instruct
+        # 0.85 of a 24 GB card is ~21 GB, which effectively dedicates it to
+        # this model. Drop to a 1.5B at 0.30 to leave room for other GPU work.
+        gpuMemoryUtilization: "0.85"
+        maxModelLen: "8192"
+        modelCacheSize: 60Gi
+        toolCallParser: hermes
