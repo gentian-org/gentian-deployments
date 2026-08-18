@@ -27,7 +27,7 @@ spec:
   #   kernel    in-cluster Postfix/Dovecot; requires networkMode static-ip
   mail:
     serviceMode: external
-    host: test.gentian.org@gmail.com
+    host: smtp.gmail.com
     # port: 587                 defaults to 587
     # starttls: true            defaults to true
 
