@@ -8,7 +8,7 @@ spec:
     databasePrefix: corp_
     keycloakRealm: corp
     s3Prefix: corp-
-  deletionPolicy: Retain
+  deletionPolicy: Delete
   apps:
   - profile: app-store-me
   # Gentian Subscriptions (ApiProfile) — commerce/billing tile, installed by
