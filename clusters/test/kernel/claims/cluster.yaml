@@ -5,4 +5,36 @@ metadata:
   namespace: crossplane-system
 spec:
   kernelDomain: desk.gentian.org
+
+  # How traffic reaches this cluster.
+  #   tunnel     behind a reverse proxy or tunnel; nodeIp is not used
+  #   static-ip  DNS points straight at nodeIp, which is then required
   networkMode: tunnel
+  # nodeIp:                      not used while networkMode is tunnel
+
+  # Who issues TLS certificates.
+  #   acme-dns01   Lets Encrypt over DNS-01; needs the Cloudflare API token
+  #   acme-http01  Lets Encrypt over HTTP-01; needs port 80 reachable
+  #   private-ca   your own CA, supplied as certificates.caBundleSecretRef
+  #   self-signed  no public DNS and no ACME reachability; browsers warn
+  certificates:
+    issuerMode: acme-dns01
+    # caBundleSecretRef:         only read when issuerMode is private-ca
+
+  # Where mail goes.
+  #   external  relay through an SMTP provider; supply the smtp-relay
+  #             credential to the credential manager after install
+  #   kernel    in-cluster Postfix/Dovecot; requires networkMode static-ip
+  mail:
+    serviceMode: external
+    host: test.gentian.org@gmail.com
+    # port: 587                 defaults to 587
+    # starttls: true            defaults to true
+
+  # Defaults below are in effect. Uncomment a line to change it.
+  # tenancyMode:  multi      one subdomain and Keycloak realm per tenant; single = one tenant owns the cluster
+  # secretMode:   derived    every kernel secret reproducible from the master password; random = independent
+  # routingMode:  gateway    Envoy Gateway plus the Gateway API; the only supported value
+  # storageClass: ""         empty means the clusters default StorageClass
+  # llm:
+  #   enabled: false            set true on a cluster that serves models
