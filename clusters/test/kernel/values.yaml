@@ -5,7 +5,7 @@
 # (portal chart is separate from the operator chart but shares this file).
 kernelDomain: desk.gentian.org
 stage: dev
-llmSupport: true
+llmSupport: false
 
 image:
   tag: "develop"
@@ -18,5 +18,5 @@ appLifecycle:
   deployments:
     enabled: true
     cluster: test
-    repo: https://github.com/gentian-org/gentian-deployments.git
+    repo: https://github.com/gentian-org/gentian-deployments
     gitCredentialsSecret: gentian-deployments-git-credentials
