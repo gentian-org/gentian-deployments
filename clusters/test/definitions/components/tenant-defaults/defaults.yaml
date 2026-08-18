@@ -1,0 +1,30 @@
+apiVersion: gentianos.io/v1alpha1
+kind: Tenant
+metadata:
+  name: placeholder  # matched via the target selector in kustomization.yaml
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  isolation:
+    mode: namespace
+  mail:
+    domain: desk.gentian.org
+    mode: selfhosted
+    quotaPerUser: 2Gi
+    rateLimit: 100/h
+
+  # A CEILING on everything one tenant may request, not a reservation.
+  #
+  # Size it against this cluster's allocatable capacity minus what the kernel
+  # already requests — not against another cluster's file. A quota larger than
+  # the hardware admits tenants that can never schedule; a quota smaller than
+  # the apps request rejects them at admission with a message about the quota
+  # rather than about the app.
+  #
+  # Start here and measure: 'kubectl describe resourcequota -n tenant-<name>'
+  # after the first app is installed tells you what it actually wanted.
+  quotas:
+    cpu: 4
+    memory: 4Gi
+    storage: 100Gi
+    maxApps: 10
