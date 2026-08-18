@@ -41,7 +41,10 @@ spec:
   # policies and roles, the Keycloak client OpenBao authenticates against, its
   # groups and tenant mappers, and the platform-admins group.
   oidc:
-    discoveryUrl: https://id.desk.gentian.org/realms/kernel
+    # /auth is this Keycloak's path prefix — keycloakx serves the legacy layout,
+    # and the realm's own issuer says so. Without it the discovery document is a
+    # 404 and OpenBao refuses the config with "error checking oidc discovery URL".
+    discoveryUrl: https://id.desk.gentian.org/auth/realms/kernel
     # Browser-facing OpenBao URL, used for the OIDC callback. OpenBao has no
     # external route on this cluster, so this only matters for logging into
     # OpenBao's own UI; the credential manager exchanges tokens server-side.
