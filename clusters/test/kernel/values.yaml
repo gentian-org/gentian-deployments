@@ -5,7 +5,11 @@
 # (portal chart is separate from the operator chart but shares this file).
 kernelDomain: desk.gentian.org
 stage: dev
-llmSupport: false
+# Must agree with llm.enabled on claims/cluster.yaml. The operator reads this as
+# LLM_SUPPORT and gates the LiteLLM route and app wiring on it, while the
+# installer renders the serving stack from the claim — so a disagreement here
+# deploys the models and never exposes them.
+llmSupport: true
 
 image:
   tag: "develop"
@@ -13,6 +17,12 @@ image:
 api:
   env:
     BACKEND_CORS_ORIGINS: https://portal.desk.gentian.org
+
+# Read by BOTH charts that share this file: the operator chart takes `enabled`
+# and ignores `url`, the portal chart takes `url` and ignores `enabled`.
+credentialManager:
+  enabled: true
+  url: http://gentian-os-credentials.gentian-system.svc:9444
 
 appLifecycle:
   deployments:

@@ -36,6 +36,17 @@ spec:
   # secretMode:   derived    every kernel secret reproducible from the master password; random = independent
   # routingMode:  gateway    Envoy Gateway plus the Gateway API; the only supported value
   # storageClass: ""         empty means the clusters default StorageClass
+  # Human logins to OpenBao and the credential manager. Setting discoveryUrl is
+  # what creates the whole OIDC chain: the cluster-admin and tenant-admin
+  # policies and roles, the Keycloak client OpenBao authenticates against, its
+  # groups and tenant mappers, and the platform-admins group.
+  oidc:
+    discoveryUrl: https://id.desk.gentian.org/realms/kernel
+    # Browser-facing OpenBao URL, used for the OIDC callback. OpenBao has no
+    # external route on this cluster, so this only matters for logging into
+    # OpenBao's own UI; the credential manager exchanges tokens server-side.
+    externalUrl: https://bao.desk.gentian.org
+
   llm:
     enabled: true
     gpuAcceleration: true
