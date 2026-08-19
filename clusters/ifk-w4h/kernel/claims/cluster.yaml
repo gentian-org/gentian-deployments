@@ -23,3 +23,11 @@ spec:
     dnsProvider: cloudflare
   mail:
     serviceMode: kernel
+    # The hostname outbound mail leaves from. Floating IP 37.156.43.16 is
+    # attached to the node Postfix is pinned to, so this cluster sends from an
+    # address it owns and can set the PTR for — rather than the router's shared
+    # SNAT address, whose reverse DNS nobody owns.
+    #
+    # Setting this also pins Postfix to that node: an address that can move is an
+    # address whose PTR and SPF record stop matching.
+    egressHost: out.gtn.host
