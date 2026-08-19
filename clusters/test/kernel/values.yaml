@@ -5,10 +5,10 @@
 # (portal chart is separate from the operator chart but shares this file).
 kernelDomain: desk.gentian.org
 stage: dev
-# Must agree with llm.enabled on claims/cluster.yaml. The operator reads this as
-# LLM_SUPPORT and gates the LiteLLM route and app wiring on it, while the
-# installer renders the serving stack from the claim — so a disagreement here
-# deploys the models and never exposes them.
+# Fallback for llm.enabled on claims/cluster.yaml: the operator reads the
+# claim (via gentian-cluster-config) and consults this only while that
+# ConfigMap does not exist yet. Keep it matching the claim so first boot
+# behaves like steady state.
 llmSupport: true
 
 image:
