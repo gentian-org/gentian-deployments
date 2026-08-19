@@ -8,7 +8,15 @@ spec:
   isolation:
     mode: namespace
   mail:
-    domain: desk.gentian.org
+    # No domain here. Absent, the operator derives it from the tenant and the
+    # cluster's kernel domain — acme.desk.gentian.org under TENANCY_MODE=multi
+    # — which is the same domain the platform derives the admin address in
+    # (admin@acme.desk.gentian.org).
+    #
+    # Hardcoding the kernel domain gave every tenant the same mail domain, so
+    # Postfix accepted desk.gentian.org and refused the tenant's own, and the
+    # registry held one entry per tenant all naming it. Set this per tenant
+    # only where a tenant genuinely owns a different domain.
     mode: selfhosted
     quotaPerUser: 2Gi
     rateLimit: 100/h
