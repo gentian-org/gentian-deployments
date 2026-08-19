@@ -14,6 +14,17 @@ llmSupport: true
 image:
   tag: "develop"
 
+# Tenant export bundles are encrypted to these age public keys. Without at
+# least one, an export fails rather than writing a tenant's data unencrypted.
+#
+# The matching identity is at ~/.gentian/backup-identity-test.txt on the
+# operator's workstation and deliberately NOT on this cluster: a key stored in
+# the cluster it protects is readable by whoever compromises that cluster,
+# which is the case backups exist for. This is a dev-cluster key — a prod one
+# belongs with the recovery kit.
+backupRecipients:
+  - age1tnesxqng2g538mxyv589hfkp49ukhqeaqq9fx4p74zapmyfdxggq45vx0v
+
 api:
   env:
     BACKEND_CORS_ORIGINS: https://portal.desk.gentian.org
