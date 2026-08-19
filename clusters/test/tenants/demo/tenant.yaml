@@ -1,0 +1,44 @@
+apiVersion: gentianos.io/v1alpha1
+kind: Tenant
+metadata:
+  name: demo
+spec:
+  displayName: demo
+
+  # No adminEmail here. The administrator address is derived:
+  #   admin@demo.desk.gentian.org
+  # and it is the Keycloak username too — one identifier, not
+  # two that can disagree. Setting it would point the account at
+  # an address the tenant does not control; this account is
+  # recovered by the cluster administrator, not by mail.
+
+  # Where this tenant is served. Left unset it is demo.desk.gentian.org,
+  # which is what a multi-tenant cluster wants. Set it to serve the
+  # tenant on a domain they own instead.
+  # domain: demo.example.org
+
+  # Prefixes keep one tenant out of another tenant name-space in the
+  # shared data stores. Changing them after provisioning strands what
+  # was created under the old ones.
+  isolation:
+    keycloakRealm: demo
+    databasePrefix: demo_
+    s3Prefix: demo-
+
+  # Retain keeps the data when the Tenant is deleted; Delete removes it.
+  deletionPolicy: Retain
+
+  # Quotas and mail come from this cluster's shared tenant-defaults
+  # component, which the deploy command creates. Override here only
+  # what this tenant needs differently from the rest.
+
+  # Apps are installed by profile name from the catalogue.
+  #   kubectl gentian apps list      what this cluster offers
+  #
+  # A profile that is not in the catalogue is refused at admission,
+  # naming the profile — so a typo here fails on deploy, not later.
+  apps: []
+  # apps:
+  # - profile: nextcloud-base-ce
+  #   addons:
+  #   - nextcloud-calendar-ce
