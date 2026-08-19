@@ -10,5 +10,16 @@ spec:
   nodeIp: 179.237.73.52
   routingMode: gateway
   secretMode: derived
+  # Who runs the machines. Decides the LoadBalancer annotations the gateway and
+  # mail Services need — without it they render bare and Octavia never attaches a
+  # health monitor.
+  platform: infomaniak
+  certificates:
+    issuerMode: acme-dns01
+    # Who hosts the zone. Separate from issuerMode because they answer different
+    # questions, and it is also what tells external-dns which provider to use —
+    # left unset it falls back to the chart default (aws) and every DNS write
+    # fails against Route 53.
+    dnsProvider: cloudflare
   mail:
     serviceMode: kernel
