@@ -35,7 +35,14 @@ credentialManager:
   enabled: true
   url: http://gentian-os-credentials.gentian-system.svc:9444
 
+# Also read by both charts, the same way credentialManager is: the operator
+# chart takes `deployments` and ignores `url`, the portal chart takes `url` and
+# ignores `deployments`.
 appLifecycle:
+  # Where the Admin Console's Resources tab reads a tenant's plan, ceiling and
+  # usage history, and posts plan changes. Without it the tab reports the
+  # resources API unreachable, which is what it did before this line existed.
+  url: http://gentian-os-lifecycle.gentian-system.svc:8082
   deployments:
     enabled: true
     cluster: test
