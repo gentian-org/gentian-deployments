@@ -16,17 +16,6 @@ stage: prod
 # correct, which is the hardest kind of mail fault to see.
 mailEgressHost: out.gtn.host
 
-# kernel, matching this cluster's Cluster claim: Postfix and Dovecot run here and
-# mailboxes are local, rather than sitting at a provider.
-#
-# The operator reads its mail mode from this file and not from the claim, because
-# nothing carries spec.mail.serviceMode through at runtime. Left unset it fell back
-# to the chart default, external, and the operator then skipped Dovecot entirely —
-# no realm client, no XOAUTH2 auth, and the Dovecot ApplicationSet not rendered at
-# all, which left the running Dovecot with no owner. See gentian-os roadmap 1.22:
-# until the composition carries this, it has to be set here AND on the appsets
-# Application, and the two must agree.
-mailServiceMode: kernel
 llmSupport: false
 
 # There is no stage-named tag: CI publishes v1.2.3 for a release, develop/main
