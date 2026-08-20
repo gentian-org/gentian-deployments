@@ -18,8 +18,6 @@ spec:
     # registry held one entry per tenant all naming it. Set this per tenant
     # only where a tenant genuinely owns a different domain.
     mode: selfhosted
-    quotaPerUser: 2Gi
-    rateLimit: 100/h
 
   # A CEILING on everything one tenant may request, not a reservation.
   #

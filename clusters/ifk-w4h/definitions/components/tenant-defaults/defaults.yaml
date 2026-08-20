@@ -19,8 +19,6 @@ spec:
     # one entry per tenant all naming it. Set this per tenant only where a
     # tenant genuinely owns a different domain.
     mode: selfhosted
-    quotaPerUser: 5Gi
-    rateLimit: 100/h
   quotas:
     cpu: 32
     maxApps: 20
