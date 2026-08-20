@@ -6,15 +6,6 @@
 kernelDomain: gtn.host
 stage: prod
 
-# The name that resolves to the address mail LEAVES from — the dedicated egress
-# floating IP, not the inbound load balancer.
-#
-# The operator builds each tenant's SPF record from this. Left empty it falls
-# back to "v=spf1 mx ~all", which authorises the MX: on this cluster that is
-# 83.228.248.114, the inbound load balancer, while mail actually leaves from
-# 37.156.43.16. Every message then soft-fails SPF against a record that reads as
-# correct, which is the hardest kind of mail fault to see.
-mailEgressHost: out.gtn.host
 
 llmSupport: false
 
