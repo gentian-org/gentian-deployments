@@ -59,4 +59,8 @@ appLifecycle:
     enabled: true
     cluster: test
     repo: https://github.com/gentian-org/gentian-deployments
-    gitCredentialsSecret: gentian-deployments-git-credentials
+    # The Secret the XRepository Composition emits through ESO, named from the
+    # claim so it is stable. The Secret this used to name was created by the
+    # installer with kubectl and held a copy of the same token, so rotating the
+    # value in OpenBao reached the composed one and never this pod.
+    gitCredentialsSecret: deployments-git-credentials
