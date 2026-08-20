@@ -22,6 +22,18 @@ image:
 # the cluster it protects is readable by whoever compromises that cluster,
 # which is the case backups exist for. This is a dev-cluster key — a prod one
 # belongs with the recovery kit.
+# Live consumption for the Admin Console's Resources tab, read from
+# metrics.k8s.io. microk8s serves it from its own core add-on, so this cluster
+# needs no A-11-metrics-server run — the step's check() already reports
+# satisfied against kube-system/metrics-server.
+#
+# Advisory only. What a tenant is billed for is the enforced ceiling and what
+# is committed under it, both from the API server; this adds the second series
+# that says whether the plan they pay for is the plan they need.
+usage:
+  metricsServer:
+    enabled: true
+
 backupRecipients:
   - age1tnesxqng2g538mxyv589hfkp49ukhqeaqq9fx4p74zapmyfdxggq45vx0v
 
