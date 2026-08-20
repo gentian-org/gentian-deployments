@@ -31,8 +31,12 @@ spec:
   #
   # Start here and measure: 'kubectl describe resourcequota -n tenant-<name>'
   # after the first app is installed tells you what it actually wanted.
+  # Measured 2026-08-20 with the standard demo set installed (nextcloud +
+  # collabora + mcp, app-store, open-webui): limits sum to 4.95 CPU / 4.6Gi,
+  # so at 4/4Gi nextcloud could never schedule. 6/6Gi fits the set with ~1
+  # CPU of headroom for transient Jobs (post-install hooks, addon installs).
   quotas:
-    cpu: 4
-    memory: 4Gi
+    cpu: 6
+    memory: 6Gi
     storage: 100Gi
     maxApps: 10
