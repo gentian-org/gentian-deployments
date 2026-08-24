@@ -39,6 +39,14 @@ spec:
   # naming the profile — so a typo here fails on deploy, not later.
   apps:
   - profile: odoo-base-ce
+    addons:
+    - odoo-accounting-ce
+    - odoo-crm-ce
+    - odoo-employees-ce
+    - odoo-inventory-ce
+    - odoo-mrp-ce
+    - odoo-pos-ce
+    - odoo-purchase-ce
   - profile: docmost-ce
   - profile: nextcloud-base-ce
     addons:
