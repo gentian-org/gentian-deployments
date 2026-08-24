@@ -38,6 +38,7 @@ spec:
   # A profile that is not in the catalogue is refused at admission,
   # naming the profile — so a typo here fails on deploy, not later.
   apps:
+  - profile: docmost-ce
   - profile: nextcloud-base-ce
     addons:
     - nextcloud-richdocuments-ce
