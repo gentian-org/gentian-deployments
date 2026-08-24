@@ -39,6 +39,16 @@ spec:
   # naming the profile — so a typo here fails on deploy, not later.
   apps:
   - profile: nextcloud-base-ce
+    addons:
+    - nextcloud-richdocuments-ce
+    - nextcloud-forms-ce
+    - nextcloud-mail-ce
+    - nextcloud-calendar-ce
+    - nextcloud-contacts-ce
+    - nextcloud-tasks-ce
+    - nextcloud-deck-ce
+    - nextcloud-collectives-ce
+    - nextcloud-spreed-ce
   # The app store is how a tenant admin installs everything else. A
   # tenant scaffolded without it can only be changed by editing this
   # file, so it is the one entry that is not really optional.
