@@ -31,3 +31,19 @@ spec:
     # Setting this also pins Postfix to that node: an address that can move is an
     # address whose PTR and SPF record stop matching.
     egressHost: out.gtn.host
+
+  # Human write access to OpenBao, federated from Keycloak.
+  #
+  # discoveryUrl is what creates the backend: the composition gates the Keycloak
+  # client, the client Secret and the OpenBao policies on it, B-07 enables the
+  # mount and D-06 writes the config. Without it none of that exists, and the
+  # only write path is the installer's bootstrap token — which E-04 revokes, and
+  # refuses to revoke while nothing else can write. An install then cannot
+  # finish its last step, which is what happened here: signing in recorded
+  # nothing, because nothing was listening.
+  oidc:
+    discoveryUrl: https://id.gtn.host/auth/realms/kernel
+    # clientId:          openbao
+    # clientSecretRef:   openbao-oidc-client   Secret in the OpenBao namespace
+    # clusterAdminGroup: /gentian:platform:superadmin
+    # externalUrl:                             OpenBao UI callback, if exposed
