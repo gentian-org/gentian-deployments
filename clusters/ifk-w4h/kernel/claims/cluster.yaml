@@ -4,45 +4,69 @@ metadata:
   name: ifk-w4h-prod
   namespace: crossplane-system
 spec:
-  kernelDomain: gtn.host
-  tenancyMode: multi
+  kernelDomain: gentian.cloud
+
+  # Where this cluster runs. Selects the edge load-balancer settings
+  # its provider needs; see kernel/platforms.yaml for the full list.
+  #   self-hosted  bare metal or a VM you own, addressed by MetalLB
+  #   openstack / infomaniak / hetzner / aws / gcp / azure
+  #   none         no load-balancer integration at all
+  # Left unset it is detected from the nodes providerID.
+  # platform:                    detected from the nodes
+  # platformParams:              hetzner needs location; azure a
+  #                              publicIpResourceGroup
+
+  # How traffic reaches this cluster.
+  #   tunnel     behind a reverse proxy or tunnel; nodeIp is not used
+  #   static-ip  DNS points straight at nodeIp, which is then required
   networkMode: static-ip
   nodeIp: 179.237.73.52
-  routingMode: gateway
-  secretMode: derived
-  # Who runs the machines. Decides the LoadBalancer annotations the gateway and
-  # mail Services need — without it they render bare and Octavia never attaches a
-  # health monitor.
-  platform: infomaniak
+  # addressRef:                  AWS eipalloc ids or an Azure public
+  #                              IP name; neither takes an address
+
+  # Who issues TLS certificates, and who hosts the zone. Two questions:
+  # how control is proved, and by whom.
+  #   acme-dns01   Lets Encrypt over DNS-01; the only path to a wildcard
+  #   acme-http01  Lets Encrypt over HTTP-01; needs port 80 reachable
+  #   private-ca   your own CA, supplied as certificates.caBundleSecretRef
+  #   self-signed  no public DNS and no ACME reachability; browsers warn
   certificates:
     issuerMode: acme-dns01
-    # Who hosts the zone. Separate from issuerMode because they answer different
-    # questions, and it is also what tells external-dns which provider to use —
-    # left unset it falls back to the chart default (aws) and every DNS write
-    # fails against Route 53.
+    # cloudflare, route53, clouddns, azuredns, rfc2136, hetzner,
+    # infomaniak — independent of platform above.
     dnsProvider: cloudflare
+    # dnsParams:                route53 needs region and
+    #                           hostedZoneID; clouddns a project
+    # externalDns: true         let external-dns write this zone.
+    #                           Leave off where something else already
+    #                           does — on a tunnel cluster the operator
+    #                           writes the tenant records itself.
+    # caBundleSecretRef:         only read when issuerMode is private-ca
+
+  # Where mail goes.
+  #   external  relay through an SMTP provider; supply the smtp-relay
+  #             credential to the credential manager after install
+  #   kernel    in-cluster Postfix/Dovecot; requires networkMode static-ip
   mail:
     serviceMode: kernel
-    # The hostname outbound mail leaves from. Floating IP 37.156.43.16 is
-    # attached to the node Postfix is pinned to, so this cluster sends from an
-    # address it owns and can set the PTR for — rather than the router's shared
-    # SNAT address, whose reverse DNS nobody owns.
-    #
-    # Setting this also pins Postfix to that node: an address that can move is an
-    # address whose PTR and SPF record stop matching.
-    egressHost: out.gtn.host
+    # host:                     not used while serviceMode is kernel
+
+  # Defaults below are in effect. Uncomment a line to change it.
+  # tenancyMode:  multi      one subdomain and Keycloak realm per tenant; single = one tenant owns the cluster
+  # secretMode:   derived    every kernel secret reproducible from the master password; random = independent
+  # routingMode:  gateway    Envoy Gateway plus the Gateway API; the only supported value
+  # storageClass: ""         empty means the clusters default StorageClass
+  # llm:
+  #   enabled: false            set true on a cluster that serves models
+  #   gpuAcceleration: false    set true when the cluster has GPUs
+  #   gpuTimeSliceReplicas: 1   workloads sharing one physical GPU
+  #   instances: []             the models to serve; see the XRD for fields
 
   # Human write access to OpenBao, federated from Keycloak.
-  #
-  # discoveryUrl is what creates the backend: the composition gates the Keycloak
-  # client, the client Secret and the OpenBao policies on it, B-07 enables the
-  # mount and D-06 writes the config. Without it none of that exists, and the
-  # only write path is the installer's bootstrap token — which E-04 revokes, and
-  # refuses to revoke while nothing else can write. An install then cannot
-  # finish its last step, which is what happened here: signing in recorded
-  # nothing, because nothing was listening.
+  # discoveryUrl is what creates the backend; without it the only
+  # write path is the installer bootstrap token, which E-04 revokes.
   oidc:
-    discoveryUrl: https://id.gtn.host/auth/realms/kernel
+    discoveryUrl: https://id.gentian.cloud/auth/realms/kernel
     # clientId:          openbao
     # clientSecretRef:   openbao-oidc-client   Secret in the OpenBao namespace
     # clusterAdminGroup: /gentian:platform:superadmin
