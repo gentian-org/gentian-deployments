@@ -37,10 +37,15 @@ spec:
     dnsProvider: cloudflare
     # dnsParams:                route53 needs region and
     #                           hostedZoneID; clouddns a project
-    # externalDns: true         let external-dns write this zone.
-    #                           Leave off where something else already
-    #                           does — on a tunnel cluster the operator
-    #                           writes the tenant records itself.
+    # external-dns writes this zone from the Gateway hostnames.
+    # Set false where something else already owns these records.
+    #
+    # This cluster has networkMode: static-ip and a nodeIp, so there is a fixed
+    # address to publish and a provider named above to publish it with. Without
+    # this, B-03 never creates the external-dns Application, nothing writes an A
+    # record for id. or portal., and the first step needing a public name waits
+    # for something nobody is producing.
+    externalDns: true
     # caBundleSecretRef:         only read when issuerMode is private-ca
 
   # Where mail goes.
