@@ -19,4 +19,4 @@ appLifecycle:
     enabled: true
     cluster: ifk-w4h
     repo: https://github.com/gentian-org/gentian-deployments
-    gitCredentialsSecret: gentian-deployments-git-credentials
+    gitCredentialsSecret: deployments-git-credentials
