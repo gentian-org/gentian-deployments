@@ -10,6 +10,7 @@ spec:
     s3Prefix: corp-
   deletionPolicy: Retain
   apps:
+  - profile: docmost-ce
   - profile: odoo-base-ce
     addons:
     - odoo-accounting-ce
