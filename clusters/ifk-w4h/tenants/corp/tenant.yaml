@@ -11,6 +11,16 @@ spec:
   deletionPolicy: Retain
   apps:
   - profile: nextcloud-base-ce
+    addons:
+    - nextcloud-richdocuments-ce
+    - nextcloud-forms-ce
+    - nextcloud-mail-ce
+    - nextcloud-calendar-ce
+    - nextcloud-contacts-ce
+    - nextcloud-tasks-ce
+    - nextcloud-deck-ce
+    - nextcloud-collectives-ce
+    - nextcloud-spreed-ce
   - profile: docmost-ce
   - profile: odoo-base-ce
     addons:
