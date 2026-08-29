@@ -55,6 +55,20 @@ spec:
   mail:
     serviceMode: kernel
     # host:                     not used while serviceMode is kernel
+    # The name outbound mail leaves from, and the whole reason SPF can pass on
+    # this cluster. Without it the operator falls back to "v=spf1 mx ~all",
+    # which names the INBOUND load balancer (83.228.248.255) -- an address that
+    # never sends -- so the record fails by construction while looking
+    # plausible. mail_reconciler.go says exactly that.
+    #
+    # With it the record becomes "v=spf1 a:mail-egress.gentian.cloud -all".
+    #
+    # It has to agree with three things that are not in this repo:
+    #   floating IP 37.156.43.16 attached to the Postfix node's port
+    #   PTR   37.156.43.16 -> mail-egress.gentian.cloud.
+    #   A     mail-egress.gentian.cloud -> 37.156.43.16   (manual, in Cloudflare)
+    # Gmail checks the forward and reverse agree; all three are in place today.
+    egressHost: mail-egress.gentian.cloud
 
   # Defaults below are in effect. Uncomment a line to change it.
   # tenancyMode:  multi      one subdomain and Keycloak realm per tenant; single = one tenant owns the cluster
