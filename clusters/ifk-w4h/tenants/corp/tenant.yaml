@@ -23,6 +23,25 @@ spec:
     - nextcloud-spreed-ce
   - profile: docmost-ce
   - profile: odoo-base-ce
+    # Restart Odoo automatically when a new commit reaches the odoo-modules
+    # branch it tracks, and regenerate the asset bundles on that restart.
+    #
+    # Odoo resolves addons_path through realpath() once at startup, so a
+    # git-sync symlink flip afterwards is invisible to the running process:
+    # new module code reaches the disk and is never served. Until now the only
+    # cure was noticing and running `kubectl rollout restart` by hand.
+    #
+    # Scoped to this tenant deliberately. Every Odoo tenant tracks the same
+    # odoo-modules branch, so any commit there restarts every tenant that has
+    # this on -- corp is where that code is being developed and tested, so it
+    # is the tenant that wants it. See charts/odoo/values.yaml in gentian-apps
+    # for the full tradeoff.
+    config:
+      extraValues:
+        gentian:
+          git:
+            autoReload:
+              enabled: true
     addons:
     - odoo-accounting-ce
     - odoo-employees-ce
