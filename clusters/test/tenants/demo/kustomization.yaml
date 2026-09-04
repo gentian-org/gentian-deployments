@@ -4,3 +4,5 @@ resources:
 - tenant.yaml
 components:
 - ../../definitions/components/tenant-defaults
+patches:
+- path: resource-plan.yaml
