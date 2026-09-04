@@ -8,12 +8,12 @@ kind: Tenant
 metadata:
   name: demo
   annotations:
-    gentianos.io/resource-plan: nodes-4
+    gentianos.io/resource-plan: nodes-2
 spec:
   quotas:
-    requestsCpu: "8"
-    requestsMemory: "16Gi"
-    cpu: "32"
-    memory: "32Gi"
-    storage: "200Gi"
+    requestsCpu: "4"
+    requestsMemory: "8Gi"
+    cpu: "16"
+    memory: "16Gi"
+    storage: "100Gi"
     maxPods: null
