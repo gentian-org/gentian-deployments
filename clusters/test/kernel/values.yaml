@@ -11,8 +11,14 @@ stage: dev
 # behaves like steady state.
 llmSupport: true
 
+# Matches GENTIAN_OS_BRANCH for this cluster. ArgoCD reconciles the operator
+# chart from this file continuously, so it -- not the installer's --set -- is
+# what the cluster runs in steady state. Left at "develop" while the cluster
+# tracked test-cb, every re-registration of the gentian-os Application dropped
+# the image updater's parameter override and put develop code back on a
+# test-cb cluster until the next updater cycle.
 image:
-  tag: "develop"
+  tag: "test-cb"
 
 # Tenant export bundles are encrypted to these age public keys. Without at
 # least one, an export fails rather than writing a tenant's data unencrypted.
