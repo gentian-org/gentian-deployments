@@ -1,0 +1,87 @@
+apiVersion: gentianos.io/v1alpha1
+kind: Cluster
+metadata:
+  name: gentian-os-test-dev
+  namespace: crossplane-system
+spec:
+  kernelDomain: test.gentian-os.org
+
+  # Where this cluster runs. Selects the edge load-balancer settings
+  # its provider needs; see kernel/platforms.yaml for the full list.
+  #   self-hosted  bare metal or a VM you own, addressed by MetalLB
+  #   openstack / infomaniak / hetzner / aws / gcp / azure
+  #   none         no load-balancer integration at all
+  # Left unset it is detected from the nodes providerID.
+  # platform:                    detected from the nodes
+  # platformParams:              hetzner needs location; azure a
+  #                              publicIpResourceGroup
+
+  # How traffic reaches this cluster.
+  #   tunnel     behind a reverse proxy or tunnel; nodeIp is not used
+  #   static-ip  DNS points straight at nodeIp, which is then required
+  networkMode: tunnel
+  # nodeIp:                      not used while networkMode is tunnel
+  # addressRef:                  AWS eipalloc ids or an Azure public
+  #                              IP name; neither takes an address
+
+  # Who issues TLS certificates, and who hosts the zone. Two questions:
+  # how control is proved, and by whom.
+  #   acme-dns01   Lets Encrypt over DNS-01; the only path to a wildcard
+  #   acme-http01  Lets Encrypt over HTTP-01; needs port 80 reachable
+  #   private-ca   your own CA, supplied as certificates.caBundleSecretRef
+  #   self-signed  no public DNS and no ACME reachability; browsers warn
+  certificates:
+    issuerMode: acme-dns01
+    # staging: untrusted certificates, generous rate limits.
+    # Switch to production once the names are settled.
+    acmeEnv: staging
+    # cloudflare, route53, clouddns, azuredns, rfc2136, hetzner,
+    # infomaniak — independent of platform above.
+    dnsProvider: cloudflare
+    # dnsParams:                route53 needs region and
+    #                           hostedZoneID; clouddns a project
+    # externalDns: true         let external-dns write this zone.
+    #                           Off while networkMode is tunnel: there
+    #                           is no fixed address to publish, and the
+    #                           operator writes the tenant records
+    #                           through the tunnel CNAMEs itself.
+    # caBundleSecretRef:         only read when issuerMode is private-ca
+
+  # Where mail goes.
+  #   external  relay through an SMTP provider; supply the smtp-relay
+  #             credential to the credential manager after install
+  #   kernel    in-cluster Postfix/Dovecot; requires networkMode static-ip
+  mail:
+    serviceMode: external
+    host: smtp.gmail.com
+    # port: 587                 defaults to 587
+    # starttls: true            defaults to true
+
+  # Defaults below are in effect. Uncomment a line to change it.
+  # tenancyMode:  multi      one subdomain and Keycloak realm per tenant; single = one tenant owns the cluster
+  # secretMode:   derived    every kernel secret reproducible from the master password; random = independent
+  # routingMode:  gateway    Envoy Gateway plus the Gateway API; the only supported value
+  # storageClass: ""         empty means the clusters default StorageClass
+
+  # Where the backup private key lives. On by default: it goes to OpenBao as
+  # well as the recovery kit, so a cluster administrator can restore without
+  # the kit -- and anyone who reaches OpenBao as one can read every bundle.
+  # Set false to keep it in the kit alone: nothing the cluster holds can then
+  # open a bundle, and losing every copy of the kit loses every backup.
+  # backup:
+  #   escrowIdentity: true
+  # llm:
+  #   enabled: false            set true on a cluster that serves models
+  #   gpuAcceleration: false    set true when the cluster has GPUs
+  #   gpuTimeSliceReplicas: 1   workloads sharing one physical GPU
+  #   instances: []             the models to serve; see the XRD for fields
+
+  # Human write access to OpenBao, federated from Keycloak.
+  # discoveryUrl is what creates the backend; without it the only
+  # write path is the installer bootstrap token, which E-04 revokes.
+  oidc:
+    discoveryUrl: https://id.test.gentian-os.org/auth/realms/kernel
+    # clientId:          openbao
+    # clientSecretRef:   openbao-oidc-client   Secret in the OpenBao namespace
+    # clusterAdminGroup: /gentian:platform:superadmin
+    # externalUrl:                             OpenBao UI callback, if exposed
