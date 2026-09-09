@@ -32,6 +32,12 @@ spec:
   #   self-signed  no public DNS and no ACME reachability; browsers warn
   certificates:
     issuerMode: acme-dns01
+    # Which Let's Encrypt endpoint. Read at A-06 from this file rather than
+    # from the stage profile, because the issuers are applied before Argo CD
+    # renders anything. Stated rather than defaulted so the endpoint this
+    # cluster is on is readable here: production has five duplicate
+    # certificates per week per name, and staging is not publicly trusted.
+    acmeEnv: production
     # cloudflare, route53, clouddns, azuredns, rfc2136, hetzner,
     # infomaniak — independent of platform above.
     dnsProvider: cloudflare
