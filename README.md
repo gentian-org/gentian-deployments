@@ -25,14 +25,15 @@ clusters/
           application.yaml     # optional add-on — NOT scaffolded, hand-added (see below)
     definitions/
       components/tenant-defaults/  # cluster-wide defaults applied to every tenant at activation
-      <tenant>/
-        tenant.yaml
+      tenants/
+        <tenant>/
+          tenant.yaml
     tenants/
       <tenant>/
         tenant.yaml
 ```
 
-No `<stage>/` subdirectory under `definitions/<tenant>/` or `tenants/<tenant>/`
+No `<stage>/` subdirectory under `definitions/tenants/<tenant>/` or `tenants/<tenant>/`
 — a cluster has exactly one stage for its whole lifetime (see
 [deployment.md](../gentian-os/docs/deployment.md) §1), so
 `clusters/<cluster>/...` already scopes everything under it to that one
@@ -100,7 +101,7 @@ where `<cluster>` and `<stage>` come from:
 
 Each cluster keeps tenant **definitions** under:
 
-- `clusters/<cluster>/definitions/<tenant>/tenant.yaml`
+- `clusters/<cluster>/definitions/tenants/<tenant>/tenant.yaml`
 
 Fresh installs leave `clusters/<cluster>/tenants/` **empty** until a definition
 is deployed. `kubectl gentian tenants list` shows all definitions;
