@@ -72,11 +72,28 @@ spec:
   # open a bundle, and losing every copy of the kit loses every backup.
   # backup:
   #   escrowIdentity: true
-  # llm:
-  #   enabled: false            set true on a cluster that serves models
-  #   gpuAcceleration: false    set true when the cluster has GPUs
-  #   gpuTimeSliceReplicas: 1   workloads sharing one physical GPU
-  #   instances: []             the models to serve; see the XRD for fields
+  # LLM serving. Hardware-dependent: beefy1 has one RTX 4090 (24 GiB).
+  #
+  # gpuTimeSliceReplicas is 4 to match what the cluster already publishes.
+  # gpu-operator-resources/time-slicing-config is not Helm-owned and sets
+  # replicas: 4, so D-05 leaves it alone and the cluster's value wins either
+  # way -- stating 1 here would only earn a warning telling us to say 4.
+  #
+  # Time slicing shares the whole device rather than partitioning its memory,
+  # so every instance contends for the same 24 GiB. One 7B model at 0.85
+  # utilisation is what fits; a second would starve it.
+  llm:
+    enabled: true
+    gpuAcceleration: true
+    gpuTimeSliceReplicas: 4
+    instances:
+      - name: qwen
+        modelId: Qwen/Qwen2.5-7B-Instruct
+        gpuMemoryUtilization: "0.85"
+        maxModelLen: "8192"
+        modelCacheSize: 60Gi
+        # hermes is the parser for the Qwen2/Qwen2.5 family.
+        toolCallParser: hermes
 
   # Human write access to OpenBao, federated from Keycloak.
   # discoveryUrl is what creates the backend; without it the only
