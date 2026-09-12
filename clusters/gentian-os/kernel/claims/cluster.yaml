@@ -1,10 +1,10 @@
 apiVersion: gentianos.io/v1alpha1
 kind: Cluster
 metadata:
-  name: gentian-os-test-dev
+  name: gentian-os-dev
   namespace: crossplane-system
 spec:
-  kernelDomain: test.gentian-os.org
+  kernelDomain: gentian-os.org
 
   # Where this cluster runs. Selects the edge load-balancer settings
   # its provider needs; see kernel/platforms.yaml for the full list.
@@ -56,6 +56,8 @@ spec:
     host: smtp.gmail.com
     # port: 587                 defaults to 587
     # starttls: true            defaults to true
+    # egressHost:               only for a cluster that sends from its own
+    #                           address rather than through the relay above
 
   # Defaults below are in effect. Uncomment a line to change it.
   # tenancyMode:  multi      one subdomain and Keycloak realm per tenant; single = one tenant owns the cluster
@@ -80,7 +82,7 @@ spec:
   # discoveryUrl is what creates the backend; without it the only
   # write path is the installer bootstrap token, which E-04 revokes.
   oidc:
-    discoveryUrl: https://id.test.gentian-os.org/auth/realms/kernel
+    discoveryUrl: https://id.gentian-os.org/auth/realms/kernel
     # clientId:          openbao
     # clientSecretRef:   openbao-oidc-client   Secret in the OpenBao namespace
     # clusterAdminGroup: /gentian:platform:superadmin

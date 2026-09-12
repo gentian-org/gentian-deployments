@@ -1,11 +1,8 @@
 apiVersion: gentianos.io/v1alpha1
-kind: Suze
+kind: InfraData
 metadata:
-  name: gentian-os-test-dev-suze
+  name: gentian-os-dev-infra-data
   namespace: crossplane-system
 spec:
   environment: dev
-  idpNamespace: platform-kernel
   compositeDeletePolicy: Background
-  openfga:
-    chartVersion: "0.3.10"
