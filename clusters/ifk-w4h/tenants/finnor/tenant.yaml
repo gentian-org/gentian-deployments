@@ -39,6 +39,16 @@ spec:
   # naming the profile — so a typo here fails on deploy, not later.
   apps:
   - profile: odoo-base-ce
+    addons:
+    - odoo-project-ce
+    - odoo-purchase-ce
+    - odoo-pos-ce
+    - odoo-mrp-ce
+    - odoo-inventory-ce
+    - odoo-employees-ce
+    - odoo-crm-ce
+    - odoo-contacts-ce
+    - odoo-accounting-ce
   # The app store is how a tenant admin installs everything else. A
   # tenant scaffolded without it can only be changed by editing this
   # file, so it is the one entry that is not really optional.
