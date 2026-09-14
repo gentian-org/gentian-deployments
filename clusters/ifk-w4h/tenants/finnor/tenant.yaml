@@ -39,6 +39,14 @@ spec:
   # naming the profile — so a typo here fails on deploy, not later.
   apps:
   - profile: nextcloud-base-ce
+    addons:
+    - nextcloud-calendar-ce
+    - nextcloud-collectives-ce
+    - nextcloud-contacts-ce
+    - nextcloud-forms-ce
+    - nextcloud-mail-ce
+    - nextcloud-richdocuments-ce
+    - nextcloud-spreed-ce
   - profile: docmost-ce
   - profile: odoo-base-ce
     addons:
