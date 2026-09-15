@@ -68,6 +68,10 @@ spec:
   # default, opt-out — delete this entry for a tenant that should not
   # see it.
   - profile: gentian-subscriptions-me
+  # AI Chat, listed because this cluster serves LLM
+  # (spec.llm.enabled on the Cluster claim). Delete the entry for a
+  # tenant that should not see it.
+  - profile: open-webui
   # Everything else this tenant needs goes beside them, for example:
   # - profile: nextcloud-base-ce
   #   addons:
