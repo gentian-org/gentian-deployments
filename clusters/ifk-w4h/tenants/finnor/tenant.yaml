@@ -60,6 +60,7 @@ spec:
     - odoo-contacts-ce
     - odoo-accounting-ce
     - odoo-website-ce
+    - odoo-sales-ce
   # The app store is how a tenant admin installs everything else. A
   # tenant scaffolded without it can only be changed by editing this
   # file, so it is the one entry that is not really optional.
