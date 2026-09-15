@@ -81,11 +81,58 @@ spec:
   # secretMode:   derived    every kernel secret reproducible from the master password; random = independent
   # routingMode:  gateway    Envoy Gateway plus the Gateway API; the only supported value
   # storageClass: ""         empty means the clusters default StorageClass
-  # llm:
-  #   enabled: false            set true on a cluster that serves models
-  #   gpuAcceleration: false    set true when the cluster has GPUs
-  #   gpuTimeSliceReplicas: 1   workloads sharing one physical GPU
-  #   instances: []             the models to serve; see the XRD for fields
+  # LLM serving. This cluster has no GPUs, so it serves no weights of its
+  # own: gpuAcceleration stays false and instances empty, and every model
+  # comes from the external provider below.
+  llm:
+    enabled: true
+    # gpuAcceleration: false    set true when the cluster has GPUs
+    # gpuTimeSliceReplicas: 1   workloads sharing one physical GPU
+    # instances: []             read only when gpuAcceleration is true
+
+    # External OpenAI-compatible providers, offered through the LiteLLM
+    # gateway — so the virtual keys and per-tenant budgets apply to them.
+    # Adding an entry registers its models; removing one deregisters them.
+    # Nothing else may register a provider model: an entry added by hand in
+    # LiteLLM's Admin Console is deleted by the next reconcile.
+    providers:
+      - name: infomaniak
+        displayName: Infomaniak AI Services
+        # The number is the AI Tools product id, which GET /1/ai
+        # returns. Not an account or user id, and not secret — it
+        # selects which product is billed and is part of the endpoint.
+        apiBase: https://api.infomaniak.com/2/ai/111401/openai/v1
+        # A property of the llm-provider-infomaniak credential at
+        # gentian-os/kernel/llm-providers, supplied through the Admin
+        # Console. Never the token itself. The token needs the ai-tools
+        # scope.
+        apiKeyProperty: infomaniak_api_key
+        # Offered to tenants as infomaniak/<name>. maxTokens is omitted
+        # throughout rather than guessed — a wrong context window is
+        # worse than LiteLLM's own default. Delete any line a tenant
+        # should not see; the next install deregisters it.
+        models:
+          - name: apertus-1.5-70b
+            model: swiss-ai/Apertus-v1.5-70B
+          - name: gemma-4-31b
+            model: google/gemma-4-31B-it
+          - name: kimi-k2.6
+            model: moonshotai/Kimi-K2.6
+          - name: ministral-3-14b
+            model: mistralai/Ministral-3-14B-Instruct-2512
+          - name: mistral-small-4-119b
+            model: mistralai/Mistral-Small-4-119B-2603
+          - name: nemotron-3-nano-30b
+            model: nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-FP8
+          - name: qwen3.5-122b
+            model: Qwen/Qwen3.5-122B-A10B-FP8
+          - name: qwen3.5-397b
+            model: Qwen/Qwen3.5-397B-A17B-FP8
+          # Embedding, not chat. It must say so: routed as chat it fails
+          # at the first request rather than at registration.
+          - name: bge-multilingual-gemma2
+            model: bge_multilingual_gemma2
+            mode: embedding
 
   # Human write access to OpenBao, federated from Keycloak.
   # discoveryUrl is what creates the backend; without it the only
