@@ -95,6 +95,50 @@ spec:
         # hermes is the parser for the Qwen2/Qwen2.5 family.
         toolCallParser: hermes
 
+    # External OpenAI-compatible providers, offered through the same
+    # LiteLLM gateway as the instances above — so the virtual keys and
+    # per-tenant budgets apply to them unchanged. Adding an entry
+    # registers its models; removing one deregisters them. Nothing else
+    # may register a provider model: an entry added by hand in LiteLLM's
+    # Admin Console is deleted by the next reconcile.
+    providers:
+      - name: infomaniak
+        displayName: Infomaniak AI Services
+        # The number is the AI Tools product id, which GET /1/ai
+        # returns. Not an account or user id, and not secret — it
+        # selects which product is billed and is part of the endpoint.
+        apiBase: https://api.infomaniak.com/2/ai/111401/openai/v1
+        # A property of the llm-provider-api-keys credential at
+        # gentian-os/kernel/llm-providers, supplied through the Admin
+        # Console. Never the token itself.
+        apiKeyProperty: infomaniak_api_key
+        # Offered to tenants as infomaniak/<name>. maxTokens is omitted
+        # throughout rather than guessed — a wrong context window is
+        # worse than LiteLLM's own default. Delete any line a tenant
+        # should not see; the next install deregisters it.
+        models:
+          - name: apertus-1.5-70b
+            model: swiss-ai/Apertus-v1.5-70B
+          - name: gemma-4-31b
+            model: google/gemma-4-31B-it
+          - name: kimi-k2.6
+            model: moonshotai/Kimi-K2.6
+          - name: ministral-3-14b
+            model: mistralai/Ministral-3-14B-Instruct-2512
+          - name: mistral-small-4-119b
+            model: mistralai/Mistral-Small-4-119B-2603
+          - name: nemotron-3-nano-30b
+            model: nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-FP8
+          - name: qwen3.5-122b
+            model: Qwen/Qwen3.5-122B-A10B-FP8
+          - name: qwen3.5-397b
+            model: Qwen/Qwen3.5-397B-A17B-FP8
+          # Embedding, not chat. It must say so: routed as chat it fails
+          # at the first request rather than at registration.
+          - name: bge-multilingual-gemma2
+            model: bge_multilingual_gemma2
+            mode: embedding
+
   # Human write access to OpenBao, federated from Keycloak.
   # discoveryUrl is what creates the backend; without it the only
   # write path is the installer bootstrap token, which E-04 revokes.
