@@ -52,8 +52,6 @@ spec:
     addons:
     - odoo-project-ce
     - odoo-purchase-ce
-    - odoo-pos-ce
-    - odoo-mrp-ce
     - odoo-inventory-ce
     - odoo-employees-ce
     - odoo-crm-ce
