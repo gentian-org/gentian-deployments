@@ -46,16 +46,23 @@ spec:
     - nextcloud-calendar-ce
     - nextcloud-contacts-ce
     - nextcloud-tasks-ce
-  - profile: odoo-base-ce
-    addons:
-    - odoo-accounting-ce
-    - odoo-contacts-ce
-    - odoo-crm-ce
-    - odoo-employees-ce
-    - odoo-inventory-ce
-    - odoo-pos-ce
-    - odoo-purchase-ce
-    - odoo-website-ce
+  # Temporarily removed to force a clean reinstall: odoo-data was deleted by
+  # hand, and provider-helm reconciles release state rather than cluster
+  # contents, so nothing restores a volume removed from under a live release.
+  # The database is unaffected — db-test-odoo-base-ce carries
+  # databaseReclaimPolicy: retain and no ownerReferences, so test_odoo_base_ce
+  # survives, and with it the installed modules. Only the filestore was in the
+  # volume, and that was already lost.
+  # - profile: odoo-base-ce
+  #   addons:
+  #   - odoo-accounting-ce
+  #   - odoo-contacts-ce
+  #   - odoo-crm-ce
+  #   - odoo-employees-ce
+  #   - odoo-inventory-ce
+  #   - odoo-pos-ce
+  #   - odoo-purchase-ce
+  #   - odoo-website-ce
   - profile: docmost-ce
   # The app store is how a tenant admin installs everything else. A
   # tenant scaffolded without it can only be changed by editing this
