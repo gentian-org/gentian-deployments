@@ -48,14 +48,6 @@ spec:
     - odoo-pos-ce
     - odoo-purchase-ce
     - odoo-website-ce
-  - profile: nextcloud-base-ce
-    addons:
-    - nextcloud-richdocuments-ce
-    - nextcloud-forms-ce
-    - nextcloud-mail-ce
-    - nextcloud-calendar-ce
-    - nextcloud-contacts-ce
-    - nextcloud-tasks-ce
   - profile: docmost-ce
   # The app store is how a tenant admin installs everything else. A
   # tenant scaffolded without it can only be changed by editing this
