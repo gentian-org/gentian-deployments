@@ -69,7 +69,14 @@ spec:
   # AI Chat, listed because this cluster serves LLM
   # (spec.llm.enabled on the Cluster claim). Delete the entry for a
   # tenant that should not see it.
-  - profile: open-webui
+  #
+  # Temporarily removed: its PVC was deleted by hand, and provider-helm
+  # reconciles release state rather than cluster contents — it compares the
+  # desired chart and values against the recorded release, finds them in
+  # agreement, and does nothing. An object deleted out from under a live
+  # release is never restored by a sync, a selfHeal or a pod restart. Taking
+  # the profile out and putting it back is what forces a fresh install.
+  # - profile: open-webui
   # Everything else this tenant needs goes beside them, for example:
   # - profile: nextcloud-base-ce
   #   addons:
