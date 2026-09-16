@@ -38,6 +38,7 @@ spec:
   # A profile that is not in the catalogue is refused at admission,
   # naming the profile — so a typo here fails on deploy, not later.
   apps:
+  - profile: nextcloud-base-ce
   # The app store is how a tenant admin installs everything else. A
   # tenant scaffolded without it can only be changed by editing this
   # file, so it is the one entry that is not really optional.
