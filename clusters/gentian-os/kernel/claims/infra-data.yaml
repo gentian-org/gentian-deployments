@@ -1,8 +1,0 @@
-apiVersion: gentianos.io/v1alpha1
-kind: InfraData
-metadata:
-  name: gentian-os-dev-infra-data
-  namespace: kernel-provisioning
-spec:
-  environment: dev
-  compositeDeletePolicy: Background
