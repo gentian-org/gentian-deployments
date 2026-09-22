@@ -19,6 +19,19 @@ llmSupport: false
 # and enrol nobody who does not answer.
 mailAdminContact: ch.braendli@proton.me
 
+# Build the recipient list and log it, but keep accepting everything.
+#
+# The mailbox map is a catch-all, so this cluster accepts mail for every address
+# in a registered domain whether or not anyone owns it — 352 maildirs under
+# gentian.cloud alone, written by dictionary attacks, and the behaviour a large
+# provider reads as a spam trap.
+#
+# observe rather than strict, because strict answers 550 and a 550 is permanent:
+# a list that is wrong once loses the mail rather than deferring it. This logs
+# the list it WOULD enforce on every sync, to be read against the mailboxes that
+# are actually in use before the switch is turned.
+mailRecipientPolicy: observe
+
 image:
   tag: "develop"
 
