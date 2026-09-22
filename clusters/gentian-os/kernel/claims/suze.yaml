@@ -1,0 +1,12 @@
+apiVersion: gentianos.io/v1alpha1
+kind: Suze
+metadata:
+  name: gentian-os-dev-suze
+  namespace: kernel-provisioning
+spec:
+  environment: dev
+  idpNamespace: kernel-authentication
+  fgaNamespace: kernel-authorization
+  compositeDeletePolicy: Background
+  openfga:
+    chartVersion: "0.3.10"
