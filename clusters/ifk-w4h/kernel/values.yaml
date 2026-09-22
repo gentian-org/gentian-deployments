@@ -7,6 +7,18 @@ kernelDomain: gentian.cloud
 stage: prod
 llmSupport: false
 
+# Where abuse@ and postmaster@ are delivered, for every domain this cluster
+# accepts mail for.
+#
+# Off-cluster deliberately, and the operator refuses an address inside a domain
+# this cluster hosts: every local mailbox is a maildir Dovecot opens only for a
+# Keycloak user, so aliasing to one would move the mail without giving it a
+# reader. Unset, both addresses keep arriving and keep being unreadable.
+#
+# Needed to register with Microsoft's JMRP and SNDS, which mail both addresses
+# and enrol nobody who does not answer.
+mailAdminContact: ch.braendli@proton.me
+
 image:
   tag: "develop"
 
