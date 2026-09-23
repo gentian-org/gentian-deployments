@@ -44,7 +44,13 @@ spec:
     issuerMode: acme-dns01
     # staging: untrusted certificates, generous rate limits.
     # Switch to production once the names are settled.
-    acmeEnv: staging
+    #
+    # Production here, because the names are settled and because the edge is
+    # not the only thing that sees this certificate: components inside the
+    # cluster reach the kernel's own hostnames too -- the OIDC proxy in front
+    # of the API server fetches the realm's discovery document -- and a
+    # staging certificate is an unknown authority to every one of them.
+    acmeEnv: production
     # cloudflare, route53, clouddns, azuredns, rfc2136, hetzner,
     # infomaniak — independent of platform above.
     dnsProvider: cloudflare
