@@ -8,6 +8,13 @@ spec:
   # whose layout is not the one it was started with (--layout).
   layout: v5
   kernelDomain: gentian-os.org
+  # Who administers this cluster, by the Keycloak group they are in. The
+  # director reads this file from git -- not the object in the cluster -- so
+  # the assignment is written here rather than left to the schema's default,
+  # which a file reader never sees. Without it the director grants nobody a
+  # cluster role and every console the person is entitled to disappears.
+  platformRoles:
+    admin: gentian:platform:superadmin
 
   # Where this cluster runs. Selects the edge load-balancer settings
   # its provider needs; see kernel/platforms.yaml for the full list.
