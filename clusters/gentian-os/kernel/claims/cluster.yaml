@@ -14,7 +14,7 @@ spec:
   # which a file reader never sees. Without it the director grants nobody a
   # cluster role and every console the person is entitled to disappears.
   platformRoles:
-    admin: gentian:platform:superadmin
+    admin: gentian:platform:admin
 
   # Where this cluster runs. Selects the edge load-balancer settings
   # its provider needs; see kernel/platforms.yaml for the full list.
