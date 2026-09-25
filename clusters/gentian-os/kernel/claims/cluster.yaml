@@ -99,6 +99,7 @@ spec:
   # write path is the installer bootstrap token, which E-04 revokes.
   oidc:
     discoveryUrl: https://id.gentian-os.org/auth/realms/kernel
+    clusterAdminGroup: /gentian:platform:admin
     # clientId:          openbao
     # clientSecretRef:   openbao-oidc-client   Secret in the OpenBao namespace
     # clusterAdminGroup: /gentian:platform:superadmin
