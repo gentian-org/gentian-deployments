@@ -15,6 +15,6 @@ spec:
   type: git
   role: apps
   writable: false
-  branch: main
+  branch: v05
   endpoints:
     inCluster: https://github.com/gentian-org/gentian-apps
