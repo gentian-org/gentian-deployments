@@ -1,0 +1,20 @@
+# gentian-os, as this cluster reads it. The claim is what gives Argo CD an
+# AppProject source for the repository; without one it refuses to deploy from
+# it whatever the Application says.
+#
+# No credential block: this repository is public. Naming a vault path for a
+# secret that does not exist puts an unsatisfiable requirement in front of
+# whoever runs `make check-credentials`. A mirror sets GENTIAN_OS_AUTH
+# and re-runs this scaffold to get one.
+apiVersion: gentianos.io/v1alpha1
+kind: Repository
+metadata:
+  name: gentian-os
+  namespace: kernel-provisioning
+spec:
+  type: git
+  role: gentian-os
+  writable: false
+  branch: test-cb
+  endpoints:
+    inCluster: https://github.com/gentian-org/gentian-os
