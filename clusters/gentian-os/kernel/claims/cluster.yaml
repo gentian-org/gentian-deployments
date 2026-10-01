@@ -41,7 +41,7 @@ spec:
     issuerMode: acme-dns01
     # staging: untrusted certificates, generous rate limits.
     # Switch to production once the names are settled.
-    acmeEnv: staging
+    acmeEnv: production
     # cloudflare, route53, clouddns, azuredns, rfc2136, hetzner,
     # infomaniak — independent of platform above.
     dnsProvider: cloudflare
