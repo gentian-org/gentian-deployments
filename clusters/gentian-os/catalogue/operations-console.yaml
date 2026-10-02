@@ -1,0 +1,113 @@
+# The Operations Console: the convenience tier of looking after a tenant.
+# Everything a tenant needs to own its data -- export now, import, purge --
+# is the Admin Console's and free. What makes owning it convenient and
+# reliable is here: scheduled backups, the backup policy with its external
+# destination and retention, the bundles those produce; recovery, drills,
+# ingest and egress as they arrive. The Admin Console promotes it from the
+# places where a free flow has a paid continuation, and the install is free
+# under fifty users. It is never required: nothing the OS promises depends on
+# it being installed.
+#
+# Built from the same code as the Admin Console and deployed the same way: a
+# client of the director that holds no credential of its own, no Kubernetes
+# access and no database. What a person may see or change in it is the
+# director's answer, and this profile is the whole statement about the
+# component -- the catalogue carries it, not the OS's operator chart.
+apiVersion: gentianos.io/v1alpha1
+kind: ComponentProfile
+metadata:
+  name: operations-console
+spec:
+  classes: [app]
+  # Reached from the Operations tile on the web exposure. The api exposure
+  # carries none, which is what an API entry should be.
+  launch: tile
+  # Platform trust, because it relays the forwarded token to the director,
+  # which forwardToken below requires.
+  trustTier: platform
+  version: "0.1.0-main.8bc1c36"
+  # Every tenant gets one: the default workflows are built around it, and the
+  # tile below decides who sees it. A cluster that does not want it removes
+  # the entry, and the Admin Console then promotes it instead.
+  defaultForTenants: true
+  package:
+    chart:
+      repository: "oci://ghcr.io/gentian-technologies/charts"
+      name: "operations-console"
+      version: "0.1.0-main.8bc1c36"
+    valueMapping:
+      # Where the console's chart takes the facts of the cluster it runs in.
+      # Every key matches the chart's values.yaml, which are the Admin
+      # Console's: the two charts are the same shape on purpose, so the
+      # operator maps both the same way. The director keys are what make this
+      # a client of the director, and naming them is also what opens its
+      # egress to the control namespace.
+      platform:
+        issuerKey: auth.issuer
+        zoneClientIdKey: auth.clientId
+        audienceKey: auth.audience
+        directorUrlKey: director.url
+        # Where a person's own credential writes go. Named so the mapping is
+        # the Admin Console's; this console relays nothing to it yet.
+        credentialManagerUrlKey: credentialManager.url
+        clusterKey: director.cluster
+        tenantKey: platform.tenant
+        kernelDomainKey: platform.kernelDomain
+        realmKey: platform.realm
+        zoneKindKey: platform.zoneKind
+        # The tenant's own language, for what this renders before a person has
+        # chosen one and before a settings template has chosen for them.
+        defaultLanguageKey: platform.defaultLanguage
+    extraValues:
+      # The name every object of the release derives from, pinned so the
+      # Services the exposures below route to are known before the release
+      # exists.
+      fullnameOverride: operations-console
+      auth:
+        disabled: false
+        mode: edge
+      gateway:
+        enabled: false
+      rbac:
+        create: false
+      networkPolicy:
+        create: false
+      api:
+        env:
+          ENVIRONMENT: production
+  expose:
+    # The API. It relays the caller's token to the director, which is why this
+    # entry forwards the edge token, and why the profile is platform trust.
+    - name: api
+      surface: gateway
+      authMode: oidc
+      subDomain: operations
+      paths: ["/api", "/healthz", "/readyz"]
+      forwardToken: true
+      backend:
+        service: operations-console-api
+        port: 8000
+    # The bundle, on the same host so both share one session. The tile is
+    # asked on the tenant, not on an app object: looking after the tenant is
+    # what this component is for, and the model keeps that permission on the
+    # tenant, the same one the Admin Console asks. The desktop opens it in a
+    # frame, which the exposure's frame policy admits and nothing else does.
+    - name: web
+      surface: gateway
+      authMode: oidc
+      subDomain: operations
+      backend:
+        service: operations-console-web
+        port: 8080
+      tile:
+        displayName: Operations
+        description: Scheduled backups, their destination and retention, and the bundles they produce.
+        displayNames:
+          de_DE: Betrieb
+          en_US: Operations
+        # logo, not icon: an exposure's tile carries its own SVG and the
+        # schema requires it. The same frame as the Admin Console's glyph,
+        # with an archive box inside, because that is what this is for.
+        logo: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MiIgaGVpZ2h0PSI1MiIgdmlld0JveD0iMCAwIDUyIDUyIiByb2xlPSJpbWciPjxyZWN0IHdpZHRoPSI1MiIgaGVpZ2h0PSI1MiIgcng9IjEwIiBmaWxsPSIjRUNFOERGIi8+PHJlY3Qgd2lkdGg9IjUyIiBoZWlnaHQ9IjUyIiByeD0iMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyMCwgMjEsIDQ2LCAwLjA4KSIgc3Ryb2tlLXdpZHRoPSIxIi8+PHN2ZyB4PSIxNCIgeT0iMTQiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMyNjI2OTYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cmVjdCB3aWR0aD0iMjAiIGhlaWdodD0iNSIgeD0iMiIgeT0iMyIgcng9IjEiLz48cGF0aCBkPSJNNCA4djExYTIgMiAwIDAgMCAyIDJoMTJhMiAyIDAgMCAwIDItMlY4Ii8+PHBhdGggZD0iTTEwIDEyaDQiLz48L3N2Zz48L3N2Zz4=
+        relation: can_administer
+        object: tenant
