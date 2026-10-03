@@ -25,7 +25,7 @@ spec:
   # Platform trust, because it relays the forwarded token to the director,
   # which forwardToken below requires.
   trustTier: platform
-  version: "0.1.0-main.8bc1c36"
+  version: "0.1.0-main.ff97cf9"
   # Every tenant gets one: the default workflows are built around it, and the
   # tile below decides who sees it. A cluster that does not want it removes
   # the entry, and the Admin Console then promotes it instead.
@@ -34,7 +34,7 @@ spec:
     chart:
       repository: "oci://ghcr.io/gentian-technologies/charts"
       name: "operations-console"
-      version: "0.1.0-main.8bc1c36"
+      version: "0.1.0-main.ff97cf9"
     valueMapping:
       # Where the console's chart takes the facts of the cluster it runs in.
       # Every key matches the chart's values.yaml, which are the Admin
@@ -106,8 +106,8 @@ spec:
           de_DE: Betrieb
           en_US: Operations
         # logo, not icon: an exposure's tile carries its own SVG and the
-        # schema requires it. The same frame as the Admin Console's glyph,
-        # with an archive box inside, because that is what this is for.
-        logo: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MiIgaGVpZ2h0PSI1MiIgdmlld0JveD0iMCAwIDUyIDUyIiByb2xlPSJpbWciPjxyZWN0IHdpZHRoPSI1MiIgaGVpZ2h0PSI1MiIgcng9IjEwIiBmaWxsPSIjRUNFOERGIi8+PHJlY3Qgd2lkdGg9IjUyIiBoZWlnaHQ9IjUyIiByeD0iMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyMCwgMjEsIDQ2LCAwLjA4KSIgc3Ryb2tlLXdpZHRoPSIxIi8+PHN2ZyB4PSIxNCIgeT0iMTQiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMyNjI2OTYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cmVjdCB3aWR0aD0iMjAiIGhlaWdodD0iNSIgeD0iMiIgeT0iMyIgcng9IjEiLz48cGF0aCBkPSJNNCA4djExYTIgMiAwIDAgMCAyIDJoMTJhMiAyIDAgMCAwIDItMlY4Ii8+PHBhdGggZD0iTTEwIDEyaDQiLz48L3N2Zz48L3N2Zz4=
+        # schema requires it. The same frame as the Admin Console's cog,
+        # with a hammer: the console where the tenant is looked after.
+        logo: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MiIgaGVpZ2h0PSI1MiIgdmlld0JveD0iMCAwIDUyIDUyIiByb2xlPSJpbWciPjxyZWN0IHdpZHRoPSI1MiIgaGVpZ2h0PSI1MiIgcng9IjEwIiBmaWxsPSIjRUNFOERGIi8+PHJlY3Qgd2lkdGg9IjUyIiBoZWlnaHQ9IjUyIiByeD0iMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyMCwgMjEsIDQ2LCAwLjA4KSIgc3Ryb2tlLXdpZHRoPSIxIi8+PHN2ZyB4PSIxNCIgeT0iMTQiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMyNjI2OTYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJtMTUgMTItOC4zNzMgOC4zNzNhMSAxIDAgMSAxLTMtM0wxMiA5Ii8+PHBhdGggZD0ibTE4IDE1IDQtNCIvPjxwYXRoIGQ9Im0yMS41IDExLjUtMS45MTQtMS45MTRBMiAyIDAgMCAxIDE5IDguMTcyVjdsLTIuMjYtMi4yNmE2IDYgMCAwIDAtNC4yMDItMS43NTZMOSAyLjk2bC45Mi44MkE2LjE4IDYuMTggMCAwIDEgMTIgOC40VjEwbDIgMmgxLjE3MmEyIDIgMCAwIDEgMS40MTQuNTg2TDE4LjUgMTQuNSIvPjwvc3ZnPjwvc3ZnPg==
         relation: can_administer
         object: tenant
