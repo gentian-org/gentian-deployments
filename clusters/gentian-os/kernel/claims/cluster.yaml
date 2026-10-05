@@ -144,3 +144,26 @@ spec:
   #       url: https://git.example.com/profiles
   #       access: open
   #       tenants: [demo]
+
+  # Catalogues this cluster may fetch profiles from. A tenant installing
+  # "gentian/nextcloud-base-ce" gets the bundle from the source named
+  # gentian, at the digest the App Store stated -- the source itself is
+  # not trusted.
+  #
+  #   access: entitled   the store decides, per tenant, with a signed grant
+  #   access: open       your own repository; the tenants listed here may
+  #                      install from it with no grant. Nothing is open by
+  #                      default, and removing a tenant closes it again.
+  catalogue:
+    # Where people are sent for everything the cluster does not list
+    # itself: the maintained (me) and licensed (ee) editions. A cluster
+    # lists only ce and pe from its own sources.
+    storeUrl: https://gentian.org/apps
+    sources:
+      - name: gentian
+        url: https://store.gentian.org/catalogue
+        access: entitled
+      # - name: in-house
+      #   url: https://git.example.com/profiles
+      #   access: open
+      #   tenants: [demo]
