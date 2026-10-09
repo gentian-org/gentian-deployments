@@ -162,7 +162,6 @@ spec:
     sources:
       - name: gentian
         url: https://store.gentian.org/catalogue
-        access: entitled
       # - name: in-house
       #   url: https://git.example.com/profiles
       #   access: open
