@@ -1,0 +1,19 @@
+# Cluster overlay — only what's unique to THIS cluster. Tier-wide policy
+# lives in gentian-deployments/profiles/dev.yaml (Layer 2); chart
+# defaults live in gentian-os/charts/gentian-os/values.yaml (Layer 1).
+kernelDomain: gentian-os.org
+stage: dev
+llmSupport: true
+
+image:
+  tag: "develop"
+
+appLifecycle:
+  deployments:
+    cluster: test
+    repo: https://github.com/gentian-org/gentian-deployments
+    # Named from the CLAIM, not the composite and not the repo. The Composition
+    # emits <claimName>-git-credentials and B-09 names the claim "deployments",
+    # so this is deployments-git-credentials: the Secret the director clones
+    # and pushes with.
+    gitCredentialsSecret: deployments-git-credentials

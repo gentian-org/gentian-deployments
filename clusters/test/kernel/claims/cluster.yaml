@@ -1,0 +1,150 @@
+apiVersion: gentianos.io/v1alpha1
+kind: Cluster
+metadata:
+  name: test-dev
+  namespace: kernel-provisioning
+spec:
+  kernelDomain: gentian-os.org
+  # Who administers this cluster, by the Keycloak group they are in. The
+  # director reads this file from git -- not the object in the cluster -- so
+  # the assignment is written here rather than left to the schema's default,
+  # which a file reader never sees. Without it the director grants nobody a
+  # cluster role and every console the person is entitled to disappears.
+  platformRoles:
+    admin: gentian:platform:admin
+
+  # Where this cluster runs. Selects the edge load-balancer settings
+  # its provider needs; see kernel/platforms.yaml for the full list.
+  #   self-hosted  bare metal or a VM you own, addressed by MetalLB
+  #   openstack / infomaniak / hetzner / aws / gcp / azure
+  #   none         no load-balancer integration at all
+  # Left unset it is detected from the nodes providerID.
+  # platform:                    detected from the nodes
+  # platformParams:              hetzner needs location; azure a
+  #                              publicIpResourceGroup
+
+  # How traffic reaches this cluster.
+  #   tunnel     behind a reverse proxy or tunnel; nodeIp is not used
+  #   static-ip  DNS points straight at nodeIp, which is then required
+  networkMode: tunnel
+  # nodeIp:                      not used while networkMode is tunnel
+  # addressRef:                  AWS eipalloc ids or an Azure public
+  #                              IP name; neither takes an address
+
+  # Who issues TLS certificates, and who hosts the zone. Two questions:
+  # how control is proved, and by whom.
+  #   acme-dns01   Lets Encrypt over DNS-01; the only path to a wildcard
+  #   acme-http01  Lets Encrypt over HTTP-01; needs port 80 reachable
+  #   private-ca   your own CA, supplied as certificates.caBundleSecretRef
+  #   self-signed  no public DNS and no ACME reachability; browsers warn
+  certificates:
+    issuerMode: acme-dns01
+    # production. staging is not needed for rebuilds: the installer
+    # keeps the issued wildcard across purges, so a reinstall orders
+    # no new certificate. It also breaks the kernel sign-in, which does
+    # not trust its chain. The option may be removed.
+    acmeEnv: production
+    # cloudflare, route53, clouddns, azuredns, rfc2136, hetzner,
+    # infomaniak — independent of platform above.
+    dnsProvider: cloudflare
+    # dnsParams:                route53 needs region and
+    #                           hostedZoneID; clouddns a project
+    # external-dns is installed with this provider and writes every record
+    # of the zone, pointing at the tunnel. dnsProvider:
+    # none is the one setting that leaves the records to somebody else.
+    # caBundleSecretRef:         only read when issuerMode is private-ca
+
+  # Where mail goes.
+  #   external  relay through an SMTP provider; supply the smtp-relay
+  #             credential to the custodian after install
+  #   system    in-cluster Postfix/Dovecot; requires networkMode static-ip
+  mail:
+    serviceMode: external
+    host: smtp.gmail.com
+    # port: 587                 defaults to 587
+    # starttls: true            defaults to true
+    # egressHost:               only for a cluster that sends from its own
+    #                           address rather than through the relay above
+
+  # Defaults below are in effect. Uncomment a line to change it.
+  # tenancyMode:  multi      any number of user tenants, each on its own subdomain; single = exactly one user tenant, named user, on the cluster domain itself
+  # secretMode:   derived    every kernel secret reproducible from the master password; random = independent
+  # routingMode:  gateway    Envoy Gateway plus the Gateway API; the only supported value
+  storageClass: nfs-csi
+
+  # Where the backup private key lives. On by default: it goes to OpenBao as
+  # well as the recovery kit, so a platform admin can restore without
+  # the kit -- and anyone who reaches OpenBao as one can read every bundle.
+  # Set false to keep it in the kit alone: nothing the cluster holds can then
+  # open a bundle, and losing every copy of the kit loses every backup.
+  # backup:
+  #   escrowIdentity: true
+  llm:
+    enabled: true
+    gpuAcceleration: true
+    # The console of the gateway (models, keys, spend) at llm.<kernelDomain>,
+    # for platform administrators. Off by default: nothing the platform
+    # does needs it, and off means no route and no way in from the edge.
+    # console:
+    #   enabled: true
+    # gpuTimeSliceReplicas: 1   workloads sharing one physical GPU
+    # The models this cluster serves on its own GPUs. The gateway offers
+    # one model per entry; the platform does not start the vLLM instance
+    # behind it yet, so run one before listing it here.
+    instances: []
+    #  - name: qwen
+    #    modelId: Qwen/Qwen2.5-7B-Instruct
+    #    gpuMemoryUtilization: "0.85"   fraction of GPU memory
+    #    maxModelLen: "8192"            context window, tokens
+    #    modelCacheSize: 60Gi           PVC for the weights
+    #    imageTag: latest               vLLM image tag
+    #    toolCallParser: hermes         empty disables tool calling
+    # External OpenAI-compatible providers, routed through the same
+    # gateway. Independent of gpuAcceleration -- a cluster with no GPU
+    # and no instances serves these and nothing else. Adding an entry
+    # adds its models to the gateway; removing one removes them.
+    providers: []
+    #  - name: infomaniak
+    #    displayName: Infomaniak AI Services
+    #    # Up to and including the version segment. The number is the
+    #    # AI product id (GET /1/ai returns it), not an account id.
+    #    apiBase: https://api.infomaniak.com/2/ai/<product-id>/openai/v1
+    #    # A property of the llm-provider-<name> credential, supplied
+    #    # in the Admin Console. Never the token itself.
+    #    apiKeyProperty: infomaniak_api_key
+    #    models:
+    #      - name: gemma-4-31b              offered as infomaniak/gemma-4-31b
+    #        model: google/gemma-4-31B-it   the id the provider expects
+    #        maxTokens: 8192                omitted leaves LiteLLM guessing
+    #        mode: chat                     embedding models must say so
+
+  # Human write access to OpenBao, federated from Keycloak.
+  # discoveryUrl is what creates the backend; without it the only
+  # write path is the installer bootstrap token, which E-03 revokes.
+  oidc:
+    discoveryUrl: https://id.gentian-os.org/auth/realms/kernel
+    # clientId:          openbao
+    # clientSecretRef:   openbao-oidc-client   Secret in the OpenBao namespace
+    # clusterAdminGroup: /gentian:platform:admin
+    # externalUrl:                             OpenBao UI callback, if exposed
+
+  # Catalogues this cluster may fetch profiles from. A tenant installing
+  # "gentian/nextcloud-base-ce" gets the bundle from the source named
+  # gentian, at the digest the install asks for -- the source itself is
+  # not trusted.
+  #
+  # A source named here is offered to every tenant: the cluster lists its
+  # entries to them as installable from here, without the App Store.
+  # This is not a licence: whether an app arrives is decided by whether
+  # the tenant holds a credential for the repository it is pulled from.
+  catalogue:
+    # The base address of the App Store API: where the App Store app on
+    # this cluster reads what is on offer and what a tenant has acquired.
+    storeUrl: https://store-service.aluvian.io
+    sources:
+      - name: gentian
+        # The development catalogue: this cluster was installed from the gentian-os branch develop, not from a release.
+        url: https://gentian-org.github.io/gentian-apps/develop
+      # - name: in-house
+      #   url: https://git.example.com/profiles
+  # apiExtensions: enabled: the Operations Console installs by default
