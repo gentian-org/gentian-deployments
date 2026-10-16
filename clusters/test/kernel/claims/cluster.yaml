@@ -5,6 +5,10 @@ metadata:
   namespace: kernel-provisioning
 spec:
   kernelDomain: gentian-os.org
+  # This cluster's random id, made once and never changed. A restore brings
+  # back the rights granted in a tenant only from a bundle this cluster
+  # signed and took; changing it makes every earlier bundle another cluster's.
+  clusterUID: 4377b47419698d75f3c71809fa22170f
   # Who administers this cluster, by the Keycloak group they are in. The
   # director reads this file from git -- not the object in the cluster -- so
   # the assignment is written here rather than left to the schema's default,
