@@ -153,3 +153,10 @@ spec:
       # - name: in-house
       #   url: https://git.example.com/profiles
   # apiExtensions: enabled: the Operations Console installs by default
+
+  platformAccess:
+    securityOfficers:
+      - tenant: test
+        subject: 0ba53245-73b8-4649-a405-e09122ea84d1
+        username: "admin@test.gentian-os.org"
+        email: "ch.braendli@proton.me"
