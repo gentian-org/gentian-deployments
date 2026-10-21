@@ -17,6 +17,8 @@ apiVersion: gentianos.io/v1alpha1
 kind: ComponentProfile
 metadata:
   name: operations-console
+  labels:
+    gentianos.io/profile-name: operations-console
 spec:
   classes: [app]
   # Reached from the Operations tile on the web exposure. The api exposure
@@ -25,7 +27,7 @@ spec:
   # Platform trust, because it relays the forwarded token to the director,
   # which forwardToken below requires.
   trustTier: platform
-  version: "0.1.0-main.d49b6c3"
+  version: "0.1.0-main.f4d5529"
   # Every tenant gets one: the default workflows are built around it, and the
   # tile below decides who sees it. A cluster that does not want it removes
   # the entry, and the Admin Console then promotes it instead.
@@ -34,7 +36,7 @@ spec:
     chart:
       repository: "oci://ghcr.io/aluvian-hq/charts"
       name: "operations-console"
-      version: "0.1.0-main.d49b6c3"
+      version: "0.1.0-main.f4d5529"
     valueMapping:
       # Where the console's chart takes the facts of the cluster it runs in.
       # Every key matches the chart's values.yaml, which are the Admin
@@ -109,7 +111,7 @@ spec:
         port: 8080
       tile:
         displayName: Operations
-        description: Scheduled backups, their destination and retention, and the bundles they produce.
+        description: Scheduled backups, their destination and retention, the bundles they produce, and the record of who decided, changed and signed in.
         displayNames:
           de_DE: Betrieb
           en_US: Operations
