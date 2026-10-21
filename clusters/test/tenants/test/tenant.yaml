@@ -36,4 +36,8 @@ spec:
     storage: 50Gi
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
-  apps: []
+  apps:
+  - profile: nextcloud-base-ce
+    digest: sha256:039ba34836655cf982b88b0f9121b9fdec6e12a3208b0dca5793b4c99e428d9f
+    catalogue: gentian
+    defaultGrant: true
