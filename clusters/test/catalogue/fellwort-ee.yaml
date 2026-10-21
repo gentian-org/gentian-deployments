@@ -1,0 +1,105 @@
+# Fellwort, the enterprise edition: a registry and editor for graphs that
+# compute -- driver trees, processes, workflows, agents -- with every engine
+# needed to evaluate, run and translate them inside the one install. Sold per
+# seat through the App Store; the price is the store's (services/store).
+#
+# Three processes from one chart (aluvian-hq/fellwort): the editor's API and
+# its pages behind the tenant's sign-in, and the share app, the one part that
+# is on the internet. A share link opens a version of a graph on its own host
+# for anyone holding the link, who can run it with values of their own but not
+# change it. The agent runner ships in the chart and stays off here.
+#
+# The chart and images are private packages of ghcr.io/aluvian-hq: a tenant
+# installs this after declaring that registry with a credential (Credentials
+# -> Add a repository in the Admin Console).
+apiVersion: gentianos.io/v1alpha1
+kind: ComponentProfile
+metadata:
+  name: fellwort-ee
+spec:
+  classes: [app]
+  launch: tile
+  trustTier: certified
+  # The chart version Fellwort's CI published, pinned: provider-helm never
+  # upgrades a release whose chart version string did not change.
+  version: "0.1.0-develop.244d838"
+  package:
+    chart:
+      repository: "oci://ghcr.io/aluvian-hq/charts"
+      name: fellwort
+      version: "0.1.0-develop.244d838"
+    valueMapping:
+      database:
+        hostKey: database.host
+        portKey: database.port
+        nameKey: database.name
+        userKey: database.user
+        passwordKey: database.password
+      platform:
+        # The realm the front door's exchanged token comes from; the API
+        # checks every request's token against it.
+        issuerKey: auth.issuer
+        tenantKey: tenant
+        # The editor's host. The share host is derived from it (share.subDomain).
+        hostKey: appHost
+    extraValues:
+      # The Services the entries below route to: fellwort-api, -web, -share.
+      fullnameOverride: fellwort
+      environment: production
+      auth:
+        # exchangeToken hands the API a token whose audience is this
+        # profile's name and nothing else.
+        audience: fellwort-ee
+        tenantFromIssuer: true
+      share:
+        enabled: true
+        subDomain: fellwort-share
+      runner:
+        enabled: false
+  requires:
+    services:
+      database:
+        engine: postgresql
+        databasePerTenant: true
+  expose:
+    # The API, behind sign-in. Each request reaches it with a token for this
+    # app alone, which it verifies; no identity header is taken on trust.
+    - name: api
+      surface: gateway
+      authMode: oidc
+      exchangeToken: true
+      subDomain: fellwort
+      paths: ["/api", "/healthz", "/readyz"]
+      backend:
+        service: fellwort-api
+        port: 8000
+    # The editor's pages, on the same host so both share one session.
+    - name: web
+      surface: gateway
+      authMode: oidc
+      subDomain: fellwort
+      backend:
+        service: fellwort-web
+        port: 8080
+      tile:
+        displayName: Fellwort
+        description: Model a business as a graph that computes, and share a version for others to run.
+        displayNames:
+          de_DE: Fellwort
+          en_US: Fellwort
+        logo: data:image/png;base64,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
+        relation: can_launch
+    # Share links, on a host of their own: a host with a public entry leaves
+    # the signed-in zone as a whole, so the editor's cannot carry them. For
+    # anyone holding a link -- the secret in the path is the capability --
+    # so nothing is published until the tenant's perimeter approver approves.
+    # The process behind it serves the viewer and the routes a holder may
+    # call, and nothing else.
+    - name: share
+      surface: perimeter
+      authMode: none
+      subDomain: fellwort-share
+      paths: ["/s/", "/api/v1/shared/"]
+      backend:
+        service: fellwort-share
+        port: 8000
