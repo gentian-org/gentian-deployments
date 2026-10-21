@@ -37,6 +37,9 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: operations-console
+    digest: sha256:e5278e0eb2c59c13de8f3f43d7bffc2971fb9b890edf1308f339e28a09c60a91
+    catalogue: aluvian
   - profile: fellwort-ee
     digest: sha256:0f8508258daa673f3bd6a1338de591b9e249e020a102c309b47267f92f0a5a85
     catalogue: aluvian
