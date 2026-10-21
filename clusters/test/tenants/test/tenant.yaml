@@ -37,6 +37,10 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: fellwort-ee
+    digest: sha256:1e170e743015779138d372eb3ea4b63b0500757e0d32e39fa4079244d7e1ddad
+    catalogue: aluvian
+    defaultGrant: true
   - profile: nextcloud-base-ce
     digest: sha256:039ba34836655cf982b88b0f9121b9fdec6e12a3208b0dca5793b4c99e428d9f
     catalogue: gentian
