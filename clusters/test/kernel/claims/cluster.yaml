@@ -147,8 +147,9 @@ spec:
     storeUrl: https://store-service.aluvian.io
     sources:
       - name: gentian
-        # The development catalogue: this cluster was installed from the gentian-os branch develop, not from a release.
         url: https://gentian-org.github.io/gentian-apps/develop
+      - name: aluvian
+        url: https://catalogue.aluvian.io
       # - name: in-house
       #   url: https://git.example.com/profiles
   # apiExtensions: enabled: the Operations Console installs by default
