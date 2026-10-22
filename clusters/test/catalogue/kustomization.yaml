@@ -18,6 +18,7 @@ resources:
 - builds/nextcloud-richdocuments-ce-5a6794df39ae.yaml
 - builds/nextcloud-base-ce-f671a4579ffd.yaml
 - builds/docmost-ce-9c1fc930cfb0.yaml
+- builds/operations-console-ff3cb86ffbb4.yaml
 patches:
 - path: operations-console.bundle.yaml
 - path: nextcloud-base-ce.bundle.yaml
