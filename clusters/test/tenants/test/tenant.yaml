@@ -52,3 +52,5 @@ spec:
     digest: sha256:039ba34836655cf982b88b0f9121b9fdec6e12a3208b0dca5793b4c99e428d9f
     catalogue: gentian
     defaultGrant: true
+  platformAccess:
+    adminsEnter: true
