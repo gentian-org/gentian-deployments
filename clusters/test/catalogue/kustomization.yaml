@@ -10,7 +10,10 @@ resources:
 - builds/operations-console-e5278e0eb2c5.yaml
 - builds/fellwort-ee-2a9bd7b5c4eb.yaml
 - builds/operations-console-ea99ce62844c.yaml
+- docmost-ce.yaml
+- builds/docmost-ce-4491063a2ba7.yaml
 patches:
 - path: operations-console.bundle.yaml
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
+- path: docmost-ce.bundle.yaml
