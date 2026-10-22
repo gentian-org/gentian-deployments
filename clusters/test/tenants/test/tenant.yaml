@@ -41,9 +41,9 @@ spec:
     digest: sha256:e5278e0eb2c59c13de8f3f43d7bffc2971fb9b890edf1308f339e28a09c60a91
     catalogue: aluvian
   - profile: fellwort-ee
-    digest: sha256:0f8508258daa673f3bd6a1338de591b9e249e020a102c309b47267f92f0a5a85
+    digest: sha256:2a9bd7b5c4eb1d244046ecf22073c8f7db7c3271c1b6382352314a6c3ef57c3f
     catalogue: aluvian
-    movedAt: 2026-10-21T18:24:28Z
+    movedAt: 2026-10-22T06:17:54Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: nextcloud-base-ce
