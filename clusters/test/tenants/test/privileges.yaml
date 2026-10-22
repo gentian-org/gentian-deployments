@@ -22,3 +22,8 @@ spec:
       approver: 0ba53245-73b8-4649-a405-e09122ea84d1
       approvedAt: 2026-10-22T07:53:28Z
       reason: "Nextcloud (Collabora) only work this way ... we should patch at some point"
+    - install: nextcloud-base-ce
+      privilege: podSecurity/gentian-restrict-capabilities-collabora
+      approver: 0ba53245-73b8-4649-a405-e09122ea84d1
+      approvedAt: 2026-10-22T07:53:36Z
+      reason: "Nextcloud (Collabora) only work this way ... we should patch at some point"
