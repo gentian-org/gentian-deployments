@@ -9,9 +9,12 @@
 # for anyone holding the link, who can run it with values of their own but not
 # change it. The agent runner ships in the chart and stays off here.
 #
-# The chart and images are private packages of ghcr.io/aluvian-hq: a tenant
-# installs this after declaring that registry with a credential (Credentials
-# -> Add a repository in the Admin Console).
+# The chart and images are private packages of ghcr.io/aluvian-hq, pulled
+# through registry.aluvian.io (services/registry): the App Store declares that
+# registry for the tenant with the credential it minted at acquisition, and
+# the registry lets that credential pull what the tenant acquired and nothing
+# else. Every address below that names it is one the store grants
+# (services/store, app/services/registry.py).
 apiVersion: gentianos.io/v1alpha1
 kind: ComponentProfile
 metadata:
@@ -27,7 +30,7 @@ spec:
   version: "0.1.0-develop.244d838"
   package:
     chart:
-      repository: "oci://ghcr.io/aluvian-hq/charts"
+      repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: fellwort
       version: "0.1.0-develop.244d838"
     valueMapping:
@@ -48,6 +51,14 @@ spec:
       # The Services the entries below route to: fellwort-api, -web, -share.
       fullnameOverride: fellwort
       environment: production
+      # The chart's own images, through the registry; their tags stay the
+      # chart's, which name the build it was packaged from.
+      api:
+        image:
+          repository: registry.aluvian.io/aluvian-hq/fellwort-api
+      web:
+        image:
+          repository: registry.aluvian.io/aluvian-hq/fellwort-web
       auth:
         # exchangeToken hands the API a token whose audience is this
         # profile's name and nothing else.
@@ -58,6 +69,8 @@ spec:
         subDomain: fellwort-share
       runner:
         enabled: false
+        image:
+          repository: registry.aluvian.io/aluvian-hq/fellwort-runner
   requires:
     services:
       database:
