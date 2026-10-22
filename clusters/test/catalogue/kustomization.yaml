@@ -14,9 +14,12 @@ resources:
 - builds/docmost-ce-4491063a2ba7.yaml
 - odoo-base-ce.yaml
 - builds/odoo-base-ce-5ee64760d736.yaml
+- nextcloud-richdocuments-ce.yaml
+- builds/nextcloud-richdocuments-ce-5a6794df39ae.yaml
 patches:
 - path: operations-console.bundle.yaml
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
 - path: odoo-base-ce.bundle.yaml
+- path: nextcloud-richdocuments-ce.bundle.yaml
