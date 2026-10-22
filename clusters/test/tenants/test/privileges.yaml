@@ -1,0 +1,19 @@
+# Managed by the director: the privilege requests somebody approved for
+# this tenant. Each entry names the component it applies to, the request
+# it answers, who answered and why. The operator copies them onto the
+# Component; a component with an unanswered request waits rather than
+# starting without the privilege.
+#
+# Removing an entry withdraws the privilege. The component then holds
+# again, which is where it was before the approval.
+apiVersion: gentianos.io/v1alpha1
+kind: Tenant
+metadata:
+  name: test
+spec:
+  privileges:
+    - install: nextcloud-base-ce
+      privilege: podSecurity/gentian-disallow-privilege-escalation-co
+      approver: 0ba53245-73b8-4649-a405-e09122ea84d1
+      approvedAt: 2026-10-22T07:53:21Z
+      reason: "Nextcloud (Collabora) only work this way ... we should patch at some point"
