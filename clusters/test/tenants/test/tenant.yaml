@@ -38,8 +38,10 @@ spec:
   # Apps are installed through the director, which appends to this list.
   apps:
   - profile: operations-console
-    digest: sha256:e5278e0eb2c59c13de8f3f43d7bffc2971fb9b890edf1308f339e28a09c60a91
+    digest: sha256:ea99ce62844c5f7c3c569fcf4d7562fc1d2e0365443cbf89c89dce5974f8cc34
     catalogue: aluvian
+    movedAt: 2026-10-22T06:17:58Z
+    movedBy: policy:latest
   - profile: fellwort-ee
     digest: sha256:2a9bd7b5c4eb1d244046ecf22073c8f7db7c3271c1b6382352314a6c3ef57c3f
     catalogue: aluvian
