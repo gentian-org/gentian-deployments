@@ -61,8 +61,10 @@ spec:
     movedBy: policy:latest
     defaultGrant: true
   - profile: nextcloud-base-ce
-    digest: sha256:039ba34836655cf982b88b0f9121b9fdec6e12a3208b0dca5793b4c99e428d9f
+    digest: sha256:f671a4579ffd42048d83ca51a510dd6771f8247c9ca9fe7cbe60aa79cfe1c350
     catalogue: gentian
+    movedAt: 2026-10-22T11:49:11Z
+    movedBy: policy:latest
     defaultGrant: true
   platformAccess:
     adminsEnter: true
