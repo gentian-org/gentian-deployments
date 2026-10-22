@@ -16,6 +16,7 @@ resources:
 - builds/odoo-base-ce-5ee64760d736.yaml
 - nextcloud-richdocuments-ce.yaml
 - builds/nextcloud-richdocuments-ce-5a6794df39ae.yaml
+- builds/nextcloud-base-ce-f671a4579ffd.yaml
 patches:
 - path: operations-console.bundle.yaml
 - path: nextcloud-base-ce.bundle.yaml
