@@ -9,6 +9,7 @@ resources:
 - builds/fellwort-ee-0f8508258daa.yaml
 - builds/operations-console-e5278e0eb2c5.yaml
 - builds/fellwort-ee-2a9bd7b5c4eb.yaml
+- builds/operations-console-ea99ce62844c.yaml
 patches:
 - path: operations-console.bundle.yaml
 - path: nextcloud-base-ce.bundle.yaml

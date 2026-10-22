@@ -27,7 +27,7 @@ spec:
   # Platform trust, because it relays the forwarded token to the director,
   # which forwardToken below requires.
   trustTier: platform
-  version: "0.1.0-main.f4d5529"
+  version: "0.1.0-main.413477f"
   # Every tenant gets one: the default workflows are built around it, and the
   # tile below decides who sees it. A cluster that does not want it removes
   # the entry, and the Admin Console then promotes it instead.
@@ -36,7 +36,7 @@ spec:
     chart:
       repository: "oci://ghcr.io/aluvian-hq/charts"
       name: "operations-console"
-      version: "0.1.0-main.f4d5529"
+      version: "0.1.0-main.413477f"
     valueMapping:
       # Where the console's chart takes the facts of the cluster it runs in.
       # Every key matches the chart's values.yaml, which are the Admin
