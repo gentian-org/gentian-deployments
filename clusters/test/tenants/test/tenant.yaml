@@ -41,6 +41,12 @@ spec:
     digest: sha256:b661cee006bbd55ecdfb62775c9d28fae1f4509c195c393457b376774529a43f
     catalogue: gentian
     defaultGrant: true
+    addons:
+    - nextcloud-calendar-ce
+    addonPins:
+    - name: nextcloud-calendar-ce
+      digest: sha256:52967f0d00523e5f6a1ca5feaa77df25076252a86dccf6c36be06fdb3ed4c2a7
+      catalogue: gentian
   - profile: docmost-ce
     digest: sha256:9c1fc930cfb06193b4964172e8a01a941d0036235f4585ad8917ad2e70edc472
     catalogue: gentian
