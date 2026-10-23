@@ -20,6 +20,7 @@ resources:
 - builds/docmost-ce-9c1fc930cfb0.yaml
 - builds/operations-console-ff3cb86ffbb4.yaml
 - builds/nextcloud-base-ce-a4f2f9658b0c.yaml
+- builds/nextcloud-base-ce-b661cee006bb.yaml
 patches:
 - path: operations-console.bundle.yaml
 - path: nextcloud-base-ce.bundle.yaml
