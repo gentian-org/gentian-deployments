@@ -2,5 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 - tenant.yaml
+- repository-test-registry-aluvian-io-aluvia-d6e5ea13.yaml
 patches:
 - path: privileges.yaml

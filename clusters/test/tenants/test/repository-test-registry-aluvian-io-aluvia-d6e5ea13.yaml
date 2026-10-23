@@ -1,0 +1,17 @@
+# Managed by the director: where this tenant installs software from, declared
+# by whoever the commit names. The address is here; the password is in the
+# vault, under the path below, and is set at the custodian.
+apiVersion: gentianos.io/v1alpha1
+kind: Repository
+metadata:
+  name: test-registry-aluvian-io-aluvia-d6e5ea13
+spec:
+  credential:
+    displayName: Credentials for test-registry-aluvian-io-aluvia-d6e5ea13
+    vaultPath: gentian-os/tenants/test/repositories/test-registry-aluvian-io-aluvia-d6e5ea13
+  endpoints:
+    inCluster: oci://registry.aluvian.io/aluvian-hq
+  role: apps
+  tenant: test
+  type: oci
+  writable: false
