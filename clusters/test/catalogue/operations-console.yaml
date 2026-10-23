@@ -27,16 +27,16 @@ spec:
   # Platform trust, because it relays the forwarded token to the director,
   # which forwardToken below requires.
   trustTier: platform
-  version: "0.1.0-main.f9a2b19"
-  # Every tenant gets one: the default workflows are built around it, and the
-  # tile below decides who sees it. A cluster that does not want it removes
-  # the entry, and the Admin Console then promotes it instead.
-  defaultForTenants: true
+  version: "0.1.0-main.3c7b523"
+  # The cluster has one, in the platform tenant, for the cluster's
+  # administrators: it looks after every tenant through the director's
+  # cluster routes, so no other tenant gets one of its own.
+  defaultForPlatform: true
   package:
     chart:
       repository: "oci://ghcr.io/aluvian-hq/charts"
       name: "operations-console"
-      version: "0.1.0-main.f9a2b19"
+      version: "0.1.0-main.3c7b523"
     valueMapping:
       # Where the console's chart takes the facts of the cluster it runs in.
       # Every key matches the chart's values.yaml, which are the Admin
@@ -98,10 +98,10 @@ spec:
         service: operations-console-api
         port: 8000
     # The bundle, on the same host so both share one session. The tile is
-    # asked on the tenant, not on an app object: looking after the tenant is
-    # what this component is for, and the model keeps that permission on the
-    # tenant, the same one the Admin Console asks. The desktop opens it in a
-    # frame, which the exposure's frame policy admits and nothing else does.
+    # asked on the cluster: the console is for whoever may configure it, and
+    # the platform asks the same at the edge of both entries of this host and
+    # the console's API asks it again. The desktop opens it in a frame, which
+    # the exposure's frame policy admits and nothing else does.
     - name: web
       surface: gateway
       authMode: oidc
@@ -119,5 +119,5 @@ spec:
         # schema requires it. The same frame as the Admin Console's cog,
         # with a hammer: the console where the tenant is looked after.
         logo: data:image/png;base64,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
-        relation: can_administer
-        object: tenant
+        relation: can_configure
+        object: cluster
