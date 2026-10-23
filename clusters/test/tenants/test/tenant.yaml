@@ -82,9 +82,9 @@ spec:
     movedBy: policy:latest
     defaultGrant: true
   - profile: operations-console
-    digest: sha256:ff3cb86ffbb44dc80488ae3ffc69722b516a33e13f78f2259daa3fb873a1fbad
+    digest: sha256:23bcbdd795c1dcfc53c93d7b74f97c9cbe6a7ec37aa1979e426ffed8d3cf4232
     catalogue: aluvian
-    movedAt: 2026-10-22T15:25:35Z
+    movedAt: 2026-10-23T14:52:04Z
     movedBy: policy:latest
   platformAccess:
     adminsEnter: true
