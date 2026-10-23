@@ -46,6 +46,7 @@ spec:
     - nextcloud-collectives-ce
     - nextcloud-contacts-ce
     - nextcloud-deck-ce
+    - nextcloud-forms-ce
     addonPins:
     - name: nextcloud-calendar-ce
       digest: sha256:52967f0d00523e5f6a1ca5feaa77df25076252a86dccf6c36be06fdb3ed4c2a7
@@ -58,6 +59,9 @@ spec:
       catalogue: gentian
     - name: nextcloud-deck-ce
       digest: sha256:a8c02f98738d524a98af304f85674f3ac9ea4104469546807414289d331efc55
+      catalogue: gentian
+    - name: nextcloud-forms-ce
+      digest: sha256:8eb7e4f3fc5fd7b15d84fc4adaec3dd0300b059949f634730da827c581e2eb8f
       catalogue: gentian
   - profile: docmost-ce
     digest: sha256:9c1fc930cfb06193b4964172e8a01a941d0036235f4585ad8917ad2e70edc472
