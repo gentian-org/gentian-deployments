@@ -38,8 +38,10 @@ spec:
   # Apps are installed through the director, which appends to this list.
   apps:
   - profile: nextcloud-base-ce
-    digest: sha256:b661cee006bbd55ecdfb62775c9d28fae1f4509c195c393457b376774529a43f
+    digest: sha256:79325fc6029585de4543d5d4b8c8aae7b99003e3467feb25345b2f03b48c6573
     catalogue: gentian
+    movedAt: 2026-10-23T15:07:41Z
+    movedBy: policy:latest
     defaultGrant: true
     addons:
     - nextcloud-calendar-ce
