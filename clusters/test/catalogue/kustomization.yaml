@@ -26,6 +26,8 @@ resources:
 - builds/nextcloud-calendar-ce-52967f0d0052.yaml
 - nextcloud-collectives-ce.yaml
 - builds/nextcloud-collectives-ce-6300185c0aa3.yaml
+- nextcloud-contacts-ce.yaml
+- builds/nextcloud-contacts-ce-7cf70c6a3099.yaml
 patches:
 - path: operations-console.bundle.yaml
 - path: nextcloud-base-ce.bundle.yaml
@@ -35,3 +37,4 @@ patches:
 - path: nextcloud-richdocuments-ce.bundle.yaml
 - path: nextcloud-calendar-ce.bundle.yaml
 - path: nextcloud-collectives-ce.bundle.yaml
+- path: nextcloud-contacts-ce.bundle.yaml
