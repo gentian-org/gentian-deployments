@@ -32,6 +32,8 @@ resources:
 - builds/nextcloud-deck-ce-a8c02f98738d.yaml
 - nextcloud-forms-ce.yaml
 - builds/nextcloud-forms-ce-8eb7e4f3fc5f.yaml
+- nextcloud-tasks-ce.yaml
+- builds/nextcloud-tasks-ce-532bd8c7b398.yaml
 patches:
 - path: operations-console.bundle.yaml
 - path: nextcloud-base-ce.bundle.yaml
@@ -44,3 +46,4 @@ patches:
 - path: nextcloud-contacts-ce.bundle.yaml
 - path: nextcloud-deck-ce.bundle.yaml
 - path: nextcloud-forms-ce.bundle.yaml
+- path: nextcloud-tasks-ce.bundle.yaml
