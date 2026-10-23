@@ -37,12 +37,6 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
-  - profile: nextcloud-richdocuments-ce
-    digest: sha256:407e022ef094ab14ed4dd85c1a7b841c8c713882f0aa9279d296c9119a3c7423
-    catalogue: gentian
-    movedAt: 2026-10-23T08:17:38Z
-    movedBy: policy:latest
-    defaultGrant: true
   - profile: odoo-base-ce
     digest: sha256:5ee64760d736a630edf8ecf135811a1d45ff035808609e75152129b54de74295
     catalogue: gentian
