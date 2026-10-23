@@ -22,6 +22,8 @@ resources:
 - builds/nextcloud-base-ce-a4f2f9658b0c.yaml
 - builds/nextcloud-base-ce-b661cee006bb.yaml
 - builds/nextcloud-richdocuments-ce-407e022ef094.yaml
+- nextcloud-calendar-ce.yaml
+- builds/nextcloud-calendar-ce-52967f0d0052.yaml
 patches:
 - path: operations-console.bundle.yaml
 - path: nextcloud-base-ce.bundle.yaml
@@ -29,3 +31,4 @@ patches:
 - path: docmost-ce.bundle.yaml
 - path: odoo-base-ce.bundle.yaml
 - path: nextcloud-richdocuments-ce.bundle.yaml
+- path: nextcloud-calendar-ce.bundle.yaml
