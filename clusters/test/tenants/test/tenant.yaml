@@ -58,11 +58,5 @@ spec:
     catalogue: aluvian
     movedAt: 2026-10-22T15:25:35Z
     movedBy: policy:latest
-  - profile: nextcloud-base-ce
-    digest: sha256:b661cee006bbd55ecdfb62775c9d28fae1f4509c195c393457b376774529a43f
-    catalogue: gentian
-    movedAt: 2026-10-23T08:17:33Z
-    movedBy: policy:latest
-    defaultGrant: true
   platformAccess:
     adminsEnter: true
