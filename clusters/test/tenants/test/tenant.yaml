@@ -58,12 +58,6 @@ spec:
     catalogue: aluvian
     movedAt: 2026-10-22T15:25:35Z
     movedBy: policy:latest
-  - profile: fellwort-ee
-    digest: sha256:2a9bd7b5c4eb1d244046ecf22073c8f7db7c3271c1b6382352314a6c3ef57c3f
-    catalogue: aluvian
-    movedAt: 2026-10-22T06:17:54Z
-    movedBy: policy:latest
-    defaultGrant: true
   - profile: nextcloud-base-ce
     digest: sha256:b661cee006bbd55ecdfb62775c9d28fae1f4509c195c393457b376774529a43f
     catalogue: gentian
