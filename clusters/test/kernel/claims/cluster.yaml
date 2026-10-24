@@ -161,3 +161,13 @@ spec:
         subject: 0ba53245-73b8-4649-a405-e09122ea84d1
         username: "admin@test.gentian-os.org"
         email: "ch.braendli@proton.me"
+  # The store's vendor is a partner of every tenant (AD-17), with the
+  # store's extra services: the App Store app and the Subscription Center
+  # act for the person signed in there, with a pairwise subject only.
+  # --no-extra-services leaves it out.
+  partners:
+    allowedIssuers:
+      - https://id.aluvian.io/auth/realms/customers
+    defaults:
+      - name: aluvian
+        issuer: https://id.aluvian.io/auth/realms/customers
