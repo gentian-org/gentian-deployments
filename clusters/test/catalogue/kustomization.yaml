@@ -38,6 +38,7 @@ resources:
 - builds/nextcloud-spreed-ce-2baf77302072.yaml
 - builds/operations-console-23bcbdd795c1.yaml
 - builds/nextcloud-base-ce-79325fc60295.yaml
+- builds/operations-console-9ed5ec23eaf1.yaml
 patches:
 - path: operations-console.bundle.yaml
 - path: nextcloud-base-ce.bundle.yaml
