@@ -39,6 +39,10 @@ resources:
 - builds/operations-console-23bcbdd795c1.yaml
 - builds/nextcloud-base-ce-79325fc60295.yaml
 - builds/operations-console-9ed5ec23eaf1.yaml
+- app-store.yaml
+- builds/app-store-d1bde2018976.yaml
+- subscription-center.yaml
+- builds/subscription-center-a03419ed520f.yaml
 patches:
 - path: operations-console.bundle.yaml
 - path: nextcloud-base-ce.bundle.yaml
@@ -53,3 +57,5 @@ patches:
 - path: nextcloud-forms-ce.bundle.yaml
 - path: nextcloud-tasks-ce.bundle.yaml
 - path: nextcloud-spreed-ce.bundle.yaml
+- path: app-store.bundle.yaml
+- path: subscription-center.bundle.yaml

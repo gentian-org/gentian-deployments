@@ -1,0 +1,111 @@
+# The Subscription Center: what a tenant has at Aluvian -- its subscription
+# and license usage, the apps it acquired with their seats, and the account's
+# invoices and payment -- shown on the tenant's own cluster. It is what the
+# account area of aluvian.io shows, read with a partner assertion for the
+# person (gentian-os AD-17): a token exchange at the tenant's own realm,
+# authenticated by this app's service account token. A person not linked yet
+# is sent to Aluvian's registration page, once. It holds no credential, no
+# database and no Kubernetes access.
+#
+# An installation places this profile by default (gentian-os
+# GENTIAN_DEFAULT_PROFILES; --no-extra-services leaves it out), and the
+# operator then gives every user tenant one for as long as the cluster offers
+# an App Store. The code is services/subscription-center.
+apiVersion: gentianos.io/v1alpha1
+kind: ComponentProfile
+metadata:
+  name: subscription-center
+  labels:
+    # The app Composition selects the profile by this label.
+    gentianos.io/profile-name: subscription-center
+    gentianos.io/profile-edition: me
+  annotations:
+    # Installed in every user tenant by default (defaultWhereStoreOffered),
+    # so there is nothing to offer in the App Store.
+    gentianos.io/store-listed: "false"
+spec:
+  classes: [app]
+  # Reached from the Subscriptions tile on the web exposure.
+  launch: tile
+  # Platform trust, because its API is given the forwarded token
+  # (forwardToken below), and because it is told where the store is, which
+  # opens its way out of the cluster.
+  trustTier: platform
+  version: "0.1.0-main.9b606c2"
+  # Every tenant but the platform tenant, and only while the cluster offers
+  # an App Store. Taken away again when it no longer does: this component
+  # owns no data.
+  defaultWhereStoreOffered: true
+  package:
+    chart:
+      repository: "oci://ghcr.io/aluvian-hq/charts"
+      name: "subscription-center"
+      version: "0.1.0-main.9b606c2"
+    valueMapping:
+      # Every key matches the chart (services/subscription-center/chart).
+      platform:
+        # The realm's issuer: also the audience of the service account token
+        # the chart projects for the token exchange.
+        issuerKey: auth.issuer
+        zoneClientIdKey: auth.clientId
+        audienceKey: auth.audience
+        tenantKey: platform.tenant
+        kernelDomainKey: platform.kernelDomain
+        realmKey: platform.realm
+        zoneKindKey: platform.zoneKind
+        # subscriptions.<the tenant's base domain>: the one origin that may
+        # send the API a state-changing request.
+        hostKey: host
+        # The store API's base address, from the Cluster claim. Naming it is
+        # also what opens this component's egress to public addresses on
+        # 443: the store and the website's API are outside the cluster.
+        storeUrlKey: store.url
+        # The tenant's unique id (metadata.uid): the registration page is
+        # opened for it.
+        tenantUIDKey: api.env.TENANT_UID
+    extraValues:
+      # The name every object of the release derives from, pinned so the
+      # Services the exposures below route to are known before the release
+      # exists.
+      fullnameOverride: subscription-center
+      auth:
+        disabled: false
+        mode: edge
+      api:
+        env:
+          ENVIRONMENT: production
+  requires:
+    services:
+      # Asks assertions towards the partner aluvian (the store's realm, a
+      # default partner of every tenant) for the person on the request.
+      partners:
+        call: [aluvian]
+        serviceAccount: subscription-center
+  expose:
+    # The API, given the zone's token: the subject token of the exchange.
+    - name: api
+      surface: gateway
+      authMode: oidc
+      subDomain: subscriptions
+      paths: ["/api", "/healthz", "/readyz"]
+      forwardToken: true
+      backend:
+        service: subscription-center-api
+        port: 8000
+    # The bundle, on the same host so both share one session. For the
+    # tenant's administrators: the tile asks can_administer, and so do the
+    # routes of this component at the edge.
+    - name: web
+      surface: gateway
+      authMode: oidc
+      subDomain: subscriptions
+      backend:
+        service: subscription-center-web
+        port: 8080
+      tile:
+        displayName: Subscriptions
+        description: This tenant's subscription, license usage, apps and seats, and invoices at Aluvian.
+        # A card with lines on the seal's colour, a PNG of 128 px.
+        logo: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAABc0lEQVR42u3YQQrEIBQFQU/jkXPd5A4BRekK9H74rzbOGIu/OZ9X/xu3f0YEwJAACAABIAAEgAAQAAJAAAgAASAABIAAEAACQAAIAAEgAAAAAAADaR0wRwDAIQAQAIdU+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgPOPePNvBwAARwTAEQFwRAAcEQDPQM9AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPB3qr+CHREARwTAEQFwRAAcEQDPQM9AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPBXMAAAAAAAAAAAAAAAAADgGQgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABACIAAEgLYBWP05cnh8AAAAAACHBkAACADVxgcAAAAAcOzs+AAAAEB5fAAAAKA8PgDx8QGIjw9AfHwA4uMDEB8fgPj4AISHByA+PADh0QG4Z+gPYbg6LyfNFIIAAAAASUVORK5CYII=
+        relation: can_administer
+        object: tenant
