@@ -6,9 +6,7 @@ resources:
 - fellwort-ee.yaml
 - builds/fellwort-ee-1e170e743015.yaml
 - builds/fellwort-ee-0f8508258daa.yaml
-- builds/operations-console-e5278e0eb2c5.yaml
 - builds/fellwort-ee-2a9bd7b5c4eb.yaml
-- builds/operations-console-ea99ce62844c.yaml
 - docmost-ce.yaml
 - builds/docmost-ce-4491063a2ba7.yaml
 - odoo-base-ce.yaml
@@ -17,7 +15,6 @@ resources:
 - builds/nextcloud-richdocuments-ce-5a6794df39ae.yaml
 - builds/nextcloud-base-ce-f671a4579ffd.yaml
 - builds/docmost-ce-9c1fc930cfb0.yaml
-- builds/operations-console-ff3cb86ffbb4.yaml
 - builds/nextcloud-base-ce-a4f2f9658b0c.yaml
 - builds/nextcloud-base-ce-b661cee006bb.yaml
 - builds/nextcloud-richdocuments-ce-407e022ef094.yaml
@@ -35,9 +32,7 @@ resources:
 - builds/nextcloud-tasks-ce-532bd8c7b398.yaml
 - nextcloud-spreed-ce.yaml
 - builds/nextcloud-spreed-ce-2baf77302072.yaml
-- builds/operations-console-23bcbdd795c1.yaml
 - builds/nextcloud-base-ce-79325fc60295.yaml
-- builds/operations-console-9ed5ec23eaf1.yaml
 - app-store.yaml
 - builds/app-store-d1bde2018976.yaml
 - subscription-center.yaml
