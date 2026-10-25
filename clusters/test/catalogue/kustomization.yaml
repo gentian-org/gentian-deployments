@@ -1,7 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- operations-console.yaml
 - nextcloud-base-ce.yaml
 - builds/nextcloud-base-ce-039ba3483665.yaml
 - fellwort-ee.yaml
@@ -43,8 +42,11 @@ resources:
 - builds/app-store-d1bde2018976.yaml
 - subscription-center.yaml
 - builds/subscription-center-a03419ed520f.yaml
+- operations-console-ee.yaml
+- builds/operations-console-ee-2b577484decf.yaml
+- builds/app-store-d4a2c900dd47.yaml
+- builds/subscription-center-77739679a468.yaml
 patches:
-- path: operations-console.bundle.yaml
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
@@ -59,3 +61,4 @@ patches:
 - path: nextcloud-spreed-ce.bundle.yaml
 - path: app-store.bundle.yaml
 - path: subscription-center.bundle.yaml
+- path: operations-console-ee.bundle.yaml

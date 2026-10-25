@@ -16,14 +16,17 @@
 apiVersion: gentianos.io/v1alpha1
 kind: ComponentProfile
 metadata:
-  name: operations-console
+  name: operations-console-ee
   labels:
-    gentianos.io/profile-name: operations-console
-    gentianos.io/profile-edition: me
+    gentianos.io/profile-name: operations-console-ee
+    gentianos.io/profile-edition: ee
   annotations:
     # Installed in every cluster's platform tenant (defaultForPlatform), so
     # there is nothing to offer in the App Store.
     gentianos.io/store-listed: "false"
+    # Placed only on a cluster that reports usage statistics: with the
+    # report off the operator places none and removes the ones it placed.
+    gentianos.io/requires-usage-statistics: "true"
 spec:
   classes: [app]
   # Reached from the Operations tile on the web exposure. The api exposure
@@ -32,7 +35,7 @@ spec:
   # Platform trust, because it relays the forwarded token to the director,
   # which forwardToken below requires.
   trustTier: platform
-  version: "0.1.0-main.9b606c2"
+  version: "0.1.0-main.18f223b"
   # The cluster has one, in the platform tenant, for the cluster's
   # administrators: it looks after every tenant through the director's
   # cluster routes, so no other tenant gets one of its own.
@@ -41,7 +44,7 @@ spec:
     chart:
       repository: "oci://ghcr.io/aluvian-hq/charts"
       name: "operations-console"
-      version: "0.1.0-main.9b606c2"
+      version: "0.1.0-main.18f223b"
     valueMapping:
       # Where the console's chart takes the facts of the cluster it runs in.
       # Every key matches the chart's values.yaml, which are the Admin

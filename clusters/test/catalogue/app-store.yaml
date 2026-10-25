@@ -22,6 +22,9 @@ metadata:
     # Installed in every user tenant by default (defaultWhereStoreOffered),
     # so there is nothing to offer in the App Store.
     gentianos.io/store-listed: "false"
+    # Placed only on a cluster that reports usage statistics: with the
+    # report off the operator places none and removes the ones it placed.
+    gentianos.io/requires-usage-statistics: "true"
 spec:
   classes: [app]
   # Reached from the App Store tile on the web exposure.
@@ -31,7 +34,7 @@ spec:
   # because it is told where the store is, which opens its way out of the
   # cluster.
   trustTier: platform
-  version: "0.1.0-main.9b606c2"
+  version: "0.1.0-main.18f223b"
   # Every tenant but the platform tenant, and only while the cluster offers
   # an App Store. Taken away again when it no longer does: this component
   # owns no data.
@@ -40,7 +43,7 @@ spec:
     chart:
       repository: "oci://ghcr.io/aluvian-hq/charts"
       name: "app-store"
-      version: "0.1.0-main.9b606c2"
+      version: "0.1.0-main.18f223b"
     valueMapping:
       # Every key matches the app's chart (services/app-store/chart), whose schema
       # refuses a key it does not know under these objects.
