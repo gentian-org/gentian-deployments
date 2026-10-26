@@ -37,6 +37,10 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: odoo-base-ce
+    digest: sha256:0bc869652ec083e3e9ffe0a65aab227d5376a44db42344e15d60f24ab158c50f
+    catalogue: gentian
+    defaultGrant: true
   - profile: open-webui-ce
     digest: sha256:de9b94a99492bf443ab241997d69ab726407242e927f9f5f15b354cb38d5db02
     catalogue: gentian
