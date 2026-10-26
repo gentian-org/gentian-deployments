@@ -65,6 +65,8 @@ resources:
 - builds/odoo-contacts-ce-339f2a46a4dd.yaml
 - odoo-crm-ce.yaml
 - builds/odoo-crm-ce-dcd34791828a.yaml
+- odoo-employees-ce.yaml
+- builds/odoo-employees-ce-d1c96d265ac8.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -86,3 +88,4 @@ patches:
 - path: odoo-calendar-ce.bundle.yaml
 - path: odoo-contacts-ce.bundle.yaml
 - path: odoo-crm-ce.bundle.yaml
+- path: odoo-employees-ce.bundle.yaml
