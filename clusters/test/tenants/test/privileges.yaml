@@ -32,3 +32,8 @@ spec:
       approver: 0ba53245-73b8-4649-a405-e09122ea84d1
       approvedAt: 2026-10-26T23:16:51Z
       reason: "It is needed"
+    - install: odoo-base-ce
+      privilege: egress/egress-2
+      approver: 0ba53245-73b8-4649-a405-e09122ea84d1
+      approvedAt: 2026-10-26T23:16:56Z
+      reason: "It is needed"
