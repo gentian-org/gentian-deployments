@@ -59,6 +59,8 @@ resources:
 - builds/app-store-pe-4cae965d7612.yaml
 - builds/aluvian-center-pe-4f40dcab8919.yaml
 - builds/docmost-ce-6e0d029111e7.yaml
+- odoo-calendar-ce.yaml
+- builds/odoo-calendar-ce-e132a47ac97e.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -77,3 +79,4 @@ patches:
 - path: aluvian-center-pe.bundle.yaml
 - path: open-webui-ce.bundle.yaml
 - path: nextcloud-mail-ce.bundle.yaml
+- path: odoo-calendar-ce.bundle.yaml
