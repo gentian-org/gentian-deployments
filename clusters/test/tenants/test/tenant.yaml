@@ -52,6 +52,7 @@ spec:
     - odoo-pos-ce
     - odoo-pos-restaurant-ce
     - odoo-project-ce
+    - odoo-purchase-ce
     addonPins:
     - name: odoo-calendar-ce
       digest: sha256:e132a47ac97eea83842d2fe21af46babe41a36edaff011f7914744ba9d1c05a4
@@ -83,6 +84,9 @@ spec:
     - name: odoo-project-ce
       digest: sha256:6f72bcaaa8d355d8343a67faf8efa0dab9f6a096644222494e1bb18495cea99c
       catalogue: gentian
+    - name: odoo-purchase-ce
+      digest: sha256:3e8ca67b43ca5ddc485cdba1bdbdf04554c0dd825878754223e39c62c912400a
+      catalogue: gentian
     addonGrants:
     - name: odoo-calendar-ce
       defaultGrant: true
@@ -103,6 +107,8 @@ spec:
     - name: odoo-pos-restaurant-ce
       defaultGrant: true
     - name: odoo-project-ce
+      defaultGrant: true
+    - name: odoo-purchase-ce
       defaultGrant: true
   - profile: open-webui-ce
     digest: sha256:de9b94a99492bf443ab241997d69ab726407242e927f9f5f15b354cb38d5db02
