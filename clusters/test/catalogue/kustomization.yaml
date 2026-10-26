@@ -77,6 +77,8 @@ resources:
 - builds/odoo-pos-ce-cb70b3809c99.yaml
 - odoo-pos-restaurant-ce.yaml
 - builds/odoo-pos-restaurant-ce-333778359796.yaml
+- odoo-project-ce.yaml
+- builds/odoo-project-ce-6f72bcaaa8d3.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -104,3 +106,4 @@ patches:
 - path: odoo-mrp-ce.bundle.yaml
 - path: odoo-pos-ce.bundle.yaml
 - path: odoo-pos-restaurant-ce.bundle.yaml
+- path: odoo-project-ce.bundle.yaml
