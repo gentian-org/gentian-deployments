@@ -50,6 +50,7 @@ resources:
 - builds/nextcloud-base-ce-748959131fb1.yaml
 - open-webui-ce.yaml
 - builds/open-webui-ce-de9b94a99492.yaml
+- builds/nextcloud-base-ce-726e498e2910.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
