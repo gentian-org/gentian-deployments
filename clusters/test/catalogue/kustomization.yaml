@@ -71,6 +71,8 @@ resources:
 - builds/odoo-invoicing-ce-b81f674584ce.yaml
 - odoo-inventory-ce.yaml
 - builds/odoo-inventory-ce-8f83c209d55a.yaml
+- odoo-mrp-ce.yaml
+- builds/odoo-mrp-ce-92eb3b9f2b45.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -95,3 +97,4 @@ patches:
 - path: odoo-employees-ce.bundle.yaml
 - path: odoo-invoicing-ce.bundle.yaml
 - path: odoo-inventory-ce.bundle.yaml
+- path: odoo-mrp-ce.bundle.yaml
