@@ -41,6 +41,15 @@ spec:
     digest: sha256:0bc869652ec083e3e9ffe0a65aab227d5376a44db42344e15d60f24ab158c50f
     catalogue: gentian
     defaultGrant: true
+    addons:
+    - odoo-calendar-ce
+    addonPins:
+    - name: odoo-calendar-ce
+      digest: sha256:e132a47ac97eea83842d2fe21af46babe41a36edaff011f7914744ba9d1c05a4
+      catalogue: gentian
+    addonGrants:
+    - name: odoo-calendar-ce
+      defaultGrant: true
   - profile: open-webui-ce
     digest: sha256:de9b94a99492bf443ab241997d69ab726407242e927f9f5f15b354cb38d5db02
     catalogue: gentian
