@@ -61,7 +61,7 @@ spec:
   classes:
     - app
   trustTier: certified
-  version: "0.5.1-dev.1"
+  version: "0.5.1-dev.2"
   package:
     chart:
       repository: "oci://ghcr.io/gentian-org/charts"
@@ -434,7 +434,7 @@ spec:
     effect: none
     notes: >-
       Docmost runs its community edition. Nothing under apps/server/src/ee is
-      configured, called or patched, and no licence check is touched. The handler
+      configured, called or patched, and no license check is touched. The handler
       uses what the free edition has for everybody: an account, made with the free
       edition's own setup and invitation calls, and a session signed with the
       installation's own APP_SECRET and recorded in user_sessions as Docmost records
