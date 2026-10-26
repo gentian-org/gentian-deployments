@@ -48,6 +48,8 @@ resources:
 - builds/app-store-pe-e4c3309a353a.yaml
 - builds/aluvian-center-pe-564c5d82026a.yaml
 - builds/nextcloud-base-ce-748959131fb1.yaml
+- open-webui-ce.yaml
+- builds/open-webui-ce-de9b94a99492.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -64,3 +66,4 @@ patches:
 - path: operations-console-ee.bundle.yaml
 - path: app-store-pe.bundle.yaml
 - path: aluvian-center-pe.bundle.yaml
+- path: open-webui-ce.bundle.yaml
