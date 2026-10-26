@@ -54,6 +54,7 @@ resources:
 - nextcloud-mail-ce.yaml
 - builds/nextcloud-mail-ce-d7a7d635de0c.yaml
 - builds/odoo-base-ce-0bc869652ec0.yaml
+- builds/nextcloud-base-ce-b69e5ea5b77d.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
