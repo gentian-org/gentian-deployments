@@ -47,6 +47,7 @@ spec:
     - odoo-crm-ce
     - odoo-employees-ce
     - odoo-invoicing-ce
+    - odoo-inventory-ce
     addonPins:
     - name: odoo-calendar-ce
       digest: sha256:e132a47ac97eea83842d2fe21af46babe41a36edaff011f7914744ba9d1c05a4
@@ -63,6 +64,9 @@ spec:
     - name: odoo-invoicing-ce
       digest: sha256:b81f674584ce918747a80ef76941f30e691f072279bfa4fe60c241a5e584108e
       catalogue: gentian
+    - name: odoo-inventory-ce
+      digest: sha256:8f83c209d55a0613eef401761073f7a277a58a35963ac0d716ddf6ee0c592d48
+      catalogue: gentian
     addonGrants:
     - name: odoo-calendar-ce
       defaultGrant: true
@@ -73,6 +77,8 @@ spec:
     - name: odoo-employees-ce
       defaultGrant: true
     - name: odoo-invoicing-ce
+      defaultGrant: true
+    - name: odoo-inventory-ce
       defaultGrant: true
   - profile: open-webui-ce
     digest: sha256:de9b94a99492bf443ab241997d69ab726407242e927f9f5f15b354cb38d5db02
