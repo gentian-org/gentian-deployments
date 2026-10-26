@@ -36,7 +36,7 @@ spec:
   # (forwardToken below), and because it is told where the store is, which
   # opens its way out of the cluster.
   trustTier: platform
-  version: "0.1.0-main.9f865f6"
+  version: "0.1.0-main.ade50f5"
   # Every tenant but the platform tenant, and only while the cluster offers
   # an App Store. Taken away again when it no longer does: this component
   # owns no data.
@@ -45,7 +45,7 @@ spec:
     chart:
       repository: "oci://ghcr.io/aluvian-hq/charts"
       name: "subscription-center"
-      version: "0.1.0-main.9f865f6"
+      version: "0.1.0-main.ade50f5"
     valueMapping:
       # Every key matches the chart (services/subscription-center/chart).
       platform:
