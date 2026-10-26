@@ -37,6 +37,10 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: nextcloud-base-ce
+    digest: sha256:b69e5ea5b77dd4def25f5415dbeac8eaf9e0c3c46dcd107f218d27d660c2cbd0
+    catalogue: gentian
+    defaultGrant: true
   - profile: odoo-base-ce
     digest: sha256:0bc869652ec083e3e9ffe0a65aab227d5376a44db42344e15d60f24ab158c50f
     catalogue: gentian
