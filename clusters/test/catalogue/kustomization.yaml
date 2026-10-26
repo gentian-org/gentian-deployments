@@ -33,14 +33,17 @@ resources:
 - nextcloud-spreed-ce.yaml
 - builds/nextcloud-spreed-ce-2baf77302072.yaml
 - builds/nextcloud-base-ce-79325fc60295.yaml
-- app-store.yaml
 - builds/app-store-d1bde2018976.yaml
-- subscription-center.yaml
 - builds/subscription-center-a03419ed520f.yaml
 - operations-console-ee.yaml
 - builds/operations-console-ee-2b577484decf.yaml
 - builds/app-store-d4a2c900dd47.yaml
 - builds/subscription-center-77739679a468.yaml
+- builds/operations-console-ee-804f99d44cda.yaml
+- app-store-pe.yaml
+- builds/app-store-pe-0d1e1664792c.yaml
+- aluvian-center-pe.yaml
+- builds/aluvian-center-pe-911543507ab8.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -54,6 +57,6 @@ patches:
 - path: nextcloud-forms-ce.bundle.yaml
 - path: nextcloud-tasks-ce.bundle.yaml
 - path: nextcloud-spreed-ce.bundle.yaml
-- path: app-store.bundle.yaml
-- path: subscription-center.bundle.yaml
 - path: operations-console-ee.bundle.yaml
+- path: app-store-pe.bundle.yaml
+- path: aluvian-center-pe.bundle.yaml

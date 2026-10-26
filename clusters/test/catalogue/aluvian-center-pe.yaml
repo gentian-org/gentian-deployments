@@ -1,4 +1,4 @@
-# The Subscription Center: what a tenant has at Aluvian -- its subscription
+# The Aluvian Center: what a tenant has at Aluvian -- its subscription
 # and license usage, the apps it acquired with their seats, and the account's
 # invoices and payment -- shown on the tenant's own cluster. It is what the
 # account area of aluvian.io shows, read with a partner assertion for the
@@ -14,12 +14,14 @@
 apiVersion: gentianos.io/v1alpha1
 kind: ComponentProfile
 metadata:
-  name: subscription-center
+  name: aluvian-center-pe
   labels:
     # The app Composition selects the profile by this label.
-    gentianos.io/profile-name: subscription-center
-    gentianos.io/profile-edition: me
+    gentianos.io/profile-name: aluvian-center-pe
+    gentianos.io/profile-edition: pe
   annotations:
+    # The store's listing of the Subscription Center goes with the new name.
+    gentianos.io/renamed-from: subscription-center
     # Installed in every user tenant by default (defaultWhereStoreOffered),
     # so there is nothing to offer in the App Store.
     gentianos.io/store-listed: "false"
@@ -28,13 +30,13 @@ metadata:
     gentianos.io/requires-usage-statistics: "true"
 spec:
   classes: [app]
-  # Reached from the Subscriptions tile on the web exposure.
+  # Reached from the Aluvian Center tile on the web exposure.
   launch: tile
   # Platform trust, because its API is given the forwarded token
   # (forwardToken below), and because it is told where the store is, which
   # opens its way out of the cluster.
   trustTier: platform
-  version: "0.1.0-main.18f223b"
+  version: "0.1.0-main.fffd495"
   # Every tenant but the platform tenant, and only while the cluster offers
   # an App Store. Taken away again when it no longer does: this component
   # owns no data.
@@ -43,7 +45,7 @@ spec:
     chart:
       repository: "oci://ghcr.io/aluvian-hq/charts"
       name: "subscription-center"
-      version: "0.1.0-main.18f223b"
+      version: "0.1.0-main.fffd495"
     valueMapping:
       # Every key matches the chart (services/subscription-center/chart).
       platform:
@@ -71,6 +73,10 @@ spec:
       # Services the exposures below route to are known before the release
       # exists.
       fullnameOverride: subscription-center
+      # The platform writes partners-<profile>; the chart's default would be
+      # partners-<full name>.
+      partner:
+        secretName: partners-aluvian-center-pe
       auth:
         disabled: false
         mode: edge
@@ -106,7 +112,9 @@ spec:
         service: subscription-center-web
         port: 8080
       tile:
-        displayName: Subscriptions
+        displayName: Aluvian Center
+        displayNames:
+          de_DE: Aluvian Center
         description: This tenant's subscription, license usage, apps and seats, and invoices at Aluvian.
         # A card with lines on the seal's colour, a PNG of 128 px.
         logo: data:image/png;base64,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
