@@ -36,7 +36,7 @@ spec:
   # (forwardToken below), and because it is told where the store is, which
   # opens its way out of the cluster.
   trustTier: platform
-  version: "0.1.0-main.fffd495"
+  version: "0.1.0-main.9f865f6"
   # Every tenant but the platform tenant, and only while the cluster offers
   # an App Store. Taken away again when it no longer does: this component
   # owns no data.
@@ -45,7 +45,7 @@ spec:
     chart:
       repository: "oci://ghcr.io/aluvian-hq/charts"
       name: "subscription-center"
-      version: "0.1.0-main.fffd495"
+      version: "0.1.0-main.9f865f6"
     valueMapping:
       # Every key matches the chart (services/subscription-center/chart).
       platform:
@@ -58,7 +58,7 @@ spec:
         kernelDomainKey: platform.kernelDomain
         realmKey: platform.realm
         zoneKindKey: platform.zoneKind
-        # subscriptions.<the tenant's base domain>: the one origin that may
+        # aluvian.<the tenant's base domain>: the one origin that may
         # send the API a state-changing request.
         hostKey: host
         # The store API's base address, from the Cluster claim. Naming it is
@@ -95,7 +95,7 @@ spec:
     - name: api
       surface: gateway
       authMode: oidc
-      subDomain: subscriptions
+      subDomain: aluvian
       paths: ["/api", "/healthz", "/readyz"]
       forwardToken: true
       backend:
@@ -107,7 +107,7 @@ spec:
     - name: web
       surface: gateway
       authMode: oidc
-      subDomain: subscriptions
+      subDomain: aluvian
       backend:
         service: subscription-center-web
         port: 8080
