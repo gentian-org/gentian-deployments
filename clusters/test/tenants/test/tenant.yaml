@@ -46,6 +46,7 @@ spec:
     - odoo-crm-ce
     - odoo-employees-ce
     - odoo-sales-ce
+    - odoo-purchase-ce
     addonPins:
     - name: odoo-contacts-ce
       digest: sha256:339f2a46a4dd33d372f36d95c00591ca103306ff4a4a602433b7a8c41934d35a
@@ -59,6 +60,9 @@ spec:
     - name: odoo-sales-ce
       digest: sha256:d471d30c9fa97b5fb0ae789955a727c53a6cc07a406c0bbac5facd64c11f3cc9
       catalogue: gentian
+    - name: odoo-purchase-ce
+      digest: sha256:3e8ca67b43ca5ddc485cdba1bdbdf04554c0dd825878754223e39c62c912400a
+      catalogue: gentian
     addonGrants:
     - name: odoo-contacts-ce
       defaultGrant: true
@@ -67,6 +71,8 @@ spec:
     - name: odoo-employees-ce
       defaultGrant: true
     - name: odoo-sales-ce
+      defaultGrant: true
+    - name: odoo-purchase-ce
       defaultGrant: true
   - profile: paperless-ngx-ce
     digest: sha256:7e7a3aaad8550a73f84adfc89819492661b909f2650212aa89681c792c894209
