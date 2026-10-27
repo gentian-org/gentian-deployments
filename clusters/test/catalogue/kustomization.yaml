@@ -93,6 +93,8 @@ resources:
 - builds/erpnext-ce-e7211982b0e0.yaml
 - builds/nextcloud-base-ce-ccfce918968b.yaml
 - builds/paperless-ngx-ce-7e7a3aaad855.yaml
+- odoo-sales-ce.yaml
+- builds/odoo-sales-ce-d471d30c9fa9.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -124,3 +126,4 @@ patches:
 - path: odoo-purchase-ce.bundle.yaml
 - path: erpnext-ce.bundle.yaml
 - path: paperless-ngx-ce.bundle.yaml
+- path: odoo-sales-ce.bundle.yaml
