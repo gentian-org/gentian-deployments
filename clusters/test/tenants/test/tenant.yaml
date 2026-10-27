@@ -42,8 +42,10 @@ spec:
     catalogue: gentian
     defaultGrant: true
   - profile: paperless-ngx-ce
-    digest: sha256:75f655fdc8d52ef927341db98f187745f2c380e13877c1bb5f76e5ffabd0ea4b
+    digest: sha256:7e7a3aaad8550a73f84adfc89819492661b909f2650212aa89681c792c894209
     catalogue: gentian
+    movedAt: 2026-10-27T10:40:10Z
+    movedBy: policy:latest
     defaultGrant: true
   - profile: nextcloud-base-ce
     digest: sha256:ccfce918968bf776fab4239dc9ff4d9d4185ed1b9dc4cbb5691451e33e1a820e
