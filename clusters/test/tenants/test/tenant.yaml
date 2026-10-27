@@ -41,6 +41,15 @@ spec:
     digest: sha256:05bd0d650cfb664eadcb7e5379c0d3917afe5670898e702dfbd5673b08a5d0df
     catalogue: gentian
     defaultGrant: true
+    addons:
+    - odoo-contacts-ce
+    addonPins:
+    - name: odoo-contacts-ce
+      digest: sha256:339f2a46a4dd33d372f36d95c00591ca103306ff4a4a602433b7a8c41934d35a
+      catalogue: gentian
+    addonGrants:
+    - name: odoo-contacts-ce
+      defaultGrant: true
   - profile: paperless-ngx-ce
     digest: sha256:7e7a3aaad8550a73f84adfc89819492661b909f2650212aa89681c792c894209
     catalogue: gentian
