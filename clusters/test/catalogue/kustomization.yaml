@@ -96,6 +96,7 @@ resources:
 - odoo-sales-ce.yaml
 - builds/odoo-sales-ce-d471d30c9fa9.yaml
 - builds/nextcloud-base-ce-7e1daddf181b.yaml
+- builds/paperless-ngx-ce-2b0500f410f4.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
