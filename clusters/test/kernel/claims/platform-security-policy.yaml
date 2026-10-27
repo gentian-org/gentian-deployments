@@ -1,0 +1,28 @@
+# Managed by the director: which MAC waivers and which of the platform's
+# cluster roles this cluster permits, set by whoever the commit names.
+#
+# An allowlist, not a request and not a grant. A profile asks in its own
+# catalogue entry; an entry here for a profile that asks for nothing
+# permits nothing, and what is permitted takes effect only where it was
+# also granted on the install.
+apiVersion: gentianos.io/v1alpha1
+kind: PlatformSecurityPolicy
+metadata:
+  name: default
+spec:
+  allowedMacWaivers:
+  - profile: element-ce
+    policy: gentian-require-non-root
+    scope: sidecar-jitsi
+  - profile: element-ce
+    policy: gentian-restrict-capabilities
+    scope: sidecar-jitsi
+  - profile: nextcloud-base-ce
+    policy: gentian-disallow-privilege-escalation
+    scope: collabora
+  - profile: nextcloud-base-ce
+    policy: gentian-restrict-capabilities
+    scope: collabora
+  - profile: nextcloud-base-ce
+    policy: gentian-require-seccomp
+    scope: collabora
