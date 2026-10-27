@@ -88,6 +88,8 @@ resources:
 - builds/operations-console-ee-0fc063557d9b.yaml
 - builds/app-store-pe-5e93e44e654d.yaml
 - builds/aluvian-center-pe-7ef48f8d9e75.yaml
+- paperless-ngx-ce.yaml
+- builds/paperless-ngx-ce-75f655fdc8d5.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -118,3 +120,4 @@ patches:
 - path: odoo-project-ce.bundle.yaml
 - path: odoo-purchase-ce.bundle.yaml
 - path: erpnext-ce.bundle.yaml
+- path: paperless-ngx-ce.bundle.yaml
