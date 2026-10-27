@@ -37,6 +37,10 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: odoo-base-ce
+    digest: sha256:05bd0d650cfb664eadcb7e5379c0d3917afe5670898e702dfbd5673b08a5d0df
+    catalogue: gentian
+    defaultGrant: true
   - profile: paperless-ngx-ce
     digest: sha256:75f655fdc8d52ef927341db98f187745f2c380e13877c1bb5f76e5ffabd0ea4b
     catalogue: gentian
