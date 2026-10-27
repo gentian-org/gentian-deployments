@@ -85,6 +85,9 @@ resources:
 - builds/odoo-base-ce-05bd0d650cfb.yaml
 - erpnext-ce.yaml
 - builds/erpnext-ce-e9050a534dc4.yaml
+- builds/operations-console-ee-0fc063557d9b.yaml
+- builds/app-store-pe-5e93e44e654d.yaml
+- builds/aluvian-center-pe-7ef48f8d9e75.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
