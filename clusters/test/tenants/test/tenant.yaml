@@ -43,12 +43,18 @@ spec:
     defaultGrant: true
     addons:
     - odoo-contacts-ce
+    - odoo-crm-ce
     addonPins:
     - name: odoo-contacts-ce
       digest: sha256:339f2a46a4dd33d372f36d95c00591ca103306ff4a4a602433b7a8c41934d35a
       catalogue: gentian
+    - name: odoo-crm-ce
+      digest: sha256:dcd34791828ab7c992956591d06ee2898c7d57af9e88d999ad824738f6f98ad9
+      catalogue: gentian
     addonGrants:
     - name: odoo-contacts-ce
+      defaultGrant: true
+    - name: odoo-crm-ce
       defaultGrant: true
   - profile: paperless-ngx-ce
     digest: sha256:7e7a3aaad8550a73f84adfc89819492661b909f2650212aa89681c792c894209
