@@ -37,6 +37,10 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: docmost-ce
+    digest: sha256:6e0d029111e707937299937b9878a1e08532ea42552e1ab36ff1c04935e85334
+    catalogue: gentian
+    defaultGrant: true
   platformAccess:
     adminsEnter: true
   storeTerms:
