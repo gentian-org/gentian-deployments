@@ -37,6 +37,10 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: nextcloud-base-ce
+    digest: sha256:8863e40d0f49f476668d5b048b325a25845443ecf0f8a2ee4618561bc463a4c6
+    catalogue: gentian
+    defaultGrant: true
   - profile: erpnext-ce
     digest: sha256:e9050a534dc478bde33fcc822ae5deedcaf9112945f6ac4c8afdd0c0b1599a22
     catalogue: gentian
