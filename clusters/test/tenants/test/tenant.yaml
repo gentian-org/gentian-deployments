@@ -44,6 +44,7 @@ spec:
     addons:
     - nextcloud-calendar-ce
     - nextcloud-contacts-ce
+    - nextcloud-forms-ce
     addonPins:
     - name: nextcloud-calendar-ce
       digest: sha256:52967f0d00523e5f6a1ca5feaa77df25076252a86dccf6c36be06fdb3ed4c2a7
@@ -51,10 +52,15 @@ spec:
     - name: nextcloud-contacts-ce
       digest: sha256:7cf70c6a3099012e3d442e73bb3f3e1c0cc9fc42ac5e736a344593e7bd2b9994
       catalogue: gentian
+    - name: nextcloud-forms-ce
+      digest: sha256:8eb7e4f3fc5fd7b15d84fc4adaec3dd0300b059949f634730da827c581e2eb8f
+      catalogue: gentian
     addonGrants:
     - name: nextcloud-calendar-ce
       defaultGrant: true
     - name: nextcloud-contacts-ce
+      defaultGrant: true
+    - name: nextcloud-forms-ce
       defaultGrant: true
   - profile: docmost-ce
     digest: sha256:6e0d029111e707937299937b9878a1e08532ea42552e1ab36ff1c04935e85334
