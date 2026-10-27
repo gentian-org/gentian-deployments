@@ -81,6 +81,7 @@ resources:
 - builds/odoo-project-ce-6f72bcaaa8d3.yaml
 - odoo-purchase-ce.yaml
 - builds/odoo-purchase-ce-3e8ca67b43ca.yaml
+- builds/nextcloud-base-ce-8863e40d0f49.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
