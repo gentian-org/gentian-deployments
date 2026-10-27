@@ -90,6 +90,7 @@ resources:
 - builds/aluvian-center-pe-7ef48f8d9e75.yaml
 - paperless-ngx-ce.yaml
 - builds/paperless-ngx-ce-75f655fdc8d5.yaml
+- builds/erpnext-ce-e7211982b0e0.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
