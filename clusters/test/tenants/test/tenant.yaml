@@ -65,8 +65,10 @@ spec:
     - name: nextcloud-collectives-ce
       defaultGrant: true
   - profile: erpnext-ce
-    digest: sha256:e9050a534dc478bde33fcc822ae5deedcaf9112945f6ac4c8afdd0c0b1599a22
+    digest: sha256:e7211982b0e0bbef317609ac0e31a36cb525cc95906308e18c5979e75dcc7cb7
     catalogue: gentian
+    movedAt: 2026-10-27T10:22:53Z
+    movedBy: policy:latest
     defaultGrant: true
   - profile: docmost-ce
     digest: sha256:6e0d029111e707937299937b9878a1e08532ea42552e1ab36ff1c04935e85334
