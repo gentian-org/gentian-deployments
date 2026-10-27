@@ -101,6 +101,7 @@ resources:
 - builds/open-webui-ce-dec8c7afef47.yaml
 - builds/erpnext-ce-64a9eb74f81f.yaml
 - builds/nextcloud-base-ce-c5909b4f70ba.yaml
+- builds/nextcloud-base-ce-5089deaa9014.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
