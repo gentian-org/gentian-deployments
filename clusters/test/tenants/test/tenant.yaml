@@ -37,43 +37,6 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
-  - profile: nextcloud-base-ce
-    digest: sha256:8863e40d0f49f476668d5b048b325a25845443ecf0f8a2ee4618561bc463a4c6
-    catalogue: gentian
-    defaultGrant: true
-    addons:
-    - nextcloud-calendar-ce
-    - nextcloud-contacts-ce
-    - nextcloud-forms-ce
-    - nextcloud-mail-ce
-    - nextcloud-richdocuments-ce
-    addonPins:
-    - name: nextcloud-calendar-ce
-      digest: sha256:52967f0d00523e5f6a1ca5feaa77df25076252a86dccf6c36be06fdb3ed4c2a7
-      catalogue: gentian
-    - name: nextcloud-contacts-ce
-      digest: sha256:7cf70c6a3099012e3d442e73bb3f3e1c0cc9fc42ac5e736a344593e7bd2b9994
-      catalogue: gentian
-    - name: nextcloud-forms-ce
-      digest: sha256:8eb7e4f3fc5fd7b15d84fc4adaec3dd0300b059949f634730da827c581e2eb8f
-      catalogue: gentian
-    - name: nextcloud-mail-ce
-      digest: sha256:d7a7d635de0cd05b151fb7c0aeab82c11765489ae0f7d1975e0bc5bac5e9b7a9
-      catalogue: gentian
-    - name: nextcloud-richdocuments-ce
-      digest: sha256:407e022ef094ab14ed4dd85c1a7b841c8c713882f0aa9279d296c9119a3c7423
-      catalogue: gentian
-    addonGrants:
-    - name: nextcloud-calendar-ce
-      defaultGrant: true
-    - name: nextcloud-contacts-ce
-      defaultGrant: true
-    - name: nextcloud-forms-ce
-      defaultGrant: true
-    - name: nextcloud-mail-ce
-      defaultGrant: true
-    - name: nextcloud-richdocuments-ce
-      defaultGrant: true
   platformAccess:
     adminsEnter: true
   storeTerms:
