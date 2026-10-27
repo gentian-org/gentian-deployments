@@ -5,3 +5,4 @@ resources:
 - repository-test-registry-aluvian-io-aluvia-d6e5ea13.yaml
 patches:
 - path: privileges.yaml
+- path: resource-plan.yaml
