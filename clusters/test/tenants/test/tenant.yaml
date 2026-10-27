@@ -44,8 +44,10 @@ spec:
     movedBy: policy:latest
     defaultGrant: true
   - profile: odoo-base-ce
-    digest: sha256:0bc869652ec083e3e9ffe0a65aab227d5376a44db42344e15d60f24ab158c50f
+    digest: sha256:05bd0d650cfb664eadcb7e5379c0d3917afe5670898e702dfbd5673b08a5d0df
     catalogue: gentian
+    movedAt: 2026-10-27T00:18:11Z
+    movedBy: policy:latest
     defaultGrant: true
     addons:
     - odoo-calendar-ce
