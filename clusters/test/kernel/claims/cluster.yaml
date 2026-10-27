@@ -91,18 +91,16 @@ spec:
     # does needs it, and off means no route and no way in from the edge.
     # console:
     #   enabled: true
-    # gpuTimeSliceReplicas: 1   workloads sharing one physical GPU
-    # The models this cluster serves on its own GPUs. The gateway offers
-    # one model per entry; the platform does not start the vLLM instance
-    # behind it yet, so run one before listing it here.
-    instances: []
-    #  - name: qwen
-    #    modelId: Qwen/Qwen2.5-7B-Instruct
+    # The models this cluster serves on its own GPUs: one vLLM instance
+    # and one model of the gateway per entry.
+    instances:
+      - name: qwen
+        modelId: Qwen/Qwen2.5-7B-Instruct
+        toolCallParser: hermes
     #    gpuMemoryUtilization: "0.85"   fraction of GPU memory
     #    maxModelLen: "8192"            context window, tokens
     #    modelCacheSize: 60Gi           PVC for the weights
-    #    imageTag: latest               vLLM image tag
-    #    toolCallParser: hermes         empty disables tool calling
+    #    imageTag: v0.32.0-cu129        another vLLM release than the pinned one
     # External OpenAI-compatible providers, routed through the same
     # gateway. Independent of gpuAcceleration -- a cluster with no GPU
     # and no instances serves these and nothing else. Adding an entry
