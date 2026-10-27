@@ -37,6 +37,10 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: paperless-ngx-ce
+    digest: sha256:75f655fdc8d52ef927341db98f187745f2c380e13877c1bb5f76e5ffabd0ea4b
+    catalogue: gentian
+    defaultGrant: true
   - profile: nextcloud-base-ce
     digest: sha256:8863e40d0f49f476668d5b048b325a25845443ecf0f8a2ee4618561bc463a4c6
     catalogue: gentian
