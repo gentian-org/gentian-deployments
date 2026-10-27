@@ -52,6 +52,7 @@ spec:
     addons:
     - nextcloud-calendar-ce
     - nextcloud-collectives-ce
+    - nextcloud-richdocuments-ce
     addonPins:
     - name: nextcloud-calendar-ce
       digest: sha256:52967f0d00523e5f6a1ca5feaa77df25076252a86dccf6c36be06fdb3ed4c2a7
@@ -59,10 +60,15 @@ spec:
     - name: nextcloud-collectives-ce
       digest: sha256:6300185c0aa31ec574ca3141ec0aa92d711ba4b3497cadbce41e7e0659fcbda6
       catalogue: gentian
+    - name: nextcloud-richdocuments-ce
+      digest: sha256:407e022ef094ab14ed4dd85c1a7b841c8c713882f0aa9279d296c9119a3c7423
+      catalogue: gentian
     addonGrants:
     - name: nextcloud-calendar-ce
       defaultGrant: true
     - name: nextcloud-collectives-ce
+      defaultGrant: true
+    - name: nextcloud-richdocuments-ce
       defaultGrant: true
   - profile: erpnext-ce
     digest: sha256:e7211982b0e0bbef317609ac0e31a36cb525cc95906308e18c5979e75dcc7cb7
