@@ -91,6 +91,7 @@ resources:
 - paperless-ngx-ce.yaml
 - builds/paperless-ngx-ce-75f655fdc8d5.yaml
 - builds/erpnext-ce-e7211982b0e0.yaml
+- builds/nextcloud-base-ce-ccfce918968b.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
