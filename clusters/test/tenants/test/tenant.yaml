@@ -37,12 +37,6 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
-  - profile: nextcloud-base-ce
-    digest: sha256:8863e40d0f49f476668d5b048b325a25845443ecf0f8a2ee4618561bc463a4c6
-    catalogue: gentian
-    movedAt: 2026-10-27T00:18:07Z
-    movedBy: policy:latest
-    defaultGrant: true
   - profile: open-webui-ce
     digest: sha256:de9b94a99492bf443ab241997d69ab726407242e927f9f5f15b354cb38d5db02
     catalogue: gentian
