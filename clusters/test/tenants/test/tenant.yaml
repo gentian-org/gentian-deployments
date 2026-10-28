@@ -44,8 +44,10 @@ spec:
     movedBy: policy:latest
     defaultGrant: true
   - profile: odoo-base-ce
-    digest: sha256:05bd0d650cfb664eadcb7e5379c0d3917afe5670898e702dfbd5673b08a5d0df
+    digest: sha256:87e025c843e90ea11cdf5010ae72423209b6e477b16bc01b5b9b6980807f1e84
     catalogue: gentian
+    movedAt: 2026-10-28T08:14:38Z
+    movedBy: policy:latest
     defaultGrant: true
     addons:
     - odoo-contacts-ce
