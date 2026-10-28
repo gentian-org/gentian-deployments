@@ -1,0 +1,11 @@
+# Managed by the director: storage outside the cluster that bundles are
+# imported from, declared by whoever the commit names. Its keys are not
+# here: they are set at the custodian, as bundle-source-exoscale-backup.
+apiVersion: gentianos.io/v1alpha1
+kind: BundleSource
+metadata:
+  name: exoscale-backup
+spec:
+  endpoint: "https://sos-ch-dk-2.exo.io"
+  bucket: "bigbucket"
+  region: "ch-dk-2"
