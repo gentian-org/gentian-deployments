@@ -107,6 +107,7 @@ resources:
 - builds/aluvian-center-pe-eb3ea48d2d04.yaml
 - builds/erpnext-ce-94585c1f44b1.yaml
 - builds/odoo-base-ce-87e025c843e9.yaml
+- builds/paperless-ngx-ce-265d2fa23b16.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
