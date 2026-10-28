@@ -89,8 +89,8 @@ spec:
     # The console of the gateway (models, keys, spend) at llm.<kernelDomain>,
     # for platform administrators. Off by default: nothing the platform
     # does needs it, and off means no route and no way in from the edge.
-    # console:
-    #   enabled: true
+    console:
+      enabled: true
     # The models this cluster serves on its own GPUs: one vLLM instance
     # and one model of the gateway per entry.
     instances:
