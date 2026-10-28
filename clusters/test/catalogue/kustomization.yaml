@@ -106,6 +106,7 @@ resources:
 - builds/app-store-pe-83fe07d32d24.yaml
 - builds/aluvian-center-pe-eb3ea48d2d04.yaml
 - builds/erpnext-ce-94585c1f44b1.yaml
+- builds/odoo-base-ce-87e025c843e9.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
