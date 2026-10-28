@@ -6,3 +6,4 @@ resources:
 patches:
 - path: privileges.yaml
 - path: resource-plan.yaml
+- path: locales.yaml
