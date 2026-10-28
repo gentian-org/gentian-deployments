@@ -113,6 +113,7 @@ resources:
 - builds/aluvian-center-pe-3f77e313509f.yaml
 - builds/nextcloud-richdocuments-ce-29cb358ad635.yaml
 - builds/erpnext-ce-bdf75f26abf4.yaml
+- builds/nextcloud-base-ce-3af579f21832.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
