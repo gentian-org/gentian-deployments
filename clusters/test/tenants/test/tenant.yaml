@@ -10,7 +10,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "2"
 spec:
-  displayName: test
+  displayName: "Test"
   # The administrator account has no password until its holder sets one,
   # through a single-use link the director issues (activate-admin).
   admin:
@@ -131,3 +131,12 @@ spec:
     version: "2026-10"
     acceptedAt: "2026-10-25T23:11:03Z"
   country: "CH"
+  organization:
+    address:
+      city: Testingen
+      postalCode: "1234"
+      region: TE
+      street: Teststrasse 123
+    currency: CHF
+    legalName: Test Consulting AG
+    timeZone: Europe/Zurich
