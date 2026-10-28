@@ -1,0 +1,16 @@
+# Managed by the director: the languages this tenant's realm offers on
+# its login and account pages, set in the console by whoever the commit
+# names. The composition turns them into the realm's own fields, so
+# nothing holds a Keycloak credential to apply them and a realm rebuilt
+# from scratch comes back offering the same ones.
+#
+# Keycloak ships the translations; this only says which to offer. A
+# language the desktop has no catalogue for still logs in translated and
+# then shows an English desktop.
+apiVersion: gentianos.io/v1alpha1
+kind: Tenant
+metadata:
+  name: platform
+spec:
+  locales:
+    - en

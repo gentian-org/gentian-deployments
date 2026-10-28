@@ -4,3 +4,4 @@ resources:
 - tenant.yaml
 patches:
 - path: exposures.yaml
+- path: locales.yaml
