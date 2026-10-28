@@ -116,6 +116,7 @@ resources:
 - builds/nextcloud-base-ce-3af579f21832.yaml
 - builds/erpnext-ce-f42cad65aa64.yaml
 - builds/nextcloud-base-ce-5499f575b76f.yaml
+- builds/nextcloud-base-ce-f4a2b4cce3af.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
