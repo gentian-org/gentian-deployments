@@ -116,9 +116,9 @@ spec:
     - name: nextcloud-richdocuments-ce
       defaultGrant: true
   - profile: erpnext-ce
-    digest: sha256:f42cad65aa6493411eb4e94af0e6f519ce12fa5e6b09a86469cebde466c67f09
+    digest: sha256:54affa78a3fea93a760dfc9fd95de16ca8f553a4c7712261b00d1c8ae8418638
     catalogue: gentian
-    movedAt: 2026-10-28T15:05:23Z
+    movedAt: 2026-10-28T17:45:24Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: docmost-ce
