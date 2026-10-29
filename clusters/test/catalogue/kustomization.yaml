@@ -148,6 +148,7 @@ resources:
 - builds/docmost-ce-e6fd63439c0d.yaml
 - builds/erpnext-ce-d76cdcce2a4d.yaml
 - builds/nextcloud-base-ce-e54aab15cedf.yaml
+- builds/open-webui-ce-e435307ba725.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
