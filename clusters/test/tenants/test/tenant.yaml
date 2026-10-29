@@ -83,9 +83,9 @@ spec:
     - name: odoo-purchase-ce
       defaultGrant: true
   - profile: paperless-ngx-ce
-    digest: sha256:b95313a287d5669344df5fe3b50e81c2d7e978434019e83f180af40470a889aa
+    digest: sha256:e3e76f11cd477e5f1eb4885f87d7065d8f187f04c96777e170203c5017fc0d8a
     catalogue: gentian
-    movedAt: 2026-10-29T15:46:42Z
+    movedAt: 2026-10-29T17:18:50Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: nextcloud-base-ce
