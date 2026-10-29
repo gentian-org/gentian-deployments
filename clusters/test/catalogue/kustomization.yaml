@@ -147,6 +147,7 @@ resources:
 - builds/aluvian-center-pe-5369170b5ecd.yaml
 - builds/docmost-ce-e6fd63439c0d.yaml
 - builds/erpnext-ce-d76cdcce2a4d.yaml
+- builds/nextcloud-base-ce-e54aab15cedf.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
