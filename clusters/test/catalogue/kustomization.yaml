@@ -122,6 +122,9 @@ resources:
 - builds/app-store-pe-169cb749dda6.yaml
 - builds/aluvian-center-pe-2b5444c920a8.yaml
 - builds/erpnext-ce-318753ecf768.yaml
+- builds/operations-console-ee-b2da24db3b82.yaml
+- builds/app-store-pe-bb0b07fc2c81.yaml
+- builds/aluvian-center-pe-0545982c9eb9.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
