@@ -27,12 +27,12 @@ spec:
   trustTier: certified
   # The chart version Fellwort's CI published, pinned: provider-helm never
   # upgrades a release whose chart version string did not change.
-  version: "0.1.0-develop.244d838"
+  version: "0.1.0-develop.8ce1274"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: fellwort
-      version: "0.1.0-develop.244d838"
+      version: "0.1.0-develop.8ce1274"
     valueMapping:
       database:
         hostKey: database.host
@@ -76,6 +76,43 @@ spec:
       database:
         engine: postgresql
         databasePerTenant: true
+    privileges:
+      egress:
+        - name: usage-reports
+          reason: >-
+            Sends what was run, signed, to Aluvian's commerce service, which
+            bills it: commerce-hooks.team.aluvian.io, over https.
+          rule:
+            to:
+              - ipBlock:
+                  cidr: 0.0.0.0/0
+                  except: [10.0.0.0/8, 100.64.0.0/10, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/12, 192.168.0.0/16]
+            ports:
+              - protocol: TCP
+                port: 443
+  secrets:
+    supplied:
+      # Set by the App Store app from the purchase's confirmation; a person
+      # can replace it but never read it. Fellwort signs its usage reports
+      # with the key, and they are billed only when it is the purchase's.
+      - name: metering
+        displayName: Usage reporting
+        description: >-
+          Where Fellwort reports what was run, the name it reports under and
+          the key it signs with. The App Store sets it when the app is
+          bought; set it here only as Aluvian's support tells you to.
+        fields:
+          - key: url
+            format: string
+            public: true
+            valuePath: metering.url
+          - key: install
+            format: string
+            public: true
+            valuePath: metering.install
+          - key: key
+            format: token
+            valuePath: metering.key
   expose:
     # The API, behind sign-in. Each request reaches it with a token for this
     # app alone, which it verifies; no identity header is taken on trust.
