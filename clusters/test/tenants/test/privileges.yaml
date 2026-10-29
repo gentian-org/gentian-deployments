@@ -12,6 +12,11 @@ metadata:
   name: test
 spec:
   privileges:
+    - install: fellwort-ee
+      privilege: egress/usage-reports
+      approver: 0ba53245-73b8-4649-a405-e09122ea84d1
+      approvedAt: 2026-10-29T11:56:37Z
+      reason: "it is needed"
     - install: nextcloud-base-ce
       privilege: podSecurity/gentian-disallow-privilege-escalation-co
       approver: 0ba53245-73b8-4649-a405-e09122ea84d1
