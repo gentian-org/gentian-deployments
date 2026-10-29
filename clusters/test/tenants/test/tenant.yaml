@@ -37,6 +37,10 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: fellwort-ee
+    digest: sha256:b43577c01416fe8bd8f958d184852c7ff8d4c04dd7039b2a4da500990077e72b
+    catalogue: aluvian
+    defaultGrant: true
   - profile: open-webui-ce
     digest: sha256:dec8c7afef4751f5b27a6e593925e895091b6e6fcf84ad69de8dab8be86e26d9
     catalogue: gentian
