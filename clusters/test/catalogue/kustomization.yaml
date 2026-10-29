@@ -149,6 +149,7 @@ resources:
 - builds/erpnext-ce-d76cdcce2a4d.yaml
 - builds/nextcloud-base-ce-e54aab15cedf.yaml
 - builds/open-webui-ce-e435307ba725.yaml
+- builds/paperless-ngx-ce-b95313a287d5.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
