@@ -150,6 +150,9 @@ resources:
 - builds/nextcloud-base-ce-e54aab15cedf.yaml
 - builds/open-webui-ce-e435307ba725.yaml
 - builds/paperless-ngx-ce-b95313a287d5.yaml
+- builds/operations-console-ee-5b9bf308ecde.yaml
+- builds/app-store-pe-dc786f98ebe8.yaml
+- builds/aluvian-center-pe-96a1b097188d.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
