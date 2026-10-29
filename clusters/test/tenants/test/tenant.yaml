@@ -38,9 +38,9 @@ spec:
   # Apps are installed through the director, which appends to this list.
   apps:
   - profile: open-webui-ce
-    digest: sha256:dec8c7afef4751f5b27a6e593925e895091b6e6fcf84ad69de8dab8be86e26d9
+    digest: sha256:e435307ba725aa58110465e01d41577613cb346362631c4084f1088718641d4c
     catalogue: gentian
-    movedAt: 2026-10-27T13:46:37Z
+    movedAt: 2026-10-29T15:46:37Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: odoo-base-ce
