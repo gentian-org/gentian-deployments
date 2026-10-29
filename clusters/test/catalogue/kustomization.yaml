@@ -154,6 +154,7 @@ resources:
 - builds/app-store-pe-dc786f98ebe8.yaml
 - builds/aluvian-center-pe-96a1b097188d.yaml
 - builds/docmost-ce-04138508c307.yaml
+- builds/paperless-ngx-ce-e3e76f11cd47.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
