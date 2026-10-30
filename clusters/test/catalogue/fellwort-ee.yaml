@@ -27,12 +27,12 @@ spec:
   trustTier: certified
   # The chart version Fellwort's CI published, pinned: provider-helm never
   # upgrades a release whose chart version string did not change.
-  version: "0.1.0-develop.5cbf262"
+  version: "0.1.0-develop.ab53f0b"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: fellwort
-      version: "0.1.0-develop.5cbf262"
+      version: "0.1.0-develop.ab53f0b"
     valueMapping:
       database:
         hostKey: database.host
@@ -71,6 +71,23 @@ spec:
         enabled: false
         image:
           repository: registry.aluvian.io/aluvian-hq/fellwort-runner
+  # Who administers Fellwort is who holds the platform's App Admin role. The
+  # platform runs this Job when that role changes; the image is the API's,
+  # pinned with the chart, and the chart's service account can pull it.
+  hooks:
+    provisioning:
+      privilegedRole:
+        kind: group
+        name: admin
+      syncJob:
+        image: registry.aluvian.io/aluvian-hq/fellwort-api:ab53f0b
+        serviceAccountName: fellwort
+        envFrom:
+          - fellwort-app-admins
+        script: |
+          #!/bin/sh
+          set -eu
+          exec python -m app.cli app-admins "$GENTIAN_APP_ADMINS_FILE" --tenant "$GENTIAN_TENANT"
   requires:
     services:
       database:
