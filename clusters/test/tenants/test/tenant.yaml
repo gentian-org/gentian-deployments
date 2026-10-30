@@ -37,6 +37,8 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: admin-console
+    placed: true
   - profile: fellwort-ee
     digest: sha256:2bc426f09c3897f3a2b65749140f3f4a4cb9c753ccb050ca0c4ecb36982082ff
     catalogue: aluvian
