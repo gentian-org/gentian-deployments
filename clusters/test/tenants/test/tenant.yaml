@@ -46,9 +46,9 @@ spec:
   - profile: admin-console
     placed: true
   - profile: fellwort-ee
-    digest: sha256:2bc426f09c3897f3a2b65749140f3f4a4cb9c753ccb050ca0c4ecb36982082ff
+    digest: sha256:c38dd2898d53a221b1c9e15ff9df7ff0666a1f2de073028ebedcb61f0a40f093
     catalogue: aluvian
-    movedAt: 2026-10-30T00:23:45Z
+    movedAt: 2026-10-30T13:31:43Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: open-webui-ce
