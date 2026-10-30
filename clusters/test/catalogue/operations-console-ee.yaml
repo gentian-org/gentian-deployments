@@ -23,11 +23,11 @@ metadata:
   annotations:
     # The store's listing of the Operations Console goes with the new name.
     gentianos.io/renamed-from: operations-console
-    # Installed in every cluster's platform tenant (defaultForPlatform), so
+    # Placed in every cluster's platform tenant by the platform, so
     # there is nothing to offer in the App Store.
     gentianos.io/store-listed: "false"
     # Placed only on a cluster that reports usage statistics: with the
-    # report off the operator places none and removes the ones it placed.
+    # report off the platform places none and removes the ones it placed.
     gentianos.io/requires-usage-statistics: "true"
 spec:
   classes: [app]
@@ -37,16 +37,20 @@ spec:
   # Platform trust, because it relays the forwarded token to the director,
   # which forwardToken below requires.
   trustTier: platform
-  version: "0.1.0-main.2e905f3"
+  version: "0.1.0-main.a3ce144"
   # The cluster has one, in the platform tenant, for the cluster's
   # administrators: it looks after every tenant through the director's
   # cluster routes, so no other tenant gets one of its own.
+  placement:
+    tenants: platform
+  # The same, for a cluster whose operator reads the flag that came before
+  # placement. Removed once every cluster reads placement.
   defaultForPlatform: true
   package:
     chart:
       repository: "oci://ghcr.io/aluvian-hq/charts"
       name: "operations-console"
-      version: "0.1.0-main.2e905f3"
+      version: "0.1.0-main.a3ce144"
     valueMapping:
       # Where the console's chart takes the facts of the cluster it runs in.
       # Every key matches the chart's values.yaml, which are the Admin
@@ -95,6 +99,16 @@ spec:
       api:
         env:
           ENVIRONMENT: production
+  # The evidence store's read API, as a contract the store provides. Both are
+  # placed by the platform at platform trust, so the platform grants it once
+  # the store is placed; the grant opens the way to that port and nothing
+  # else of the store. No valueMapping: a release would wait for an endpoint
+  # that does not exist until the store is switched on, and the address in
+  # this namespace is fixed by the store's profile.
+  integrations:
+    - contract: aluvian-evidence
+      provider: evidence-store-ee
+      capabilities: [read]
   expose:
     # The API. It relays the caller's token to the director, which is why this
     # entry forwards the edge token, and why the profile is platform trust.

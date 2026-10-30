@@ -21,11 +21,11 @@ metadata:
   annotations:
     # The store's listing of the App Store app goes with the new name.
     gentianos.io/renamed-from: app-store
-    # Installed in every user tenant by default (defaultWhereStoreOffered),
+    # Placed in every user tenant by the platform (its placement),
     # so there is nothing to offer in the App Store.
     gentianos.io/store-listed: "false"
     # Placed only on a cluster that reports usage statistics: with the
-    # report off the operator places none and removes the ones it placed.
+    # report off the platform places none and removes the ones it placed.
     gentianos.io/requires-usage-statistics: "true"
 spec:
   classes: [app]
@@ -36,16 +36,21 @@ spec:
   # because it is told where the store is, which opens its way out of the
   # cluster.
   trustTier: platform
-  version: "0.1.0-main.2e905f3"
+  version: "0.1.0-main.a3ce144"
   # Every tenant but the platform tenant, and only while the cluster offers
   # an App Store. Taken away again when it no longer does: this component
   # owns no data.
+  placement:
+    tenants: users
+    while: storeOffered
+  # The same, for a cluster whose operator reads the flag that came before
+  # placement. Removed once every cluster reads placement.
   defaultWhereStoreOffered: true
   package:
     chart:
       repository: "oci://ghcr.io/aluvian-hq/charts"
       name: "app-store"
-      version: "0.1.0-main.2e905f3"
+      version: "0.1.0-main.a3ce144"
     valueMapping:
       # Every key matches the app's chart (services/app-store/chart), whose schema
       # refuses a key it does not know under these objects.
@@ -75,18 +80,18 @@ spec:
         # also what opens this component's egress to public addresses on 443:
         # the store and the origins of its pictures are outside the cluster.
         storeUrlKey: store.url
-        # The desktop's API in the same namespace,
-        # http://desktop-gentian-portal-api:8000, where a tile the tenant
-        # chose in the store is stored, with the person's own token. Naming
-        # it is also what opens this component's way to the desktop's API
-        # pods on that port, and nothing else of the desktop.
-        desktopUrlKey: api.env.DESKTOP_API_URL
         # The tenant's country (spec.country), "" while it names none: the
         # app asks the store for the support offered there.
         countryKey: api.env.TENANT_COUNTRY
         # The tenant's unique id (metadata.uid): added as ?tenant= to the
         # store's registration page where the store's link names none.
         tenantUIDKey: api.env.TENANT_UID
+      integrations:
+        # The desktop's API in the same namespace, where a tile the tenant
+        # chose in the store is stored, with the person's own token: the
+        # endpoint of the desktop-api contract below.
+        desktop-api:
+          endpointKey: api.env.DESKTOP_API_URL
     extraValues:
       # The name every object of the release derives from, pinned so the
       # Services the exposures below route to are known before the release
@@ -102,7 +107,18 @@ spec:
       api:
         env:
           ENVIRONMENT: production
+  # The desktop's API, as a contract the desktop provides. Both are placed
+  # by the platform at platform trust, so the platform grants it; the grant
+  # is also what opens this component's way to the desktop's API pods on
+  # that port, and to nothing else of the desktop.
+  integrations:
+    - contract: desktop-api
+      provider: desktop
+      capabilities: [tiles]
   requires:
+    # The first platform line that grants a contract between two components
+    # it places.
+    platform: ">=0.5"
     services:
       # Asks the tenant's realm for an assertion towards the store's realm,
       # the default partner "aluvian" every cluster has, for a call that

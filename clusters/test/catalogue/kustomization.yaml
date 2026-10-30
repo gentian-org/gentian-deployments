@@ -166,6 +166,9 @@ resources:
 - builds/open-webui-ce-71e6cc584701.yaml
 - builds/open-webui-ce-fd879b71abb5.yaml
 - builds/fellwort-ee-c38dd2898d53.yaml
+- builds/operations-console-ee-b8fa835ae065.yaml
+- builds/app-store-pe-688116825491.yaml
+- builds/aluvian-center-pe-2502df58eb29.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
