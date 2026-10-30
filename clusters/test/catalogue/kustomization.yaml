@@ -164,6 +164,7 @@ resources:
 - builds/aluvian-center-pe-6f9aafae5770.yaml
 - builds/odoo-base-ce-bfe2490805ae.yaml
 - builds/open-webui-ce-71e6cc584701.yaml
+- builds/open-webui-ce-fd879b71abb5.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
