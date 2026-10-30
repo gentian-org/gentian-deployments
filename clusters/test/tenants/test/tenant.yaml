@@ -38,8 +38,10 @@ spec:
   # Apps are installed through the director, which appends to this list.
   apps:
   - profile: fellwort-ee
-    digest: sha256:b43577c01416fe8bd8f958d184852c7ff8d4c04dd7039b2a4da500990077e72b
+    digest: sha256:2bc426f09c3897f3a2b65749140f3f4a4cb9c753ccb050ca0c4ecb36982082ff
     catalogue: aluvian
+    movedAt: 2026-10-30T00:23:45Z
+    movedBy: policy:latest
     defaultGrant: true
   - profile: open-webui-ce
     digest: sha256:e435307ba725aa58110465e01d41577613cb346362631c4084f1088718641d4c
