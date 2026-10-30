@@ -37,6 +37,8 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: app-store-pe
+    placed: true
   - profile: aluvian-center-pe
     placed: true
   - profile: admin-console
