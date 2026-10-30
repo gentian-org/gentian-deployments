@@ -33,6 +33,8 @@ spec:
   # No apps: the platform desktop's tiles are the kernel consoles the
   # director answers from this account's relations, not catalogue apps.
   apps:
+  - profile: operations-console-ee
+    placed: true
   - profile: desktop
     placed: true
   - profile: concierge
