@@ -58,9 +58,9 @@ spec:
     movedBy: policy:latest
     defaultGrant: true
   - profile: odoo-base-ce
-    digest: sha256:87e025c843e90ea11cdf5010ae72423209b6e477b16bc01b5b9b6980807f1e84
+    digest: sha256:bfe2490805aeaf577b18e819d5b487490d9346004942d694321674e585bed94e
     catalogue: gentian
-    movedAt: 2026-10-28T08:14:38Z
+    movedAt: 2026-10-30T12:12:09Z
     movedBy: policy:latest
     defaultGrant: true
     addons:
