@@ -7,3 +7,4 @@ patches:
 - path: privileges.yaml
 - path: resource-plan.yaml
 - path: locales.yaml
+- path: grants.yaml
