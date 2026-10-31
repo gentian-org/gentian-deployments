@@ -170,6 +170,9 @@ resources:
 - builds/app-store-pe-688116825491.yaml
 - builds/aluvian-center-pe-2502df58eb29.yaml
 - builds/fellwort-ee-0a6dc3b7533d.yaml
+- builds/operations-console-ee-a3387da2ce05.yaml
+- builds/app-store-pe-26ef44e314ce.yaml
+- builds/aluvian-center-pe-1ec7411136fa.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
