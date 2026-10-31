@@ -176,6 +176,7 @@ resources:
 - builds/operations-console-ee-9703f869da61.yaml
 - builds/app-store-pe-0a8ff4bc919e.yaml
 - builds/aluvian-center-pe-761a75a4fbc3.yaml
+- builds/fellwort-ee-a9bdefde687c.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
