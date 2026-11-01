@@ -184,6 +184,7 @@ resources:
 - builds/odoo-base-ce-5d43d8f1c6e8.yaml
 - builds/open-webui-ce-57ca652e2834.yaml
 - builds/nextcloud-base-ce-fa58c027c2b4.yaml
+- builds/docmost-ce-7f7e23f5d76e.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
