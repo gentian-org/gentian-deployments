@@ -48,7 +48,7 @@ spec:
   - profile: fellwort-ee
     digest: sha256:a9bdefde687c571f6a2932c399a4ef4227dae65fd55a4ede0bd9714dfb00d60c
     catalogue: aluvian
-    movedAt: 2026-11-01T14:48:31Z
+    movedAt: 2026-11-01T15:00:22Z
     movedBy: admin@gentian-os.org
     defaultGrant: true
   - profile: open-webui-ce
