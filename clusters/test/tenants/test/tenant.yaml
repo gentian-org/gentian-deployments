@@ -136,9 +136,9 @@ spec:
     movedBy: policy:latest
     defaultGrant: true
   - profile: docmost-ce
-    digest: sha256:04138508c3078677cb80bb9bc98be1c195155edcd97bfbd53b96a62fdcb9d6ab
+    digest: sha256:7f7e23f5d76ec862abe5572d2248bcff41e7ebfb78c46e923069c6896d6927a6
     catalogue: gentian
-    movedAt: 2026-10-29T17:18:45Z
+    movedAt: 2026-11-01T17:41:22Z
     movedBy: policy:latest
     defaultGrant: true
   platformAccess:
