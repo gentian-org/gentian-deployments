@@ -34,7 +34,7 @@ clusters/
 
 No `<stage>/` subdirectory under `definitions/<tenant>/` or `tenants/<tenant>/`
 — a cluster has exactly one stage for its whole lifetime (see
-[deployment.md](../gentian-os/docs/deployment.md) §1), so
+[deployment.md](../gentian-os/docs/guides/deployment.md) §1), so
 `clusters/<cluster>/...` already scopes everything under it to that one
 stage; nesting it a second time underneath would disambiguate nothing.
 
@@ -50,7 +50,7 @@ cluster they live as `.tmpl` files in `gentian-os` itself
 `gentian-portal-application.yaml.tmpl`), rendered with `%CLUSTER%`/`%STAGE%`
 and `kubectl apply`'d directly by `install.sh` — never committed here at
 all. See
-[gentian-os/docs/deployment.md](../gentian-os/docs/deployment.md) §3.1.
+[gentian-os/docs/guides/deployment.md](../gentian-os/docs/guides/deployment.md) §3.1.
 
 **Kernel instance data vs. optional add-ons vs. tenant apps.** All three
 can look like they belong under `kernel/`, but only the first two are
@@ -76,7 +76,7 @@ committed here:
 - **Tenant apps** (Nextcloud, OpenProject, ...) aren't in `kernel/` at all
   — see "Tenant definitions" below.
 
-See [gentian-os/docs/deployment.md](../gentian-os/docs/deployment.md)
+See [gentian-os/docs/guides/deployment.md](../gentian-os/docs/guides/deployment.md)
 §1/§3 for the full layered-config model, bootstrap sequence, and the
 kernel/add-on/tenant distinction in detail.
 
@@ -130,8 +130,8 @@ Use OpenBao + External Secrets and keep credentials outside Git.
 ## Related docs
 
 - [AGENTS.md](AGENTS.md) — repo rules for coding agents
-- [gentian-os/docs/deployment.md](../gentian-os/docs/deployment.md)
-- [gentian-os/docs/commands.md](../gentian-os/docs/commands.md)
-- [gentian-os/docs/design/gateway.md](../gentian-os/docs/design/gateway.md)
-- [gentian-os/docs/design/multi-tenancy.md](../gentian-os/docs/design/multi-tenancy.md)
-- [gentian-os/docs/design/security.md](../gentian-os/docs/design/security.md)
+- [gentian-os/docs/guides/deployment.md](../gentian-os/docs/guides/deployment.md)
+- [gentian-os/docs/reference/commands.md](../gentian-os/docs/reference/commands.md)
+- [gentian-os/docs/concepts/routing.md](../gentian-os/docs/concepts/routing.md)
+- [gentian-os/docs/concepts/multi-tenancy.md](../gentian-os/docs/concepts/multi-tenancy.md)
+- [gentian-os/docs/security/design.md](../gentian-os/docs/security/design.md)

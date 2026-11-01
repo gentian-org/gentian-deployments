@@ -1,6 +1,6 @@
 # profiles/dev.yaml — dev-stage-specific policy only.
 #
-# Layer 2 of 3 in the config model (see gentian-os/docs/deployment.md §1):
+# Layer 2 of 3 in the config model (see gentian-os/docs/guides/deployment.md §1):
 #   1) gentian-os/charts/gentian-os/values.yaml   — chart defaults
 #   2) profiles/_base.yaml, then this file         — shared, then dev-tier
 #   3) clusters/<cluster>/kernel/values.yaml       — cluster-unique deltas
@@ -15,7 +15,7 @@ logLevel: debug
 # production rate limits on reinstall.
 tenantDNS01ClusterIssuer: "letsencrypt-staging-dns01-cloudflare"
 
-# NOT included here (deliberately, see gentian-os/docs/deployment.md §1):
+# NOT included here (deliberately, see gentian-os/docs/guides/deployment.md §1):
 # - appLifecycle.deployments.* / commerce.* — cluster-specific, add to
 #   clusters/<cluster>/kernel/values.yaml if needed.
 # - llmSupport / GPU_ACCELERATION — depend on cluster hardware, not stage.
