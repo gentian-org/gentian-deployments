@@ -3,7 +3,7 @@
 #
 # Exists for values that are the same across all stages of this deployment
 # but too app/catalogue-specific to belong in gentian-os's own chart
-# defaults (which must stay app-agnostic — see gentian-os/docs/deployment.md
+# defaults (which must stay app-agnostic — see gentian-os/docs/guides/deployment.md
 # §1). If a value is truly universal regardless of deployer, it belongs in
 # the chart instead of here; if it's stage-specific, it belongs in
 # profiles/<stage>.yaml instead.

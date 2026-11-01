@@ -5,7 +5,7 @@
 `gentian-deployments` is the GitOps source of truth for cluster-specific Gentian
 configuration and tenant manifests — cluster-first, tenant-centric layout under `clusters/`,
 `profiles/`, `definitions/`, `tenants/`. See [README.md](README.md) for the full layout and
-[gentian-os/docs/deployment.md](https://github.com/gentian-org/gentian-os/blob/main/docs/deployment.md)
+[gentian-os/docs/guides/deployment.md](https://github.com/gentian-org/gentian-os/blob/main/docs/guides/deployment.md)
 for the layered-config model this repo implements.
 
 ## Build & deployment — GitOps only, no direct cluster changes
