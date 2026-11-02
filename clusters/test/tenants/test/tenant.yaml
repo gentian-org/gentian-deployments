@@ -105,8 +105,8 @@ spec:
   - profile: nextcloud-base-ce
     digest: sha256:fa58c027c2b4ae33cfbbfe70659f3351b0e3a1a0af9c1b841da40e27e7679575
     catalogue: gentian
-    movedAt: 2026-11-01T13:56:22Z
-    movedBy: policy:latest
+    movedAt: 2026-11-02T00:17:32Z
+    movedBy: admin@gentian-os.org
     defaultGrant: true
     addons:
     - nextcloud-calendar-ce
