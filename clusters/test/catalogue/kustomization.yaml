@@ -187,6 +187,7 @@ resources:
 - builds/docmost-ce-7f7e23f5d76e.yaml
 - builds/paperless-ngx-ce-2eab539356b4.yaml
 - builds/paperless-ngx-ce-2c558cf7acb8.yaml
+- builds/odoo-base-ce-9a9cb9e9115d.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
