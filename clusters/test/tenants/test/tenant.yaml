@@ -52,10 +52,10 @@ spec:
     movedBy: admin@gentian-os.org
     defaultGrant: true
   - profile: open-webui-ce
-    digest: sha256:57ca652e2834f89f00f7c9dbf1be29f612e897ca999b5b49f88ce369001196f1
+    digest: sha256:3bc69c2d0d1b1fe0de1cb88cfc4d0cea4d883fd023337789e345a517d2e5e807
     catalogue: gentian
-    movedAt: 2026-11-03T09:40:43Z
-    movedBy: admin@gentian-os.org
+    movedAt: 2026-11-03T15:06:33Z
+    movedBy: policy:latest
     defaultGrant: true
   - profile: odoo-base-ce
     digest: sha256:9a9cb9e9115d81aee297f93b611fadbdc1cd1bf25df4cebe6de29b0f09b53e1b
