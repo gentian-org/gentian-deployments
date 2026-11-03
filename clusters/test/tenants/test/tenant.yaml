@@ -103,10 +103,10 @@ spec:
     movedBy: policy:latest
     defaultGrant: true
   - profile: nextcloud-base-ce
-    digest: sha256:fa58c027c2b4ae33cfbbfe70659f3351b0e3a1a0af9c1b841da40e27e7679575
+    digest: sha256:1cd5efcedd29e9c3dfc3f6458dbe1f8f0afe463bdc33740af5b9e33b0ba6570d
     catalogue: gentian
-    movedAt: 2026-11-02T00:17:32Z
-    movedBy: admin@gentian-os.org
+    movedAt: 2026-11-03T15:06:27Z
+    movedBy: policy:latest
     defaultGrant: true
     addons:
     - nextcloud-calendar-ce
