@@ -196,6 +196,7 @@ resources:
 - builds/docmost-ce-7392c369f2a3.yaml
 - builds/nextcloud-base-ce-1cd5efcedd29.yaml
 - builds/open-webui-ce-3bc69c2d0d1b.yaml
+- builds/paperless-ngx-ce-4421243e5549.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
