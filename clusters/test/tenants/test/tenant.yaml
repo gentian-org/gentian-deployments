@@ -58,9 +58,9 @@ spec:
     movedBy: admin@gentian-os.org
     defaultGrant: true
   - profile: odoo-base-ce
-    digest: sha256:5d43d8f1c6e8679a7ec770b3ed327a00cf40b97b7827174ea60cf01e586abde1
+    digest: sha256:9a9cb9e9115d81aee297f93b611fadbdc1cd1bf25df4cebe6de29b0f09b53e1b
     catalogue: gentian
-    movedAt: 2026-11-01T08:49:44Z
+    movedAt: 2026-11-03T13:56:23Z
     movedBy: policy:latest
     defaultGrant: true
     addons:
