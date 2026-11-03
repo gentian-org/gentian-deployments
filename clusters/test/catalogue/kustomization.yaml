@@ -194,6 +194,7 @@ resources:
 - builds/odoo-purchase-ce-920ead0fec52.yaml
 - builds/odoo-sales-ce-2ca9cc9c458f.yaml
 - builds/docmost-ce-7392c369f2a3.yaml
+- builds/nextcloud-base-ce-1cd5efcedd29.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
