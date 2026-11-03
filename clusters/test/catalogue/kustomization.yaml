@@ -192,6 +192,7 @@ resources:
 - builds/odoo-crm-ce-7c8e207bde2d.yaml
 - builds/odoo-employees-ce-370143280776.yaml
 - builds/odoo-purchase-ce-920ead0fec52.yaml
+- builds/odoo-sales-ce-2ca9cc9c458f.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
