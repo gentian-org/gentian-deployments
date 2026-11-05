@@ -208,6 +208,7 @@ resources:
 - builds/erpnext-ce-5afa7e3531d7.yaml
 - builds/nextcloud-base-ce-932f21c58812.yaml
 - builds/odoo-base-ce-0666d6ef4857.yaml
+- builds/paperless-ngx-ce-684d15e8b1a4.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
