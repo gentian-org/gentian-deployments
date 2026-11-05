@@ -37,7 +37,7 @@ spec:
   # Platform trust, because it relays the forwarded token to the director,
   # which forwardToken below requires.
   trustTier: platform
-  version: "0.1.0-main.277ad54"
+  version: "0.1.0-main.b82da35"
   # The cluster has one, in the platform tenant, for the cluster's
   # administrators: it looks after every tenant through the director's
   # cluster routes, so no other tenant gets one of its own.
@@ -50,7 +50,7 @@ spec:
     chart:
       repository: "oci://ghcr.io/aluvian-hq/charts"
       name: "operations-console"
-      version: "0.1.0-main.277ad54"
+      version: "0.1.0-main.b82da35"
     valueMapping:
       # Where the console's chart takes the facts of the cluster it runs in.
       # Every key matches the chart's values.yaml, which are the Admin
@@ -99,6 +99,8 @@ spec:
       api:
         env:
           ENVIRONMENT: production
+          # Aluvian's public price list, for the License tab.
+          PRICE_LIST_URL: https://site-api.aluvian.io/api/v1/prices
   # The evidence store's read API, as a contract the store provides. Both are
   # placed by the platform at platform trust, so the platform grants it once
   # the store is placed; the grant opens the way to that port and nothing
