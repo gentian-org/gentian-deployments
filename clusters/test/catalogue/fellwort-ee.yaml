@@ -92,7 +92,6 @@ spec:
     services:
       database:
         engine: postgresql
-        databasePerTenant: true
     privileges:
       egress:
         - name: usage-reports
