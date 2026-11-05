@@ -207,6 +207,7 @@ resources:
 - builds/docmost-ce-e65fe80544a8.yaml
 - builds/erpnext-ce-5afa7e3531d7.yaml
 - builds/nextcloud-base-ce-932f21c58812.yaml
+- builds/odoo-base-ce-0666d6ef4857.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
