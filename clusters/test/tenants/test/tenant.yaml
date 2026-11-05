@@ -46,10 +46,10 @@ spec:
   - profile: admin-console
     placed: true
   - profile: fellwort-ee
-    digest: sha256:a9bdefde687c571f6a2932c399a4ef4227dae65fd55a4ede0bd9714dfb00d60c
+    digest: sha256:86e47dfc2495a8aab3e5e7dc24202b79b709cae5005bb8958d417c876aea427c
     catalogue: aluvian
-    movedAt: 2026-11-01T15:00:22Z
-    movedBy: admin@gentian-os.org
+    movedAt: 2026-11-05T22:09:44Z
+    movedBy: policy:latest
     defaultGrant: true
   - profile: open-webui-ce
     digest: sha256:3bc69c2d0d1b1fe0de1cb88cfc4d0cea4d883fd023337789e345a517d2e5e807
