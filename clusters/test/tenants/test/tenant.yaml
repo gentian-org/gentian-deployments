@@ -103,9 +103,9 @@ spec:
     movedBy: admin@gentian-os.org
     defaultGrant: true
   - profile: nextcloud-base-ce
-    digest: sha256:29bb76608ac5c98e0735b6ba054b5ce218a839c0d37f9bc82b6cb4636a458eff
+    digest: sha256:932f21c58812f9a24f0dec3f7f3b67152dfbc0d0c10a0b3cd50f0abc7a1b1b8f
     catalogue: gentian
-    movedAt: 2026-11-05T01:37:38Z
+    movedAt: 2026-11-05T15:11:35Z
     movedBy: policy:latest
     defaultGrant: true
     addons:
