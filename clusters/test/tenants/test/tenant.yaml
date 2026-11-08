@@ -120,7 +120,7 @@ spec:
       digest: sha256:b22f1e57ab0c1c03470a71ce193dd59b22e2e3a5e5f108a27153930fcf1c94e6
       catalogue: gentian
     - name: nextcloud-richdocuments-ce
-      digest: sha256:29cb358ad6354ac572c64bd2eff92747e73a41101814098f36d261838d03b6d8
+      digest: sha256:6027c3d6c1d71d919b05e4a0d6809b1b066b8a1a6379bcb0ee00552a7bac2d06
       catalogue: gentian
     addonGrants:
     - name: nextcloud-calendar-ce
