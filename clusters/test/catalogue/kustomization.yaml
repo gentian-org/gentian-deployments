@@ -212,6 +212,7 @@ resources:
 - builds/fellwort-ee-86e47dfc2495.yaml
 - builds/nextcloud-base-ce-f2f52f1cc140.yaml
 - builds/nextcloud-base-ce-8dd8bbce93f6.yaml
+- builds/docmost-ce-00a4453cf8d7.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
