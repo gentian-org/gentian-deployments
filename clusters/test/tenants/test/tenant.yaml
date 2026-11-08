@@ -71,7 +71,7 @@ spec:
     - odoo-purchase-ce
     addonPins:
     - name: odoo-contacts-ce
-      digest: sha256:c5200c75437039a5489cd30c9771d24799e3974055a6923a8293c2fd11933119
+      digest: sha256:d988b0d759bb86cb4a38f6a2f981d9aa9847ff64260cf74f64249e8763f6a853
       catalogue: gentian
     - name: odoo-crm-ce
       digest: sha256:7c8e207bde2dfa38ac5546bd7603886a7a39cfb8a9362669d3a8583f9c2b931b
