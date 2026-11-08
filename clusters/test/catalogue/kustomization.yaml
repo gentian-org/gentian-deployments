@@ -211,6 +211,7 @@ resources:
 - builds/paperless-ngx-ce-684d15e8b1a4.yaml
 - builds/fellwort-ee-86e47dfc2495.yaml
 - builds/nextcloud-base-ce-f2f52f1cc140.yaml
+- builds/nextcloud-base-ce-8dd8bbce93f6.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
