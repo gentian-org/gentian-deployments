@@ -117,7 +117,7 @@ spec:
       digest: sha256:75483158b31105b852ca0f20d7d42fd5e7e2160acd0abbe952d6cd79881a4aab
       catalogue: gentian
     - name: nextcloud-collectives-ce
-      digest: sha256:6300185c0aa31ec574ca3141ec0aa92d711ba4b3497cadbce41e7e0659fcbda6
+      digest: sha256:b22f1e57ab0c1c03470a71ce193dd59b22e2e3a5e5f108a27153930fcf1c94e6
       catalogue: gentian
     - name: nextcloud-richdocuments-ce
       digest: sha256:29cb358ad6354ac572c64bd2eff92747e73a41101814098f36d261838d03b6d8
