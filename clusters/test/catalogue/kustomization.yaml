@@ -215,6 +215,7 @@ resources:
 - builds/docmost-ce-00a4453cf8d7.yaml
 - builds/erpnext-ce-ce2743cfadc1.yaml
 - builds/nextcloud-base-ce-9d7eda16671b.yaml
+- builds/nextcloud-calendar-ce-75483158b311.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
