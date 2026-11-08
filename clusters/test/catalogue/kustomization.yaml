@@ -216,6 +216,7 @@ resources:
 - builds/erpnext-ce-ce2743cfadc1.yaml
 - builds/nextcloud-base-ce-9d7eda16671b.yaml
 - builds/nextcloud-calendar-ce-75483158b311.yaml
+- builds/nextcloud-collectives-ce-b22f1e57ab0c.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
