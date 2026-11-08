@@ -83,7 +83,7 @@ spec:
       digest: sha256:2ca9cc9c458f86e3361857be0eeca6b1eaac68e03cec0a74142a852377ddb0f5
       catalogue: gentian
     - name: odoo-purchase-ce
-      digest: sha256:920ead0fec52bd80e252b0041227d60f09cd6b86648c2a9036afa0ff327cdb53
+      digest: sha256:8919a7f8799628340fcc4cf2902f3421e9db0e86823d471a0dc89525001389c8
       catalogue: gentian
     addonGrants:
     - name: odoo-contacts-ce
