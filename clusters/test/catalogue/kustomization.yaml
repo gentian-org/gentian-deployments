@@ -224,6 +224,7 @@ resources:
 - builds/odoo-employees-ce-0e6291db139b.yaml
 - builds/odoo-purchase-ce-8919a7f87996.yaml
 - builds/odoo-sales-ce-c91c6139f0ed.yaml
+- builds/open-webui-ce-2584b0a0b295.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
