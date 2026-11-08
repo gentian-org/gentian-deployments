@@ -219,6 +219,7 @@ resources:
 - builds/nextcloud-collectives-ce-b22f1e57ab0c.yaml
 - builds/nextcloud-richdocuments-ce-6027c3d6c1d7.yaml
 - builds/odoo-base-ce-8798fabe7012.yaml
+- builds/odoo-contacts-ce-d988b0d759bb.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
