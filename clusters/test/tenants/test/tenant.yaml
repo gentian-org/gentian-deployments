@@ -114,7 +114,7 @@ spec:
     - nextcloud-richdocuments-ce
     addonPins:
     - name: nextcloud-calendar-ce
-      digest: sha256:52967f0d00523e5f6a1ca5feaa77df25076252a86dccf6c36be06fdb3ed4c2a7
+      digest: sha256:75483158b31105b852ca0f20d7d42fd5e7e2160acd0abbe952d6cd79881a4aab
       catalogue: gentian
     - name: nextcloud-collectives-ce
       digest: sha256:6300185c0aa31ec574ca3141ec0aa92d711ba4b3497cadbce41e7e0659fcbda6
