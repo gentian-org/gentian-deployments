@@ -80,7 +80,7 @@ spec:
       digest: sha256:0e6291db139ba6b2c6ea6ff318694d69495ca95ac4409604e2d6060060b16761
       catalogue: gentian
     - name: odoo-sales-ce
-      digest: sha256:2ca9cc9c458f86e3361857be0eeca6b1eaac68e03cec0a74142a852377ddb0f5
+      digest: sha256:c91c6139f0edec4a7ec62820a4a908ae5b551d1e3b3b0a19da2d080ce401a005
       catalogue: gentian
     - name: odoo-purchase-ce
       digest: sha256:8919a7f8799628340fcc4cf2902f3421e9db0e86823d471a0dc89525001389c8
