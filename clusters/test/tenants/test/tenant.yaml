@@ -74,7 +74,7 @@ spec:
       digest: sha256:d988b0d759bb86cb4a38f6a2f981d9aa9847ff64260cf74f64249e8763f6a853
       catalogue: gentian
     - name: odoo-crm-ce
-      digest: sha256:7c8e207bde2dfa38ac5546bd7603886a7a39cfb8a9362669d3a8583f9c2b931b
+      digest: sha256:7565ccfadca3aea6827f5f559c7b24bedf9b67171a128848bf284e998f9376d3
       catalogue: gentian
     - name: odoo-employees-ce
       digest: sha256:370143280776cbc173bfdf6dbd08c4b2863447cfd4598f1f000435df2fa7ce99
