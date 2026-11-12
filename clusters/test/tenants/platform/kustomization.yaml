@@ -5,3 +5,4 @@ resources:
 patches:
 - path: exposures.yaml
 - path: locales.yaml
+- path: grants.yaml

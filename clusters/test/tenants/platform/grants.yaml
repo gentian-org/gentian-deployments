@@ -1,0 +1,19 @@
+# Managed by the director: what each app of this tenant may consume from
+# the others, and which may consume from it, with who granted it and when.
+# Set in the administration console by whoever may grant (can_grant); the
+# operator makes each the AppGrant of its app in the tenant's namespace.
+apiVersion: gentianos.io/v1alpha1
+kind: Tenant
+metadata:
+  name: platform
+spec:
+  grants:
+  - app: operations-console-ee
+    consume:
+    - contract: aluvian-sync
+      granted:
+      - read
+      - write
+    grantedAt: "2026-11-12T17:46:16Z"
+    grantedBy: platform:placement
+    reason: 'pre-approved by the platform: both components are placed by it'
