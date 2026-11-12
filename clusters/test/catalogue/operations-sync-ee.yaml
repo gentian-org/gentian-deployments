@@ -1,0 +1,120 @@
+# The operations sync: keeps a cluster's resource plans, and what each tenant
+# was billed for, in step with the commerce backends and ERPs that bill them
+# (services/operations-sync). Set up in the Operations Console's Plans tab,
+# which relays to it; nobody opens it.
+#
+# A cluster holds one, in the platform tenant. It holds many syncs, each to
+# a consumer of its own kind (the plan-sync contract today), each owned by
+# the cluster. It has no identity at the platform of its own: a sync speaks
+# for the cluster administrator who linked themselves to it, with a token
+# of theirs the realm issues for minutes and for the director only
+# (requires.services.vouching below).
+apiVersion: gentianos.io/v1alpha1
+kind: ComponentProfile
+metadata:
+  name: operations-sync-ee
+  labels:
+    gentianos.io/profile-name: operations-sync-ee
+    gentianos.io/profile-edition: ee
+  annotations:
+    # Placed with the Operations Console, so there is nothing to offer in
+    # the App Store.
+    gentianos.io/store-listed: "false"
+    gentianos.io/requires-usage-statistics: "true"
+spec:
+  classes: [app]
+  # Nobody opens it: its syncs are set up in the Operations Console.
+  launch: none
+  # Platform trust: it obtains a cluster administrator's token while they
+  # are away (vouching), and asks whether a person may configure the
+  # cluster (rights.audit).
+  trustTier: platform
+  version: "0.1.0-main.01cb69c"
+  placement:
+    tenants: platform
+  package:
+    chart:
+      repository: "oci://ghcr.io/aluvian-hq/charts"
+      name: "operations-sync"
+      version: "0.1.0-main.01cb69c"
+    valueMapping:
+      # A placed component's database is a Secret the platform writes
+      # (DATABASE_URL and its parts); the chart is told its name.
+      database:
+        secretNameKey: database.secretName
+      platform:
+        # Who a person is: the issuer and audience of the token the console
+        # relays. The issuer is also what this component's statements name
+        # as their audience.
+        issuerKey: platform.issuer
+        audienceKey: platform.audience
+        # The catalog and a tenant's move are the director's, who is on
+        # what and what was billed are the usher's, and a person links
+        # themselves at the registrar. Naming the keys opens the way there.
+        directorUrlKey: director.url
+        usherUrlKey: usher.url
+        registrarUrlKey: registrar.url
+        clusterKey: cluster
+        tenantKey: tenant
+    extraValues:
+      # The name every object of the release derives from, pinned so the
+      # Service named below is known before the release exists.
+      fullnameOverride: operations-sync
+  requires:
+    # The first platform line whose director takes a vouched token
+    # (vouching.director below).
+    platform: ">=0.5"
+    services:
+      # The syncs, as the people who set them up left them.
+      database:
+        engine: postgresql
+      # can_configure of the cluster: who may see and change a sync.
+      rights:
+        audit: true
+      # A token of the linked administrator, for the director only: reading
+      # the catalog, the tenants' plans and the cluster's report, and, for
+      # a sync in Apply mode, moving a tenant to the plan its backend
+      # ordered. Never forced; the director asks the person's own relations
+      # on every call. The realm reads the keys at the address below.
+      vouching:
+        keys:
+          service: operations-sync-api
+          port: 8000
+          path: /.well-known/jwks.json
+        director: [plans-read, plans-apply]
+    privileges:
+      egress:
+        # A consumer is a backend outside the cluster, wherever its owner
+        # runs it.
+        - name: backends
+          reason: >-
+            Sends the cluster's resource plans and what each tenant was
+            billed for to the backends its syncs name, and asks them which
+            plan each tenant should be on: Aluvian's commerce service, or
+            the operator's own ERP, over https.
+          rule:
+            to:
+              - ipBlock:
+                  cidr: 0.0.0.0/0
+                  except: [10.0.0.0/8, 100.64.0.0/10, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/12, 192.168.0.0/16]
+            ports:
+              - protocol: TCP
+                port: 443
+  secrets:
+    generated:
+      # The seed both of this component's keys are derived from: the one
+      # its statements to the realm are signed with, and the one its
+      # requests to a backend are. A backend registers the second's public
+      # half, which the Sync panel shows.
+      - name: key_seed
+        valuePath: secrets.keySeed
+  # The syncs, for the Operations Console of the same tenant. Both are
+  # placed by the platform at platform trust, so the platform grants the
+  # contract once this is placed.
+  provides:
+    - name: aluvian-sync
+      protocol: http-json
+      endpoint:
+        service: operations-sync-api
+        port: 8000
+        path: /api/v1/syncs

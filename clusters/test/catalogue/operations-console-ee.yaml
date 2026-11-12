@@ -37,7 +37,7 @@ spec:
   # Platform trust, because it relays the forwarded token to the director,
   # which forwardToken below requires.
   trustTier: platform
-  version: "0.1.0-main.b82da35"
+  version: "0.1.0-main.01cb69c"
   # The cluster has one, in the platform tenant, for the cluster's
   # administrators: it looks after every tenant through the director's
   # cluster routes, so no other tenant gets one of its own.
@@ -50,7 +50,7 @@ spec:
     chart:
       repository: "oci://ghcr.io/aluvian-hq/charts"
       name: "operations-console"
-      version: "0.1.0-main.b82da35"
+      version: "0.1.0-main.01cb69c"
     valueMapping:
       # Where the console's chart takes the facts of the cluster it runs in.
       # Every key matches the chart's values.yaml, which are the Admin
@@ -101,6 +101,10 @@ spec:
           ENVIRONMENT: production
           # Aluvian's public price list, for the License tab.
           PRICE_LIST_URL: https://site-api.aluvian.io/api/v1/prices
+          # The operations sync of the same tenant (operations-sync-ee), at
+          # the address its profile fixes; the Plans tab's Sync panel relays
+          # there.
+          SYNC_URL: http://operations-sync-api:8000
   # The evidence store's read API, as a contract the store provides. Both are
   # placed by the platform at platform trust, so the platform grants it once
   # the store is placed; the grant opens the way to that port and nothing
@@ -111,6 +115,11 @@ spec:
     - contract: aluvian-evidence
       provider: evidence-store-ee
       capabilities: [read]
+    # The operations sync's syncs, which the Plans tab sets up and runs.
+    # Its address is fixed by its profile (operations-sync-api, port 8000).
+    - contract: aluvian-sync
+      provider: operations-sync-ee
+      capabilities: [read, write]
   expose:
     # The API. It relays the caller's token to the director, which is why this
     # entry forwards the edge token, and why the profile is platform trust.

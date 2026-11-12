@@ -1,0 +1,307 @@
+# The backup scheduler: the Operations Console's backups that nobody starts.
+#
+# The console's chart with the scheduler switched on and the console off, as
+# a component of its own, so that the console installs whether or not this is
+# approved. It asks the platform for two things, both approved by break-glass
+# on the cluster: its own type, BackupSchedule, and the cluster role
+# tenant-exports, which starts, reads and removes a tenant's exports and reads
+# which tenants there are. Until both are granted the install waits, and the
+# console's schedule screens say so.
+#
+# It is gentian-os's scheduled backups, moved here unchanged: the cluster's
+# schedule and each tenant's own (BackupSchedule, the schedule half of what
+# the BackupPolicy held), taken as the policy's managed schedule took them.
+# An export it starts goes where the tenant's backup policy sends backups,
+# encrypted to the policy's keys (gentian-os encryption mode "policy"), never
+# to an address or a key of its own. Its schedules are declared by people,
+# through the director, and it reads them and writes their status alone.
+apiVersion: gentianos.io/v1alpha1
+kind: ComponentProfile
+metadata:
+  name: backup-scheduler-ee
+  labels:
+    gentianos.io/profile-name: backup-scheduler-ee
+    gentianos.io/profile-edition: ee
+  annotations:
+    # Placed in the platform tenant beside the console; nothing to offer.
+    gentianos.io/store-listed: "false"
+    # Placed where the console is.
+    gentianos.io/requires-usage-statistics: "true"
+spec:
+  classes: [app]
+  # Nobody opens it: the console is where its schedules are seen and set.
+  launch: none
+  trustTier: platform
+  version: "0.1.0-main.01cb69c"
+  placement:
+    tenants: platform
+  package:
+    chart:
+      repository: "oci://ghcr.io/aluvian-hq/charts"
+      name: "operations-console"
+      version: "0.1.0-main.01cb69c"
+    extraValues:
+      fullnameOverride: backup-scheduler
+      api:
+        enabled: false
+      web:
+        enabled: false
+      scheduler:
+        enabled: true
+        serviceAccount: backup-scheduler
+      gateway:
+        enabled: false
+      rbac:
+        create: false
+      networkPolicy:
+        create: false
+  requires:
+    privileges:
+      clusterRoles:
+        - name: tenant-exports
+          serviceAccount: backup-scheduler
+          reason: >-
+            Starts each tenant's scheduled export when it is due and removes
+            those beyond what the schedule keeps; reads which tenants there are
+            for a schedule of the cluster's.
+      apiExtensions:
+        - name: backup-schedules
+          group: backup.aluvian.io
+          serviceAccount: backup-scheduler
+          reason: >-
+            BackupSchedule: when a tenant's backups run and how many are kept,
+            the cluster's and each tenant's own, declared by people through the
+            director and read by the scheduler, which writes their status.
+          definitions:
+            - apiVersion: apiextensions.k8s.io/v1
+              kind: CustomResourceDefinition
+              metadata:
+                name: backupschedules.backup.aluvian.io
+              spec:
+                group: backup.aluvian.io
+                names:
+                  kind: BackupSchedule
+                  listKind: BackupScheduleList
+                  plural: backupschedules
+                  singular: backupschedule
+                scope: Namespaced
+                versions:
+                - additionalPrinterColumns:
+                  - jsonPath: .spec.schedule
+                    name: Schedule
+                    type: string
+                  - jsonPath: .spec.suspendSchedule
+                    name: Suspended
+                    type: boolean
+                  name: v1
+                  schema:
+                    openAPIV3Schema:
+                      description: BackupSchedule is when a tenant's backups run and how many are kept.
+                      properties:
+                        apiVersion:
+                          description: 'APIVersion defines the versioned schema of this representation of an object.
+
+                            Servers should convert recognized schemas to the latest internal value, and
+
+                            may reject unrecognized values.
+
+                            More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+                          type: string
+                        kind:
+                          description: 'Kind is a string value representing the REST resource this object represents.
+
+                            Servers may infer this from the endpoint the client submits requests to.
+
+                            Cannot be updated.
+
+                            In CamelCase.
+
+                            More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+                          type: string
+                        metadata:
+                          type: object
+                        spec:
+                          description: 'BackupScheduleSpec is BackupPolicySpec''s schedule, suspendSchedule,
+
+                            retention and allowTenantOverride, as they were.'
+                          properties:
+                            allowTenantOverride:
+                              description: 'AllowTenantOverride, on the cluster''s, says whether a tenant''s own is
+
+                                honoured. Defaults to true.'
+                              type: boolean
+                            requestedAt:
+                              description: |-
+                                RequestedAt asks for a backup now, outside the schedule: on the
+                                cluster's, of every tenant; on a tenant's own, of that tenant. Each
+                                tenant's is the export its schedule would take -- same name, storage,
+                                keys and retention -- taken once per new value, and not at all once
+                                the value is an hour old.
+                              format: date-time
+                              type: string
+                            retention:
+                              description: 'Retention is how many finished scheduled backups are kept. Unset on a
+
+                                tenant''s own inherits the cluster''s; unset everywhere keeps all.'
+                              properties:
+                                keepDaily:
+                                  description: 'KeepDaily, KeepWeekly, KeepMonthly and KeepYearly each retain the
+                                    most
+
+                                    recent export within that many distinct periods. A bundle kept by any
+
+                                    tier survives; the tiers are a union, not a sequence.'
+                                  format: int32
+                                  minimum: 0
+                                  type: integer
+                                keepLast:
+                                  description: "KeepLast retains this many most recent finished exports regardless\
+                                    \ of\nage. Zero relies entirely on the tiers below; with no tiers either,\nnothing\
+                                    \ is deleted \u2014 a decision rather than a default, and the right one\nonly\
+                                    \ when something else prunes."
+                                  format: int32
+                                  minimum: 0
+                                  type: integer
+                                keepMonthly:
+                                  format: int32
+                                  minimum: 0
+                                  type: integer
+                                keepWeekly:
+                                  format: int32
+                                  minimum: 0
+                                  type: integer
+                                keepYearly:
+                                  format: int32
+                                  minimum: 0
+                                  type: integer
+                              type: object
+                            schedule:
+                              description: 'Schedule is a five-field cron expression, evaluated in UTC. On a
+
+                                tenant''s own, empty inherits the cluster''s.'
+                              maxLength: 100
+                              type: string
+                            suspendSchedule:
+                              description: 'SuspendSchedule stops scheduled backups without forgetting the
+
+                                schedule. Manual exports still run.'
+                              type: boolean
+                          type: object
+                        status:
+                          description: 'BackupScheduleStatus holds the state of every tenant this schedule runs
+
+                            for: on the cluster''s, each tenant without one of its own; on a tenant''s,
+
+                            that tenant.'
+                          properties:
+                            conditions:
+                              items:
+                                description: Condition contains details for one aspect of the current state of this
+                                  API Resource.
+                                properties:
+                                  lastTransitionTime:
+                                    description: 'lastTransitionTime is the last time the condition transitioned from
+                                      one status to another.
+
+                                      This should be when the underlying condition changed.  If that is not known,
+                                      then using the time when the API field changed is acceptable.'
+                                    format: date-time
+                                    type: string
+                                  message:
+                                    description: 'message is a human readable message indicating details about the
+                                      transition.
+
+                                      This may be an empty string.'
+                                    maxLength: 32768
+                                    type: string
+                                  observedGeneration:
+                                    description: 'observedGeneration represents the .metadata.generation that the
+                                      condition was set based upon.
+
+                                      For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration
+                                      is 9, the condition is out of date
+
+                                      with respect to the current state of the instance.'
+                                    format: int64
+                                    minimum: 0
+                                    type: integer
+                                  reason:
+                                    description: 'reason contains a programmatic identifier indicating the reason
+                                      for the condition''s last transition.
+
+                                      Producers of specific condition types may define expected values and meanings
+                                      for this field,
+
+                                      and whether the values are considered a guaranteed API.
+
+                                      The value should be a CamelCase string.
+
+                                      This field may not be empty.'
+                                    maxLength: 1024
+                                    minLength: 1
+                                    pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
+                                    type: string
+                                  status:
+                                    description: status of the condition, one of True, False, Unknown.
+                                    enum:
+                                    - 'True'
+                                    - 'False'
+                                    - Unknown
+                                    type: string
+                                  type:
+                                    description: type of condition in CamelCase or in foo.example.com/CamelCase.
+                                    maxLength: 316
+                                    pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
+                                    type: string
+                                required:
+                                - lastTransitionTime
+                                - message
+                                - reason
+                                - status
+                                - type
+                                type: object
+                              type: array
+                            observedGeneration:
+                              format: int64
+                              type: integer
+                            tenants:
+                              items:
+                                description: 'TenantScheduleStatus is one tenant''s schedule state: what the managed
+
+                                  TenantExportSchedule''s status held for it.'
+                                properties:
+                                  lastExportName:
+                                    type: string
+                                  lastRequestTime:
+                                    description: |-
+                                      LastRequestTime is the newest RequestedAt this tenant's backup was
+                                      taken for, or declined as too old.
+                                    format: date-time
+                                    type: string
+                                  lastScheduleTime:
+                                    format: date-time
+                                    type: string
+                                  lastSuccessfulTime:
+                                    format: date-time
+                                    type: string
+                                  message:
+                                    description: Message is the last thing said about the tenant's schedule.
+                                    type: string
+                                  nextScheduleTime:
+                                    format: date-time
+                                    type: string
+                                  schedule:
+                                    description: Schedule is the cron expression in force for the tenant.
+                                    type: string
+                                  tenant:
+                                    type: string
+                                required:
+                                - tenant
+                                type: object
+                              type: array
+                          type: object
+                      type: object
+                  served: true
+                  storage: true
+                  subresources:
+                    status: {}

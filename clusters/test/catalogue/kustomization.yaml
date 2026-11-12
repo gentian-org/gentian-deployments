@@ -233,6 +233,13 @@ resources:
 - builds/nextcloud-base-ce-0085341afd39.yaml
 - builds/open-webui-ce-2e2d1a2fea55.yaml
 - builds/open-webui-ce-b2caa1885883.yaml
+- builds/operations-console-ee-707c69dd4f9e.yaml
+- backup-scheduler-ee.yaml
+- builds/backup-scheduler-ee-d6b71721a4b9.yaml
+- operations-sync-ee.yaml
+- builds/operations-sync-ee-03c274f034d5.yaml
+- builds/app-store-pe-607a3c9ecba0.yaml
+- builds/aluvian-center-pe-d5da183a4e31.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -265,3 +272,5 @@ patches:
 - path: erpnext-ce.bundle.yaml
 - path: paperless-ngx-ce.bundle.yaml
 - path: odoo-sales-ce.bundle.yaml
+- path: backup-scheduler-ee.bundle.yaml
+- path: operations-sync-ee.bundle.yaml
