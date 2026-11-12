@@ -176,3 +176,12 @@ spec:
     defaults:
       - name: aluvian
         issuer: https://id.aluvian.io/auth/realms/customers
+
+  # The platform release this cluster runs. version: a release tag the
+  # cluster runs exactly, moved by a person (kubectl gentian release set)
+  # or, inside the maintenance window, by autoUpgrade: patch takes the
+  # next patch of the line, minor the next minor too where the release
+  # index says it is applied in place; absent, none. track: a gentian-os
+  # branch the cluster follows build by build (a development cluster).
+  release:
+    track: develop
