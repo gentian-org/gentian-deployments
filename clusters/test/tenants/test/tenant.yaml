@@ -52,9 +52,9 @@ spec:
     movedBy: policy:latest
     defaultGrant: true
   - profile: open-webui-ce
-    digest: sha256:2e2d1a2fea55d5678f24d2af3c3c22cc0f2389109e69625dc9a24a4421427f54
+    digest: sha256:b2caa1885883baf21c571a9443d9eb91fa4d442a89255e911fdf858c4d5faa37
     catalogue: gentian
-    movedAt: 2026-11-12T06:23:07Z
+    movedAt: 2026-11-12T13:18:08Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: odoo-base-ce
