@@ -1,0 +1,20 @@
+# Managed by the director: one of this cluster's resource plans, set by
+# whoever the commit names. A change of its quotas changes the copies the
+# tenants on it hold, in the same commit.
+apiVersion: gentianos.io/v1alpha1
+kind: ResourcePlan
+metadata:
+  name: base
+spec:
+  displayName: "Base · 1 node"
+  description: "One node — a workspace running Nextcloud, Odoo and the App Store together."
+  tier: 0
+  units: 1
+  productSku: "gentian-resources-nodes-1"
+  default: true
+  quotas:
+    requestsCpu: "4"
+    requestsMemory: "16Gi"
+    cpu: "16"
+    memory: "32Gi"
+    storage: "50Gi"

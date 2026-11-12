@@ -1,0 +1,19 @@
+# Managed by the director: one of this cluster's resource plans, set by
+# whoever the commit names. A change of its quotas changes the copies the
+# tenants on it hold, in the same commit.
+apiVersion: gentianos.io/v1alpha1
+kind: ResourcePlan
+metadata:
+  name: nodes-16
+spec:
+  displayName: "16 nodes"
+  description: "The largest catalogue plan. Beyond this, arrange a ceiling with the platform operator."
+  tier: 40
+  units: 16
+  productSku: "gentian-resources-nodes-16"
+  quotas:
+    requestsCpu: "64"
+    requestsMemory: "256Gi"
+    cpu: "256"
+    memory: "512Gi"
+    storage: "800Gi"
