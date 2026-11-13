@@ -26,3 +26,6 @@ spec:
   - profile: nextcloud-base-ce
     policy: gentian-require-seccomp
     scope: collabora
+  allowedClusterRoles:
+  - profile: backup-scheduler-ee
+    role: tenant-exports
