@@ -5,3 +5,4 @@ resources:
 patches:
 - path: grants.yaml
 - path: locales.yaml
+- path: privileges.yaml
