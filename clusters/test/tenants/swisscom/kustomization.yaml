@@ -4,3 +4,4 @@ resources:
 - tenant.yaml
 patches:
 - path: grants.yaml
+- path: locales.yaml
