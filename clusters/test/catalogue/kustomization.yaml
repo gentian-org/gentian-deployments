@@ -253,6 +253,7 @@ resources:
 - builds/nextcloud-contacts-ce-dbd3718fd197.yaml
 - builds/nextcloud-deck-ce-d69cf9c6bfee.yaml
 - builds/nextcloud-forms-ce-7a0f115a6d29.yaml
+- builds/nextcloud-mail-ce-31587e8ddafe.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
