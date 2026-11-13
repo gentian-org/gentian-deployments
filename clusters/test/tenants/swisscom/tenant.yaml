@@ -61,3 +61,6 @@ spec:
     legalName: Swisscom AG
     timeZone: Europe/Zurich
     website: https://www.swisscom.ch
+  storeTerms:
+    version: "2026-10"
+    acceptedAt: "2026-11-13T10:52:38Z"
