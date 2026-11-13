@@ -1,0 +1,70 @@
+# The MCP gateway: where a program a person connected (an AI assistant, a
+# coding agent) reaches that person's apps. The person signs in at the
+# tenant's realm and agrees; the program then holds a token of theirs made
+# out to this entry and speaks MCP to it (services/mcp-gateway,
+# docs/agents.md).
+#
+# The gateway decides nothing and holds no credential. The edge verifies the
+# token; the gateway hands the request to the chaperone, which verifies it
+# again, asks the person's rights, calls the app's adapter and journals the
+# call.
+#
+# It comes with Fellwort and is not offered on its own. The chart and image
+# are private packages of ghcr.io/aluvian-hq, pulled through
+# registry.aluvian.io.
+apiVersion: gentianos.io/v1alpha1
+kind: ComponentProfile
+metadata:
+  name: mcp-gateway-ee
+  labels:
+    gentianos.io/profile-name: mcp-gateway-ee
+    gentianos.io/profile-edition: ee
+  annotations:
+    gentianos.io/store-listed: "false"
+spec:
+  classes: [app]
+  # Nobody opens it in a browser: programs call it.
+  launch: none
+  trustTier: platform
+  version: "0.1.0-main.95f4fe1"
+  package:
+    chart:
+      repository: "oci://registry.aluvian.io/aluvian-hq/charts"
+      name: mcp-gateway
+      version: "0.1.0-main.95f4fe1"
+    valueMapping:
+      integrations:
+        # The chaperone's address, once the tenant's administrator has
+        # granted the gateway the contract. Until then no call is carried.
+        tool-calls:
+          endpointKey: chaperoneUrl
+    extraValues:
+      fullnameOverride: mcp-gateway
+      image:
+        repository: registry.aluvian.io/aluvian-hq/mcp-gateway
+  requires:
+    platform: ">=0.5"
+  integrations:
+    - contract: tool-calls
+      provider: chaperone-ee
+  expose:
+    # A token entry: no session, a host of its own. The realm makes a
+    # person's token out to it for a program that was sent back to one of
+    # the addresses below, and only the chaperone can exchange that token
+    # for one valid at an app. The tenant's perimeter approver approves the
+    # entry with these addresses.
+    - name: mcp
+      surface: gateway
+      authMode: bearer
+      subDomain: mcp
+      paths: ["/mcp"]
+      backend:
+        service: mcp-gateway
+        port: 8765
+      clientRedirectURIs:
+        # A program on the person's own computer, on any port.
+        - http://localhost/callback
+        - http://127.0.0.1/callback
+        # Claude, as a connector.
+        - https://claude.ai/api/mcp/auth_callback
+      exchangedBy: [chaperone-ee]
