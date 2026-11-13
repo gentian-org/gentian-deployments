@@ -154,6 +154,13 @@ spec:
 
   platformAccess:
     roleHolders:
+      - role: breakGlass
+        scope: cluster
+        tenant: platform
+        subject: a9beb3d3-a909-46da-9841-6eb210a7ca01
+        username: "admin@gentian-os.org"
+        reason: Needed for backup privileges
+        expiresAt: "2026-11-13T10:30:00.000Z"
       - role: perimeterApprover
         scope: cluster
         tenant: platform
