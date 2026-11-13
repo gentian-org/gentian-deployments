@@ -37,6 +37,9 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: flowable-ce
+    digest: sha256:4e4e053272015e46c3f15bd1a80f746d16ab1905c618135dcdf80196eb655525
+    catalogue: gentian
   - profile: desktop
     placed: true
   - profile: app-store-pe
