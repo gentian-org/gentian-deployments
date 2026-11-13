@@ -266,6 +266,7 @@ resources:
 - builds/odoo-inventory-ce-b991224a46ee.yaml
 - builds/odoo-invoicing-ce-1794e3fbab64.yaml
 - builds/odoo-mrp-ce-8fa996ea9442.yaml
+- builds/odoo-pos-ce-4650b63f5ee6.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
