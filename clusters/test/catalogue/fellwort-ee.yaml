@@ -55,6 +55,11 @@ spec:
           endpointKey: flowable.url
           userKey: flowable.user
           passwordKey: flowable.password
+        # Where Fellwort asks the notary for a run and its passes, and the
+        # credential that proves it is the engine the contract was granted to.
+        mandates:
+          endpointKey: notary.url
+          passwordKey: notary.key
     extraValues:
       # The Services the entries below route to: fellwort-api, -web, -share.
       fullnameOverride: fellwort
@@ -131,6 +136,9 @@ spec:
   integrations:
     - contract: process-engine
       provider: flowable-ce
+    # A run's permission and its passes are the notary's to give.
+    - contract: mandates
+      provider: notary-ee
   # Installed together with Fellwort where the tenant does not have them,
   # and removed with it: the process engine, and what a program or an agent
   # reaches the tenant's apps through -- the chaperone every tool call
