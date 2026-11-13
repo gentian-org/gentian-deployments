@@ -46,6 +46,7 @@ spec:
     - nextcloud-calendar-ce
     - nextcloud-collectives-ce
     - nextcloud-contacts-ce
+    - nextcloud-deck-ce
     addonPins:
     - name: nextcloud-calendar-ce
       digest: sha256:75483158b31105b852ca0f20d7d42fd5e7e2160acd0abbe952d6cd79881a4aab
@@ -56,12 +57,17 @@ spec:
     - name: nextcloud-contacts-ce
       digest: sha256:dbd3718fd197140d9984675851d3344d002383e578ea7706ae86d9aaad22173a
       catalogue: gentian
+    - name: nextcloud-deck-ce
+      digest: sha256:d69cf9c6bfeec2c60a44dea08cbb2b9de6ba75056ca5d0df01e06e9112048e30
+      catalogue: gentian
     addonGrants:
     - name: nextcloud-calendar-ce
       defaultGrant: true
     - name: nextcloud-collectives-ce
       defaultGrant: true
     - name: nextcloud-contacts-ce
+      defaultGrant: true
+    - name: nextcloud-deck-ce
       defaultGrant: true
   - profile: odoo-base-ce
     digest: sha256:159201162b14678daf42b5dc9b2716bd02fe2c3ce3ffa9f0a7140826e31a8923
