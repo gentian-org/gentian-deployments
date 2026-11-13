@@ -42,6 +42,15 @@ spec:
     digest: sha256:0085341afd39924d90f9ce3fed77f37ee6f17a0d9f67695790f4ae4b5f9d6130
     catalogue: gentian
     defaultGrant: true
+    addons:
+    - nextcloud-calendar-ce
+    addonPins:
+    - name: nextcloud-calendar-ce
+      digest: sha256:75483158b31105b852ca0f20d7d42fd5e7e2160acd0abbe952d6cd79881a4aab
+      catalogue: gentian
+    addonGrants:
+    - name: nextcloud-calendar-ce
+      defaultGrant: true
   - profile: odoo-base-ce
     digest: sha256:159201162b14678daf42b5dc9b2716bd02fe2c3ce3ffa9f0a7140826e31a8923
     catalogue: gentian
