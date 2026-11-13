@@ -1,0 +1,87 @@
+# The chaperone: every tool call a program or an agent makes to an app of the
+# tenant passes it. It verifies who asks (a present person's token from the
+# tenant's realm, or a pass the notary signed), asks the platform whether that
+# person may use the app, obtains the person's token for that app from the
+# realm, calls the app's adapter and journals the call
+# (services/chaperone, docs/agents.md).
+#
+# It holds no credential of any app. As a component that speaks for people it
+# is one of the few the tenant's adapters admit, and the realm exchanges a
+# person's token only through the client the platform made for it.
+#
+# It comes with Fellwort and is not offered on its own. The chart and image
+# are private packages of ghcr.io/aluvian-hq, pulled through
+# registry.aluvian.io.
+apiVersion: gentianos.io/v1alpha1
+kind: ComponentProfile
+metadata:
+  name: chaperone-ee
+  labels:
+    gentianos.io/profile-name: chaperone-ee
+    gentianos.io/profile-edition: ee
+  annotations:
+    gentianos.io/store-listed: "false"
+spec:
+  classes: [app]
+  # Nobody opens it: programs call it.
+  launch: none
+  # The rights check and the token exchange are given at this tier only.
+  trustTier: platform
+  version: "0.1.0-main.95f4fe1"
+  package:
+    chart:
+      repository: "oci://registry.aluvian.io/aluvian-hq/charts"
+      name: chaperone
+      version: "0.1.0-main.95f4fe1"
+    valueMapping:
+      database:
+        hostKey: database.host
+        portKey: database.port
+        nameKey: database.name
+        userKey: database.user
+        passwordKey: database.password
+      platform:
+        issuerKey: auth.issuer
+        tenantKey: tenant
+      integrations:
+        # Where the notary publishes the key passes are verified against,
+        # once the tenant's administrator has granted the contract. Until
+        # then an engine's calls answer 503 and a present person's pass.
+        passes:
+          endpointKey: notaryUrl
+    extraValues:
+      # The Service the MCP gateway and the engines reach it at.
+      fullnameOverride: chaperone
+      image:
+        repository: registry.aluvian.io/aluvian-hq/chaperone
+      # The Secrets the platform writes for this component.
+      rightsCheck:
+        secretName: rights-check-chaperone-ee
+      vouching:
+        secretName: vouching-chaperone-ee
+      # The adapters there are: Odoo's, at its Service in the same namespace.
+      adapters: '{"odoo": {"url": "http://odoo-adapter:8765/mcp", "app": "odoo-base-ce"}}'
+  requires:
+    platform: ">=0.5"
+    services:
+      # The journal.
+      database:
+        engine: postgresql
+      # May this person use this app: asked on every call.
+      rights: {}
+      # A present person's token is exchanged for one valid at a single app.
+      # The chaperone signs nothing itself, so it publishes no keys.
+      vouching:
+        exchange: true
+  # What the MCP gateway and the engines call: one tool call, carried and
+  # journalled. A caller reaches it once the tenant's administrator has
+  # granted it the contract.
+  provides:
+    - name: tool-calls
+      protocol: http-json
+      endpoint:
+        service: chaperone
+        port: 8000
+  integrations:
+    - contract: passes
+      provider: notary-ee

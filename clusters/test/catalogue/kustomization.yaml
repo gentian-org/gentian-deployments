@@ -257,6 +257,8 @@ resources:
 - builds/nextcloud-spreed-ce-a760c91c7c1b.yaml
 - builds/nextcloud-tasks-ce-30ca3479c798.yaml
 - builds/fellwort-ee-d74fae32fefa.yaml
+- chaperone-ee.yaml
+- builds/chaperone-ee-bd47a57fc1ad.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -292,3 +294,4 @@ patches:
 - path: backup-scheduler-ee.bundle.yaml
 - path: operations-sync-ee.bundle.yaml
 - path: flowable-ce.bundle.yaml
+- path: chaperone-ee.bundle.yaml
