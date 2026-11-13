@@ -240,6 +240,7 @@ resources:
 - builds/operations-sync-ee-03c274f034d5.yaml
 - builds/app-store-pe-607a3c9ecba0.yaml
 - builds/aluvian-center-pe-d5da183a4e31.yaml
+- builds/odoo-base-ce-cc55ff6620b4.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
