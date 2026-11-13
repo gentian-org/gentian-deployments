@@ -27,12 +27,12 @@ spec:
   trustTier: certified
   # The chart version Fellwort's CI published, pinned: provider-helm never
   # upgrades a release whose chart version string did not change.
-  version: "0.1.0-develop.4efd56c"
+  version: "0.1.0-develop.4092655"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: fellwort
-      version: "0.1.0-develop.4efd56c"
+      version: "0.1.0-develop.4092655"
     valueMapping:
       database:
         hostKey: database.host
@@ -47,6 +47,14 @@ spec:
         tenantKey: tenant
         # The editor's host. The share host is derived from it (share.subDomain).
         hostKey: appHost
+      integrations:
+        # The process engine's address and the account Fellwort calls it
+        # with. The address is empty until the tenant's administrator grants
+        # the contract, and Fellwort then says that no engine is configured.
+        process-engine:
+          endpointKey: flowable.url
+          userKey: flowable.user
+          passwordKey: flowable.password
     extraValues:
       # The Services the entries below route to: fellwort-api, -web, -share.
       fullnameOverride: fellwort
@@ -67,6 +75,10 @@ spec:
       share:
         enabled: true
         subDomain: fellwort-share
+      # The Secret the platform hands a component that declares
+      # requires.services.runs: the dispatcher's address and this app's key.
+      runs:
+        secret: runs-fellwort-ee
       runner:
         enabled: false
         image:
@@ -80,7 +92,7 @@ spec:
         kind: group
         name: admin
       syncJob:
-        image: registry.aluvian.io/aluvian-hq/fellwort-api:4efd56c
+        image: registry.aluvian.io/aluvian-hq/fellwort-api:4092655
         serviceAccountName: fellwort
         envFrom:
           - fellwort-app-admins
@@ -92,6 +104,14 @@ spec:
     services:
       database:
         engine: postgresql
+      # Actions: a step that names one is run by the platform's dispatcher,
+      # as a pod that fetches its inputs from the API and delivers its
+      # outputs there, with a credential made for that run.
+      runs:
+        callback:
+          service: fellwort-api
+          port: 8000
+          path: /api/v1/action-callback
     privileges:
       egress:
         - name: usage-reports
@@ -106,6 +126,11 @@ spec:
             ports:
               - protocol: TCP
                 port: 443
+  # Processes and cases run in the tenant's process engine, where one is
+  # installed and the tenant's administrator grants Fellwort its contract.
+  integrations:
+    - contract: process-engine
+      provider: flowable-ce
   secrets:
     supplied:
       # Set by the App Store app from the purchase's confirmation; a person
