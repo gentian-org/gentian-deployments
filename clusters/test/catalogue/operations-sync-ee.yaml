@@ -29,14 +29,14 @@ spec:
   # are away (vouching), and asks whether a person may configure the
   # cluster (rights.audit).
   trustTier: platform
-  version: "0.1.0-main.01cb69c"
+  version: "0.1.0-main.b15c046"
   placement:
     tenants: platform
   package:
     chart:
       repository: "oci://ghcr.io/aluvian-hq/charts"
       name: "operations-sync"
-      version: "0.1.0-main.01cb69c"
+      version: "0.1.0-main.b15c046"
     valueMapping:
       # A placed component's database is a Secret the platform writes
       # (DATABASE_URL and its parts); the chart is told its name.

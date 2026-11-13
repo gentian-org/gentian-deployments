@@ -244,6 +244,11 @@ resources:
 - flowable-ce.yaml
 - builds/flowable-ce-4e4e05327201.yaml
 - builds/odoo-base-ce-159201162b14.yaml
+- builds/operations-console-ee-01e2ea8b27dc.yaml
+- builds/backup-scheduler-ee-427bb37b0492.yaml
+- builds/operations-sync-ee-12ee12e75f5b.yaml
+- builds/app-store-pe-290a72c86a61.yaml
+- builds/aluvian-center-pe-d2004cc59dca.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
