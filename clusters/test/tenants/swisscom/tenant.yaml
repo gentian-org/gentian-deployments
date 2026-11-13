@@ -38,6 +38,10 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: open-webui-ce
+    digest: sha256:b2caa1885883baf21c571a9443d9eb91fa4d442a89255e911fdf858c4d5faa37
+    catalogue: gentian
+    defaultGrant: true
   - profile: desktop
     placed: true
   - profile: app-store-pe
