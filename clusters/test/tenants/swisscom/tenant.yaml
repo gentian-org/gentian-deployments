@@ -51,6 +51,7 @@ spec:
     - nextcloud-mail-ce
     - nextcloud-richdocuments-ce
     - nextcloud-spreed-ce
+    - nextcloud-tasks-ce
     addonPins:
     - name: nextcloud-calendar-ce
       digest: sha256:75483158b31105b852ca0f20d7d42fd5e7e2160acd0abbe952d6cd79881a4aab
@@ -76,6 +77,9 @@ spec:
     - name: nextcloud-spreed-ce
       digest: sha256:a760c91c7c1b86aaf2da43568827f5d178d6c6ae8a859dfb7372f9fb9c05d03e
       catalogue: gentian
+    - name: nextcloud-tasks-ce
+      digest: sha256:30ca3479c79825c93079c04511d047e9f26a2de3b158944ae3f786a33de15616
+      catalogue: gentian
     addonGrants:
     - name: nextcloud-calendar-ce
       defaultGrant: true
@@ -92,6 +96,8 @@ spec:
     - name: nextcloud-richdocuments-ce
       defaultGrant: true
     - name: nextcloud-spreed-ce
+      defaultGrant: true
+    - name: nextcloud-tasks-ce
       defaultGrant: true
   - profile: odoo-base-ce
     digest: sha256:159201162b14678daf42b5dc9b2716bd02fe2c3ce3ffa9f0a7140826e31a8923
