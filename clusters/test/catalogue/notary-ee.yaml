@@ -3,9 +3,10 @@
 # signs a short pass for a run, which the chaperone verifies on every tool
 # call (services/notary, docs/agents.md).
 #
-# It holds one key, the one passes are signed with, and one database. It
-# reaches no app and no adapter, and adds no right to anybody: what a person
-# may do is the platform's answer.
+# It holds one key, the one passes are signed with, one database and one
+# rights store: who may use which action, as the tenant's app administrators
+# say. It reaches no app and no adapter. What a person may do with an app is
+# the platform's answer.
 #
 # It comes with Fellwort and is not offered on its own. The chart and image
 # are private packages of ghcr.io/aluvian-hq, pulled through
@@ -25,12 +26,12 @@ spec:
   launch: none
   # The rights check is given at this tier only.
   trustTier: platform
-  version: "0.1.0-main.009270b"
+  version: "0.1.0-main.b4f3f58"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: notary
-      version: "0.1.0-main.009270b"
+      version: "0.1.0-main.b4f3f58"
     valueMapping:
       database:
         hostKey: database.host
@@ -41,6 +42,11 @@ spec:
       platform:
         issuerKey: auth.issuer
         tenantKey: tenant
+      integrations:
+        # The credential of the notary's own contract: whoever presents it
+        # is the engine the contract was granted to.
+        mandates:
+          passwordKey: engine.key
     extraValues:
       # The Service the chaperone and the engines reach it at.
       fullnameOverride: notary
@@ -49,6 +55,11 @@ spec:
       # The Secret the platform writes for this component.
       rightsCheck:
         secretName: rights-check-notary-ee
+      authorization:
+        secretName: authorization-notary-ee
+      # The engine the contract mandates is for.
+      engine:
+        name: fellwort-ee
   requires:
     platform: ">=0.5"
     services:
@@ -57,10 +68,35 @@ spec:
         engine: postgresql
       # May this person use this app: asked at every grant and run start.
       rights: {}
+      # Who may use which action. An action has holders, people or the
+      # members of a group of the realm, and nobody else can use it. The
+      # realm's groups are kept in the store by the platform; the app
+      # administrators' group says who gives and takes.
+      authorization:
+        model: |
+          model
+            schema 1.1
+          type user
+          type group
+            relations
+              define member: [user]
+          type action
+            relations
+              define holder: [user, group#member]
+              define can_use: holder
+        groups: mirror
   # Where the chaperone fetches the key passes are verified against, once
   # the tenant's administrator has granted it the contract.
   provides:
     - name: passes
+      protocol: http-json
+      endpoint:
+        service: notary
+        port: 8000
+    # What an engine asks: a run for a person, and passes for it. An engine
+    # reaches it once the tenant's administrator has granted it the
+    # contract.
+    - name: mandates
       protocol: http-json
       endpoint:
         service: notary
