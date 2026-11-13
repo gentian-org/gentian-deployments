@@ -131,6 +131,17 @@ spec:
   integrations:
     - contract: process-engine
       provider: flowable-ce
+  # Installed together with Fellwort where the tenant does not have them,
+  # and removed with it: the process engine, and what a program or an agent
+  # reaches the tenant's apps through -- the chaperone every tool call
+  # passes, the notary that signs a run's pass, and the MCP gateway a
+  # person's own program connects to. Each stays an app of its own, with its
+  # own approvals and its own data.
+  comesWith:
+    - flowable-ce
+    - chaperone-ee
+    - notary-ee
+    - mcp-gateway-ee
   secrets:
     supplied:
       # Set by the App Store app from the purchase's confirmation; a person
