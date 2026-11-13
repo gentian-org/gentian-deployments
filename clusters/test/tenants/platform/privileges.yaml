@@ -13,6 +13,12 @@ metadata:
 spec:
   privileges:
     - install: backup-scheduler-ee
+      privilege: apiExtensions/backup-schedules
+      approver: a9beb3d3-a909-46da-9841-6eb210a7ca01
+      approvedAt: 2026-11-13T09:53:58Z
+      reason: "it is needed"
+      digest: sha256:40de2025cf580baa651f25c095c2407e9400abd14d90f5bcae8981cceb6a95fd
+    - install: backup-scheduler-ee
       privilege: clusterRoles/tenant-exports
       approver: a9beb3d3-a909-46da-9841-6eb210a7ca01
       approvedAt: 2026-11-13T09:52:35Z
