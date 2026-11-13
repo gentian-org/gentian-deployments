@@ -105,12 +105,18 @@ spec:
     defaultGrant: true
     addons:
     - odoo-contacts-ce
+    - odoo-crm-ce
     addonPins:
     - name: odoo-contacts-ce
       digest: sha256:d988b0d759bb86cb4a38f6a2f981d9aa9847ff64260cf74f64249e8763f6a853
       catalogue: gentian
+    - name: odoo-crm-ce
+      digest: sha256:7565ccfadca3aea6827f5f559c7b24bedf9b67171a128848bf284e998f9376d3
+      catalogue: gentian
     addonGrants:
     - name: odoo-contacts-ce
+      defaultGrant: true
+    - name: odoo-crm-ce
       defaultGrant: true
   - profile: docmost-ce
     digest: sha256:00a4453cf8d7ef6978d6c4028949c9bf909844c872842ad24182e18d5c20eaef
