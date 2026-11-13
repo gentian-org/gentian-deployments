@@ -12,6 +12,11 @@ metadata:
   name: platform
 spec:
   privileges:
+    - install: backup-scheduler-ee
+      privilege: clusterRoles/tenant-exports
+      approver: a9beb3d3-a909-46da-9841-6eb210a7ca01
+      approvedAt: 2026-11-13T09:52:35Z
+      reason: "it is needed"
     - install: operations-sync-ee
       privilege: egress/backends
       approver: a9beb3d3-a909-46da-9841-6eb210a7ca01
