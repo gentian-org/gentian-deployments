@@ -1,0 +1,74 @@
+# The notary: keeps what a person has allowed an agent engine (a mandate),
+# derives the permission for each execution of a graph from it (a run) and
+# signs a short pass for a run, which the chaperone verifies on every tool
+# call (services/notary, docs/agents.md).
+#
+# It holds one key, the one passes are signed with, and one database. It
+# reaches no app and no adapter, and adds no right to anybody: what a person
+# may do is the platform's answer.
+#
+# It comes with Fellwort and is not offered on its own. The chart and image
+# are private packages of ghcr.io/aluvian-hq, pulled through
+# registry.aluvian.io.
+apiVersion: gentianos.io/v1alpha1
+kind: ComponentProfile
+metadata:
+  name: notary-ee
+  labels:
+    gentianos.io/profile-name: notary-ee
+    gentianos.io/profile-edition: ee
+  annotations:
+    gentianos.io/store-listed: "false"
+spec:
+  classes: [app]
+  # Nobody opens it: engines and the chaperone call it.
+  launch: none
+  # The rights check is given at this tier only.
+  trustTier: platform
+  version: "0.1.0-main.95f4fe1"
+  package:
+    chart:
+      repository: "oci://registry.aluvian.io/aluvian-hq/charts"
+      name: notary
+      version: "0.1.0-main.95f4fe1"
+    valueMapping:
+      database:
+        hostKey: database.host
+        portKey: database.port
+        nameKey: database.name
+        userKey: database.user
+        passwordKey: database.password
+      platform:
+        issuerKey: auth.issuer
+        tenantKey: tenant
+    extraValues:
+      # The Service the chaperone and the engines reach it at.
+      fullnameOverride: notary
+      image:
+        repository: registry.aluvian.io/aluvian-hq/notary
+      # The Secret the platform writes for this component.
+      rightsCheck:
+        secretName: rights-check-notary-ee
+  requires:
+    platform: ">=0.5"
+    services:
+      # Mandates and runs.
+      database:
+        engine: postgresql
+      # May this person use this app: asked at every grant and run start.
+      rights: {}
+  # Where the chaperone fetches the key passes are verified against, once
+  # the tenant's administrator has granted it the contract.
+  provides:
+    - name: passes
+      protocol: http-json
+      endpoint:
+        service: notary
+        port: 8000
+  secrets:
+    generated:
+      # The key passes are signed with. The platform makes it once for the
+      # install and keeps it across upgrades; a purge destroys it.
+      - name: pass_signing_key
+        format: ec-p256
+        valuePath: signingKey.pem

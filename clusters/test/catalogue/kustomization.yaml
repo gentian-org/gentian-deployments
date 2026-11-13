@@ -259,6 +259,8 @@ resources:
 - builds/fellwort-ee-d74fae32fefa.yaml
 - chaperone-ee.yaml
 - builds/chaperone-ee-bd47a57fc1ad.yaml
+- notary-ee.yaml
+- builds/notary-ee-015f24e3053f.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -295,3 +297,4 @@ patches:
 - path: operations-sync-ee.bundle.yaml
 - path: flowable-ce.bundle.yaml
 - path: chaperone-ee.bundle.yaml
+- path: notary-ee.bundle.yaml
