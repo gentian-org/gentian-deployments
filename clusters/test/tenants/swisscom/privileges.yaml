@@ -17,3 +17,8 @@ spec:
       approver: a9beb3d3-a909-46da-9841-6eb210a7ca01
       approvedAt: 2026-11-13T12:49:32Z
       reason: "needed for demo"
+    - install: nextcloud-base-ce
+      privilege: podSecurity/gentian-require-seccomp-collabora
+      approver: a9beb3d3-a909-46da-9841-6eb210a7ca01
+      approvedAt: 2026-11-13T12:49:37Z
+      reason: "needed for demo"
