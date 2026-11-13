@@ -48,12 +48,6 @@ spec:
     placed: true
   - profile: admin-console
     placed: true
-  - profile: fellwort-ee
-    digest: sha256:d74fae32fefaac5d4cc68cd1c90a3f8039727298a07970d1ee1f9daea0d92573
-    catalogue: aluvian
-    movedAt: 2026-11-13T12:41:22Z
-    movedBy: policy:latest
-    defaultGrant: true
   - profile: open-webui-ce
     digest: sha256:b2caa1885883baf21c571a9443d9eb91fa4d442a89255e911fdf858c4d5faa37
     catalogue: gentian
