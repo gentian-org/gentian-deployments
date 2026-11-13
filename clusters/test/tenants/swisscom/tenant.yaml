@@ -103,6 +103,7 @@ spec:
     - odoo-inventory-ce
     - odoo-invoicing-ce
     - odoo-mrp-ce
+    - odoo-pos-ce
     addonPins:
     - name: odoo-contacts-ce
       digest: sha256:d988b0d759bb86cb4a38f6a2f981d9aa9847ff64260cf74f64249e8763f6a853
@@ -119,6 +120,9 @@ spec:
     - name: odoo-mrp-ce
       digest: sha256:8fa996ea9442a34c544d8df244098133d525377e6eb4a0d42f68a80e2843d02d
       catalogue: gentian
+    - name: odoo-pos-ce
+      digest: sha256:4650b63f5ee649bc241e288978bcfa21f0569f2e44137413bc531b322ec2d21f
+      catalogue: gentian
     addonGrants:
     - name: odoo-contacts-ce
       defaultGrant: true
@@ -129,6 +133,8 @@ spec:
     - name: odoo-invoicing-ce
       defaultGrant: true
     - name: odoo-mrp-ce
+      defaultGrant: true
+    - name: odoo-pos-ce
       defaultGrant: true
   - profile: docmost-ce
     digest: sha256:00a4453cf8d7ef6978d6c4028949c9bf909844c872842ad24182e18d5c20eaef
