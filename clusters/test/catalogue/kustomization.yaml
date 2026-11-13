@@ -243,6 +243,7 @@ resources:
 - builds/odoo-base-ce-cc55ff6620b4.yaml
 - flowable-ce.yaml
 - builds/flowable-ce-4e4e05327201.yaml
+- builds/odoo-base-ce-159201162b14.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
