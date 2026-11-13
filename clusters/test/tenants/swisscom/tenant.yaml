@@ -50,7 +50,6 @@ spec:
     - nextcloud-forms-ce
     - nextcloud-mail-ce
     - nextcloud-richdocuments-ce
-    - nextcloud-spreed-ce
     - nextcloud-tasks-ce
     addonPins:
     - name: nextcloud-calendar-ce
@@ -74,9 +73,6 @@ spec:
     - name: nextcloud-richdocuments-ce
       digest: sha256:6027c3d6c1d71d919b05e4a0d6809b1b066b8a1a6379bcb0ee00552a7bac2d06
       catalogue: gentian
-    - name: nextcloud-spreed-ce
-      digest: sha256:a760c91c7c1b86aaf2da43568827f5d178d6c6ae8a859dfb7372f9fb9c05d03e
-      catalogue: gentian
     - name: nextcloud-tasks-ce
       digest: sha256:30ca3479c79825c93079c04511d047e9f26a2de3b158944ae3f786a33de15616
       catalogue: gentian
@@ -94,8 +90,6 @@ spec:
     - name: nextcloud-mail-ce
       defaultGrant: true
     - name: nextcloud-richdocuments-ce
-      defaultGrant: true
-    - name: nextcloud-spreed-ce
       defaultGrant: true
     - name: nextcloud-tasks-ce
       defaultGrant: true
