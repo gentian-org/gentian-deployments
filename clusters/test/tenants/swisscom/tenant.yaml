@@ -10,7 +10,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "2"
 spec:
-  displayName: Swisscom
+  displayName: "Swisscom"
   # The administrator account has no password until its holder sets one,
   # through a single-use link the director issues (activate-admin).
   admin:
@@ -51,3 +51,13 @@ spec:
   - profile: admin-console
     placed: true
   country: "CH"
+  organization:
+    address:
+      city: Bern
+      postalCode: "3050"
+      region: BE
+      street: Alte Tiefenaustrasse 6
+    currency: CHF
+    legalName: Swisscom AG
+    timeZone: Europe/Zurich
+    website: https://www.swisscom.ch
