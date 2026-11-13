@@ -263,6 +263,7 @@ resources:
 - builds/notary-ee-015f24e3053f.yaml
 - mcp-gateway-ee.yaml
 - builds/mcp-gateway-ee-c54aa24fc49c.yaml
+- builds/odoo-inventory-ce-b991224a46ee.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
