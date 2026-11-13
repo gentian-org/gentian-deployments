@@ -241,6 +241,8 @@ resources:
 - builds/app-store-pe-607a3c9ecba0.yaml
 - builds/aluvian-center-pe-d5da183a4e31.yaml
 - builds/odoo-base-ce-cc55ff6620b4.yaml
+- flowable-ce.yaml
+- builds/flowable-ce-4e4e05327201.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -275,3 +277,4 @@ patches:
 - path: odoo-sales-ce.bundle.yaml
 - path: backup-scheduler-ee.bundle.yaml
 - path: operations-sync-ee.bundle.yaml
+- path: flowable-ce.bundle.yaml
