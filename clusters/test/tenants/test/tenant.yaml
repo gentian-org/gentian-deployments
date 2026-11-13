@@ -37,6 +37,10 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: fellwort-ee
+    digest: sha256:d74fae32fefaac5d4cc68cd1c90a3f8039727298a07970d1ee1f9daea0d92573
+    catalogue: aluvian
+    defaultGrant: true
   - profile: mcp-gateway-ee
     cameWith: fellwort-ee
     digest: sha256:c54aa24fc49ca671b8bdc76b845790785c24f8964ee1003b1e77236d63b15191
