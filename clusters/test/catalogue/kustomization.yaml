@@ -255,6 +255,7 @@ resources:
 - builds/nextcloud-forms-ce-7a0f115a6d29.yaml
 - builds/nextcloud-mail-ce-31587e8ddafe.yaml
 - builds/nextcloud-spreed-ce-a760c91c7c1b.yaml
+- builds/nextcloud-tasks-ce-30ca3479c798.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
