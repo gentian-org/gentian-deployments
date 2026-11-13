@@ -133,3 +133,5 @@ spec:
   storeTerms:
     version: "2026-10"
     acceptedAt: "2026-11-13T10:52:38Z"
+  platformAccess:
+    adminsEnter: true
