@@ -155,6 +155,12 @@ spec:
   platformAccess:
     roleHolders:
       - role: perimeterApprover
+        scope: cluster
+        tenant: platform
+        subject: a9beb3d3-a909-46da-9841-6eb210a7ca01
+        username: "admin@gentian-os.org"
+        reason: Needed
+      - role: perimeterApprover
         scope: "tenant:test"
         tenant: test
         subject: 0ba53245-73b8-4649-a405-e09122ea84d1
