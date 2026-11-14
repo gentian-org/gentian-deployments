@@ -26,12 +26,12 @@ spec:
   # Nobody opens it in a browser: programs call it.
   launch: none
   trustTier: platform
-  version: "0.1.0-main.6f3beb3"
+  version: "0.1.0-main.347f83e"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: mcp-gateway
-      version: "0.1.0-main.6f3beb3"
+      version: "0.1.0-main.347f83e"
     valueMapping:
       integrations:
         # The chaperone's address, once the tenant's administrator has
@@ -47,6 +47,9 @@ spec:
   integrations:
     - contract: tool-calls
       provider: chaperone-ee
+      # What the tenant's administrator approves: one that asks for nothing
+      # cannot be approved.
+      capabilities: [tools]
   expose:
     # A token entry: no session, a host of its own. The realm makes a
     # person's token out to it for a program that was sent back to one of
