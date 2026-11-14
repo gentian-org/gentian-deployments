@@ -49,9 +49,9 @@ spec:
     defaultGrant: true
   - profile: mcp-gateway-ee
     cameWith: fellwort-ee
-    digest: sha256:fc0cd2f7239fa63ede7df93e547b578de52b3201ecd742b962992b6f0c99d4f2
+    digest: sha256:2dbf925a3831db5c2f7d24e333ca52d9c12eaf0ac544d0357f19f3a26370a5f9
     catalogue: aluvian
-    movedAt: 2026-11-14T22:36:05Z
+    movedAt: 2026-11-14T23:22:50Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: notary-ee
