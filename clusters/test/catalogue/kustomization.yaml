@@ -319,6 +319,11 @@ resources:
 - builds/fellwort-ee-be113bd2e288.yaml
 - builds/mcp-gateway-ee-3addcbf607f1.yaml
 - builds/notary-ee-3b054817b732.yaml
+- builds/operations-console-ee-f11b176d5bee.yaml
+- builds/backup-scheduler-ee-cac98df06416.yaml
+- builds/operations-sync-ee-ff790dfa3bfe.yaml
+- builds/app-store-pe-f40466ca1874.yaml
+- builds/aluvian-center-pe-beb2052712b7.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
