@@ -27,12 +27,12 @@ spec:
   launch: none
   # The rights check and the token exchange are given at this tier only.
   trustTier: platform
-  version: "0.1.0-main.6aba719"
+  version: "0.1.0-main.1463d4b"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: chaperone
-      version: "0.1.0-main.6aba719"
+      version: "0.1.0-main.1463d4b"
     valueMapping:
       database:
         hostKey: database.host
@@ -59,6 +59,8 @@ spec:
         secretName: rights-check-chaperone-ee
       vouching:
         secretName: vouching-chaperone-ee
+      runs:
+        secretName: runs-chaperone-ee
       # The adapters there are: Odoo's, at its Service in the same namespace.
       adapters: '{"odoo": {"url": "http://odoo-adapter:8765/mcp", "app": "odoo-base-ce"}}'
   requires:
@@ -73,6 +75,15 @@ spec:
       # The chaperone signs nothing itself, so it publishes no keys.
       vouching:
         exchange: true
+      # An action is started here and nowhere else: the chaperone holds the
+      # key to the platform's dispatcher. The run's pod fetches its inputs
+      # from the chaperone and delivers its outputs there, with a credential
+      # made for that run.
+      runs:
+        callback:
+          service: chaperone
+          port: 8000
+          path: /api/v1/action-callback
   # What the MCP gateway and the engines call: one tool call, carried and
   # journalled. A caller reaches it once the tenant's administrator has
   # granted it the contract.
@@ -85,3 +96,10 @@ spec:
   integrations:
     - contract: passes
       provider: notary-ee
+  secrets:
+    generated:
+      # What an action's secret outputs are sealed with before an engine is
+      # handed them. The platform makes it once for the install and keeps it
+      # across upgrades; a purge destroys it.
+      - name: sealing_secret
+        valuePath: sealing.secret
