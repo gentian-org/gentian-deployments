@@ -292,6 +292,7 @@ resources:
 - builds/chaperone-ee-b1ca110d6cf5.yaml
 - builds/fellwort-ee-a5ae62add885.yaml
 - builds/mcp-gateway-ee-8dcea68621a6.yaml
+- builds/notary-ee-af324c9de362.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
