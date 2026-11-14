@@ -23,3 +23,10 @@ spec:
       - verify
     grantedAt: "2026-11-14T08:03:22Z"
     grantedBy: 0ba53245-73b8-4649-a405-e09122ea84d1
+  - app: fellwort-ee
+    consume:
+    - contract: mandates
+      granted:
+      - runs
+    grantedAt: "2026-11-14T08:03:26Z"
+    grantedBy: 0ba53245-73b8-4649-a405-e09122ea84d1
