@@ -38,9 +38,9 @@ spec:
   # Apps are installed through the director, which appends to this list.
   apps:
   - profile: fellwort-ee
-    digest: sha256:002566b1a2460305ed3340ded721e07009caf756e0eac1dd76f0a687d9f98be0
+    digest: sha256:daf8e35087a19a255a5b5f9dac06e62fcd7af0b5fbf43d799206a52c041d94fe
     catalogue: aluvian
-    movedAt: 2026-11-14T04:32:28Z
+    movedAt: 2026-11-14T09:36:48Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: mcp-gateway-ee
