@@ -27,12 +27,12 @@ spec:
   trustTier: certified
   # The chart version Fellwort's CI published, pinned: provider-helm never
   # upgrades a release whose chart version string did not change.
-  version: "0.1.0-develop.4092655b"
+  version: "0.1.0-develop.5befaf9"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: fellwort
-      version: "0.1.0-develop.4092655b"
+      version: "0.1.0-develop.5befaf9"
     valueMapping:
       database:
         hostKey: database.host
@@ -60,6 +60,10 @@ spec:
         mandates:
           endpointKey: notary.url
           passwordKey: notary.key
+        # Where Fellwort lists the tenant's actions and hands a step to one,
+        # with the run's pass.
+        tool-calls:
+          endpointKey: chaperone.url
     extraValues:
       # The Services the entries below route to: fellwort-api, -web, -share.
       fullnameOverride: fellwort
@@ -80,10 +84,6 @@ spec:
       share:
         enabled: true
         subDomain: fellwort-share
-      # The Secret the platform hands a component that declares
-      # requires.services.runs: the dispatcher's address and this app's key.
-      runs:
-        secret: runs-fellwort-ee
       runner:
         enabled: false
         image:
@@ -97,7 +97,7 @@ spec:
         kind: group
         name: admin
       syncJob:
-        image: registry.aluvian.io/aluvian-hq/fellwort-api:4092655
+        image: registry.aluvian.io/aluvian-hq/fellwort-api:5befaf9
         serviceAccountName: fellwort
         envFrom:
           - fellwort-app-admins
@@ -109,14 +109,6 @@ spec:
     services:
       database:
         engine: postgresql
-      # Actions: a step that names one is run by the platform's dispatcher,
-      # as a pod that fetches its inputs from the API and delivers its
-      # outputs there, with a credential made for that run.
-      runs:
-        callback:
-          service: fellwort-api
-          port: 8000
-          path: /api/v1/action-callback
     privileges:
       egress:
         - name: usage-reports
@@ -139,6 +131,10 @@ spec:
     # A run's permission and its passes are the notary's to give.
     - contract: mandates
       provider: notary-ee
+    # A step that names an action is started by the chaperone, and nowhere
+    # else: Fellwort holds no key to the platform's dispatcher.
+    - contract: tool-calls
+      provider: chaperone-ee
   # Installed together with Fellwort where the tenant does not have them,
   # and removed with it: the process engine, and what a program or an agent
   # reaches the tenant's apps through -- the chaperone every tool call
