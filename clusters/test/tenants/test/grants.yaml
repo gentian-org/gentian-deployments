@@ -31,7 +31,10 @@ spec:
     - contract: process-engine
       granted:
       - run
-    grantedAt: "2026-11-14T08:03:29Z"
+    - contract: tool-calls
+      granted:
+      - actions
+    grantedAt: "2026-11-14T08:03:46Z"
     grantedBy: 0ba53245-73b8-4649-a405-e09122ea84d1
   - app: mcp-gateway-ee
     consume:
