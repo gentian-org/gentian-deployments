@@ -8,3 +8,4 @@ patches:
 - path: resource-plan.yaml
 - path: locales.yaml
 - path: grants.yaml
+- path: exposures.yaml

@@ -1,0 +1,36 @@
+# Managed by the director: what this tenant publishes to the internet,
+# and what else its perimeter approver approved for an app's entry.
+#
+# Each entry is a surface a profile declared and a perimeter approver
+# enabled, for a host, until a date. The operator stands a proxy in the
+# tenant's DMZ for each one, forwarding only the paths the profile
+# declared, with no session and no identity of ours attached.
+#
+# Removing an entry, or letting it expire, takes the surface down: the
+# proxy goes and the URL stops answering. The entry stays in the history
+# either way, because what a tenant once published is the question an
+# audit asks.
+#
+# kind says what was approved. None, or public: a public address that
+# passes no credential on. publicAppCredential: a public address that
+# passes the caller's Authorization header to the app, which alone
+# checks it. signInAppAuthorization: NOT a public address -- an entry
+# behind sign-in on which the Authorization header is left as the
+# app's own page sent it. tokenEntry: NOT a public address -- an entry
+# on a host of its own that takes a token the tenant's realm made out
+# to it, in place of a session. An approval holds only while the app's
+# catalogue entry still declares that kind.
+apiVersion: gentianos.io/v1alpha1
+kind: Tenant
+metadata:
+  name: test
+spec:
+  exposures:
+    - install: fellwort-ee
+      exposureName: share
+      kind: public
+      owner: 0ba53245-73b8-4649-a405-e09122ea84d1
+      reviewAt: 2027-11-14T08:17:13Z
+      publishedAt: 2026-11-14T08:17:13Z
+      lastReviewedBy: 0ba53245-73b8-4649-a405-e09122ea84d1
+      lastReviewedAt: 2026-11-14T08:17:13Z
