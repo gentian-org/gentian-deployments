@@ -27,12 +27,12 @@ spec:
   trustTier: certified
   # The chart version Fellwort's CI published, pinned: provider-helm never
   # upgrades a release whose chart version string did not change.
-  version: "0.1.0-develop.5befaf9"
+  version: "0.1.0-develop.232003194c"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: fellwort
-      version: "0.1.0-develop.5befaf9"
+      version: "0.1.0-develop.232003194c"
     valueMapping:
       database:
         hostKey: database.host
@@ -97,7 +97,7 @@ spec:
         kind: group
         name: admin
       syncJob:
-        image: registry.aluvian.io/aluvian-hq/fellwort-api:5befaf9
+        image: registry.aluvian.io/aluvian-hq/fellwort-api:2320031
         serviceAccountName: fellwort
         envFrom:
           - fellwort-app-admins
