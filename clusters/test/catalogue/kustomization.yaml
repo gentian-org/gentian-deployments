@@ -336,6 +336,8 @@ resources:
 - builds/operations-sync-ee-2f9f132c4646.yaml
 - builds/app-store-pe-a95887c549b8.yaml
 - builds/aluvian-center-pe-4e7267f9ee7d.yaml
+- odoo-adapter-ee.yaml
+- builds/odoo-adapter-ee-2ad9479467f6.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -374,3 +376,4 @@ patches:
 - path: chaperone-ee.bundle.yaml
 - path: notary-ee.bundle.yaml
 - path: mcp-gateway-ee.bundle.yaml
+- path: odoo-adapter-ee.bundle.yaml
