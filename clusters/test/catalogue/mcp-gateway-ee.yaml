@@ -26,12 +26,12 @@ spec:
   # Nobody opens it in a browser: programs call it.
   launch: none
   trustTier: platform
-  version: "0.1.0-main.6e30c90"
+  version: "0.1.0-main.79e649c"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: mcp-gateway
-      version: "0.1.0-main.6e30c90"
+      version: "0.1.0-main.79e649c"
     valueMapping:
       integrations:
         # The chaperone's address, once the tenant's administrator has
