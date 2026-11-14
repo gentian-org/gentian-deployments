@@ -126,15 +126,21 @@ spec:
   # Processes and cases run in the tenant's process engine, where one is
   # installed and the tenant's administrator grants Fellwort its contract.
   integrations:
+    # Each names what it asks for: the tenant's administrator approves an
+    # integration by what it asks, and one that asks for nothing cannot be
+    # approved.
     - contract: process-engine
       provider: flowable-ce
+      capabilities: [run]
     # A run's permission and its passes are the notary's to give.
     - contract: mandates
       provider: notary-ee
+      capabilities: [runs]
     # A step that names an action is started by the chaperone, and nowhere
     # else: Fellwort holds no key to the platform's dispatcher.
     - contract: tool-calls
       provider: chaperone-ee
+      capabilities: [actions]
   # Installed together with Fellwort where the tenant does not have them,
   # and removed with it: the process engine, and what a program or an agent
   # reaches the tenant's apps through -- the chaperone every tool call
