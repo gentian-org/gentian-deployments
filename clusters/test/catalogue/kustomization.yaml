@@ -338,6 +338,7 @@ resources:
 - builds/aluvian-center-pe-4e7267f9ee7d.yaml
 - odoo-adapter-ee.yaml
 - builds/odoo-adapter-ee-2ad9479467f6.yaml
+- builds/chaperone-ee-cb327b9f58cc.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
