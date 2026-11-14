@@ -26,12 +26,12 @@ spec:
   launch: none
   # The rights check is given at this tier only.
   trustTier: platform
-  version: "0.1.0-main.347f83e"
+  version: "0.1.0-main.aeb5b47"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: notary
-      version: "0.1.0-main.347f83e"
+      version: "0.1.0-main.aeb5b47"
     valueMapping:
       database:
         hostKey: database.host
@@ -60,6 +60,10 @@ spec:
       # The engine the contract mandates is for.
       engine:
         name: fellwort-ee
+      # A person's token is the one the tenant's front door made out to
+      # Fellwort, which hands it on as the proof that the person is there.
+      auth:
+        audience: fellwort-ee
   requires:
     platform: ">=0.5"
     services:
