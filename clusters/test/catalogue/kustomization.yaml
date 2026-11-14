@@ -311,6 +311,7 @@ resources:
 - builds/open-webui-ce-3921a0be1398.yaml
 - builds/chaperone-ee-ca2f88b0a373.yaml
 - builds/mcp-gateway-ee-2210b3968aa4.yaml
+- builds/notary-ee-b898428b4951.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
