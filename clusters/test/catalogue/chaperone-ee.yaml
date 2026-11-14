@@ -27,12 +27,12 @@ spec:
   launch: none
   # The rights check and the token exchange are given at this tier only.
   trustTier: platform
-  version: "0.1.0-main.35a50a5"
+  version: "0.1.0-main.5d935c5"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: chaperone
-      version: "0.1.0-main.35a50a5"
+      version: "0.1.0-main.5d935c5"
     valueMapping:
       database:
         hostKey: database.host
