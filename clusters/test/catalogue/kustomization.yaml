@@ -284,6 +284,11 @@ resources:
 - builds/chaperone-ee-d4107bc208f6.yaml
 - builds/mcp-gateway-ee-78f7039396d2.yaml
 - builds/notary-ee-4d7edf7df142.yaml
+- builds/operations-console-ee-66a00de8d17f.yaml
+- builds/backup-scheduler-ee-98307645a343.yaml
+- builds/operations-sync-ee-9e0d3567db4c.yaml
+- builds/app-store-pe-2e457406b04b.yaml
+- builds/aluvian-center-pe-c4da949e4b6b.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml

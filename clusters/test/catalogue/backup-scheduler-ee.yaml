@@ -32,14 +32,14 @@ spec:
   # Nobody opens it: the console is where its schedules are seen and set.
   launch: none
   trustTier: platform
-  version: "0.1.0-main.95f4fe1"
+  version: "0.1.0-main.6aba719"
   placement:
     tenants: platform
   package:
     chart:
       repository: "oci://ghcr.io/aluvian-hq/charts"
       name: "operations-console"
-      version: "0.1.0-main.95f4fe1"
+      version: "0.1.0-main.6aba719"
     extraValues:
       fullnameOverride: backup-scheduler
       api:
