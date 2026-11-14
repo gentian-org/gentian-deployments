@@ -27,12 +27,12 @@ spec:
   trustTier: certified
   # The chart version Fellwort's CI published, pinned: provider-helm never
   # upgrades a release whose chart version string did not change.
-  version: "0.1.0-develop.69a6913"
+  version: "0.1.0-develop.bdbb53c"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: fellwort
-      version: "0.1.0-develop.69a6913"
+      version: "0.1.0-develop.bdbb53c"
     valueMapping:
       database:
         hostKey: database.host
@@ -84,6 +84,11 @@ spec:
       share:
         enabled: true
         subDomain: fellwort-share
+      # The store whose actions the Store page lists. A person's browser
+      # reads the list there; getting one happens in the tenant's App Store
+      # app, whose address the chart takes from the editor's host.
+      store:
+        url: https://store-service.aluvian.io
       runner:
         enabled: false
         image:
@@ -97,7 +102,7 @@ spec:
         kind: group
         name: admin
       syncJob:
-        image: registry.aluvian.io/aluvian-hq/fellwort-api:69a6913
+        image: registry.aluvian.io/aluvian-hq/fellwort-api:bdbb53c
         serviceAccountName: fellwort
         envFrom:
           - fellwort-app-admins
