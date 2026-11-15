@@ -26,14 +26,15 @@ spec:
   # Nobody opens it: a process's step runs it.
   launch: none
   trustTier: certified
-  version: "0.1.0"
+  version: "0.1.1"
   package:
     images:
       - repository: registry.aluvian.io/aluvian-hq/rehearsal
-        digest: sha256:04b6ba3c215f17d3c4e8d1ce20b558e9ebeaacc2cd089ec5e8e1bc6af98f84af
+        digest: sha256:9b6c595f29acc29141fa17abbfade8080a5c6f618ac53b219d6630a6a09946d5
   action:
     # Reads the inputs on standard input, writes the outputs to standard
-    # output. Without an argument: the next phase of the run.
+    # output. Without an argument: the phase the input `stage` names, or
+    # else the next phase of the run.
     command: ["/opt/rehearsal/scripts/rehearsal-action"]
     # The longest phase is an install or an upgrade.
     deadlineSeconds: 10800
@@ -52,6 +53,8 @@ spec:
         # To go on with one: what the step before answered.
         run: {type: string}
         state: {type: string}
+        # The phase to run, as a step of a process says it for itself.
+        stage: {type: string}
     outputs:
       type: object
       properties:
@@ -62,6 +65,9 @@ spec:
         phase: {type: string}
         seconds: {type: integer}
         error: {type: string}
+        # The first phase that failed and its error, from then on.
+        failed: {type: string}
+        failure: {type: string}
         results: {type: array}
         summary: {type: string}
         log: {type: string}
