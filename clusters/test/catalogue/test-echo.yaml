@@ -23,7 +23,7 @@ spec:
     # of the image built with this commit.
     images:
       - repository: registry.aluvian.io/aluvian-hq/test-echo
-        digest: sha256:c0721ba51e1b66a28f26f1d84a714bfc3a3823b98efa87b6d2eb9e5537fd32f1
+        digest: sha256:4fd8a39dab46d548d4c611d143bff5e8c998d44fb6accd4a53b823880495458e
   action:
     # Reads the inputs on standard input, writes the outputs to standard
     # output.
