@@ -397,6 +397,7 @@ resources:
 - builds/odoo-adapter-ee-4817fd9a8e4f.yaml
 - builds/test-echo-1fd03e80c975.yaml
 - builds/chaperone-ee-dc5120b10d90.yaml
+- builds/mcp-gateway-ee-820b3e640c26.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
