@@ -37,6 +37,10 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: rehearsal
+    digest: sha256:0d02492b4cb7a9b12146b5a777b1bfd50afe3aff3fefa80d2cca2760cd65505e
+    catalogue: aluvian
+    defaultGrant: true
   - profile: notify-me
     digest: sha256:406229bd9db8863513f0ecaf76fbd706255329b8f0705e34c00870dfebd9d9c8
     catalogue: aluvian
