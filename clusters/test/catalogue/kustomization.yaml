@@ -371,6 +371,8 @@ resources:
 - builds/operations-sync-ee-21946989209f.yaml
 - builds/app-store-pe-78b4e7b13faf.yaml
 - builds/aluvian-center-pe-1a69e7d1d2ff.yaml
+- odoo-meeting-transcripts-ce.yaml
+- builds/odoo-meeting-transcripts-ce-43f6fa66c122.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -410,3 +412,4 @@ patches:
 - path: notary-ee.bundle.yaml
 - path: mcp-gateway-ee.bundle.yaml
 - path: odoo-adapter-ee.bundle.yaml
+- path: odoo-meeting-transcripts-ce.bundle.yaml
