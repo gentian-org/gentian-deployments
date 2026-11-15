@@ -420,6 +420,7 @@ resources:
 - builds/notify-me-406229bd9db8.yaml
 - rehearsal.yaml
 - builds/rehearsal-0d02492b4cb7.yaml
+- builds/chaperone-ee-0cd4812dcc8d.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
