@@ -58,9 +58,9 @@ spec:
     defaultGrant: true
   - profile: notary-ee
     cameWith: fellwort-ee
-    digest: sha256:53f944f8407585f51c489aefbb84204f98e1e0484e73662888da22734c6c5df4
+    digest: sha256:fa470d13c1733eb6ade56c51b6690a1185f7f0a97d0b3ed6c09e79dd4a4e135b
     catalogue: aluvian
-    movedAt: 2026-11-14T23:22:55Z
+    movedAt: 2026-11-15T00:37:56Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: chaperone-ee
