@@ -2,15 +2,16 @@
 # act for a person -- a person's assistant through the MCP gateway, so that it
 # can program Fellwort: read graphs (processes, cases, workflows, agents),
 # start one, import a document, edit it with Fellwort's edit commands, check
-# it, and keep versions. An MCP server at fellwort-adapter:8765/mcp whose
+# it, keep versions and start a run. An MCP server at fellwort-adapter:8765/mcp whose
 # tools are a fixed table (services/fellwort-adapter/server.py) over
 # Fellwort's API.
 #
 # It holds no credential of Fellwort. Each call carries the token the
 # tenant's chaperone obtained for the person and fellwort-ee, which goes on
 # to Fellwort's API, so Fellwort decides what the call may see and change.
-# Reading and changing only: deleting a graph, starting a run and invoking
-# an action cannot be taken back, and are not offered. As an adapter it
+# Reading and changing only: deleting a graph and invoking an action by
+# itself cannot be taken back, and are not offered. Starting a run is:
+# Fellwort decides it as it does in its Run panel. As an adapter it
 # reaches fellwort-ee and nothing else in the tenant, and only the tenant's
 # components that speak as a person reach it.
 #
@@ -31,7 +32,7 @@ spec:
   # Nobody opens it: agents call it.
   launch: none
   trustTier: certified
-  version: "0.1.0-main.8fb6acd"
+  version: "0.1.0-main.2479f71"
   requires:
     platform: ">=0.5"
   adapter:
@@ -49,7 +50,7 @@ spec:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: fellwort-adapter
-      version: "0.1.0-main.8fb6acd"
+      version: "0.1.0-main.2479f71"
     extraValues:
       # The Service callers reach the adapter at.
       fullnameOverride: fellwort-adapter
