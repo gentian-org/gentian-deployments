@@ -151,12 +151,15 @@ spec:
   # reaches the tenant's apps through -- the chaperone every tool call
   # passes, the notary that signs a run's pass, and the MCP gateway a
   # person's own program connects to. Each stays an app of its own, with its
-  # own approvals and its own data.
+  # own approvals and its own data. With them come the actions every
+  # Fellwort has from the start; who may use one is the tenant
+  # administrator's to say, as for any action.
   comesWith:
     - flowable-ce
     - chaperone-ee
     - notary-ee
     - mcp-gateway-ee
+    - test-echo
   secrets:
     supplied:
       # Set by the App Store app from the purchase's confirmation; a person
