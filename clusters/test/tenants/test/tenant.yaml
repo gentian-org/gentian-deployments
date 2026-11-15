@@ -68,9 +68,9 @@ spec:
     movedBy: policy:latest
     defaultGrant: true
   - profile: fellwort-ee
-    digest: sha256:1f55bb0e948d5d8290b0bd96451fbdcec94479b0f9a3f72782644da5e96d1c86
+    digest: sha256:6a99c1417d5f72f94abcb06ce7e99a8e9a2ab0c48f82a712565ff6269e9fb7ca
     catalogue: aluvian
-    movedAt: 2026-11-15T08:18:03Z
+    movedAt: 2026-11-15T21:58:08Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: mcp-gateway-ee
