@@ -414,6 +414,8 @@ resources:
 - builds/notary-ee-03ca4b8571e0.yaml
 - builds/odoo-adapter-ee-b84a61f9a274.yaml
 - builds/test-echo-5d7d0cb8955f.yaml
+- notify-people.yaml
+- builds/notify-people-86255bc97b9a.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -456,3 +458,4 @@ patches:
 - path: odoo-meeting-transcripts-ce.bundle.yaml
 - path: test-echo.bundle.yaml
 - path: fellwort-adapter-ee.bundle.yaml
+- path: notify-people.bundle.yaml
