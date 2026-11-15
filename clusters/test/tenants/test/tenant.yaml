@@ -37,6 +37,10 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: fellwort-adapter-ee
+    digest: sha256:30c06d3c6baf296d842d69cf42599eeaf53fd5b7cbfad381b89383d2ce4947a0
+    catalogue: aluvian
+    defaultGrant: true
   - profile: test-echo
     digest: sha256:18e840615e31e219cb3e4e86e5004854c9d448b4e6dd9328e3e15c2329f5b808
     catalogue: aluvian
