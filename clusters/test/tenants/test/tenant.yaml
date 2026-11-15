@@ -50,9 +50,9 @@ spec:
     catalogue: aluvian
     defaultGrant: true
   - profile: fellwort-adapter-ee
-    digest: sha256:7d4219c1f0ff183efa0f10f3c5c07ac2ff393bf009090d47f1642ea3fbdea7f5
+    digest: sha256:b39b9bc39f0bc574f478f54e4c70490a7833bf754ba9c8ae5504e19a7ab9459f
     catalogue: aluvian
-    movedAt: 2026-11-15T21:58:03Z
+    movedAt: 2026-11-15T23:49:13Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: test-echo
