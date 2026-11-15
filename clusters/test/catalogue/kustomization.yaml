@@ -391,6 +391,7 @@ resources:
 - builds/notary-ee-6899f827f83c.yaml
 - builds/odoo-adapter-ee-95f496fdf384.yaml
 - builds/test-echo-91bce385eefc.yaml
+- builds/chaperone-ee-8d8a38ac2738.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
