@@ -1,0 +1,120 @@
+# rehearsal: an action that runs a rehearsal of Gentian OS, one phase per
+# run of it: it makes a throwaway cluster at a cloud provider, installs a
+# release on it, upgrades and checks it, and removes the cluster again
+# (aluvian-hq/cluster-provisioning, docs/rehearsal.md §5). A process calls it
+# step after step and hands each step what the step before answered; the
+# action runs the next phase of the run, `down` as soon as one failed, and
+# nothing once the cluster is gone.
+#
+# It makes billed resources with the credentials below, so it does not come
+# with Fellwort: the tenant's administrator installs it, sets its
+# credentials and says who may use it.
+#
+# The image is built by cluster-provisioning, a private package of
+# ghcr.io/aluvian-hq, pulled through registry.aluvian.io by a tenant that
+# holds this action. Its digest is written here by hand: this one is the
+# build of cluster-provisioning c5cbd33.
+apiVersion: gentianos.io/v1alpha1
+kind: ComponentProfile
+metadata:
+  name: rehearsal
+  labels:
+    gentianos.io/profile-name: rehearsal
+    gentianos.io/profile-edition: pe
+spec:
+  classes: [action]
+  # Nobody opens it: a process's step runs it.
+  launch: none
+  trustTier: certified
+  version: "0.1.0"
+  package:
+    images:
+      - repository: registry.aluvian.io/aluvian-hq/rehearsal
+        digest: sha256:04b6ba3c215f17d3c4e8d1ce20b558e9ebeaacc2cd089ec5e8e1bc6af98f84af
+  action:
+    # Reads the inputs on standard input, writes the outputs to standard
+    # output. Without an argument: the next phase of the run.
+    command: ["/opt/rehearsal/scripts/rehearsal-action"]
+    # The longest phase is an install or an upgrade.
+    deadlineSeconds: 10800
+    resources: {cpu: "1", memory: 2Gi}
+    inputs:
+      type: object
+      properties:
+        # To begin a run: the run's settings (the names of
+        # rehearsal.env.example), fresh or upgrade, the gentian-os refs and
+        # the text of the cluster's inputs file.
+        settings: {type: object, additionalProperties: {type: string}}
+        scenario: {type: string, enum: [fresh, upgrade]}
+        from: {type: string}
+        to: {type: string}
+        tfvars: {type: string}
+        # To go on with one: what the step before answered.
+        run: {type: string}
+        state: {type: string}
+    outputs:
+      type: object
+      properties:
+        ok: {type: boolean}
+        passed: {type: boolean}
+        finished: {type: boolean}
+        run: {type: string}
+        phase: {type: string}
+        seconds: {type: integer}
+        error: {type: string}
+        results: {type: array}
+        summary: {type: string}
+        log: {type: string}
+        # The run's record, the cluster's kubeconfig and OpenTofu state
+        # among it: sealed for the run.
+        state: {type: string}
+  secrets:
+    supplied:
+      # Each is a file a run reads, /run/credentials/<name>.env; a field's
+      # valuePath is the variable's name in it.
+      - name: infomaniak
+        displayName: Infomaniak
+        description: >-
+          The cloud account the throwaway cluster is made in: an API token
+          with the Public Cloud scope, and an OpenStack application
+          credential of the project, which reserves the cluster's address.
+        fields:
+          - {key: token, valuePath: INFOMANIAK_TOKEN, format: token}
+          - {key: application_credential_id, valuePath: OS_APPLICATION_CREDENTIAL_ID, format: string, public: true}
+          - {key: application_credential_secret, valuePath: OS_APPLICATION_CREDENTIAL_SECRET, format: password}
+      - name: cloudflare
+        displayName: Cloudflare
+        description: >-
+          An API token with DNS edit rights on the zone of the rehearsal's
+          domain: the installer proves the domain with it and publishes the
+          cluster's records.
+        fields:
+          - {key: token, valuePath: CF_API_TOKEN, format: token}
+      - name: deployments
+        displayName: Deployments repository
+        description: >-
+          The user and a token with write access to the rehearsal's
+          deployments repository, which every run resets and the installer
+          writes to.
+        fields:
+          - {key: username, valuePath: GENTIAN_DEPLOYMENTS_GIT_USERNAME, format: string, public: true}
+          - {key: token, valuePath: GENTIAN_DEPLOYMENTS_GIT_TOKEN, format: token}
+  requires:
+    platform: ">=0.5"
+    privileges:
+      egress:
+        - name: internet
+          reason: >-
+            Calls the cloud provider's API, the DNS provider, GitHub and the
+            chart and image repositories the installer reads, over https,
+            and the new cluster: its Kubernetes API on 6443 and its edge
+            on 443. A network rule names addresses, not hosts, and the new
+            cluster's are not known before it exists.
+          rule:
+            to:
+              - ipBlock:
+                  cidr: 0.0.0.0/0
+                  except: [10.0.0.0/8, 100.64.0.0/10, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/12, 192.168.0.0/16]
+            ports:
+              - {protocol: TCP, port: 443}
+              - {protocol: TCP, port: 6443}

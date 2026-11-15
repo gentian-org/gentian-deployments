@@ -418,6 +418,8 @@ resources:
 - builds/notify-people-86255bc97b9a.yaml
 - notify-me.yaml
 - builds/notify-me-406229bd9db8.yaml
+- rehearsal.yaml
+- builds/rehearsal-0d02492b4cb7.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -462,3 +464,4 @@ patches:
 - path: fellwort-adapter-ee.bundle.yaml
 - path: notify-people.bundle.yaml
 - path: notify-me.bundle.yaml
+- path: rehearsal.bundle.yaml
