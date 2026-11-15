@@ -382,6 +382,7 @@ resources:
 - builds/aluvian-center-pe-c2560c856c0c.yaml
 - builds/chaperone-ee-9bdef3e36d45.yaml
 - builds/fellwort-ee-1f55bb0e948d.yaml
+- builds/mcp-gateway-ee-e43eed98a549.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
