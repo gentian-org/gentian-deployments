@@ -65,9 +65,9 @@ spec:
     defaultGrant: true
   - profile: chaperone-ee
     cameWith: fellwort-ee
-    digest: sha256:e500918d53c2a906425ae264c935130f43b4b5b5a9a6f66fc703d1bcc6c98a5c
+    digest: sha256:5ee1fcb8fd7e8d1030146613e8057377a828609c917997c5729f8499436ac308
     catalogue: aluvian
-    movedAt: 2026-11-15T00:37:46Z
+    movedAt: 2026-11-15T06:32:45Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: flowable-ce
