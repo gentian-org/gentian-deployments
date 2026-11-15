@@ -160,6 +160,7 @@ spec:
     - notary-ee
     - mcp-gateway-ee
     - test-echo
+    - notify-me
   secrets:
     supplied:
       # Set by the App Store app from the purchase's confirmation; a person
