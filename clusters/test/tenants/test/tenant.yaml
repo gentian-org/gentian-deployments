@@ -103,6 +103,7 @@ spec:
     - odoo-employees-ce
     - odoo-sales-ce
     - odoo-purchase-ce
+    - odoo-meeting-transcripts-ce
     addonPins:
     - name: odoo-contacts-ce
       digest: sha256:d988b0d759bb86cb4a38f6a2f981d9aa9847ff64260cf74f64249e8763f6a853
@@ -119,6 +120,9 @@ spec:
     - name: odoo-purchase-ce
       digest: sha256:8919a7f8799628340fcc4cf2902f3421e9db0e86823d471a0dc89525001389c8
       catalogue: gentian
+    - name: odoo-meeting-transcripts-ce
+      digest: sha256:43f6fa66c122437a44da518d50ba1b4ce405a9d94eb092f6c960492a9332fda4
+      catalogue: gentian
     addonGrants:
     - name: odoo-contacts-ce
       defaultGrant: true
@@ -129,6 +133,8 @@ spec:
     - name: odoo-sales-ce
       defaultGrant: true
     - name: odoo-purchase-ce
+      defaultGrant: true
+    - name: odoo-meeting-transcripts-ce
       defaultGrant: true
   - profile: paperless-ngx-ce
     digest: sha256:55ac29fbc6356ac0d753a05d8dec2ad2f1f1acf47891ff500d20aa03fe9c6bef
