@@ -360,6 +360,7 @@ resources:
 - builds/fellwort-ee-f379ee2d334d.yaml
 - builds/mcp-gateway-ee-2787555753a4.yaml
 - builds/notary-ee-b6db0a6bdfdb.yaml
+- builds/odoo-adapter-ee-a03d5b56e9c8.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
