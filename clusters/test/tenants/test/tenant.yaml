@@ -37,6 +37,10 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: notify-me
+    digest: sha256:406229bd9db8863513f0ecaf76fbd706255329b8f0705e34c00870dfebd9d9c8
+    catalogue: aluvian
+    defaultGrant: true
   - profile: notify-people
     digest: sha256:86255bc97b9ac67034c66268162490c7e445a797990d5d6f34484a6b5c379769
     catalogue: aluvian
