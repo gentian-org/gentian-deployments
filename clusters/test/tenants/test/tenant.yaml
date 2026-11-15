@@ -38,9 +38,9 @@ spec:
   # Apps are installed through the director, which appends to this list.
   apps:
   - profile: test-echo
-    digest: sha256:1fd03e80c9756b188736278cd175938d187c85685cc1f9c8d3805350973cdada
+    digest: sha256:18e840615e31e219cb3e4e86e5004854c9d448b4e6dd9328e3e15c2329f5b808
     catalogue: aluvian
-    movedAt: 2026-11-15T13:47:22Z
+    movedAt: 2026-11-15T17:00:23Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: odoo-adapter-ee
