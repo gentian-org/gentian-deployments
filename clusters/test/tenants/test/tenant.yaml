@@ -37,6 +37,10 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: notify-people
+    digest: sha256:86255bc97b9ac67034c66268162490c7e445a797990d5d6f34484a6b5c379769
+    catalogue: aluvian
+    defaultGrant: true
   - profile: fellwort-adapter-ee
     digest: sha256:5152a0b6b74cb18109c276936c2b041ccfb98bcf1111a6aaf460ad049f0b683d
     catalogue: aluvian
