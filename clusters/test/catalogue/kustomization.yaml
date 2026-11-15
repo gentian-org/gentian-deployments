@@ -406,6 +406,8 @@ resources:
 - builds/operations-sync-ee-9699cd6c98af.yaml
 - builds/app-store-pe-33e20629092d.yaml
 - builds/aluvian-center-pe-93278ab92577.yaml
+- fellwort-adapter-ee.yaml
+- builds/fellwort-adapter-ee-30c06d3c6baf.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -447,3 +449,4 @@ patches:
 - path: odoo-adapter-ee.bundle.yaml
 - path: odoo-meeting-transcripts-ce.bundle.yaml
 - path: test-echo.bundle.yaml
+- path: fellwort-adapter-ee.bundle.yaml
