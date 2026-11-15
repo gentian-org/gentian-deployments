@@ -421,6 +421,7 @@ resources:
 - rehearsal.yaml
 - builds/rehearsal-0d02492b4cb7.yaml
 - builds/chaperone-ee-0cd4812dcc8d.yaml
+- builds/fellwort-adapter-ee-7d4219c1f0ff.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
