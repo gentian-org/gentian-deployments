@@ -409,6 +409,7 @@ resources:
 - fellwort-adapter-ee.yaml
 - builds/fellwort-adapter-ee-30c06d3c6baf.yaml
 - builds/chaperone-ee-6b065e3ea470.yaml
+- builds/fellwort-adapter-ee-5152a0b6b74c.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
