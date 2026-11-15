@@ -366,6 +366,11 @@ resources:
 - builds/mcp-gateway-ee-db8d1fd01d8d.yaml
 - builds/notary-ee-97f0413a1319.yaml
 - builds/odoo-adapter-ee-7b9d9aa853fc.yaml
+- builds/operations-console-ee-506a14818590.yaml
+- builds/backup-scheduler-ee-9ab99616deec.yaml
+- builds/operations-sync-ee-21946989209f.yaml
+- builds/app-store-pe-78b4e7b13faf.yaml
+- builds/aluvian-center-pe-1a69e7d1d2ff.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
