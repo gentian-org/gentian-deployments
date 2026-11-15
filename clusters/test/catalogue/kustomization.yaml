@@ -380,6 +380,7 @@ resources:
 - builds/operations-sync-ee-e130266fef08.yaml
 - builds/app-store-pe-c174031ee184.yaml
 - builds/aluvian-center-pe-c2560c856c0c.yaml
+- builds/chaperone-ee-9bdef3e36d45.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml

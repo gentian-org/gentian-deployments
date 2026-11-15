@@ -27,12 +27,12 @@ spec:
   launch: none
   # The rights check and the token exchange are given at this tier only.
   trustTier: platform
-  version: "0.1.0-main.15ba29f"
+  version: "0.1.0-main.f5849e0"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: chaperone
-      version: "0.1.0-main.15ba29f"
+      version: "0.1.0-main.f5849e0"
     valueMapping:
       database:
         hostKey: database.host
@@ -49,6 +49,12 @@ spec:
         # then an engine's calls answer 503 and a present person's pass.
         passes:
           endpointKey: notaryUrl
+        # Where a run's notice is published and the credential that proves
+        # the chaperone was granted the contract. Until then a run's notice
+        # answers 503.
+        notices:
+          endpointKey: notices.url
+          passwordKey: notices.key
     extraValues:
       # The Service the MCP gateway and the engines reach it at.
       fullnameOverride: chaperone
@@ -61,6 +67,11 @@ spec:
         secretName: vouching-chaperone-ee
       runs:
         secretName: runs-chaperone-ee
+      # The actions that may ask for a notice: notify-me tells the person
+      # who started the run, notify-people whom its step names.
+      notices:
+        starter: [notify-me]
+        named: [notify-people]
       # The adapters there are: Odoo's, at its Service in the same namespace.
       adapters: '{"odoo": {"url": "http://odoo-adapter:8765/mcp", "app": "odoo-base-ce"}}'
   requires:
@@ -99,6 +110,10 @@ spec:
       # What the tenant's administrator approves: one that asks for nothing
       # cannot be approved.
       capabilities: [verify]
+    # A run's notice goes into the desktop's inbox, and nowhere else.
+    - contract: notices
+      provider: desktop
+      capabilities: [publish]
   secrets:
     generated:
       # What an action's secret outputs are sealed with before an engine is
