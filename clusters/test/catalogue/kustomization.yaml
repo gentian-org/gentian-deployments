@@ -416,6 +416,8 @@ resources:
 - builds/test-echo-5d7d0cb8955f.yaml
 - notify-people.yaml
 - builds/notify-people-86255bc97b9a.yaml
+- notify-me.yaml
+- builds/notify-me-406229bd9db8.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -459,3 +461,4 @@ patches:
 - path: test-echo.bundle.yaml
 - path: fellwort-adapter-ee.bundle.yaml
 - path: notify-people.bundle.yaml
+- path: notify-me.bundle.yaml
