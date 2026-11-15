@@ -1,0 +1,45 @@
+# test-echo: an action for testing. It answers the text it was given, how
+# long it is, and a secret made for the call; it reaches nothing and changes
+# nothing (services/test-echo). A graph that names it proves the path a step
+# takes from a graph to an action and back.
+#
+# The image is a private package of ghcr.io/aluvian-hq, pulled through
+# registry.aluvian.io by a tenant that holds Fellwort.
+apiVersion: gentianos.io/v1alpha1
+kind: ComponentProfile
+metadata:
+  name: test-echo
+  labels:
+    gentianos.io/profile-name: test-echo
+    gentianos.io/profile-edition: pe
+spec:
+  classes: [action]
+  # Nobody opens it: a graph's step runs it.
+  launch: none
+  trustTier: certified
+  version: "0.1.0"
+  package:
+    # The one build a run starts. Publishing replaces this digest with that
+    # of the image built with this commit.
+    images:
+      - repository: registry.aluvian.io/aluvian-hq/test-echo
+        digest: sha256:52350c22e8964b66d89d331cb193f317c20c108412c8676adf077ad503d6748c
+  action:
+    # Reads the inputs on standard input, writes the outputs to standard
+    # output.
+    command: ["/test-echo"]
+    deadlineSeconds: 60
+    resources: {cpu: 100m, memory: 64Mi}
+    inputs:
+      type: object
+      properties:
+        text: {type: string}
+        fail: {type: boolean}
+    outputs:
+      type: object
+      properties:
+        text: {type: string}
+        length: {type: integer}
+        token: {type: string}
+  requires:
+    platform: ">=0.5"

@@ -373,6 +373,8 @@ resources:
 - builds/aluvian-center-pe-1a69e7d1d2ff.yaml
 - odoo-meeting-transcripts-ce.yaml
 - builds/odoo-meeting-transcripts-ce-43f6fa66c122.yaml
+- test-echo.yaml
+- builds/test-echo-28c1352c6444.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -413,3 +415,4 @@ patches:
 - path: mcp-gateway-ee.bundle.yaml
 - path: odoo-adapter-ee.bundle.yaml
 - path: odoo-meeting-transcripts-ce.bundle.yaml
+- path: test-echo.bundle.yaml
