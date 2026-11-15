@@ -37,6 +37,10 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: test-echo
+    digest: sha256:28c1352c644448d6704c51a341c2428f8d4a6b14310b67a71b9dc215b1b0df72
+    catalogue: aluvian
+    defaultGrant: true
   - profile: odoo-adapter-ee
     digest: sha256:7b9d9aa853fc0749223432eb141509d8cc218c1a14ce981a3ff78c2701c3eed3
     catalogue: aluvian
