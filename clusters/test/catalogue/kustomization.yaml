@@ -496,6 +496,7 @@ resources:
 - builds/nextcloud-base-ce-e29d6f71f344.yaml
 - builds/notary-ee-9d4a64545d0d.yaml
 - builds/notify-me-3784db52b170.yaml
+- builds/notify-people-ab39f409160b.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
