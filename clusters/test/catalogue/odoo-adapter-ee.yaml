@@ -26,7 +26,7 @@ spec:
   # Nobody opens it: agents call it.
   launch: none
   trustTier: certified
-  version: "0.1.0-main.6e49270"
+  version: "0.1.0-main.d2ebff4"
   requires:
     platform: ">=0.5"
   adapter:
@@ -46,7 +46,7 @@ spec:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: odoo-adapter
-      version: "0.1.0-main.6e49270"
+      version: "0.1.0-main.d2ebff4"
     extraValues:
       # The Service callers reach the adapter at.
       fullnameOverride: odoo-adapter
