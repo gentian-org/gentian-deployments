@@ -28,7 +28,7 @@ spec:
     # of the image built with this commit.
     images:
       - repository: registry.aluvian.io/aluvian-hq/notify
-        digest: sha256:7e87395cf2d545b0ba25d82bb4c291a85a4b67fb69ad29f49e44415ce35b3e80
+        digest: sha256:5f811977340debd6df36fc034ead1df34145e7bf39d50843ac423f276447f94c
   action:
     # Reads the inputs on standard input, writes the outputs to standard
     # output.
