@@ -493,6 +493,7 @@ resources:
 - builds/test-echo-2ae64d9270be.yaml
 - builds/chaperone-ee-46568ff63878.yaml
 - builds/mcp-gateway-ee-28ca571346af.yaml
+- builds/nextcloud-base-ce-e29d6f71f344.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
