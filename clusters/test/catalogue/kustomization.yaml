@@ -469,6 +469,7 @@ resources:
 - builds/odoo-meeting-transcripts-ce-7552b95c33ed.yaml
 - builds/open-webui-ce-7adc66dc41fc.yaml
 - builds/chaperone-ee-445e8b835794.yaml
+- builds/fellwort-adapter-ee-dcd8bdd18cda.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
