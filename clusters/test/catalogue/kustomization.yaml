@@ -443,6 +443,7 @@ resources:
 - builds/notary-ee-9db60b95d644.yaml
 - builds/notify-me-5fb252e0fb49.yaml
 - builds/notify-people-84fb512b28f7.yaml
+- builds/odoo-adapter-ee-0175d4d263ca.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
