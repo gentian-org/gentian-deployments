@@ -450,6 +450,7 @@ resources:
 - builds/fellwort-adapter-ee-fb259513da3f.yaml
 - builds/mcp-gateway-ee-2f79df59d8b5.yaml
 - builds/notary-ee-8b730b4a8391.yaml
+- builds/notify-me-940d2d17e52c.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
