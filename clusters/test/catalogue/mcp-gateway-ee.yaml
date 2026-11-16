@@ -9,7 +9,7 @@
 # again, asks the person's rights, calls the app's adapter and journals the
 # call.
 #
-# It comes with Fellwort and is not offered on its own. The chart and image
+# It comes with Voles and is not offered on its own. The chart and image
 # are private packages of ghcr.io/aluvian-hq, pulled through
 # registry.aluvian.io.
 apiVersion: gentianos.io/v1alpha1
@@ -26,12 +26,12 @@ spec:
   # Nobody opens it in a browser: programs call it.
   launch: none
   trustTier: platform
-  version: "0.1.0-main.d2ebff4"
+  version: "0.1.0-main.046f5d2"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: mcp-gateway
-      version: "0.1.0-main.d2ebff4"
+      version: "0.1.0-main.046f5d2"
     valueMapping:
       integrations:
         # The chaperone's address, once the tenant's administrator has
