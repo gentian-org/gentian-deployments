@@ -63,12 +63,6 @@ spec:
     movedAt: 2026-11-16T20:54:05Z
     movedBy: policy:latest
     defaultGrant: true
-  - profile: fellwort-adapter-ee
-    digest: sha256:dcd8bdd18cdaae48f55470c7d0edfb79557375e8240ccb5ef9bc9a400cdb6f9c
-    catalogue: aluvian
-    movedAt: 2026-11-16T14:52:42Z
-    movedBy: policy:latest
-    defaultGrant: true
   - profile: test-echo
     digest: sha256:2e302de592c0d9025e29960afaed41a7b8fc8b6f77417ff2d606f31e7a5a2d25
     catalogue: aluvian
