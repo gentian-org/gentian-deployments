@@ -50,9 +50,9 @@ spec:
     movedBy: policy:latest
     defaultGrant: true
   - profile: notify-people
-    digest: sha256:a235cc2637db27c79ea43ba6939c5e4ceb43a9079c3055159ac5a6429630aa0c
+    digest: sha256:a9139eee3313ce5d193ea1ffb0f7379b4274245f4cf7813d7bbd5212a23cc409
     catalogue: aluvian
-    movedAt: 2026-11-16T16:55:10Z
+    movedAt: 2026-11-16T18:07:34Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: fellwort-adapter-ee
