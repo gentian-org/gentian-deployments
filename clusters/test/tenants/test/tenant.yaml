@@ -68,9 +68,9 @@ spec:
     movedBy: policy:latest
     defaultGrant: true
   - profile: odoo-adapter-ee
-    digest: sha256:59181373540bf0e358047513d4a403a86894c664c9f6a2106078600fed5261d6
+    digest: sha256:ba17b99a3bb0727342aef48de6b82107922bcf42a378bfaa7aa74b8852619c27
     catalogue: aluvian
-    movedAt: 2026-11-16T18:07:38Z
+    movedAt: 2026-11-16T20:54:09Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: fellwort-ee
