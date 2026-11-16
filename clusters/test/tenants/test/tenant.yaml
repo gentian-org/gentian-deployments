@@ -38,9 +38,9 @@ spec:
   # Apps are installed through the director, which appends to this list.
   apps:
   - profile: rehearsal
-    digest: sha256:282ff820657c157531cf6acef94670467ee5607d9388d003eeb748446e319fa7
+    digest: sha256:4734841cbec76de9f906a2e1f36a811c2a895849531aaaa679bca4455ac6d2c6
     catalogue: aluvian
-    movedAt: 2026-11-15T23:49:41Z
+    movedAt: 2026-11-16T02:34:38Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: notify-me
