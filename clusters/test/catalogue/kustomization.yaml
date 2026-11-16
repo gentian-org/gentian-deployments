@@ -481,6 +481,7 @@ resources:
 - builds/mcp-gateway-ee-c5bccb404dca.yaml
 - builds/notary-ee-36f82d007ac9.yaml
 - builds/notify-me-539bbb6ef44a.yaml
+- builds/notify-people-a235cc2637db.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
