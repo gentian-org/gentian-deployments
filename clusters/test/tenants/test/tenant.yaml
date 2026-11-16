@@ -44,9 +44,9 @@ spec:
     movedBy: policy:latest
     defaultGrant: true
   - profile: notify-me
-    digest: sha256:674ec655ef9324a3c539f5ff786898c36a1fadc9e46d80d4b825157f5906ad1b
+    digest: sha256:3784db52b17033e526663e6188d8d94b0d8445710ecf85e1506c6ef78476ea94
     catalogue: aluvian
-    movedAt: 2026-11-16T18:07:30Z
+    movedAt: 2026-11-16T20:54:01Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: notify-people
