@@ -47,3 +47,8 @@ spec:
       approver: 0ba53245-73b8-4649-a405-e09122ea84d1
       approvedAt: 2026-11-15T21:59:31Z
       reason: "Needed for the app"
+    - install: voles-ee
+      privilege: egress/usage-reports
+      approver: 0ba53245-73b8-4649-a405-e09122ea84d1
+      approvedAt: 2026-11-16T22:37:39Z
+      reason: "It is needed for the app"
