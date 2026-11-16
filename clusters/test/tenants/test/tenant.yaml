@@ -62,9 +62,9 @@ spec:
     movedBy: policy:latest
     defaultGrant: true
   - profile: test-echo
-    digest: sha256:e3e57d897f4411bd80dee7c5c8cfed07da1e4f692dd8aa2ac1d9a504a47bb653
+    digest: sha256:2ae64d9270be39d767c9632d5c26ad41567d8bb25c4e83fc7a23cd35b64115bd
     catalogue: aluvian
-    movedAt: 2026-11-16T16:55:19Z
+    movedAt: 2026-11-16T18:07:43Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: odoo-adapter-ee
