@@ -5,11 +5,11 @@
 # chaperone decides whom this action may tell and publishes the notice
 # through the desktop's contract "notices".
 #
-# It can tell anybody of the tenant, so it does not come with Fellwort: the
+# It can tell anybody of the tenant, so it does not come with Voles: the
 # tenant's administrator installs it and says who may use it.
 #
 # The image is a private package of ghcr.io/aluvian-hq, pulled through
-# registry.aluvian.io by a tenant that holds Fellwort.
+# registry.aluvian.io by a tenant that holds Voles.
 apiVersion: gentianos.io/v1alpha1
 kind: ComponentProfile
 metadata:
@@ -28,7 +28,7 @@ spec:
     # of the image built with this commit.
     images:
       - repository: registry.aluvian.io/aluvian-hq/notify
-        digest: sha256:5f811977340debd6df36fc034ead1df34145e7bf39d50843ac423f276447f94c
+        digest: sha256:279ced0a744e3f556bdb1c38ea5ebd7d684fdfd7a66420ccc523df84ed85110a
   action:
     # Reads the inputs on standard input, writes the outputs to standard
     # output.
