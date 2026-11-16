@@ -501,6 +501,8 @@ resources:
 - builds/test-echo-2e302de592c0.yaml
 - uno-calculator-ce.yaml
 - builds/uno-calculator-ce-4206cf1675b1.yaml
+- voles-ee.yaml
+- builds/voles-ee-36e555cb50bd.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -547,3 +549,4 @@ patches:
 - path: notify-me.bundle.yaml
 - path: rehearsal.bundle.yaml
 - path: uno-calculator-ce.bundle.yaml
+- path: voles-ee.bundle.yaml
