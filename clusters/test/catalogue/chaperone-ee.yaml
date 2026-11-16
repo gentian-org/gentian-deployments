@@ -9,7 +9,7 @@
 # is one of the few the tenant's adapters admit, and the realm exchanges a
 # person's token only through the client the platform made for it.
 #
-# It comes with Fellwort and is not offered on its own. The chart and image
+# It comes with Voles and is not offered on its own. The chart and image
 # are private packages of ghcr.io/aluvian-hq, pulled through
 # registry.aluvian.io.
 apiVersion: gentianos.io/v1alpha1
@@ -27,12 +27,12 @@ spec:
   launch: none
   # The rights check and the token exchange are given at this tier only.
   trustTier: platform
-  version: "0.1.0-main.d2ebff4"
+  version: "0.1.0-main.046f5d2"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: chaperone
-      version: "0.1.0-main.d2ebff4"
+      version: "0.1.0-main.046f5d2"
     valueMapping:
       database:
         hostKey: database.host
