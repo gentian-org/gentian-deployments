@@ -102,9 +102,9 @@ spec:
     defaultGrant: true
   - profile: flowable-ce
     cameWith: fellwort-ee
-    digest: sha256:b471dbadae58626d30e5504b4b6ec3730b4736e3aaa90498faf1b6e7a264ef72
+    digest: sha256:764d5ad20e8d7443f3b729ba8774bfff40f1c0a9bbd494cea4db5175aed8a1b2
     catalogue: gentian
-    movedAt: 2026-11-13T13:56:22Z
+    movedAt: 2026-11-16T08:45:11Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: desktop
