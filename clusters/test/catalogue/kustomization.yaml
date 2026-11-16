@@ -474,6 +474,7 @@ resources:
 - builds/notary-ee-e2bb571f3c14.yaml
 - builds/notify-me-ceda92c9d18a.yaml
 - builds/notify-people-963853766560.yaml
+- builds/odoo-adapter-ee-991c1232e293.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml

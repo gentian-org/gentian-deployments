@@ -1,5 +1,5 @@
 # The Odoo adapter: turns a tenant's Odoo into tools for programs that act for
-# a person -- Fellwort's agents, and coding agents through the MCP gateway.
+# a person -- Voles' agents, and coding agents through the MCP gateway.
 # An MCP server at odoo-adapter:8765/mcp whose tools are the tool packs in its
 # chart (services/odoo-adapter/chart/packs), one per Odoo module.
 #
@@ -9,8 +9,8 @@
 # As an adapter it reaches odoo-base-ce and nothing else in the tenant, and
 # only the tenant's components that speak as a person reach it.
 #
-# It comes with Fellwort: the store lists it on Odoo's page, and only a
-# tenant holding fellwort-ee may acquire or pull it (services/store,
+# It comes with Voles: the store lists it on Odoo's page, and only a
+# tenant holding voles-ee may acquire or pull it (services/store,
 # STORE_ADAPTERS_REQUIRE). The chart and image are private packages of
 # ghcr.io/aluvian-hq, pulled through registry.aluvian.io with the credential
 # the store minted at acquisition.
@@ -26,7 +26,7 @@ spec:
   # Nobody opens it: agents call it.
   launch: none
   trustTier: certified
-  version: "0.1.0-main.d2ebff4"
+  version: "0.1.0-main.046f5d2"
   requires:
     platform: ">=0.5"
   adapter:
@@ -46,7 +46,7 @@ spec:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: odoo-adapter
-      version: "0.1.0-main.d2ebff4"
+      version: "0.1.0-main.046f5d2"
     extraValues:
       # The Service callers reach the adapter at.
       fullnameOverride: odoo-adapter
