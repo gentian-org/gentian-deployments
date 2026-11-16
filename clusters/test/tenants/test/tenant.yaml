@@ -81,35 +81,29 @@ spec:
     movedAt: 2026-11-16T20:54:09Z
     movedBy: policy:latest
     defaultGrant: true
-  - profile: fellwort-ee
-    digest: sha256:4d06844028ad58cbd9969180dcda24c7c180d6aad31f528cbfa1aafe709e269e
-    catalogue: aluvian
-    movedAt: 2026-11-15T23:49:17Z
-    movedBy: policy:latest
-    defaultGrant: true
   - profile: mcp-gateway-ee
-    cameWith: fellwort-ee
+    cameWith: voles-ee
     digest: sha256:28ca571346af7e784c87ddfdd266241c2d63be44b5bed490e44c5949a3fefb1e
     catalogue: aluvian
     movedAt: 2026-11-16T20:53:47Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: notary-ee
-    cameWith: fellwort-ee
+    cameWith: voles-ee
     digest: sha256:9d4a64545d0d2d2cacfd669de8d20cceea5a538468725acab313e42fbf48aa97
     catalogue: aluvian
     movedAt: 2026-11-16T20:53:57Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: chaperone-ee
-    cameWith: fellwort-ee
+    cameWith: voles-ee
     digest: sha256:46568ff638788fe36bda6f76ba4350d200e2fdc61441f2605369eaa2d1ee93e8
     catalogue: aluvian
     movedAt: 2026-11-16T20:53:42Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: flowable-ce
-    cameWith: fellwort-ee
+    cameWith: voles-ee
     digest: sha256:764d5ad20e8d7443f3b729ba8774bfff40f1c0a9bbd494cea4db5175aed8a1b2
     catalogue: gentian
     movedAt: 2026-11-16T08:45:11Z
