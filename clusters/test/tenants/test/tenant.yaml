@@ -37,6 +37,10 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: voles-ee
+    digest: sha256:36e555cb50bd44a9427fd1db603b971e0dd90d8cb353bbda7920d81c3674ee63
+    catalogue: aluvian
+    defaultGrant: true
   - profile: uno-calculator-ce
     digest: sha256:4206cf1675b18fa4f88af4c24a001f9a214a1a143668bae9254f9d61eeb2f9d8
     catalogue: gentian
