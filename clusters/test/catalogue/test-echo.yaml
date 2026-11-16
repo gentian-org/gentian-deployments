@@ -4,7 +4,7 @@
 # takes from a graph to an action and back.
 #
 # The image is a private package of ghcr.io/aluvian-hq, pulled through
-# registry.aluvian.io by a tenant that holds Fellwort.
+# registry.aluvian.io by a tenant that holds Voles.
 apiVersion: gentianos.io/v1alpha1
 kind: ComponentProfile
 metadata:
@@ -23,7 +23,7 @@ spec:
     # of the image built with this commit.
     images:
       - repository: registry.aluvian.io/aluvian-hq/test-echo
-        digest: sha256:eeb060ce5672979edeab420785ff658cf8c1545b339090420e830b22fafda7ad
+        digest: sha256:eefa6f8e317581651182072981e309a6041b07bc3df60741ba774c41dcb6e7fc
   action:
     # Reads the inputs on standard input, writes the outputs to standard
     # output.
