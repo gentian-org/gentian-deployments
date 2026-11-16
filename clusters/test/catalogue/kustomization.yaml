@@ -467,6 +467,7 @@ resources:
 - builds/flowable-ce-764d5ad20e8d.yaml
 - builds/nextcloud-base-ce-a4c7eaf6a68b.yaml
 - builds/odoo-meeting-transcripts-ce-7552b95c33ed.yaml
+- builds/open-webui-ce-7adc66dc41fc.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
