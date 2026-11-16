@@ -56,9 +56,9 @@ spec:
     movedBy: policy:latest
     defaultGrant: true
   - profile: fellwort-adapter-ee
-    digest: sha256:b39b9bc39f0bc574f478f54e4c70490a7833bf754ba9c8ae5504e19a7ab9459f
+    digest: sha256:1822f5afb537bfcc704188b612f61365e65b2ee2c019e4a7ad812793d22a7334
     catalogue: aluvian
-    movedAt: 2026-11-15T23:49:13Z
+    movedAt: 2026-11-16T02:34:13Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: test-echo
