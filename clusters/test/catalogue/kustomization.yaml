@@ -466,6 +466,7 @@ resources:
 - builds/test-echo-e946abb7b0ee.yaml
 - builds/flowable-ce-764d5ad20e8d.yaml
 - builds/nextcloud-base-ce-a4c7eaf6a68b.yaml
+- builds/odoo-meeting-transcripts-ce-7552b95c33ed.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
