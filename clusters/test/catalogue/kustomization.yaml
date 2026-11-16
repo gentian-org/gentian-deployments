@@ -499,6 +499,8 @@ resources:
 - builds/notify-people-ab39f409160b.yaml
 - builds/odoo-adapter-ee-ba17b99a3bb0.yaml
 - builds/test-echo-2e302de592c0.yaml
+- uno-calculator-ce.yaml
+- builds/uno-calculator-ce-4206cf1675b1.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -544,3 +546,4 @@ patches:
 - path: notify-people.bundle.yaml
 - path: notify-me.bundle.yaml
 - path: rehearsal.bundle.yaml
+- path: uno-calculator-ce.bundle.yaml
