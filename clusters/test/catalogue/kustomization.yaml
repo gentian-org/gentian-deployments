@@ -455,6 +455,7 @@ resources:
 - builds/odoo-adapter-ee-b91a2ed40d60.yaml
 - builds/rehearsal-582c981290f3.yaml
 - builds/test-echo-7620ee0e7566.yaml
+- builds/chaperone-ee-11859dbc0159.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
