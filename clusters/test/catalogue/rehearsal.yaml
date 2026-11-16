@@ -7,7 +7,7 @@
 # nothing once the cluster is gone.
 #
 # It makes billed resources with the credentials below, so it does not come
-# with Fellwort: the tenant's administrator installs it, sets its
+# with Voles: the tenant's administrator installs it, sets its
 # credentials and says who may use it.
 #
 # The image is built by cluster-provisioning, a private package of
