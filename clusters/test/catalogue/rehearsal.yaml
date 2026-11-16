@@ -13,7 +13,7 @@
 # The image is built by cluster-provisioning, a private package of
 # ghcr.io/aluvian-hq, pulled through registry.aluvian.io by a tenant that
 # holds this action. Its digest is written here by hand: this one is the
-# build of cluster-provisioning c5cbd33.
+# build of cluster-provisioning 20d2926.
 apiVersion: gentianos.io/v1alpha1
 kind: ComponentProfile
 metadata:
@@ -26,11 +26,11 @@ spec:
   # Nobody opens it: a process's step runs it.
   launch: none
   trustTier: certified
-  version: "0.1.1"
+  version: "0.1.2"
   package:
     images:
       - repository: registry.aluvian.io/aluvian-hq/rehearsal
-        digest: sha256:9b6c595f29acc29141fa17abbfade8080a5c6f618ac53b219d6630a6a09946d5
+        digest: sha256:5c1834fd340183f31dfe4df6cd3da083e3467b86dd3397a34e4606879a0756d7
   action:
     # Reads the inputs on standard input, writes the outputs to standard
     # output. Without an argument: the phase the input `stage` names, or
@@ -113,9 +113,11 @@ spec:
           reason: >-
             Calls the cloud provider's API, the DNS provider, GitHub and the
             chart and image repositories the installer reads, over https,
-            and the new cluster: its Kubernetes API on 6443 and its edge
-            on 443. A network rule names addresses, not hosts, and the new
-            cluster's are not known before it exists.
+            and the new cluster: its edge on 443 and its Kubernetes API,
+            on 6443 or, where the provider serves it on a port of its own
+            for every cluster, in the node-port range 30000 to 32767. A
+            network rule names addresses, not hosts, and the new cluster's
+            are not known before it exists.
           rule:
             to:
               - ipBlock:
@@ -124,3 +126,4 @@ spec:
             ports:
               - {protocol: TCP, port: 443}
               - {protocol: TCP, port: 6443}
+              - {protocol: TCP, port: 30000, endPort: 32767}
