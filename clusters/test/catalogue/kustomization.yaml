@@ -520,6 +520,11 @@ resources:
 - builds/odoo-adapter-ee-514eba89ff77.yaml
 - builds/test-echo-b410ab9d57ce.yaml
 - builds/voles-ee-04b82f606d70.yaml
+- builds/operations-console-ee-b1d175865171.yaml
+- builds/backup-scheduler-ee-291616156c53.yaml
+- builds/operations-sync-ee-be9e8086f1bc.yaml
+- builds/app-store-pe-ee36b7a54078.yaml
+- builds/aluvian-center-pe-8b9c63d9821c.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
