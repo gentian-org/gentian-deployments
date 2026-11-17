@@ -27,12 +27,12 @@ spec:
   launch: none
   # The rights check and the token exchange are given at this tier only.
   trustTier: platform
-  version: "0.1.0-main.2ae0188"
+  version: "0.1.0-main.53be199"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: chaperone
-      version: "0.1.0-main.2ae0188"
+      version: "0.1.0-main.53be199"
     valueMapping:
       database:
         hostKey: database.host
@@ -61,6 +61,9 @@ spec:
       image:
         repository: registry.aluvian.io/aluvian-hq/chaperone
       # The Secrets the platform writes for this component.
+      # The platform's list of who was granted the contract tool-calls.
+      callers:
+        secretName: contract-callers-chaperone-ee
       rightsCheck:
         secretName: rights-check-chaperone-ee
       vouching:
