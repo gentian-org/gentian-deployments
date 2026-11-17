@@ -27,12 +27,12 @@ spec:
   trustTier: certified
   # The chart version Voles' CI published, pinned: provider-helm never
   # upgrades a release whose chart version string did not change.
-  version: "0.1.0-develop.4d78a6e"
+  version: "0.1.0-develop.46e755f"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: voles
-      version: "0.1.0-develop.4d78a6e"
+      version: "0.1.0-develop.46e755f"
     valueMapping:
       database:
         hostKey: database.host
@@ -64,7 +64,6 @@ spec:
         # with the run's pass.
         tool-calls:
           endpointKey: chaperone.url
-          passwordKey: chaperone.key
     extraValues:
       # The Services the entries below route to: voles-api, -web, -share.
       fullnameOverride: voles
@@ -73,6 +72,11 @@ spec:
       # notary's own page, on its host beside the editor's.
       notary:
         subDomain: notary
+      # The Secret the platform keeps Voles' key for the chaperone's
+      # contract in: with it the editor is told the tenant's actions and
+      # what each takes.
+      chaperone:
+        keySecretName: contract-key-voles-ee-tool-calls
       # The chart's own images, through the registry; their tags stay the
       # chart's, which name the build it was packaged from.
       api:
@@ -107,7 +111,7 @@ spec:
         kind: group
         name: admin
       syncJob:
-        image: registry.aluvian.io/aluvian-hq/voles-api:4d78a6e
+        image: registry.aluvian.io/aluvian-hq/voles-api:46e755f
         serviceAccountName: voles
         envFrom:
           - voles-app-admins
