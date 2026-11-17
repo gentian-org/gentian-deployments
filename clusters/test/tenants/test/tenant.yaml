@@ -38,9 +38,9 @@ spec:
   # Apps are installed through the director, which appends to this list.
   apps:
   - profile: nextcloud-sync-ce
-    digest: sha256:fdad9c69e3c6eff6700cde1841d412796a7a3d2f99e6e83f66d0b583c923efe3
+    digest: sha256:16d67fcccdd56a1c0867b664f53f6a4fa9ae38fe0626687264e48be35c48a124
     catalogue: gentian
-    movedAt: 2026-11-17T11:55:10Z
+    movedAt: 2026-11-17T17:22:17Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: voles-ee
