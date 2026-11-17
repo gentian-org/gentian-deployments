@@ -7,6 +7,10 @@
 # reaches no app and no adapter. What a person may do with an app, and which
 # installed action they may use, is the platform's answer.
 #
+# A person says yes on the notary's own confirmation page, at an address of
+# its own behind the tenant's sign-in. An engine sends the person there and
+# can neither draw the page nor answer on it.
+#
 # It comes with Voles and is not offered on its own. The chart and image
 # are private packages of ghcr.io/aluvian-hq, pulled through
 # registry.aluvian.io.
@@ -21,16 +25,20 @@ metadata:
     gentianos.io/store-listed: "false"
 spec:
   classes: [app]
-  # Nobody opens it: engines and the chaperone call it.
+  # It has no tile and no app opens it as its own: engines and the chaperone
+  # call it, and an engine sends a person to its confirmation page for one
+  # request. With launch none the page's address is part of the tenant, so
+  # whoever may enter the tenant reaches it, and the notary shows a request
+  # to the person it names and to nobody else.
   launch: none
   # The rights check is given at this tier only.
   trustTier: platform
-  version: "0.1.0-main.812c324"
+  version: "0.1.0-main.2ae0188"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: notary
-      version: "0.1.0-main.812c324"
+      version: "0.1.0-main.2ae0188"
     valueMapping:
       database:
         hostKey: database.host
@@ -57,9 +65,14 @@ spec:
       # The engine the contract mandates is for.
       engine:
         name: voles-ee
-      # A person's token is the one the tenant's front door made out to
-      # Voles, which hands it on as the proof that the person is there.
       auth:
+        # At the notary's own address the front door hands it a token of the
+        # person made out to this profile (exchangeToken, below). The
+        # confirmation page's routes take that token and no other.
+        ownAudience: notary-ee
+        # The token the front door made out to Voles, which hands it on in a
+        # run's start as the proof that the person is there. It answers no
+        # request.
         audience: voles-ee
   requires:
     platform: ">=0.5"
@@ -84,6 +97,21 @@ spec:
     - name: mandates
       protocol: http-json
       endpoint:
+        service: notary
+        port: 8000
+  expose:
+    # The confirmation page and the two routes it calls, behind sign-in.
+    # Each request reaches the notary with a token of the person for this
+    # profile alone, which it verifies; no identity header is taken on
+    # trust. Nothing else of the notary is served here: what engines and the
+    # chaperone ask stays inside the cluster.
+    - name: consent
+      surface: gateway
+      authMode: oidc
+      exchangeToken: true
+      subDomain: notary
+      paths: ["/consent/", "/api/v1/consent/"]
+      backend:
         service: notary
         port: 8000
   secrets:
