@@ -87,9 +87,9 @@ spec:
     defaultGrant: true
   - profile: notary-ee
     cameWith: voles-ee
-    digest: sha256:9d4a64545d0d2d2cacfd669de8d20cceea5a538468725acab313e42fbf48aa97
+    digest: sha256:be5fc642eb37c5dd1905ca7fb213349abf07f23aaa22a95effda0a3f58246070
     catalogue: aluvian
-    movedAt: 2026-11-16T20:53:57Z
+    movedAt: 2026-11-17T08:57:56Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: chaperone-ee
