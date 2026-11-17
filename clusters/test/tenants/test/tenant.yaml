@@ -73,9 +73,9 @@ spec:
     movedBy: policy:latest
     defaultGrant: true
   - profile: odoo-adapter-ee
-    digest: sha256:61817833fee5ae0001de2f851b2d6e3bff07bdd01491418a45ea92c093a79db4
+    digest: sha256:514eba89ff77cfb6d72f4cfe810aaa18cdd0de73a21ae580c611d24e68dac4ee
     catalogue: aluvian
-    movedAt: 2026-11-17T08:58:10Z
+    movedAt: 2026-11-17T10:13:33Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: mcp-gateway-ee
