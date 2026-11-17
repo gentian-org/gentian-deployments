@@ -43,6 +43,14 @@ spec:
       lastReviewedBy: 0ba53245-73b8-4649-a405-e09122ea84d1
       lastReviewedAt: 2026-11-17T10:20:33Z
     - install: nextcloud-sync-ce
+      exposureName: calendars
+      kind: tokenEntry
+      owner: a9beb3d3-a909-46da-9841-6eb210a7ca01
+      reviewAt: 2027-11-17T14:15:23Z
+      publishedAt: 2026-11-17T14:15:23Z
+      lastReviewedBy: a9beb3d3-a909-46da-9841-6eb210a7ca01
+      lastReviewedAt: 2026-11-17T14:15:23Z
+    - install: nextcloud-sync-ce
       exposureName: files
       kind: tokenEntry
       owner: a9beb3d3-a909-46da-9841-6eb210a7ca01
