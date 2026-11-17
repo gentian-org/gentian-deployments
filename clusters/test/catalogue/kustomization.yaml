@@ -518,6 +518,7 @@ resources:
 - builds/notify-me-cf51916d1f82.yaml
 - builds/notify-people-e79159fb9240.yaml
 - builds/odoo-adapter-ee-514eba89ff77.yaml
+- builds/test-echo-b410ab9d57ce.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
