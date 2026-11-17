@@ -26,14 +26,6 @@ metadata:
   name: test
 spec:
   exposures:
-    - install: fellwort-ee
-      exposureName: share
-      kind: public
-      owner: 0ba53245-73b8-4649-a405-e09122ea84d1
-      reviewAt: 2027-11-14T08:17:13Z
-      publishedAt: 2026-11-14T08:17:13Z
-      lastReviewedBy: 0ba53245-73b8-4649-a405-e09122ea84d1
-      lastReviewedAt: 2026-11-14T08:17:13Z
     - install: mcp-gateway-ee
       exposureName: mcp
       kind: tokenEntry
