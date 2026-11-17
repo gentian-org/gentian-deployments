@@ -41,8 +41,10 @@ spec:
     digest: sha256:a404bf4b1277b2ae8736a77261cde2da2a7a84be2522df8cd906d5bc33b37f94
     catalogue: gentian
   - profile: voles-ee
-    digest: sha256:36e555cb50bd44a9427fd1db603b971e0dd90d8cb353bbda7920d81c3674ee63
+    digest: sha256:04b82f606d70be71da6a6de4a6259e377204c63fcae4a025eaa435691ad227ef
     catalogue: aluvian
+    movedAt: 2026-11-17T10:13:41Z
+    movedBy: policy:latest
     defaultGrant: true
   - profile: uno-calculator-ce
     digest: sha256:4206cf1675b18fa4f88af4c24a001f9a214a1a143668bae9254f9d61eeb2f9d8
