@@ -37,6 +37,9 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: nextcloud-sync-ce
+    digest: sha256:a404bf4b1277b2ae8736a77261cde2da2a7a84be2522df8cd906d5bc33b37f94
+    catalogue: gentian
   - profile: voles-ee
     digest: sha256:36e555cb50bd44a9427fd1db603b971e0dd90d8cb353bbda7920d81c3674ee63
     catalogue: aluvian
