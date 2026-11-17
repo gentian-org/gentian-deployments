@@ -505,6 +505,7 @@ resources:
 - builds/voles-ee-36e555cb50bd.yaml
 - nextcloud-sync-ce.yaml
 - builds/nextcloud-sync-ce-a404bf4b1277.yaml
+- builds/chaperone-ee-09e8c8ed0142.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
