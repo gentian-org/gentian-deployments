@@ -35,14 +35,6 @@ spec:
       lastReviewedBy: 0ba53245-73b8-4649-a405-e09122ea84d1
       lastReviewedAt: 2026-11-14T09:05:28Z
     - install: nextcloud-sync-ce
-      exposureName: bridge
-      kind: tokenEntry
-      owner: 0ba53245-73b8-4649-a405-e09122ea84d1
-      reviewAt: 2027-11-17T10:20:33Z
-      publishedAt: 2026-11-17T10:20:33Z
-      lastReviewedBy: 0ba53245-73b8-4649-a405-e09122ea84d1
-      lastReviewedAt: 2026-11-17T10:20:33Z
-    - install: nextcloud-sync-ce
       exposureName: calendars
       kind: tokenEntry
       owner: a9beb3d3-a909-46da-9841-6eb210a7ca01
