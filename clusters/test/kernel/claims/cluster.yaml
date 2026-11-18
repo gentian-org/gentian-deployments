@@ -105,7 +105,16 @@ spec:
     # gateway. Independent of gpuAcceleration -- a cluster with no GPU
     # and no instances serves these and nothing else. Adding an entry
     # adds its models to the gateway; removing one removes them.
-    providers: []
+    providers:
+      - name: mistral
+        displayName: Mistral
+        apiBase: https://api.mistral.ai/v1
+        apiKeyProperty: mistral_api_key
+        models:
+          - name: large
+            model: mistral-large-latest
+          - name: small
+            model: mistral-large-latest
     #  - name: infomaniak
     #    displayName: Infomaniak AI Services
     #    # Up to and including the version segment. The number is the
