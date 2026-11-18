@@ -242,3 +242,7 @@ spec:
     currency: CHF
     legalName: Test Consulting AG
     timeZone: Europe/Zurich
+  llm:
+    providers:
+      - mistral
+    delegated: true
