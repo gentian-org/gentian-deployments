@@ -115,6 +115,8 @@ spec:
             model: mistral-large-latest
           - name: small
             model: mistral-small-latest
+          - name: medium
+            model: mistral-medium-latest
     #  - name: infomaniak
     #    displayName: Infomaniak AI Services
     #    # Up to and including the version segment. The number is the
