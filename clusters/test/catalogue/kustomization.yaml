@@ -586,6 +586,7 @@ resources:
 - builds/test-echo-63353ba900ab.yaml
 - builds/voles-agent-bridge-ee-eee69f15193e.yaml
 - builds/voles-ee-648efb6ae705.yaml
+- builds/flowable-ce-ac595de4acb3.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
