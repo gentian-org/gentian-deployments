@@ -574,6 +574,8 @@ resources:
 - builds/notify-me-a2b4c8b2c5d2.yaml
 - builds/notify-people-0c00509e0c96.yaml
 - builds/test-echo-e6d320275761.yaml
+- voles-agent-bridge-ee.yaml
+- builds/voles-agent-bridge-ee-09a340562883.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -621,3 +623,4 @@ patches:
 - path: erpnext-ce.bundle.yaml
 - path: open-webui-ce.bundle.yaml
 - path: paperless-ngx-ce.bundle.yaml
+- path: voles-agent-bridge-ee.bundle.yaml

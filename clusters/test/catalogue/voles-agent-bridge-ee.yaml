@@ -1,0 +1,70 @@
+# The Voles agent bridge: turns a tenant's Voles into tools for programs that
+# act for a person -- a person's assistant through the MCP gateway, so that it
+# can program Voles: read graphs (processes, cases, workflows, agents),
+# start one, import a document, edit it with Voles' edit commands, check
+# it, keep versions and start a run. An MCP server at voles-agent-bridge:8765/mcp whose
+# tools are a fixed table (services/voles-agent-bridge/server.py) over
+# Voles' API.
+#
+# It holds no credential of Voles. Each call carries the token the
+# tenant's chaperone obtained for the person and voles-ee, which goes on
+# to Voles' API, so Voles decides what the call may see and change.
+# Reading and changing only: deleting a graph and invoking an action by
+# itself cannot be taken back, and are not offered. Starting a run is:
+# Voles decides it as it does in its Run panel. As an agent bridge it
+# reaches voles-ee and nothing else in the tenant, and only the tenant's
+# components that speak as a person reach it.
+#
+# It comes with Voles: the store lists it on Voles' page, and only a
+# tenant holding voles-ee may acquire or pull it (services/store,
+# STORE_AGENT_BRIDGES_REQUIRE). The chart and image are private packages of
+# ghcr.io/aluvian-hq, pulled through registry.aluvian.io with the credential
+# the store minted at acquisition.
+apiVersion: gentianos.io/v1alpha1
+kind: ComponentProfile
+metadata:
+  name: voles-agent-bridge-ee
+  labels:
+    gentianos.io/profile-name: voles-agent-bridge-ee
+    gentianos.io/profile-edition: ee
+spec:
+  classes: [bridge]
+  # Nobody opens it: agents call it.
+  launch: none
+  trustTier: certified
+  version: "0.1.0-main.09c872a"
+  requires:
+    platform: ">=0.5"
+  bridge:
+    app:
+      # Voles' API v1, which every build of it serves: no version is
+      # named, so the bridge follows Voles' releases.
+      profile: voles-ee
+    ways:
+      # The tenant's agents call its tools, as the person they act for.
+      # The endpoint is where the tool server answers: the platform tells
+      # the components that call tools for a person (the chaperone) that it
+      # is there.
+      - name: tools
+        caller: agents
+        callee: app
+        protocol: mcp
+        speaksAs: person
+        endpoint:
+          service: voles-agent-bridge
+          port: 8765
+          path: /mcp
+  package:
+    chart:
+      repository: "oci://registry.aluvian.io/aluvian-hq/charts"
+      name: voles-agent-bridge
+      version: "0.1.0-main.09c872a"
+    extraValues:
+      # The Service callers reach the agent bridge at.
+      fullnameOverride: voles-agent-bridge
+      # The chart's own image, through the registry; its tag stays the
+      # chart's, which names the build it was packaged from.
+      image:
+        repository: registry.aluvian.io/aluvian-hq/voles-agent-bridge
+      # voles-ee's API Service, in the same namespace.
+      volesApiUrl: http://voles-api:8000/api/v1
