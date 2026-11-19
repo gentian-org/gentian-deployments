@@ -38,9 +38,9 @@ spec:
   # Apps are installed through the director, which appends to this list.
   apps:
   - profile: odoo-agent-bridge-ee
-    digest: sha256:9589ecac425d04e7f47c18c2d8ffb2d78a9425c12e7a28a3ea7cd2acfc8d5344
+    digest: sha256:5e62054f32129763da2e2bbfee96cc35f50ef6e94f583b4ae9ffaa225fca7bbd
     catalogue: aluvian
-    movedAt: 2026-11-19T22:11:56Z
+    movedAt: 2026-11-19T23:31:55Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: voles-agent-bridge-ee
