@@ -563,6 +563,8 @@ resources:
 - builds/operations-sync-ee-18ec15c75c0d.yaml
 - builds/app-store-pe-1349a1f4ccc2.yaml
 - builds/aluvian-center-pe-0b748e2ac5a3.yaml
+- odoo-base-ce.yaml
+- builds/odoo-base-ce-574078a2b4fe.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -606,3 +608,4 @@ patches:
 - path: voles-ee.bundle.yaml
 - path: nextcloud-sync-ce.bundle.yaml
 - path: odoo-agent-bridge-ee.bundle.yaml
+- path: odoo-base-ce.bundle.yaml
