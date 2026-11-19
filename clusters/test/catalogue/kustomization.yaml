@@ -615,6 +615,7 @@ resources:
 - builds/odoo-agent-bridge-ee-9589ecac425d.yaml
 - builds/test-echo-2ff5dea08459.yaml
 - builds/voles-agent-bridge-ee-8025ba3e36be.yaml
+- builds/voles-ee-073ba0a8d161.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
