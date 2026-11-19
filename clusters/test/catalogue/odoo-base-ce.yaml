@@ -1,0 +1,450 @@
+# SPDX-License-Identifier: LGPL-3.0
+# ComponentProfile — Odoo Community base runtime (odoo-base-ce)
+#
+# Deploys one Odoo OCB instance per tenant. Addon profiles (odoo-crm-ce, …) name
+# Odoo CE modules, which the chart installs on start (customization.addonActivation).
+apiVersion: gentianos.io/v1alpha1
+kind: ComponentProfile
+metadata:
+  name: odoo-base-ce
+  labels:
+    gentianos.io/profile-name: odoo-base-ce
+    gentianos.io/profile-family: odoo
+    gentianos.io/profile-edition: me
+  annotations:
+    # No kernel-egress-namespaces. Odoo validates tokens against the in-cluster
+    # Keycloak Service (extraValues.gentian.oidc.internalIssuer), so nothing it
+    # does at sign-in leaves the cluster and it has no reason to reach the
+    # gateway. It briefly carried envoy-gateway-system, copied from nextcloud,
+    # which did not need it either.
+    gentianos.io/deployment-role: base
+    gentianos.io/portal-auth-mode: oidc
+spec:
+  classes:
+    - app
+  trustTier: certified
+  version: "0.5.4-dev"
+  package:
+    chart:
+      repository: oci://ghcr.io/gentian-org/charts
+      name: odoo
+      version: "0.1.28"
+
+    valueMapping:
+      oidc:
+        issuerKey: "oidc.issuer"
+        clientIdKey: "oidc.clientId"
+        clientSecretKey: "oidc.clientSecret"
+      database:
+        hostKey: "database.host"
+        portKey: "database.port"
+        nameKey: "database.name"
+        userKey: "database.user"
+        passwordKey: "database.password"
+      smtp:
+        passwordKey: "smtp.password"
+      platform:
+        # Who the tenant is: written onto the company Odoo makes, once
+        # (charts/odoo/files/organization.py).
+        organizationKey: "organization"
+
+    extraValues:
+      fullnameOverride: odoo
+      tenantId: "${TENANT_ID}"
+    # No extraVolumes here: the chart defaults extra-addons to an emptyDir and
+    # mounts it at modulesPath, which is exactly what the in-pod git-sync writes
+    # to. This used to point the volume at the shared RWX PVC.
+    #
+    # The profile is not the only writer, though. On a staging-issuer cluster the
+    # composition adds the kernel trust anchor to extraVolumes/extraVolumeMounts,
+    # and chart <=0.1.18 read a non-empty list as "replace the addons volume" —
+    # so the git-sync containers mounted a volume nobody defined and every Helm
+    # upgrade failed, freezing Odoo on its last good spec. 0.1.19 defines
+    # extra-addons unless an entry of that name replaces it, and appends the rest.
+      resources:
+        requests:
+          cpu: 500m
+          memory: 2Gi
+        limits:
+          cpu: 2
+          memory: 4Gi
+      existingSecret:
+        name: odoo-base-ce-sensitive-values
+      ingress:
+        enabled: false
+      gentian:
+        initModules: "base,web,gentian_os,account"
+        modulesPath: /opt/odoo/custom-addons
+      # Where this tenant's Odoo is actually served — the subDomain from
+      # spec.ingress above. Odoo keeps this in ir_config_parameter and builds
+      # its OAuth redirect_uri from it; left at Odoo's http://localhost:8069
+      # default it hands the identity provider a redirect that matches none of
+      # the redirectUris registered under kernelRequirements.identity, and every
+      # login fails with oauth_error=3 — which on a website-enabled database
+      # surfaces as a 500, because the login page itself cannot then render.
+        baseUrl: "https://odoo.${TENANT_DOMAIN}"
+        oidc:
+        # Where the pod validates a token. The browser still goes to the public
+        # issuer; only auth_oauth's server-side userinfo call moves in-cluster,
+        # so signing in no longer depends on a tenant pod being able to reach
+        # the kernel gateway. ${TENANT_ID} is the realm, which matches the
+        # public issuer's realm segment.
+          internalIssuer: "http://gentian-idp-keycloak-keycloakx-http.kernel-authentication.svc.cluster.local:8080/auth/realms/${TENANT_ID}"
+        # What the realm names as the audience of a token it issues for this
+        # Odoo alone (exchangeToken on the web entry): the profile's name. The
+        # platform module accepts such a token on the JSON-2 API.
+          tokenAudience: odoo-base-ce
+      # The chart's own git-sync, running in Odoo's pod: an init container that
+      # clones once before Odoo starts, and a sidecar that re-syncs on the
+      # interval. Both are upstream git-sync at 999:999, writing the emptyDir
+      # the chart already mounts at modulesPath, and configmap.yaml appends
+      # <modulesPath>/<name>/current to addons_path.
+      #
+      # This replaces a standalone gentian-sidecar-git-modules Deployment that
+      # wrote the same content to a ReadWriteMany PVC three pods shared. The
+      # content is 2.3MB of public, reproducible git -- there is nothing to
+      # share. Sharing it cost an RWX StorageClass the platform does not
+      # install, and on any cluster without one the PVC stayed Pending and
+      # every pod mounting it was unschedulable.
+      #
+      # It also removes what the split cost us: the gid 999/1000 mismatch that
+      # crash-looped the clone 60 times, and the Job's five-minute wait racing
+      # a clone in another pod. One pod, one fsGroup, ordered by initContainer.
+        git:
+          enabled: true
+          repo: "https://github.com/gentian-org/odoo-modules.git"
+          branch: "develop"
+          syncInterval: 60
+
+  requires:
+    # The oldest platform version line this build runs on (docs/profile-bundles.md).
+    platform: ">=0.5"
+    services:
+      identity:
+        oidc:
+          clientId: odoo-cb
+          name: Odoo
+          accessType: CONFIDENTIAL
+          redirectUris:
+            - "https://odoo.${TENANT_DOMAIN}/auth_oauth/signin"
+        # No backchannelLogout: Odoo signs in through auth_oauth, an OAuth2
+        # module rather than an OIDC relying party, so there is nothing to send a
+        # logout_token to. Its session ends on its own timeout. Recorded rather
+        # than left blank, so the absence reads as a limit of the app.
+      database:
+        engine: postgresql
+        allowDynamicDatabaseCreation: false
+      mail:
+        smtp: {}
+    privileges:
+      egress:
+        - name: egress-1
+          rule:
+            to:
+              - ipBlock:
+                  cidr: 192.168.0.100/32
+            ports:
+              - protocol: TCP
+                port: 9418
+          reason: 'REVIEW: say what this component reaches and why'
+        - name: egress-2
+          rule:
+            ports:
+              - protocol: TCP
+                port: 443
+
+  # No sidecars. git-modules used to be declared here as a standalone
+  # Deployment with its own ReadWriteMany PVC; it is now two containers inside
+  # Odoo's own pod, configured by extraValues.gentian.git above.
+          reason: 'REVIEW: say what this component reaches and why'
+  provides:
+    - name: erp-core
+      protocol: http-json
+
+
+  # Odoo keeps meetings and contacts in its own tables, which its pages read.
+  # The tenant's home sync keeps them equal to the tenant's home, per person
+  # who signs in here (gentian-os#1156); Odoo runs no sync code of its own.
+  # Its API takes the person's token of the realm (gentian_os realm_token).
+  # A recurring meeting is one series in Odoo and one entry at the home: the
+  # driver keeps the series' base event and writes a change to the whole
+  # series. Single occurrences moved or cancelled are not kept equal.
+  homeSync:
+    endpoint: {service: odoo, port: 8069}
+    calendar:
+      driver: odoo
+      model: calendar.event
+      fields:
+        summary: name
+        description: description
+        location: location
+        start: start
+        end: stop
+        allDay: allday
+        startDate: start_date
+        endDate: stop_date
+        rrule: rrule
+      # The person's meetings: those they attend.
+      filter: [[partner_ids, in, ["$partner"]]]
+      defaults:
+        user_id: "$user"
+        partner_ids: [[4, "$partner"]]
+    contacts:
+      driver: odoo
+      model: res.partner
+      fields:
+        name: name
+        email: email
+        phone: phone
+        mobile: mobile
+        organization: company_name
+        title: function
+        street: street
+        city: city
+        zip: zip
+        website: website
+      # A person's own contacts: those they are the salesperson of.
+      filter: [[user_id, "=", "$user"], [is_company, "=", false]]
+      defaults:
+        user_id: "$user"
+
+  integrations:
+    - contract: file-store
+      provider: nextcloud
+      capabilities: [webdav:read, webdav:write]
+    - contract: central-navigation
+      provider: portal
+      capabilities: [navigation:register]
+
+  secrets:
+    generated:
+      - name: admin_password
+        valuePath: "odoo.adminPassword"
+
+  # How this app is put back. The default capture (scale to zero, dump the
+  # database, archive the data volume) is right for Odoo; only the restore
+  # adds to it.
+  backup:
+    quiesce:
+      # Where the commands below run: the pod's other containers are git-sync.
+      container: odoo
+    restore:
+      # What the restored data remembers of where it ran. The database
+      # credentials, web.base.url and the sign-in provider need nothing: the
+      # chart and gentian_os set them again on every start from this pod's
+      # values. The data volume names the database (filestore/<database>), and
+      # the database names the old domain wherever else an address is kept.
+      # Idempotent; skips what a bundle that does not say where it was written
+      # (GENTIAN_RESTORE_SOURCE_* empty) cannot tell it. Odoo is resumed before
+      # these run, so they wait for its start-up to finish.
+      post:
+        - - sh
+          - -c
+          - |
+            set -eu
+            say() { echo "gentian-restore: $*"; }
+            data=$(sed -n 's/^[[:space:]]*data_dir[[:space:]]*=[[:space:]]*//p' /etc/odoo/odoo.conf | tail -n 1)
+            data=${data:-/opt/odoo/data}
+
+            # Odoo keeps a database's files in filestore/<database>. Restored under
+            # another name, they are moved to that name's folder. Odoo may already have
+            # written files there on starting; theirs are named by their content, so one
+            # already there is the same file.
+            for pair in ${GENTIAN_RESTORE_DATABASES:-}; do
+              from=${pair%%=*}
+              to=${pair#*=}
+              if [ -z "$from" ] || [ -z "$to" ] || [ "$from" = "$to" ] || [ ! -d "$data/filestore/$from" ]; then
+                continue
+              fi
+              if [ ! -e "$data/filestore/$to" ]; then
+                mv "$data/filestore/$from" "$data/filestore/$to"
+              else
+                for dir in "$data/filestore/$from"/*/; do
+                  [ -d "$dir" ] || continue
+                  name=$(basename "$dir")
+                  mkdir -p "$data/filestore/$to/$name"
+                  for file in "$dir"*; do
+                    [ -f "$file" ] || continue
+                    if [ -e "$data/filestore/$to/$name/$(basename "$file")" ]; then
+                      rm -f "$file"
+                    else
+                      mv "$file" "$data/filestore/$to/$name/"
+                    fi
+                  done
+                  rmdir "$dir" 2>/dev/null || true
+                done
+                rmdir "$data/filestore/$from" 2>/dev/null \
+                  || say "left in $data/filestore/$from: what is not a stored file"
+              fi
+              say "filestore of $from is now the filestore of $to"
+            done
+
+            # Addresses on the old domain. web.base.url and the sign-in provider are set
+            # again on every start from this pod's values; what else names the old
+            # domain is rewritten here.
+            src=${GENTIAN_RESTORE_SOURCE_DOMAIN:-}
+            dst=${GENTIAN_RESTORE_TARGET_DOMAIN:-}
+            if [ -z "$src" ] || [ -z "$dst" ] || [ "$src" = "$dst" ]; then
+              exit 0
+            fi
+            # After the start's own module update, so the two do not write at once.
+            i=0
+            until curl -fs -o /dev/null --max-time 5 http://127.0.0.1:8069/web/health; do
+              i=$((i + 1))
+              if [ "$i" -ge 120 ]; then
+                say "Odoo does not answer yet; rewriting addresses anyway"
+                break
+              fi
+              sleep 5
+            done
+            PGPASSWORD="$DB_PASSWORD" python3 /opt/odoo/src/odoo/odoo-bin shell \
+              -d "$DB_NAME" --db_host="$DB_HOST" --db_port="$DB_PORT" --db_user="$DB_USER" \
+              --config=/etc/odoo/odoo.conf --no-http --shell-interface=python \
+              --log-level=warn <<'PY'
+            import os, re
+            src = os.environ["GENTIAN_RESTORE_SOURCE_DOMAIN"].strip().lower()
+            dst = os.environ["GENTIAN_RESTORE_TARGET_DOMAIN"].strip().lower()
+            q = re.escape(src)
+            url = re.compile(r"(https?://)((?:[a-z0-9-]+\.)*)" + q + r"(?![a-z0-9-]|\.[a-z0-9])", re.I)
+            host = re.compile(r"^((?:[a-z0-9-]+\.)*)" + q + r"(:\d+)?$", re.I)
+
+            def rehost(value):
+                if not isinstance(value, str):
+                    return value
+                m = host.match(value)
+                if m:
+                    return m.group(1) + dst + (m.group(2) or "")
+                return url.sub(lambda m: m.group(1) + m.group(2) + dst, value)
+
+            changed = []
+            for model, fields in (
+                ("ir.config_parameter", ("value",)),
+                ("auth.oauth.provider", ("auth_endpoint", "validation_endpoint", "data_endpoint")),
+                ("mail.alias.domain", ("name",)),
+                ("website", ("domain",)),
+            ):
+                if model not in env:
+                    continue
+                for rec in env[model].sudo().with_context(active_test=False).search([]):
+                    vals = {f: rehost(rec[f]) for f in fields if f in rec._fields and rec[f] and rehost(rec[f]) != rec[f]}
+                    if vals:
+                        rec.write(vals)
+                        changed.append("%s %s" % (model, rec.key if model == "ir.config_parameter" else rec.id))
+            env.cr.commit()
+            env.registry.clear_all_caches()
+            env.registry.signal_changes()
+            for c in changed:
+                print("gentian-restore: %s now names %s" % (c, dst))
+            PY
+
+  expose:
+    # Odoo's SSO callback exceeds Envoy's 15s default route timeout, so the
+    # sign-in that gets a user into the app is the request that gets cut:
+    #
+    #   504  UT  15000ms  /auth_oauth/signin?state=...
+    #
+    # /auth_oauth/signin is where Odoo takes the Keycloak callback, links or
+    # creates the user, and loads the web client for the first time -- which
+    # compiles the JS/CSS asset bundles. That is minutes of work on a small
+    # node, once, and every unauthenticated path is served in well under a
+    # second. A default meant for ordinary requests is simply the wrong budget
+    # for it.
+    #
+    # nextcloud already declares the same annotations for the same reason. 600s
+    # rather than its 3600s: nothing here is a multi-hour upload, and a hung
+    # backend should still surface within ten minutes rather than hold the
+    # connection for an hour.
+    - name: web
+      surface: gateway
+      authMode: oidc
+      subDomain: odoo
+      # The realm issues a person's token for this Odoo alone, which is what a
+      # program acting for that person presents on the JSON-2 API. The browser's
+      # requests are handed one too; Odoo's pages do not read it.
+      exchangeToken: true
+      backend:
+        service: odoo
+        port: 8069
+      tile:
+        displayName: "Odoo Settings"
+        displayNames:
+          de_DE: "Odoo Einstellungen"
+        logo: data:image/png;base64,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
+        image: assets/tile.png
+        path: /odoo/action-base_setup.action_general_configuration?gentian_embed=1
+        relation: can_launch
+  customization:
+    grade: A
+    rubricScore: 8
+    supportedRungs: [L0, L1, L3, L4, L5, L6]   # L2 is always available, never listed
+    ladderDocs: https://github.com/gentian-org/gentian-apps/blob/main/profiles/odoo/odoo-base-ce/customization.md
+
+    # The selected addons' modules, for the chart's start script: it adds them
+    # to the base modules in the one odoo-bin -i it runs on every start, which
+    # skips what is installed already. Not a script, although the field is
+    # called one: the chart reads the names (charts/odoo, gentian.addonModules).
+    addonActivation:
+      valuesPath: gentian.addonModules
+      script: "__GENTIAN_ADDON_IDS__"
+
+    configure:
+      valuesSchema: charts/odoo/values.schema.json
+      hotReload: false
+
+    dropIns:
+      - name: odoo-conf
+        path: /etc/odoo-conf-fragments
+        format: ini
+        source: configMap
+        maxBytes: 262144
+        # Odoo has no native conf.d — this is a Gentian-built mechanism (an init
+        # container merges fragments into odoo.conf before start), not an upstream
+        # promise about the path. See charts/odoo/templates/deployment.yaml.
+        upstreamDocumented: false
+        tenantEditable: false
+      - name: branding
+        path: /opt/odoo/custom-branding
+        format: files
+        source: configMap
+        upstreamDocumented: false
+        tenantEditable: true
+        maxBytes: 262144
+
+    extension:
+      mechanism: odoo-addon
+      delivery: [git-sidecar, addon-profile, image-layer]
+      registry: https://github.com/gentian-org/odoo-modules
+      addonPath: /opt/odoo/custom-addons
+      apiStability: stable
+      apiDocs: https://www.odoo.com/documentation/18.0/developer.html
+      perTenantAddons: true      # one Odoo per tenant namespace — see framework §2.4
+      testMatrix: ["18.0"]
+
+    publishes:
+      apis:
+        - contract: erp-core
+          protocol: http-json
+          spec: openapi
+          path: /api
+          auth: oidc-token-exchange
+
+    repackage:
+      chartOwnership: gentian-owned
+
+    patch:
+      allowed: true
+      buildRepo: https://github.com/gentian-org/ocb
+      seriesPath: patches/series
+      requiresApproval: platform-team
+
+    fork:
+      allowed: true
+      repo: https://github.com/gentian-org/ocb
+      # OCA/OCB, not odoo/odoo: ocb's Dockerfile clones OCA/OCB branch 19.0 and
+      # strips Enterprise references from it. OCB is itself a community fork of
+      # odoo/odoo, so naming the grand-upstream here pointed CVE watch and the
+      # upstream-first check at a tree this fork does not track.
+      upstream: https://github.com/OCA/OCB
+      owner: platform-erp
+      cveWatch: true
+  launch: tile
