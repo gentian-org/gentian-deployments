@@ -83,9 +83,9 @@ spec:
     defaultGrant: true
   - profile: mcp-gateway-ee
     cameWith: voles-ee
-    digest: sha256:3c807f6e3b4d2c3a6d66aa8135f3027fd797dbffcc50f46361e0519565b7b89c
+    digest: sha256:f7453522231d68046af87ec4f48f4e3139ae9dfe44f902bc705ead4c010f914a
     catalogue: aluvian
-    movedAt: 2026-11-19T10:14:21Z
+    movedAt: 2026-11-19T11:00:29Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: notary-ee
