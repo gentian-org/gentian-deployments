@@ -623,6 +623,7 @@ resources:
 - builds/notify-people-f58007624771.yaml
 - builds/odoo-agent-bridge-ee-5e62054f3212.yaml
 - builds/test-echo-f3ed910290ea.yaml
+- builds/voles-agent-bridge-ee-9a186ffb0006.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
