@@ -37,6 +37,10 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: voles-agent-bridge-ee
+    digest: sha256:09a3405628830fbac819ce93edaac3c4148f654bef5ee5b8a91250cdb6e5294a
+    catalogue: aluvian
+    defaultGrant: true
   - profile: homesync
     placed: true
   - profile: nextcloud-sync-ce
