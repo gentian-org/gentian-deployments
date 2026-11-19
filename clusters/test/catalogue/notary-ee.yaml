@@ -4,8 +4,13 @@
 # call (services/notary, docs/agents.md).
 #
 # It holds one key, the one passes are signed with, and one database. It
-# reaches no app and no agent bridge. What a person may do with an app, and which
-# installed action they may use, is the platform's answer.
+# reaches no app and no agent bridge: which tools there are, the chaperone
+# tells it. What a person may do with an app, and which installed action
+# they may use, is the platform's answer.
+#
+# A person who allows a mandate that names tools is linked to the chaperone
+# at the platform's registrar, with the token they are at the page with. That
+# token is made out to the notary and good for nothing else there.
 #
 # A person says yes on the notary's own confirmation page, at an address of
 # its own behind the tenant's sign-in. An engine sends the person there and
@@ -33,12 +38,12 @@ spec:
   launch: none
   # The rights check is given at this tier only.
   trustTier: platform
-  version: "0.1.0-main.3ee24ed"
+  version: "0.1.0-main.0a7c05e"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: notary
-      version: "0.1.0-main.3ee24ed"
+      version: "0.1.0-main.0a7c05e"
     valueMapping:
       database:
         hostKey: database.host
@@ -49,11 +54,19 @@ spec:
       platform:
         issuerKey: auth.issuer
         tenantKey: tenant
+        # Where a person is linked to the chaperone when they allow a
+        # mandate that names tools.
+        registrarUrlKey: registrar.url
       integrations:
         # The credential of the notary's own contract: whoever presents it
         # is the engine the contract was granted to.
         mandates:
           passwordKey: engine.key
+        # The credential of the contract the chaperone verifies passes by:
+        # whoever presents it is the chaperone, telling which tools the
+        # installed agent bridges offer.
+        passes:
+          passwordKey: chaperone.key
     extraValues:
       # The Service the chaperone and the engines reach it at.
       fullnameOverride: notary
@@ -65,6 +78,14 @@ spec:
       # The engine the contract mandates is for.
       engine:
         name: voles-ee
+      # The component that acts for a person while they are away, which
+      # names the notary as its consent page.
+      vouching:
+        profile: chaperone-ee
+      # Tools that change data may be named in a mandate, each by name and
+      # version, at the stage that carries changes out. What cannot be
+      # undone stays out.
+      agentPolicy: '{"allow_change": true}'
       auth:
         # At the notary's own address the front door hands it a token of the
         # person made out to this profile (exchangeToken, below). The
