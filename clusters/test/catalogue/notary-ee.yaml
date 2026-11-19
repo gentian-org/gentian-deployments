@@ -4,7 +4,7 @@
 # call (services/notary, docs/agents.md).
 #
 # It holds one key, the one passes are signed with, and one database. It
-# reaches no app and no adapter. What a person may do with an app, and which
+# reaches no app and no agent bridge. What a person may do with an app, and which
 # installed action they may use, is the platform's answer.
 #
 # A person says yes on the notary's own confirmation page, at an address of
@@ -33,12 +33,12 @@ spec:
   launch: none
   # The rights check is given at this tier only.
   trustTier: platform
-  version: "0.1.0-main.e19f1f9"
+  version: "0.1.0-main.eaeb6f1"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: notary
-      version: "0.1.0-main.e19f1f9"
+      version: "0.1.0-main.eaeb6f1"
     valueMapping:
       database:
         hostKey: database.host
