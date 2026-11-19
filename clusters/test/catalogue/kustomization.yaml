@@ -9,7 +9,6 @@ resources:
 - builds/fellwort-ee-2a9bd7b5c4eb.yaml
 - docmost-ce.yaml
 - builds/docmost-ce-4491063a2ba7.yaml
-- odoo-base-ce.yaml
 - builds/odoo-base-ce-5ee64760d736.yaml
 - nextcloud-richdocuments-ce.yaml
 - builds/nextcloud-richdocuments-ce-5a6794df39ae.yaml
@@ -48,7 +47,6 @@ resources:
 - builds/app-store-pe-e4c3309a353a.yaml
 - builds/aluvian-center-pe-564c5d82026a.yaml
 - builds/nextcloud-base-ce-748959131fb1.yaml
-- open-webui-ce.yaml
 - builds/open-webui-ce-de9b94a99492.yaml
 - builds/nextcloud-base-ce-726e498e2910.yaml
 - nextcloud-mail-ce.yaml
@@ -83,12 +81,10 @@ resources:
 - builds/odoo-purchase-ce-3e8ca67b43ca.yaml
 - builds/nextcloud-base-ce-8863e40d0f49.yaml
 - builds/odoo-base-ce-05bd0d650cfb.yaml
-- erpnext-ce.yaml
 - builds/erpnext-ce-e9050a534dc4.yaml
 - builds/operations-console-ee-0fc063557d9b.yaml
 - builds/app-store-pe-5e93e44e654d.yaml
 - builds/aluvian-center-pe-7ef48f8d9e75.yaml
-- paperless-ngx-ce.yaml
 - builds/paperless-ngx-ce-75f655fdc8d5.yaml
 - builds/erpnext-ce-e7211982b0e0.yaml
 - builds/nextcloud-base-ce-ccfce918968b.yaml
@@ -336,7 +332,6 @@ resources:
 - builds/operations-sync-ee-2f9f132c4646.yaml
 - builds/app-store-pe-a95887c549b8.yaml
 - builds/aluvian-center-pe-4e7267f9ee7d.yaml
-- odoo-adapter-ee.yaml
 - builds/odoo-adapter-ee-2ad9479467f6.yaml
 - builds/chaperone-ee-cb327b9f58cc.yaml
 - builds/mcp-gateway-ee-2dbf925a3831.yaml
@@ -406,7 +401,6 @@ resources:
 - builds/operations-sync-ee-9699cd6c98af.yaml
 - builds/app-store-pe-33e20629092d.yaml
 - builds/aluvian-center-pe-93278ab92577.yaml
-- fellwort-adapter-ee.yaml
 - builds/fellwort-adapter-ee-30c06d3c6baf.yaml
 - builds/chaperone-ee-6b065e3ea470.yaml
 - builds/fellwort-adapter-ee-5152a0b6b74c.yaml
@@ -573,7 +567,6 @@ patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
-- path: odoo-base-ce.bundle.yaml
 - path: nextcloud-richdocuments-ce.bundle.yaml
 - path: nextcloud-calendar-ce.bundle.yaml
 - path: nextcloud-collectives-ce.bundle.yaml
@@ -585,7 +578,6 @@ patches:
 - path: operations-console-ee.bundle.yaml
 - path: app-store-pe.bundle.yaml
 - path: aluvian-center-pe.bundle.yaml
-- path: open-webui-ce.bundle.yaml
 - path: nextcloud-mail-ce.bundle.yaml
 - path: odoo-calendar-ce.bundle.yaml
 - path: odoo-contacts-ce.bundle.yaml
@@ -598,8 +590,6 @@ patches:
 - path: odoo-pos-restaurant-ce.bundle.yaml
 - path: odoo-project-ce.bundle.yaml
 - path: odoo-purchase-ce.bundle.yaml
-- path: erpnext-ce.bundle.yaml
-- path: paperless-ngx-ce.bundle.yaml
 - path: odoo-sales-ce.bundle.yaml
 - path: backup-scheduler-ee.bundle.yaml
 - path: operations-sync-ee.bundle.yaml
@@ -607,10 +597,8 @@ patches:
 - path: chaperone-ee.bundle.yaml
 - path: notary-ee.bundle.yaml
 - path: mcp-gateway-ee.bundle.yaml
-- path: odoo-adapter-ee.bundle.yaml
 - path: odoo-meeting-transcripts-ce.bundle.yaml
 - path: test-echo.bundle.yaml
-- path: fellwort-adapter-ee.bundle.yaml
 - path: notify-people.bundle.yaml
 - path: notify-me.bundle.yaml
 - path: rehearsal.bundle.yaml
