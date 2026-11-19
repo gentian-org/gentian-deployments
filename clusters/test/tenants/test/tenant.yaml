@@ -106,9 +106,9 @@ spec:
     defaultGrant: true
   - profile: flowable-ce
     cameWith: voles-ee
-    digest: sha256:764d5ad20e8d7443f3b729ba8774bfff40f1c0a9bbd494cea4db5175aed8a1b2
+    digest: sha256:8b683b2c3c0ba0101792d8e5b7d02d39fa73ab9674db2c49a70452c7d5c0d9d6
     catalogue: gentian
-    movedAt: 2026-11-16T08:45:11Z
+    movedAt: 2026-11-19T15:42:51Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: desktop
