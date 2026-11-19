@@ -99,9 +99,9 @@ spec:
     defaultGrant: true
   - profile: chaperone-ee
     cameWith: voles-ee
-    digest: sha256:380a8761dc15062998825714f9ba14c4e221e129659356990af386641a44734d
+    digest: sha256:8df0caacf4cca3ac7432c31b5649b8fb7838632a81765cbea3fd3ca04ea90c6e
     catalogue: aluvian
-    movedAt: 2026-11-19T14:08:57Z
+    movedAt: 2026-11-19T15:52:59Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: flowable-ce
