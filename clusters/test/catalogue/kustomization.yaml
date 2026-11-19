@@ -564,6 +564,7 @@ resources:
 - builds/app-store-pe-1349a1f4ccc2.yaml
 - builds/aluvian-center-pe-0b748e2ac5a3.yaml
 - builds/odoo-base-ce-574078a2b4fe.yaml
+- builds/chaperone-ee-380a8761dc15.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
