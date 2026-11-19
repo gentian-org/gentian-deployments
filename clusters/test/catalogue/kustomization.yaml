@@ -555,6 +555,8 @@ resources:
 - builds/notify-people-7450a081a168.yaml
 - builds/test-echo-337391e660cb.yaml
 - builds/voles-ee-80bc0982dd23.yaml
+- odoo-agent-bridge-ee.yaml
+- builds/odoo-agent-bridge-ee-561eeb4a9524.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -603,3 +605,4 @@ patches:
 - path: uno-calculator-ce.bundle.yaml
 - path: voles-ee.bundle.yaml
 - path: nextcloud-sync-ce.bundle.yaml
+- path: odoo-agent-bridge-ee.bundle.yaml

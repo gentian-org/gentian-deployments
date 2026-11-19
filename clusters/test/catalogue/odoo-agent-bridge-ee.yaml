@@ -1,0 +1,66 @@
+# The Odoo agent bridge: turns a tenant's Odoo into tools for programs that act for
+# a person -- Voles' agents, and coding agents through the MCP gateway.
+# An MCP server at odoo-agent-bridge:8765/mcp whose tools are the tool packs in its
+# chart (services/odoo-agent-bridge/chart/packs), one per Odoo module.
+#
+# It holds no credential of Odoo. Each call carries one, which goes on to
+# Odoo's JSON-2 API with the calls the tool makes, so Odoo decides what the
+# call may see and change, by the rights of the person it was issued for.
+# As an agent bridge it reaches odoo-base-ce and nothing else in the tenant, and
+# only the tenant's components that speak as a person reach it.
+#
+# It comes with Voles: the store lists it on Odoo's page, and only a
+# tenant holding voles-ee may acquire or pull it (services/store,
+# STORE_AGENT_BRIDGES_REQUIRE). The chart and image are private packages of
+# ghcr.io/aluvian-hq, pulled through registry.aluvian.io with the credential
+# the store minted at acquisition.
+apiVersion: gentianos.io/v1alpha1
+kind: ComponentProfile
+metadata:
+  name: odoo-agent-bridge-ee
+  labels:
+    gentianos.io/profile-name: odoo-agent-bridge-ee
+    gentianos.io/profile-edition: ee
+spec:
+  classes: [bridge]
+  # Nobody opens it: agents call it.
+  launch: none
+  trustTier: certified
+  version: "0.1.0-main.9a95410"
+  requires:
+    platform: ">=0.5"
+  bridge:
+    app:
+      profile: odoo-base-ce
+      versions: ["0.5.1"]
+    ways:
+      # The tenant's agents call its tools, as the person they act for.
+      # The endpoint is where the tool server answers: the platform tells
+      # the components that call tools for a person (the chaperone) that it
+      # is there.
+      - name: tools
+        caller: agents
+        callee: app
+        protocol: mcp
+        speaksAs: person
+        endpoint:
+          service: odoo-agent-bridge
+          port: 8765
+          path: /mcp
+    # The Odoo add-ons selected in the tenant, by ID, which are the module
+    # names the tool packs are kept under: only their packs are offered.
+    addonsValuesPath: activeModules
+  package:
+    chart:
+      repository: "oci://registry.aluvian.io/aluvian-hq/charts"
+      name: odoo-agent-bridge
+      version: "0.1.0-main.9a95410"
+    extraValues:
+      # The Service callers reach the agent bridge at.
+      fullnameOverride: odoo-agent-bridge
+      # The chart's own image, through the registry; its tag stays the
+      # chart's, which names the build it was packaged from.
+      image:
+        repository: registry.aluvian.io/aluvian-hq/odoo-agent-bridge
+      # odoo-base-ce's Service, in the same namespace.
+      odooUrl: http://odoo:8069
