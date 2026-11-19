@@ -553,6 +553,7 @@ resources:
 - builds/notary-ee-f6f5844da92a.yaml
 - builds/notify-me-0add8ca1de82.yaml
 - builds/notify-people-7450a081a168.yaml
+- builds/test-echo-337391e660cb.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
