@@ -602,6 +602,11 @@ resources:
 - builds/voles-agent-bridge-ee-2f665c58fb11.yaml
 - builds/odoo-agent-bridge-ee-e070f68bb646.yaml
 - builds/odoo-base-ce-481dc520d528.yaml
+- builds/operations-console-ee-16d2433cf7f4.yaml
+- builds/backup-scheduler-ee-b30e46796040.yaml
+- builds/operations-sync-ee-fd52cba78dd3.yaml
+- builds/app-store-pe-0ddcbe42f942.yaml
+- builds/aluvian-center-pe-29a808c36000.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
