@@ -37,6 +37,8 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: homesync
+    placed: true
   - profile: odoo-agent-bridge-ee
     digest: sha256:561eeb4a9524c6ef37e6817efbabc0ba774dec68a49a28146273363dd2b29091
     catalogue: aluvian
