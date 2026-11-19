@@ -564,6 +564,11 @@ resources:
 - builds/notify-people-99051706e6c0.yaml
 - builds/test-echo-9a9ef7a5f950.yaml
 - builds/odoo-base-ce-ce825940430a.yaml
+- builds/operations-console-ee-34d1544ae331.yaml
+- builds/backup-scheduler-ee-83125cc656a5.yaml
+- builds/operations-sync-ee-18ec15c75c0d.yaml
+- builds/app-store-pe-1349a1f4ccc2.yaml
+- builds/aluvian-center-pe-0b748e2ac5a3.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
