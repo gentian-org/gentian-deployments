@@ -37,6 +37,10 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: odoo-agent-bridge-ee
+    digest: sha256:e070f68bb646f02170ac7bb01cb8e26e15ab6723ced7aa3d835c0d0d97f06139
+    catalogue: aluvian
+    defaultGrant: true
   - profile: voles-agent-bridge-ee
     digest: sha256:2f665c58fb1197485f7dd3ea4fca6d86ec8fdca507f932839d269ba28c471b8b
     catalogue: aluvian
