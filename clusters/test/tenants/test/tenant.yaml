@@ -38,8 +38,10 @@ spec:
   # Apps are installed through the director, which appends to this list.
   apps:
   - profile: voles-agent-bridge-ee
-    digest: sha256:09a3405628830fbac819ce93edaac3c4148f654bef5ee5b8a91250cdb6e5294a
+    digest: sha256:eee69f15193ed3706b4845a436827614a94939116883e4a956ceff60aeae791e
     catalogue: aluvian
+    movedAt: 2026-11-19T15:53:25Z
+    movedBy: policy:latest
     defaultGrant: true
   - profile: homesync
     placed: true
