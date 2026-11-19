@@ -587,6 +587,11 @@ resources:
 - builds/voles-agent-bridge-ee-eee69f15193e.yaml
 - builds/voles-ee-648efb6ae705.yaml
 - builds/flowable-ce-ac595de4acb3.yaml
+- builds/operations-console-ee-1ae5bd2d5e69.yaml
+- builds/backup-scheduler-ee-5fb244bc7191.yaml
+- builds/operations-sync-ee-4ef14150d864.yaml
+- builds/app-store-pe-98bb02cb9f3e.yaml
+- builds/aluvian-center-pe-9a8bbc89a700.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
