@@ -577,6 +577,7 @@ resources:
 - voles-agent-bridge-ee.yaml
 - builds/voles-agent-bridge-ee-09a340562883.yaml
 - builds/flowable-ce-8b683b2c3c0b.yaml
+- builds/odoo-calendar-ce-b754dd4b3563.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
