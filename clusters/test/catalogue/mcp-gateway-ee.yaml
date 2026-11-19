@@ -6,7 +6,7 @@
 #
 # The gateway decides nothing and holds no credential. The edge verifies the
 # token; the gateway hands the request to the chaperone, which verifies it
-# again, asks the person's rights, calls the app's adapter and journals the
+# again, asks the person's rights, calls the app's agent bridge and journals the
 # call.
 #
 # It comes with Voles and is not offered on its own. The chart and image
@@ -26,12 +26,12 @@ spec:
   # Nobody opens it in a browser: programs call it.
   launch: none
   trustTier: platform
-  version: "0.1.0-main.e19f1f9"
+  version: "0.1.0-main.eaeb6f1"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: mcp-gateway
-      version: "0.1.0-main.e19f1f9"
+      version: "0.1.0-main.eaeb6f1"
     valueMapping:
       integrations:
         # The chaperone's address, once the tenant's administrator has
