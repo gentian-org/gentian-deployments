@@ -52,10 +52,10 @@ spec:
     movedBy: policy:latest
     defaultGrant: true
   - profile: voles-ee
-    digest: sha256:648efb6ae70556decce0950738f6d3748f170a9dd8911c2fde66bacb57ec5087
+    digest: sha256:6f8d8ae586cd05ca19a679c90695b9558f3fa5fcde3068ad4735ff1c674be4fb
     catalogue: aluvian
-    movedAt: 2026-11-19T15:53:29Z
-    movedBy: policy:latest
+    movedAt: 2026-11-19T17:08:08Z
+    movedBy: admin@gentian-os.org
     defaultGrant: true
   - profile: uno-calculator-ce
     digest: sha256:4206cf1675b18fa4f88af4c24a001f9a214a1a143668bae9254f9d61eeb2f9d8
