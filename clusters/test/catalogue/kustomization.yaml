@@ -607,6 +607,7 @@ resources:
 - builds/operations-sync-ee-fd52cba78dd3.yaml
 - builds/app-store-pe-0ddcbe42f942.yaml
 - builds/aluvian-center-pe-29a808c36000.yaml
+- builds/chaperone-ee-ac5f07b811bc.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml

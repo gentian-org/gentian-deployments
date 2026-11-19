@@ -7,7 +7,8 @@
 #
 # It holds no credential of any app. As a component that speaks for people it
 # is one of the few the tenant's agent bridges admit, and the realm exchanges a
-# person's token only through the client the platform made for it.
+# person's token only through the client the platform made for it. A token is
+# obtained for one call and kept nowhere.
 #
 # It comes with Voles and is not offered on its own. The chart and image
 # are private packages of ghcr.io/aluvian-hq, pulled through
@@ -27,12 +28,12 @@ spec:
   launch: none
   # The rights check and the token exchange are given at this tier only.
   trustTier: platform
-  version: "0.1.0-main.3ee24ed"
+  version: "0.1.0-main.0a7c05e"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: chaperone
-      version: "0.1.0-main.3ee24ed"
+      version: "0.1.0-main.0a7c05e"
     valueMapping:
       database:
         hostKey: database.host
@@ -49,6 +50,9 @@ spec:
         # then an engine's calls answer 503 and a present person's pass.
         passes:
           endpointKey: notaryUrl
+          # The contract's credential, with which the chaperone tells the
+          # notary which tools the installed agent bridges offer.
+          passwordKey: notaryKey
         # Where a run's notice is published and the credential that proves
         # the chaperone was granted the contract. Until then a run's notice
         # answers 503.
@@ -87,9 +91,17 @@ spec:
       # May this person use this app: asked on every call.
       rights: {}
       # A present person's token is exchanged for one valid at a single app.
-      # The chaperone signs nothing itself, so it publishes no keys.
+      # For a person who is away the chaperone vouches: it signs a statement
+      # of a minute with a key it makes at start and publishes here, and the
+      # realm answers with that person's token for one app. The realm
+      # answers only for a person who is linked to the chaperone, and a
+      # person is linked by their own yes on the notary's page.
       vouching:
         exchange: true
+        keys:
+          service: chaperone
+          port: 8000
+        consent: notary-ee
       # An action is started here and nowhere else: the chaperone holds the
       # key to the platform's dispatcher. The run's pod fetches its inputs
       # from the chaperone and delivers its outputs there, with a credential
