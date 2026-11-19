@@ -7,7 +7,8 @@
 # its pages behind the tenant's sign-in, and the share app, the one part that
 # is on the internet. A share link opens a version of a graph on its own host
 # for anyone holding the link, who can run it with values of their own but not
-# change it. The agent runner ships in the chart and stays off here.
+# change it. The agent runner runs agent graphs, and asks the cluster's model
+# gateway with the key the platform made for Voles, where the cluster has one.
 #
 # The chart and images are private packages of ghcr.io/aluvian-hq, pulled
 # through registry.aluvian.io (services/registry): the App Store declares that
@@ -27,13 +28,18 @@ spec:
   trustTier: certified
   # The chart version Voles' CI published, pinned: provider-helm never
   # upgrades a release whose chart version string did not change.
-  version: "0.1.0-develop.46e755f"
+  version: "0.1.0-develop.af60736"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: voles
-      version: "0.1.0-develop.46e755f"
+      version: "0.1.0-develop.af60736"
     valueMapping:
+      # The cluster's model gateway and Voles' own key there: the editor
+      # offers the models the tenant may use, and the runner asks them.
+      llm:
+        baseUrlKey: models.url
+        apiKeyKey: models.key
       database:
         hostKey: database.host
         portKey: database.port
@@ -99,7 +105,7 @@ spec:
       store:
         url: https://store-service.aluvian.io
       runner:
-        enabled: false
+        enabled: true
         image:
           repository: registry.aluvian.io/aluvian-hq/voles-runner
   # Who administers Voles is who holds the platform's App Admin role. The
@@ -111,7 +117,7 @@ spec:
         kind: group
         name: admin
       syncJob:
-        image: registry.aluvian.io/aluvian-hq/voles-api:46e755f
+        image: registry.aluvian.io/aluvian-hq/voles-api:af60736
         serviceAccountName: voles
         envFrom:
           - voles-app-admins
@@ -123,6 +129,12 @@ spec:
     services:
       database:
         engine: postgresql
+      # A key of its own at the cluster's model gateway, and the way to it.
+      # Optional: on a cluster that serves no models Voles is installed
+      # without both, runs every graph that needs no model, and refuses a
+      # run that needs one.
+      llm:
+        optional: true
     privileges:
       egress:
         - name: usage-reports
