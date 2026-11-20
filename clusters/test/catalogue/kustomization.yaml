@@ -626,6 +626,8 @@ resources:
 - builds/voles-agent-bridge-ee-9a186ffb0006.yaml
 - vectorcraft-ce.yaml
 - builds/vectorcraft-ce-ca2fec0266d7.yaml
+- wordcraft-ce.yaml
+- builds/wordcraft-ce-cf0251914a60.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -675,3 +677,4 @@ patches:
 - path: paperless-ngx-ce.bundle.yaml
 - path: voles-agent-bridge-ee.bundle.yaml
 - path: vectorcraft-ce.bundle.yaml
+- path: wordcraft-ce.bundle.yaml
