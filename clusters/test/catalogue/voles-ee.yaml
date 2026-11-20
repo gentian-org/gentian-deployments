@@ -170,7 +170,8 @@ spec:
   # Installed together with Voles where the tenant does not have them,
   # and removed with it: the process engine, and what a program or an agent
   # reaches the tenant's apps through -- the chaperone every tool call
-  # passes, the notary that signs a run's pass, and the MCP gateway a
+  # passes, the notary that signs a run's pass, the liaison that keeps a
+  # person's connections to services outside the cluster, and the MCP gateway a
   # person's own program connects to. Each stays an app of its own, with its
   # own approvals and its own data. With them come the actions every
   # Voles has from the start; who may use one is the tenant
@@ -179,6 +180,7 @@ spec:
     - flowable-ce
     - chaperone-ee
     - notary-ee
+    - liaison-ee
     - mcp-gateway-ee
     - test-echo
     - notify-me
