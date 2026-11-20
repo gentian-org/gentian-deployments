@@ -628,6 +628,11 @@ resources:
 - builds/vectorcraft-ce-ca2fec0266d7.yaml
 - wordcraft-ce.yaml
 - builds/wordcraft-ce-cf0251914a60.yaml
+- builds/operations-console-ee-aaf2a6f60780.yaml
+- builds/backup-scheduler-ee-e333f881ecbe.yaml
+- builds/operations-sync-ee-69436450b4fe.yaml
+- builds/app-store-pe-e48e11a42dcd.yaml
+- builds/aluvian-center-pe-e7b9e911132c.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
