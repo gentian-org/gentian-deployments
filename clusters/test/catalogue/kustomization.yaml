@@ -633,6 +633,7 @@ resources:
 - builds/operations-sync-ee-69436450b4fe.yaml
 - builds/app-store-pe-e48e11a42dcd.yaml
 - builds/aluvian-center-pe-e7b9e911132c.yaml
+- builds/wordcraft-ce-89f272dc8e98.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
