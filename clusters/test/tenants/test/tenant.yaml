@@ -37,6 +37,9 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: liaison-ee
+    digest: sha256:3efee9144ea005ff18980959a4c5bae8addcc27a73d5c269a3b92a6c69af8ddd
+    catalogue: aluvian
   - profile: wordcraft-ce
     digest: sha256:89f272dc8e98cfaa10bcffb5fcb0de5a33dd615549fbf0c785ce4831b45f8a98
     catalogue: gentian
