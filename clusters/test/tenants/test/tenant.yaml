@@ -37,6 +37,10 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: wordcraft-ce
+    digest: sha256:cf0251914a60b2b0a8e3475c5f4ce9740c32ef7e3b4bea96c20f32ed01d14f56
+    catalogue: gentian
+    defaultGrant: true
   - profile: vectorcraft-ce
     digest: sha256:ca2fec0266d7c002778814f4b89f76c8383a1f741bd53123d47d698cfcf79b97
     catalogue: gentian
