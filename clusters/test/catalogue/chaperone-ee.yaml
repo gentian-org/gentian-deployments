@@ -28,12 +28,12 @@ spec:
   launch: none
   # The rights check and the token exchange are given at this tier only.
   trustTier: platform
-  version: "0.1.0-main.c9435ab"
+  version: "0.1.0-main.ff85fea"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: chaperone
-      version: "0.1.0-main.c9435ab"
+      version: "0.1.0-main.ff85fea"
     valueMapping:
       database:
         hostKey: database.host
@@ -53,6 +53,14 @@ spec:
           # The contract's credential, with which the chaperone tells the
           # notary which tools the installed agent bridges offer.
           passwordKey: notaryKey
+        # Where the liaison answers and the credential the chaperone shows
+        # it: with them it tells the liaison which outside tool servers the
+        # tenant's agent bridges name, and asks for a short credential when
+        # it carries a call to one for a person. Until the contract is
+        # granted, a call to an outside tool server is refused.
+        connections:
+          endpointKey: liaisonUrl
+          passwordKey: liaisonKey
         # Where a run's notice is published and the credential that proves
         # the chaperone was granted the contract. Until then a run's notice
         # answers 503.
@@ -126,6 +134,11 @@ spec:
       # What the tenant's administrator approves: one that asks for nothing
       # cannot be approved.
       capabilities: [verify]
+    # A person's credential for an outside tool server is the liaison's to
+    # hand out, one call at a time.
+    - contract: connections
+      provider: liaison-ee
+      capabilities: [credentials]
     # A run's notice goes into the desktop's inbox, and nowhere else.
     - contract: notices
       provider: desktop
