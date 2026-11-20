@@ -645,6 +645,8 @@ resources:
 - builds/voles-ee-29f16b716dc4.yaml
 - liaison-ee.yaml
 - builds/liaison-ee-3efee9144ea0.yaml
+- plaud-agent-bridge-ee.yaml
+- builds/plaud-agent-bridge-ee-e7528b8f9560.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -696,3 +698,4 @@ patches:
 - path: vectorcraft-ce.bundle.yaml
 - path: wordcraft-ce.bundle.yaml
 - path: liaison-ee.bundle.yaml
+- path: plaud-agent-bridge-ee.bundle.yaml

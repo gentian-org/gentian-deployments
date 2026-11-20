@@ -1,0 +1,119 @@
+# Plaud, for the tenant's agents: the recordings, transcripts and notes of a
+# person's Plaud account, read as that person. Nothing runs in the tenant:
+# the tool server is Plaud's own, outside the cluster, and each person signs
+# in there on the connections page. The tools below are the ones that may be
+# called, as reviewed; all of them read.
+apiVersion: gentianos.io/v1alpha1
+kind: ComponentProfile
+metadata:
+  name: plaud-agent-bridge-ee
+  labels:
+    gentianos.io/profile-name: plaud-agent-bridge-ee
+    gentianos.io/profile-edition: ee
+spec:
+  classes: [bridge]
+  launch: none
+  trustTier: certified
+  version: "0.1.0"
+  requires:
+    platform: ">=0.5"
+    privileges:
+      egress:
+        - name: plaud
+          reason: >-
+            Calls Plaud's tool server, mcp.plaud.ai, over https, as the
+            person a call is made for. A network rule names addresses, not
+            hosts.
+          rule:
+            to:
+              - ipBlock:
+                  cidr: 0.0.0.0/0
+                  except: [10.0.0.0/8, 100.64.0.0/10, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/12, 192.168.0.0/16]
+            ports:
+              - protocol: TCP
+                port: 443
+  package:
+    api:
+      baseUrl: https://mcp.plaud.ai/mcp
+      tenantBinding: none
+  bridge:
+    ways:
+      - name: tools
+        caller: agents
+        callee: outside
+        protocol: mcp
+        speaksAs: person
+        outside:
+          signIn:
+            oauth:
+              issuer: https://mcp.plaud.ai
+          tools:
+            - name: get-current-user
+              tool: get_current_user
+              version: 1
+              class: read
+              description: Says whose Plaud account the calls are made for.
+              inputSchema:
+                type: object
+                properties: {}
+            - name: list-files
+              tool: list_files
+              version: 1
+              class: read
+              description: >-
+                Lists the person's recordings, newest first. date_from and
+                date_to (YYYY-MM-DD, inclusive) filter by the recording's
+                date; query matches part of a recording's name among the
+                newest 500.
+              inputSchema:
+                type: object
+                properties:
+                  date_from: {type: string, description: "Start date, inclusive, YYYY-MM-DD."}
+                  date_to: {type: string, description: "End date, inclusive, YYYY-MM-DD."}
+                  page: {type: integer, minimum: 1, default: 1, description: "Page number, from 1."}
+                  page_size: {type: integer, minimum: 10, default: 20, description: "Recordings per page."}
+                  query: {type: string, description: "Part of a recording's name, in any case."}
+            - name: get-file
+              tool: get_file
+              version: 1
+              class: read
+              description: >-
+                The full record of one recording: what is known about it, a
+                link to its audio that is good for a day, and which
+                transcript blocks and notes it has.
+              inputSchema:
+                type: object
+                required: [file_id]
+                properties:
+                  file_id: {type: string, description: "The recording."}
+            - name: get-note
+              tool: get_note
+              version: 1
+              class: read
+              description: >-
+                The notes on one recording: its summary, and any other note
+                the person keeps with it.
+              inputSchema:
+                type: object
+                required: [file_id]
+                properties:
+                  file_id: {type: string, description: "The recording."}
+            - name: get-transcript
+              tool: get_transcript
+              version: 1
+              class: read
+              description: >-
+                The transcript of one recording, with speakers and times, a
+                page at a time: call again with next_cursor for the next
+                page.
+              inputSchema:
+                type: object
+                required: [file_id]
+                properties:
+                  file_id: {type: string, description: "The recording."}
+                  block:
+                    type: string
+                    enum: [transaction, outline, transaction_polish, mark_memo]
+                    description: "Which block: the transcript (default), the outline, the cleaned transcript, or the moments the person flagged."
+                  cursor: {type: string, description: "next_cursor of the call before; absent, from the start."}
+                  limit: {type: integer, minimum: 1, maximum: 500, description: "Utterances per page; 50 where absent."}
