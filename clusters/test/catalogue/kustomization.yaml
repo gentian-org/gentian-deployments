@@ -636,6 +636,7 @@ resources:
 - builds/wordcraft-ce-89f272dc8e98.yaml
 - builds/chaperone-ee-f70ec7b8fd69.yaml
 - builds/mcp-gateway-ee-08b240fec63c.yaml
+- builds/notary-ee-a364029d3d47.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
