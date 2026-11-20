@@ -37,6 +37,10 @@ spec:
     maxApps: 20
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: vectorcraft-ce
+    digest: sha256:ca2fec0266d7c002778814f4b89f76c8383a1f741bd53123d47d698cfcf79b97
+    catalogue: gentian
+    defaultGrant: true
   - profile: odoo-agent-bridge-ee
     digest: sha256:5e62054f32129763da2e2bbfee96cc35f50ef6e94f583b4ae9ffaa225fca7bbd
     catalogue: aluvian
