@@ -1,0 +1,81 @@
+# The liaison: keeps a person's connections to services outside the cluster.
+# A person connects on its page (liaison.<tenant domain>/connections/): they
+# sign in at the service, and what the service hands back is kept by the
+# platform's confidant, under that person. The chaperone asks the liaison
+# for a short credential when it carries a call for the person; the lasting
+# one never leaves the liaison. It comes with Voles and is not listed.
+apiVersion: gentianos.io/v1alpha1
+kind: ComponentProfile
+metadata:
+  name: liaison-ee
+  labels:
+    gentianos.io/profile-name: liaison-ee
+    gentianos.io/profile-edition: ee
+  annotations:
+    gentianos.io/store-listed: "false"
+spec:
+  classes: [app]
+  launch: none
+  # Keeping a person's secrets with the confidant is given at this tier only.
+  trustTier: platform
+  version: "0.1.0-main.ff85fea"
+  package:
+    chart:
+      repository: "oci://registry.aluvian.io/aluvian-hq/charts"
+      name: liaison
+      version: "0.1.0-main.ff85fea"
+    valueMapping:
+      platform:
+        issuerKey: auth.issuer
+      integrations:
+        # The credential the chaperone presents.
+        connections:
+          passwordKey: chaperone.key
+    extraValues:
+      fullnameOverride: liaison
+      image:
+        repository: registry.aluvian.io/aluvian-hq/liaison
+      componentKey:
+        secretName: rights-check-liaison-ee
+      auth:
+        ownAudience: liaison-ee
+  requires:
+    platform: ">=0.5"
+    services:
+      # What a service hands back for a person is kept by the confidant.
+      personSecrets: {}
+    privileges:
+      egress:
+        - name: outside-services
+          reason: >-
+            Reaches the authorization servers of the outside services the
+            tenant's agent bridges name, over https: to register, to trade a
+            person's sign-in for a credential, to renew it and to give it up.
+          rule:
+            to:
+              - ipBlock:
+                  cidr: 0.0.0.0/0
+                  except: [10.0.0.0/8, 100.64.0.0/10, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/12, 192.168.0.0/16]
+            ports:
+              - protocol: TCP
+                port: 443
+  # What the chaperone calls: it tells the liaison the outside tool servers
+  # and asks for a credential per call.
+  provides:
+    - name: connections
+      protocol: http-json
+      endpoint:
+        service: liaison
+        port: 8000
+  # The person's own page, behind the tenant's sign-in. The front door hands
+  # it a token of the person made out to the liaison alone.
+  expose:
+    - name: connections
+      surface: gateway
+      authMode: oidc
+      exchangeToken: true
+      subDomain: liaison
+      paths: ["/connections/", "/api/v1/connections/"]
+      backend:
+        service: liaison
+        port: 8000

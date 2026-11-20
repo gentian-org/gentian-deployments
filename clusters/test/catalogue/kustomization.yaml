@@ -643,6 +643,8 @@ resources:
 - builds/test-echo-4094c0d74c2e.yaml
 - builds/voles-agent-bridge-ee-f7d1210da922.yaml
 - builds/voles-ee-29f16b716dc4.yaml
+- liaison-ee.yaml
+- builds/liaison-ee-3efee9144ea0.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
@@ -693,3 +695,4 @@ patches:
 - path: voles-agent-bridge-ee.bundle.yaml
 - path: vectorcraft-ce.bundle.yaml
 - path: wordcraft-ce.bundle.yaml
+- path: liaison-ee.bundle.yaml
