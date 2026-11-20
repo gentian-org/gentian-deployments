@@ -640,6 +640,7 @@ resources:
 - builds/notify-me-f9bf05bd4480.yaml
 - builds/notify-people-ebd65ca30d73.yaml
 - builds/odoo-agent-bridge-ee-bfd3703349c1.yaml
+- builds/test-echo-4094c0d74c2e.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
