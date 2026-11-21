@@ -647,6 +647,11 @@ resources:
 - builds/liaison-ee-3efee9144ea0.yaml
 - plaud-agent-bridge-ee.yaml
 - builds/plaud-agent-bridge-ee-e7528b8f9560.yaml
+- builds/operations-console-ee-98b449afe73a.yaml
+- builds/backup-scheduler-ee-b9b429499bb5.yaml
+- builds/operations-sync-ee-4600c25a3e09.yaml
+- builds/app-store-pe-26845ab0bed6.yaml
+- builds/aluvian-center-pe-960807d35d6a.yaml
 patches:
 - path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
