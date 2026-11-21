@@ -59,3 +59,11 @@ spec:
       - runs
     grantedAt: "2026-11-16T23:13:37Z"
     grantedBy: 0ba53245-73b8-4649-a405-e09122ea84d1
+  - app: wordcraft-ce
+    consume:
+    - contract: file-store
+      granted:
+      - webdav:read
+      - webdav:write
+    grantedAt: "2026-11-21T08:05:44Z"
+    grantedBy: 0ba53245-73b8-4649-a405-e09122ea84d1
