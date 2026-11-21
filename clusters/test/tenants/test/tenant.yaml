@@ -47,9 +47,9 @@ spec:
     movedAt: 2026-11-21T15:22:53Z
     movedBy: policy:latest
   - profile: wordcraft-ce
-    digest: sha256:89f272dc8e98cfaa10bcffb5fcb0de5a33dd615549fbf0c785ce4831b45f8a98
+    digest: sha256:f244323bb8836cc79aa94bd24f93ea9255b6849e7f0a0155b9293f9717164cc9
     catalogue: gentian
-    movedAt: 2026-11-20T16:59:10Z
+    movedAt: 2026-11-21T23:19:22Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: vectorcraft-ce
