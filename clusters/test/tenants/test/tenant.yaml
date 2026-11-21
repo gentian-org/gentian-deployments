@@ -279,3 +279,5 @@ spec:
     providers:
       - mistral
     delegated: true
+  trustedDomains:
+    delegated: true
