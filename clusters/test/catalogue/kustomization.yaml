@@ -655,6 +655,7 @@ resources:
 - odoo-base-ce.yaml
 - builds/odoo-base-ce-4bde8b1bdd54.yaml
 - builds/odoo-base-ce-611c7c83bd3a.yaml
+- builds/chaperone-ee-194b6f56d211.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
