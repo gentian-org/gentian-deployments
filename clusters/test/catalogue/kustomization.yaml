@@ -1,7 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- nextcloud-base-ce.yaml
 - builds/nextcloud-base-ce-039ba3483665.yaml
 - fellwort-ee.yaml
 - builds/fellwort-ee-1e170e743015.yaml
@@ -9,7 +8,6 @@ resources:
 - builds/fellwort-ee-2a9bd7b5c4eb.yaml
 - docmost-ce.yaml
 - builds/docmost-ce-4491063a2ba7.yaml
-- odoo-base-ce.yaml
 - builds/odoo-base-ce-5ee64760d736.yaml
 - nextcloud-richdocuments-ce.yaml
 - builds/nextcloud-richdocuments-ce-5a6794df39ae.yaml
@@ -655,7 +653,6 @@ resources:
 - builds/nextcloud-base-ce-138a39cd9bf5.yaml
 - builds/odoo-base-ce-27512fa5d314.yaml
 patches:
-- path: nextcloud-base-ce.bundle.yaml
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
 - path: nextcloud-richdocuments-ce.bundle.yaml
@@ -697,7 +694,6 @@ patches:
 - path: voles-ee.bundle.yaml
 - path: nextcloud-sync-ce.bundle.yaml
 - path: odoo-agent-bridge-ee.bundle.yaml
-- path: odoo-base-ce.bundle.yaml
 - path: erpnext-ce.bundle.yaml
 - path: open-webui-ce.bundle.yaml
 - path: paperless-ngx-ce.bundle.yaml
