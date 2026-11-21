@@ -652,6 +652,8 @@ resources:
 - builds/aluvian-center-pe-960807d35d6a.yaml
 - builds/nextcloud-base-ce-138a39cd9bf5.yaml
 - builds/odoo-base-ce-27512fa5d314.yaml
+- odoo-base-ce.yaml
+- builds/odoo-base-ce-4bde8b1bdd54.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
@@ -702,3 +704,4 @@ patches:
 - path: wordcraft-ce.bundle.yaml
 - path: liaison-ee.bundle.yaml
 - path: plaud-agent-bridge-ee.bundle.yaml
+- path: odoo-base-ce.bundle.yaml
