@@ -47,6 +47,11 @@ spec:
       approver: 0ba53245-73b8-4649-a405-e09122ea84d1
       approvedAt: 2026-10-26T23:16:56Z
       reason: "It is needed"
+    - install: odoo-base-ce
+      privilege: egress/module-source
+      approver: 0ba53245-73b8-4649-a405-e09122ea84d1
+      approvedAt: 2026-11-21T08:42:52Z
+      reason: "Needed to fetch modules"
     - install: plaud-agent-bridge-ee
       privilege: egress/plaud
       approver: a9beb3d3-a909-46da-9841-6eb210a7ca01
