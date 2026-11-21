@@ -36,6 +36,8 @@ spec:
     storage: 50Gi
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: porter
+    placed: true
   - profile: plaud-agent-bridge-ee
     digest: sha256:e7528b8f956032fe4b3e9fb9611cbd763aa0a0941199091e131d3dacce2417a1
     catalogue: aluvian
