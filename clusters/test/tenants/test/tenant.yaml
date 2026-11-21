@@ -34,7 +34,7 @@ spec:
     cpu: "16"
     memory: 32Gi
     storage: 50Gi
-    maxApps: 20
+    maxApps: 40
   # Apps are installed through the director, which appends to this list.
   apps:
   - profile: plaud-agent-bridge-ee
