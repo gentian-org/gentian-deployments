@@ -38,11 +38,6 @@ spec:
       approvedAt: 2026-10-22T07:54:07Z
       reason: "Nextcloud (Collabora) only work this way ... we should patch at some point"
     - install: odoo-base-ce
-      privilege: egress/egress-2
-      approver: 0ba53245-73b8-4649-a405-e09122ea84d1
-      approvedAt: 2026-10-26T23:16:56Z
-      reason: "It is needed"
-    - install: odoo-base-ce
       privilege: egress/module-source
       approver: 0ba53245-73b8-4649-a405-e09122ea84d1
       approvedAt: 2026-11-21T08:42:52Z
