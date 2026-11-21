@@ -18,12 +18,12 @@ spec:
   launch: none
   # Keeping a person's secrets with the confidant is given at this tier only.
   trustTier: platform
-  version: "0.1.0-main.ff85fea"
+  version: "0.1.0-main.3409bc2"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: liaison
-      version: "0.1.0-main.ff85fea"
+      version: "0.1.0-main.3409bc2"
     valueMapping:
       platform:
         issuerKey: auth.issuer
