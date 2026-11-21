@@ -42,8 +42,10 @@ spec:
     digest: sha256:e7528b8f956032fe4b3e9fb9611cbd763aa0a0941199091e131d3dacce2417a1
     catalogue: aluvian
   - profile: liaison-ee
-    digest: sha256:3efee9144ea005ff18980959a4c5bae8addcc27a73d5c269a3b92a6c69af8ddd
+    digest: sha256:5127d879224dd0754e5a50dfa6844f3f9a9b8728773791bd34ffc29f9f785e70
     catalogue: aluvian
+    movedAt: 2026-11-21T15:22:53Z
+    movedBy: policy:latest
   - profile: wordcraft-ce
     digest: sha256:89f272dc8e98cfaa10bcffb5fcb0de5a33dd615549fbf0c785ce4831b45f8a98
     catalogue: gentian
