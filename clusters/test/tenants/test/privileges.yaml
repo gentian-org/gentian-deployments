@@ -17,6 +17,11 @@ spec:
       approver: 0ba53245-73b8-4649-a405-e09122ea84d1
       approvedAt: 2026-10-29T11:56:37Z
       reason: "it is needed"
+    - install: liaison-ee
+      privilege: egress/outside-services
+      approver: a9beb3d3-a909-46da-9841-6eb210a7ca01
+      approvedAt: 2026-11-21T08:02:43Z
+      reason: "step 4 live test"
     - install: nextcloud-base-ce
       privilege: podSecurity/gentian-disallow-privilege-escalation-co
       approver: 0ba53245-73b8-4649-a405-e09122ea84d1
