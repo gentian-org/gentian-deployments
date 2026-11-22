@@ -673,6 +673,7 @@ resources:
 - builds/chaperone-ee-32755ce5dd63.yaml
 - builds/mcp-gateway-ee-32e638f56c32.yaml
 - builds/notary-ee-fdf2bc42f3eb.yaml
+- builds/notify-me-7fb5cb0c2d93.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
