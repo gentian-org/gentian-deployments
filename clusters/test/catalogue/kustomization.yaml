@@ -709,6 +709,7 @@ resources:
 - builds/odoo-meeting-transcripts-ce-0d7be199170c.yaml
 - builds/odoo-mrp-ce-e6754f3d97fd.yaml
 - builds/odoo-purchase-ce-88cdb207bd46.yaml
+- builds/odoo-sales-ce-d4982d78fb2c.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
