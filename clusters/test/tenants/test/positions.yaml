@@ -18,5 +18,6 @@ spec:
     title: Core Team
   - includes:
     - core-team
+    - user
     name: manager
     title: Manager
