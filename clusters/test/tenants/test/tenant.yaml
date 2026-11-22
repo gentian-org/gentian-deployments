@@ -278,3 +278,5 @@ spec:
     delegated: true
   trustedDomains:
     delegated: true
+    domains:
+      - github.com
