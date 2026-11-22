@@ -9,3 +9,4 @@ patches:
 - path: locales.yaml
 - path: grants.yaml
 - path: exposures.yaml
+- path: positions.yaml

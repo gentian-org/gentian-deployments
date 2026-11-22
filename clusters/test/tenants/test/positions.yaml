@@ -1,0 +1,11 @@
+# Managed by the director: this tenant's own positions, beside the three
+# every tenant has. What a position is, is declared here; who holds it is
+# given in the Admin Console and lives in the rights store.
+apiVersion: gentianos.io/v1alpha1
+kind: Tenant
+metadata:
+  name: test
+spec:
+  positions:
+  - name: core-team
+    title: Core Team
