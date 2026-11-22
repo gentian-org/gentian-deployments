@@ -701,6 +701,7 @@ resources:
 - builds/app-store-pe-3fd2ac8dc8c9.yaml
 - builds/aluvian-center-pe-21f4ac5302bf.yaml
 - builds/odoo-base-ce-afb3d3a4b2a9.yaml
+- builds/odoo-calendar-ce-7ed7933a15b2.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
