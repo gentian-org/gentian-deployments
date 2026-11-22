@@ -680,6 +680,11 @@ resources:
 - builds/voles-agent-bridge-ee-552ffa077316.yaml
 - builds/voles-ee-e37ff41fde91.yaml
 - builds/wordcraft-ce-e0429e81347d.yaml
+- builds/operations-console-ee-0d7ad0697669.yaml
+- builds/backup-scheduler-ee-ac42c3ad3cea.yaml
+- builds/operations-sync-ee-cf1b1e866fa5.yaml
+- builds/app-store-pe-7b1adad4ad5e.yaml
+- builds/aluvian-center-pe-799530cefd1d.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
