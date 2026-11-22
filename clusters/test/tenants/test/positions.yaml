@@ -16,5 +16,7 @@ spec:
     - app: nextcloud-calendar-ce
       role: admin
     title: Core Team
-  - name: manager
+  - includes:
+    - core-team
+    name: manager
     title: Manager
