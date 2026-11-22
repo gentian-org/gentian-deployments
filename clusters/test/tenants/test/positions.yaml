@@ -7,5 +7,12 @@ metadata:
   name: test
 spec:
   positions:
-  - name: core-team
+  - includes:
+    - user
+    name: core-team
+    roles:
+    - app: aluvian-center-pe
+      role: admin
+    - app: nextcloud-calendar-ce
+      role: admin
     title: Core Team
