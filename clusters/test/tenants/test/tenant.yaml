@@ -167,7 +167,7 @@ spec:
     - odoo-calendar-ce
     addonPins:
     - name: odoo-contacts-ce
-      digest: sha256:d988b0d759bb86cb4a38f6a2f981d9aa9847ff64260cf74f64249e8763f6a853
+      digest: sha256:9e3e0ea162c40c19fc550535e0b1478731d9e47c9928a03366f08eab45681f90
       catalogue: gentian
     - name: odoo-crm-ce
       digest: sha256:7565ccfadca3aea6827f5f559c7b24bedf9b67171a128848bf284e998f9376d3
