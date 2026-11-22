@@ -79,9 +79,9 @@ spec:
     movedBy: policy:latest
     defaultGrant: true
   - profile: voles-ee
-    digest: sha256:29f16b716dc477ce92ce9ed87b5bfeabf4f867c2892e8172c172391ae2448ca6
+    digest: sha256:e37ff41fde912f97e971905631de90311f306b6fce202b58c4fd889ee2fd2ed0
     catalogue: aluvian
-    movedAt: 2026-11-20T23:48:13Z
+    movedAt: 2026-11-22T00:20:14Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: uno-calculator-ce
