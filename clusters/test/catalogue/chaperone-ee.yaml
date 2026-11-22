@@ -28,12 +28,12 @@ spec:
   launch: none
   # The rights check and the token exchange are given at this tier only.
   trustTier: platform
-  version: "0.1.0-main.3409bc2"
+  version: "0.1.0-main.58cb816"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: chaperone
-      version: "0.1.0-main.3409bc2"
+      version: "0.1.0-main.58cb816"
     valueMapping:
       database:
         hostKey: database.host
@@ -137,7 +137,7 @@ spec:
     # A person's credential for an outside tool server is the liaison's to
     # hand out, one call at a time.
     - contract: connections
-      provider: liaison-ee
+      provider: liaison
       capabilities: [credentials]
     # A run's notice goes into the desktop's inbox, and nowhere else.
     - contract: notices

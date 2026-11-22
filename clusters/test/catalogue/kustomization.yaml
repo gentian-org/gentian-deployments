@@ -670,6 +670,7 @@ resources:
 - builds/app-store-pe-cfbdb439d74f.yaml
 - builds/aluvian-center-pe-638fdb509fb2.yaml
 - builds/wordcraft-ce-f244323bb883.yaml
+- builds/chaperone-ee-32755ce5dd63.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
