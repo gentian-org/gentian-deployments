@@ -213,9 +213,9 @@ spec:
     - name: odoo-calendar-ce
       defaultGrant: true
   - profile: paperless-ngx-ce
-    digest: sha256:55ac29fbc6356ac0d753a05d8dec2ad2f1f1acf47891ff500d20aa03fe9c6bef
+    digest: sha256:70c3ef581d4438f62270d8585edc66c242c6e0b744b2636207372fd6d3cfe05c
     catalogue: gentian
-    movedAt: 2026-11-08T22:58:00Z
+    movedAt: 2026-11-22T12:29:00Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: nextcloud-base-ce
