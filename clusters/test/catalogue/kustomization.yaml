@@ -688,6 +688,7 @@ resources:
 - builds/wordcraft-ce-eb72db04692b.yaml
 - builds/chaperone-ee-62ad27043d37.yaml
 - builds/mcp-gateway-ee-6293df493083.yaml
+- builds/notary-ee-c50483309b66.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
