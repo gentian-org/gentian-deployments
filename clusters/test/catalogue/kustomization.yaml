@@ -710,6 +710,7 @@ resources:
 - builds/odoo-mrp-ce-e6754f3d97fd.yaml
 - builds/odoo-purchase-ce-88cdb207bd46.yaml
 - builds/odoo-sales-ce-d4982d78fb2c.yaml
+- builds/open-webui-ce-f60f1acd5e05.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
