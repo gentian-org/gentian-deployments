@@ -44,9 +44,9 @@ spec:
     digest: sha256:e7528b8f956032fe4b3e9fb9611cbd763aa0a0941199091e131d3dacce2417a1
     catalogue: aluvian
   - profile: wordcraft-ce
-    digest: sha256:f244323bb8836cc79aa94bd24f93ea9255b6849e7f0a0155b9293f9717164cc9
+    digest: sha256:e0429e81347d0fabce643d0466662e79bae829d94ce157e371cdb74078f9b5a8
     catalogue: gentian
-    movedAt: 2026-11-21T23:19:22Z
+    movedAt: 2026-11-22T00:34:18Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: vectorcraft-ce
