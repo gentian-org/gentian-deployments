@@ -180,7 +180,7 @@ spec:
     - flowable-ce
     - chaperone-ee
     - notary-ee
-    - liaison-ee
+    - liaison
     - mcp-gateway-ee
     - test-echo
     - notify-me
