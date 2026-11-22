@@ -43,11 +43,6 @@ spec:
   - profile: plaud-agent-bridge-ee
     digest: sha256:e7528b8f956032fe4b3e9fb9611cbd763aa0a0941199091e131d3dacce2417a1
     catalogue: aluvian
-  - profile: liaison-ee
-    digest: sha256:5127d879224dd0754e5a50dfa6844f3f9a9b8728773791bd34ffc29f9f785e70
-    catalogue: aluvian
-    movedAt: 2026-11-21T15:22:53Z
-    movedBy: policy:latest
   - profile: wordcraft-ce
     digest: sha256:f244323bb8836cc79aa94bd24f93ea9255b6849e7f0a0155b9293f9717164cc9
     catalogue: gentian
