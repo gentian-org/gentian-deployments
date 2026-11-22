@@ -675,6 +675,7 @@ resources:
 - builds/notary-ee-fdf2bc42f3eb.yaml
 - builds/notify-me-7fb5cb0c2d93.yaml
 - builds/notify-people-20c744b8d4d4.yaml
+- builds/odoo-agent-bridge-ee-6386f4aa8ea8.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
