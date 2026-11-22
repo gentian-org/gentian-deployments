@@ -57,9 +57,9 @@ spec:
     catalogue: gentian
     defaultGrant: true
   - profile: odoo-agent-bridge-ee
-    digest: sha256:18936a3bc34ccae5ae9062300e607d53d1f5c93d9b04673c0a84e3082579a583
+    digest: sha256:6386f4aa8ea84fdf6773d1b6b1e90e307d7d533998c4af87c49004918a05aa0f
     catalogue: aluvian
-    movedAt: 2026-11-21T15:23:15Z
+    movedAt: 2026-11-22T00:19:51Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: voles-agent-bridge-ee
