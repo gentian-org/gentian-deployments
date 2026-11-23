@@ -763,6 +763,8 @@ resources:
 - builds/odoo-agent-bridge-ee-7516f42e9e47.yaml
 - builds/test-echo-909dff943a9b.yaml
 - builds/voles-agent-bridge-ee-65f24dcdae1f.yaml
+- deckcraft-ce.yaml
+- builds/deckcraft-ce-affd6c994361.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
@@ -814,3 +816,4 @@ patches:
 - path: liaison-ee.bundle.yaml
 - path: plaud-agent-bridge-ee.bundle.yaml
 - path: odoo-base-ce.bundle.yaml
+- path: deckcraft-ce.bundle.yaml
