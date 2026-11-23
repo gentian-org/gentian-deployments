@@ -771,6 +771,8 @@ resources:
 - builds/vikunja-ce-df9e553ba5d4.yaml
 - element-ce.yaml
 - builds/element-ce-702e3d5021ff.yaml
+- gridcraft-ce.yaml
+- builds/gridcraft-ce-9ed45b4190a7.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
@@ -826,3 +828,4 @@ patches:
 - path: super-productivity-ce.bundle.yaml
 - path: vikunja-ce.bundle.yaml
 - path: element-ce.bundle.yaml
+- path: gridcraft-ce.bundle.yaml
