@@ -36,6 +36,9 @@ spec:
     storage: 50Gi
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: element-ce
+    digest: sha256:702e3d5021ff3bb8ed78a1a0de5244701211d41d3914d5644d512a178aa2afc1
+    catalogue: gentian
   - profile: vikunja-ce
     digest: sha256:df9e553ba5d48cca6efa4d7b4239283fe59009138d3d74eed3124619371cdc3a
     catalogue: gentian
