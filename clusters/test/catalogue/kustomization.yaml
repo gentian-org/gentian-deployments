@@ -726,6 +726,7 @@ resources:
 - builds/operations-sync-ee-e7e457c1095a.yaml
 - builds/app-store-pe-4c96fb7762fe.yaml
 - builds/aluvian-center-pe-707890ca19f4.yaml
+- builds/chaperone-ee-beb6a4adcaeb.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
