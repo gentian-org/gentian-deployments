@@ -36,6 +36,9 @@ spec:
     storage: 50Gi
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: super-productivity-ce
+    digest: sha256:2195b6e1364ba25715b4657c6bb731e14fff634f92de362c570c99a8132477a0
+    catalogue: gentian
   - profile: deckcraft-ce
     digest: sha256:affd6c9943615866d9471003d1feecb6bda532ff9e692b067c19b358e28b765a
     catalogue: gentian
