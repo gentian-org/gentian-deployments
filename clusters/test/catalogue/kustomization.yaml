@@ -712,6 +712,7 @@ resources:
 - builds/odoo-sales-ce-d4982d78fb2c.yaml
 - builds/open-webui-ce-f60f1acd5e05.yaml
 - builds/paperless-ngx-ce-70c3ef581d44.yaml
+- builds/chaperone-ee-ff69820616bf.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
