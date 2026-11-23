@@ -769,6 +769,8 @@ resources:
 - builds/super-productivity-ce-2195b6e1364b.yaml
 - vikunja-ce.yaml
 - builds/vikunja-ce-df9e553ba5d4.yaml
+- element-ce.yaml
+- builds/element-ce-702e3d5021ff.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
@@ -823,3 +825,4 @@ patches:
 - path: deckcraft-ce.bundle.yaml
 - path: super-productivity-ce.bundle.yaml
 - path: vikunja-ce.bundle.yaml
+- path: element-ce.bundle.yaml
