@@ -21,7 +21,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        image: [develop, latest]
+        # latest joins once a release carries /schema-check.
+        image: [develop]
     steps:
       - uses: actions/checkout@v4
       - name: Check against gentian-os:${{ matrix.image }}
