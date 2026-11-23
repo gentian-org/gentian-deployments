@@ -779,6 +779,7 @@ resources:
 - builds/super-productivity-ce-af5f399b2537.yaml
 - builds/chaperone-ee-316bcea30f36.yaml
 - builds/mcp-gateway-ee-66abe2e69f9d.yaml
+- builds/notary-ee-75722b3c4fe0.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
