@@ -765,6 +765,8 @@ resources:
 - builds/voles-agent-bridge-ee-65f24dcdae1f.yaml
 - deckcraft-ce.yaml
 - builds/deckcraft-ce-affd6c994361.yaml
+- super-productivity-ce.yaml
+- builds/super-productivity-ce-2195b6e1364b.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
@@ -817,3 +819,4 @@ patches:
 - path: plaud-agent-bridge-ee.bundle.yaml
 - path: odoo-base-ce.bundle.yaml
 - path: deckcraft-ce.bundle.yaml
+- path: super-productivity-ce.bundle.yaml
