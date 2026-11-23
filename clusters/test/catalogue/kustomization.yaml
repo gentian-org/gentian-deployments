@@ -776,6 +776,7 @@ resources:
 - openproject-ce.yaml
 - builds/openproject-ce-e84296d34b9e.yaml
 - builds/vikunja-ce-e5c7328045db.yaml
+- builds/super-productivity-ce-af5f399b2537.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
