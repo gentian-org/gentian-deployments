@@ -51,8 +51,10 @@ spec:
     movedAt: 2026-11-23T21:40:53Z
     movedBy: policy:latest
   - profile: super-productivity-ce
-    digest: sha256:2195b6e1364ba25715b4657c6bb731e14fff634f92de362c570c99a8132477a0
+    digest: sha256:af5f399b2537ccf674eeb72a70d360fc1733b46ba2463fcca2eadd8e67227745
     catalogue: gentian
+    movedAt: 2026-11-23T21:50:52Z
+    movedBy: policy:latest
   - profile: deckcraft-ce
     digest: sha256:affd6c9943615866d9471003d1feecb6bda532ff9e692b067c19b358e28b765a
     catalogue: gentian
