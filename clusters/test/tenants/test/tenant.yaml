@@ -45,11 +45,6 @@ spec:
   - profile: element-ce
     digest: sha256:702e3d5021ff3bb8ed78a1a0de5244701211d41d3914d5644d512a178aa2afc1
     catalogue: gentian
-  - profile: vikunja-ce
-    digest: sha256:e5c7328045db05be12200ca75ef915a35d6cb84f05e5191f41d22b8f596b69ce
-    catalogue: gentian
-    movedAt: 2026-11-23T21:40:53Z
-    movedBy: policy:latest
   - profile: super-productivity-ce
     digest: sha256:af5f399b2537ccf674eeb72a70d360fc1733b46ba2463fcca2eadd8e67227745
     catalogue: gentian
