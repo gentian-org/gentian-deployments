@@ -786,6 +786,8 @@ resources:
 - builds/test-echo-ab1d60215e7a.yaml
 - builds/voles-agent-bridge-ee-5bfdb914ec37.yaml
 - builds/element-ce-40adf2e737da.yaml
+- synapse-ce.yaml
+- builds/synapse-ce-583951a45a49.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
@@ -843,3 +845,4 @@ patches:
 - path: element-ce.bundle.yaml
 - path: gridcraft-ce.bundle.yaml
 - path: openproject-ce.bundle.yaml
+- path: synapse-ce.bundle.yaml
