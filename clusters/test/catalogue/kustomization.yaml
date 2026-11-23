@@ -713,6 +713,7 @@ resources:
 - builds/open-webui-ce-f60f1acd5e05.yaml
 - builds/paperless-ngx-ce-70c3ef581d44.yaml
 - builds/chaperone-ee-ff69820616bf.yaml
+- builds/mcp-gateway-ee-da53cad6e8ff.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
