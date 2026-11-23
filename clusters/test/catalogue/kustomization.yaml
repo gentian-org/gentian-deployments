@@ -749,6 +749,7 @@ resources:
 - builds/aluvian-center-pe-009c17266004.yaml
 - builds/chaperone-ee-4a1d834ca945.yaml
 - builds/mcp-gateway-ee-bbb4a79e3282.yaml
+- builds/notary-ee-1d46be2d66ea.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
