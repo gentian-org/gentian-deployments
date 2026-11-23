@@ -803,6 +803,7 @@ resources:
 - builds/notary-ee-3802f29c250f.yaml
 - builds/notify-me-3eacadadbfad.yaml
 - builds/notify-people-76ff49160522.yaml
+- builds/odoo-agent-bridge-ee-bba412679578.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
