@@ -79,10 +79,6 @@ spec:
     movedAt: 2026-11-23T00:46:33Z
     movedBy: policy:latest
     defaultGrant: true
-  - profile: uno-calculator-ce
-    digest: sha256:4206cf1675b18fa4f88af4c24a001f9a214a1a143668bae9254f9d61eeb2f9d8
-    catalogue: gentian
-    defaultGrant: true
   - profile: rehearsal
     digest: sha256:7c7f4dc968fe4e14bc202e59f543a7bde580120c813e1c6b16152b164feecdf8
     catalogue: aluvian
