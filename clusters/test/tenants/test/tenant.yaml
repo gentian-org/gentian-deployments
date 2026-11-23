@@ -90,9 +90,9 @@ spec:
     movedBy: policy:latest
     defaultGrant: true
   - profile: notify-me
-    digest: sha256:ffd1266ab571585609d15345187f6c3b42d55541ed2809f1784b0b2ff1ded54a
+    digest: sha256:155de3776a40fd4feb66edafb3d20dc7b06aad41e54954db971d056ff9778a4c
     catalogue: aluvian
-    movedAt: 2026-11-23T08:40:28Z
+    movedAt: 2026-11-23T09:33:42Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: notify-people
