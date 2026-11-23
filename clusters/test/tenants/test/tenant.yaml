@@ -36,6 +36,9 @@ spec:
     storage: 50Gi
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: deckcraft-ce
+    digest: sha256:affd6c9943615866d9471003d1feecb6bda532ff9e692b067c19b358e28b765a
+    catalogue: gentian
   - profile: liaison
     cameWith: voles-ee
   - profile: porter
