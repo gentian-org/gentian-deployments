@@ -721,6 +721,11 @@ resources:
 - builds/test-echo-af217657c7bb.yaml
 - builds/voles-agent-bridge-ee-f98f492fba2f.yaml
 - builds/voles-ee-b29af1bcddd7.yaml
+- builds/operations-console-ee-e54193b9e786.yaml
+- builds/backup-scheduler-ee-4ef8cda80706.yaml
+- builds/operations-sync-ee-e7e457c1095a.yaml
+- builds/app-store-pe-4c96fb7762fe.yaml
+- builds/aluvian-center-pe-707890ca19f4.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
