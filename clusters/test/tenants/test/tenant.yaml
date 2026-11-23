@@ -36,6 +36,9 @@ spec:
     storage: 50Gi
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: gridcraft-ce
+    digest: sha256:9ed45b4190a7ba527f18540edc620da83feea12f648783959959e1702302b5ce
+    catalogue: gentian
   - profile: element-ce
     digest: sha256:702e3d5021ff3bb8ed78a1a0de5244701211d41d3914d5644d512a178aa2afc1
     catalogue: gentian
