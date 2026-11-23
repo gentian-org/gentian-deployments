@@ -78,9 +78,9 @@ spec:
     movedBy: policy:latest
     defaultGrant: true
   - profile: voles-agent-bridge-ee
-    digest: sha256:65f24dcdae1fc45d0892880e7c74007bb3b93edafadf494f33f8001970ed927a
+    digest: sha256:5bfdb914ec370f51b153b8522aca741e74decf3b4dbb26fe18014b54424d70ad
     catalogue: aluvian
-    movedAt: 2026-11-23T14:09:29Z
+    movedAt: 2026-11-23T22:01:46Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: homesync
