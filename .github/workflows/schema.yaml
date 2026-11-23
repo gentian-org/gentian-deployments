@@ -27,5 +27,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: Check against gentian-os:${{ matrix.image }}
         run: |
-          docker run --rm --pull always -v "$PWD:/repo:ro" \
-            ghcr.io/gentian-org/gentian-os:${{ matrix.image }} /schema-check /repo
+          docker run --rm --pull always --entrypoint /schema-check -v "$PWD:/repo:ro" \
+            ghcr.io/gentian-org/gentian-os:${{ matrix.image }} /repo
