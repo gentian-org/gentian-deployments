@@ -788,6 +788,11 @@ resources:
 - builds/element-ce-40adf2e737da.yaml
 - synapse-ce.yaml
 - builds/synapse-ce-583951a45a49.yaml
+- builds/operations-console-ee-1f4aeeca3e9f.yaml
+- builds/backup-scheduler-ee-abd1aeb00f3d.yaml
+- builds/operations-sync-ee-ba1885faa215.yaml
+- builds/app-store-pe-caf8c4b1d288.yaml
+- builds/aluvian-center-pe-19cb638e4178.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
