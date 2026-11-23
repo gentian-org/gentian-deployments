@@ -38,12 +38,12 @@ spec:
   launch: none
   # The rights check is given at this tier only.
   trustTier: platform
-  version: "0.1.0-main.681a49e"
+  version: "0.1.0-main.7176e45"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: notary
-      version: "0.1.0-main.681a49e"
+      version: "0.1.0-main.7176e45"
     valueMapping:
       database:
         hostKey: database.host
