@@ -102,9 +102,9 @@ spec:
     movedBy: policy:latest
     defaultGrant: true
   - profile: test-echo
-    digest: sha256:af217657c7bbbf6efc59962b0eb05f333357343bdfdca08d6d4d51b321cdd49f
+    digest: sha256:9c02a634eab6f7979f3bb1143b92206d271ddfa841cef86093115af907bfaaa3
     catalogue: aluvian
-    movedAt: 2026-11-23T00:46:19Z
+    movedAt: 2026-11-23T08:40:51Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: mcp-gateway-ee
