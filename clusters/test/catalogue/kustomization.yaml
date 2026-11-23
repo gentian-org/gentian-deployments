@@ -799,6 +799,7 @@ resources:
 - builds/app-store-pe-ccee5411c499.yaml
 - builds/aluvian-center-pe-af3541629929.yaml
 - builds/chaperone-ee-b306b769727e.yaml
+- builds/mcp-gateway-ee-e430dfd079db.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
