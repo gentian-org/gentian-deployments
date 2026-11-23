@@ -36,6 +36,9 @@ spec:
     storage: 50Gi
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: openproject-ce
+    digest: sha256:e84296d34b9e82968be74614066d77d79b894cc128643b7dff001016fd4adccc
+    catalogue: gentian
   - profile: gridcraft-ce
     digest: sha256:9ed45b4190a7ba527f18540edc620da83feea12f648783959959e1702302b5ce
     catalogue: gentian
