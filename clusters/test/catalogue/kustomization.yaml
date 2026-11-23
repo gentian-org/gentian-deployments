@@ -756,6 +756,7 @@ resources:
 - builds/test-echo-2aa432a8881a.yaml
 - builds/voles-agent-bridge-ee-7e46d4729b76.yaml
 - builds/chaperone-ee-110e7dfffc10.yaml
+- builds/mcp-gateway-ee-54be8c5bea26.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
