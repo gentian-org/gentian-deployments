@@ -38,8 +38,10 @@ spec:
   apps:
   - profile: synapse-ce
     cameWith: element-ce
-    digest: sha256:583951a45a494a4cb788a45379ce9fb02c3814b87737ee6f68d062fdda7e4c0c
+    digest: sha256:f3ba8bf207ffb648de00387771251f52ae6c878aa2519748a28542fce7e02ee6
     catalogue: gentian
+    movedAt: 2026-11-23T23:13:16Z
+    movedBy: policy:latest
   - profile: openproject-ce
     digest: sha256:e84296d34b9e82968be74614066d77d79b894cc128643b7dff001016fd4adccc
     catalogue: gentian
