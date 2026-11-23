@@ -49,10 +49,6 @@ spec:
     movedAt: 2026-11-22T09:45:09Z
     movedBy: policy:latest
     defaultGrant: true
-  - profile: vectorcraft-ce
-    digest: sha256:ca2fec0266d7c002778814f4b89f76c8383a1f741bd53123d47d698cfcf79b97
-    catalogue: gentian
-    defaultGrant: true
   - profile: odoo-agent-bridge-ee
     digest: sha256:a44680327b06812f6593c3a9cf7b22399d175f4fa4cd2105ee173cbd1c27bd5f
     catalogue: aluvian
