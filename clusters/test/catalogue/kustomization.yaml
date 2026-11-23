@@ -720,6 +720,7 @@ resources:
 - builds/odoo-agent-bridge-ee-0ae0be8c999e.yaml
 - builds/test-echo-af217657c7bb.yaml
 - builds/voles-agent-bridge-ee-f98f492fba2f.yaml
+- builds/voles-ee-b29af1bcddd7.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
