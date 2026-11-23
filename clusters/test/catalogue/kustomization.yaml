@@ -773,6 +773,8 @@ resources:
 - builds/element-ce-702e3d5021ff.yaml
 - gridcraft-ce.yaml
 - builds/gridcraft-ce-9ed45b4190a7.yaml
+- openproject-ce.yaml
+- builds/openproject-ce-e84296d34b9e.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
@@ -829,3 +831,4 @@ patches:
 - path: vikunja-ce.bundle.yaml
 - path: element-ce.bundle.yaml
 - path: gridcraft-ce.bundle.yaml
+- path: openproject-ce.bundle.yaml
