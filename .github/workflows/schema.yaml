@@ -1,0 +1,30 @@
+# What of this repository the platform's next build no longer takes: every
+# gentianos.io object, judged by the schema of the image the cluster is about
+# to be installed with (gentian-os docs/reference/install.md, "Checking the
+# repository against a release"). Red means: fix the files named before the
+# install, or Argo CD stops applying them.
+name: schema
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 * * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        image: [develop, latest]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check against gentian-os:${{ matrix.image }}
+        run: |
+          docker run --rm --pull always -v "$PWD:/repo:ro" \
+            ghcr.io/gentian-org/gentian-os:${{ matrix.image }} /schema-check /repo
