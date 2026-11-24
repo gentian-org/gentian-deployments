@@ -874,6 +874,7 @@ resources:
 - builds/voles-agent-bridge-ee-b51013628657.yaml
 - builds/voles-ee-2d2d71f7eb1b.yaml
 - builds/voles-ee-8264bcfb9d47.yaml
+- builds/chaperone-ee-d0888263a84f.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
