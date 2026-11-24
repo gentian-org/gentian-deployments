@@ -17,3 +17,10 @@ appLifecycle:
     # so this is deployments-git-credentials: the Secret the director clones
     # and pushes with.
     gitCredentialsSecret: deployments-git-credentials
+
+# The test cluster follows Voles develop through aluvian's develop catalog
+# channel (aluvian#603), so the director looks for newer builds, and reads the
+# catalogs again, every minute instead of every five (gentian-os#1316).
+director:
+  updaterEvery: 1m
+  catalogueCache: 1m
