@@ -820,6 +820,7 @@ resources:
 - builds/element-ce-ce3583e515e9.yaml
 - builds/mcp-gateway-ee-68a001004446.yaml
 - builds/notary-ee-a5037c99dd96.yaml
+- builds/notify-me-d57e50333853.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
