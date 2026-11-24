@@ -53,9 +53,9 @@ spec:
     digest: sha256:9ed45b4190a7ba527f18540edc620da83feea12f648783959959e1702302b5ce
     catalogue: gentian
   - profile: element-ce
-    digest: sha256:40adf2e737dab7d3a67cc3b979d3329bf3b4c7602d72bc908a7bf6689100d679
+    digest: sha256:ce3583e515e9540648eccb2507ed1878267e8db33e8c0dea9d0d02dc5c7d14ab
     catalogue: gentian
-    movedAt: 2026-11-23T22:35:59Z
+    movedAt: 2026-11-24T06:33:32Z
     movedBy: policy:latest
   - profile: super-productivity-ce
     digest: sha256:af5f399b2537ccf674eeb72a70d360fc1733b46ba2463fcca2eadd8e67227745
