@@ -108,8 +108,9 @@ spec:
         enabled: true
         image:
           repository: registry.aluvian.io/aluvian-hq/voles-runner
-  # Who administers Voles is who holds the platform's App Admin role. The
-  # platform runs this Job when that role changes; the image is the API's,
+  # Who administers Voles is who holds the role admin on Voles, directly or
+  # through a position (App administrator, or a tenant's own). The platform
+  # runs this Job when who holds it changes; the image is the API's,
   # pinned with the chart, and the chart's service account can pull it.
   hooks:
     provisioning:
