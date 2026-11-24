@@ -840,6 +840,7 @@ resources:
 - builds/openproject-ce-294e4c170ae0.yaml
 - builds/chaperone-ee-38ea7d98c901.yaml
 - builds/mcp-gateway-ee-85946db9422e.yaml
+- builds/notary-ee-eda470bea066.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
