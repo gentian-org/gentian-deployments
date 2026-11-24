@@ -863,6 +863,7 @@ resources:
 - builds/voles-ee-05cf3155c1f2.yaml
 - builds/voles-ee-5310605f61a3.yaml
 - builds/voles-ee-6b5675017028.yaml
+- builds/voles-ee-3106268e9840.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
