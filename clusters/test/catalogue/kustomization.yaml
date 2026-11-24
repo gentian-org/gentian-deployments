@@ -847,6 +847,7 @@ resources:
 - builds/test-echo-f595d5d04298.yaml
 - builds/voles-agent-bridge-ee-0e4cdd56aa08.yaml
 - builds/openproject-ce-bbe053f646c2.yaml
+- builds/paperless-ngx-ce-46f783a5bb84.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
