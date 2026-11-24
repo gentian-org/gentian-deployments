@@ -28,3 +28,4 @@ spec:
       approver: a9beb3d3-a909-46da-9841-6eb210a7ca01
       approvedAt: 2026-11-13T08:54:44Z
       reason: "This is important"
+      digest: sha256:4d367bde9c05b81d8526e5668ec7beeee062fa060b2b5028c0d83dbd93ef2f76
