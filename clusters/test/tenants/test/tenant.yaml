@@ -40,12 +40,6 @@ spec:
     digest: sha256:e5c7328045db05be12200ca75ef915a35d6cb84f05e5191f41d22b8f596b69ce
     catalogue: gentian
     positions: [core-team]
-  - profile: synapse-ce
-    cameWith: element-ce
-    digest: sha256:f3ba8bf207ffb648de00387771251f52ae6c878aa2519748a28542fce7e02ee6
-    catalogue: gentian
-    movedAt: 2026-11-23T23:13:16Z
-    movedBy: policy:latest
   - profile: openproject-ce
     digest: sha256:dc8cda13693fb098dd9197eaab3590c0af27cf858e72952e58fcdd57d9eb2f27
     catalogue: gentian
@@ -54,11 +48,6 @@ spec:
   - profile: gridcraft-ce
     digest: sha256:9ed45b4190a7ba527f18540edc620da83feea12f648783959959e1702302b5ce
     catalogue: gentian
-  - profile: element-ce
-    digest: sha256:86c44e1b6c9e0d40147f022999b9f7aea87d6854d39dcb0ffdb6cdc5a03f9ece
-    catalogue: gentian
-    movedAt: 2026-11-24T07:55:02Z
-    movedBy: policy:latest
   - profile: super-productivity-ce
     digest: sha256:af5f399b2537ccf674eeb72a70d360fc1733b46ba2463fcca2eadd8e67227745
     catalogue: gentian
