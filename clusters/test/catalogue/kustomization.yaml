@@ -850,6 +850,7 @@ resources:
 - builds/paperless-ngx-ce-46f783a5bb84.yaml
 - builds/chaperone-ee-7e60a3d08aa2.yaml
 - builds/mcp-gateway-ee-b3f10d8a9e2c.yaml
+- builds/notary-ee-dd679dcb4719.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
