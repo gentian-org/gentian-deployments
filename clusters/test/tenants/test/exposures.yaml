@@ -14,7 +14,11 @@
 # kind says what was approved. None, or public: a public address that
 # passes no credential on. publicAppCredential: a public address that
 # passes the caller's Authorization header to the app, which alone
-# checks it. signInAppAuthorization: NOT a public address -- an entry
+# checks it. publicAppSignIn: the same, and on the paths of the app's
+# own sign-in the cookies it names (signInCookies), both ways.
+# insideAppCredential: NOT a public address -- the same for
+# callers inside the cluster alone, at a name only the cluster's DNS
+# knows. signInAppAuthorization: NOT a public address -- an entry
 # behind sign-in on which the Authorization header is left as the
 # app's own page sent it. tokenEntry: NOT a public address -- an entry
 # on a host of its own that takes a token the tenant's realm made out
@@ -58,6 +62,18 @@ spec:
       publishedAt: 2026-11-17T14:11:39Z
       lastReviewedBy: a9beb3d3-a909-46da-9841-6eb210a7ca01
       lastReviewedAt: 2026-11-17T14:11:39Z
+    - install: synapse-ce
+      exposureName: matrix
+      kind: publicAppSignIn
+      # The cookies of the app's own sign-in, and the paths they pass on.
+      signInCookies:
+        names: [oidc_session, oidc_session_no_samesite]
+        paths: [/_matrix/client/v3/login/sso, /_matrix/client/r0/login/sso, /_synapse/client/oidc]
+      owner: 0ba53245-73b8-4649-a405-e09122ea84d1
+      reviewAt: 2027-11-24T07:26:28Z
+      publishedAt: 2026-11-24T07:26:28Z
+      lastReviewedBy: 0ba53245-73b8-4649-a405-e09122ea84d1
+      lastReviewedAt: 2026-11-24T07:26:28Z
     - install: voles-ee
       exposureName: share
       kind: public
