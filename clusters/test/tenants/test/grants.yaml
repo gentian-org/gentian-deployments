@@ -88,6 +88,14 @@ spec:
       - webdav:write
     grantedAt: "2026-11-23T21:12:31Z"
     grantedBy: 0ba53245-73b8-4649-a405-e09122ea84d1
+  - app: vikunja-ce
+    consume:
+    - contract: central-navigation
+      granted:
+      - navigation:register
+    grantedAt: "2026-11-24T05:57:17Z"
+    grantedBy: 0ba53245-73b8-4649-a405-e09122ea84d1
+    reason: granted with the install of the app
   - app: voles-ee
     consume:
     - contract: process-engine
