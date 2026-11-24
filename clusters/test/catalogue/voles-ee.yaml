@@ -28,12 +28,12 @@ spec:
   trustTier: certified
   # The chart version Voles' CI published, pinned: provider-helm never
   # upgrades a release whose chart version string did not change.
-  version: "0.1.0-develop.7b38cb8"
+  version: "0.1.0-develop.b95914b"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: voles
-      version: "0.1.0-develop.7b38cb8"
+      version: "0.1.0-develop.b95914b"
     valueMapping:
       # The cluster's model gateway and Voles' own key there: the editor
       # offers the models the tenant may use, and the runner asks them.
@@ -118,7 +118,7 @@ spec:
         kind: group
         name: admin
       syncJob:
-        image: registry.aluvian.io/aluvian-hq/voles-api:7b38cb8
+        image: registry.aluvian.io/aluvian-hq/voles-api:b95914b
         serviceAccountName: voles
         envFrom:
           - voles-app-admins
