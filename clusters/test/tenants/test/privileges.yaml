@@ -45,18 +45,23 @@ spec:
       privilege: egress/module-source
       approver: 0ba53245-73b8-4649-a405-e09122ea84d1
       approvedAt: 2026-11-22T23:15:54Z
+      hosts:
+        - "github.com"
     - install: plaud-agent-bridge-ee
       privilege: egress/plaud
       approver: a9beb3d3-a909-46da-9841-6eb210a7ca01
       approvedAt: 2026-11-21T08:02:46Z
       reason: "step 4 live test"
+      digest: sha256:4d367bde9c05b81d8526e5668ec7beeee062fa060b2b5028c0d83dbd93ef2f76
     - install: rehearsal
       privilege: egress/internet
       approver: 0ba53245-73b8-4649-a405-e09122ea84d1
       approvedAt: 2026-11-15T21:59:31Z
       reason: "Needed for the app"
+      digest: sha256:70bc38a6883372b1990de82ade7b30dafd7fc4c685ac2fa44008eb94046fb2bd
     - install: voles-ee
       privilege: egress/usage-reports
       approver: 0ba53245-73b8-4649-a405-e09122ea84d1
       approvedAt: 2026-11-16T22:37:39Z
       reason: "It is needed for the app"
+      digest: sha256:4d367bde9c05b81d8526e5668ec7beeee062fa060b2b5028c0d83dbd93ef2f76
