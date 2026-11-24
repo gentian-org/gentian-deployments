@@ -38,12 +38,12 @@ spec:
   launch: none
   # The rights check is given at this tier only.
   trustTier: platform
-  version: "0.1.0-main.cf7afdd"
+  version: "0.1.0-main.06fc841"
   package:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: notary
-      version: "0.1.0-main.cf7afdd"
+      version: "0.1.0-main.06fc841"
     valueMapping:
       database:
         hostKey: database.host
@@ -83,9 +83,10 @@ spec:
       vouching:
         profile: chaperone-ee
       # Tools that change data may be named in a mandate, each by name and
-      # version, at the stage that carries changes out. What cannot be
-      # undone stays out.
-      agentPolicy: '{"allow_change": true}'
+      # version, at the stage that carries changes out. A tool that cannot
+      # be undone is called only in a run the person starts themselves, of a
+      # graph without a model; no mandate ever names one.
+      agentPolicy: '{"allow_change": true, "allow_irreversible": true}'
       auth:
         # At the notary's own address the front door hands it a token of the
         # person made out to this profile (exchangeToken, below). The
