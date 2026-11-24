@@ -865,6 +865,7 @@ resources:
 - builds/voles-ee-6b5675017028.yaml
 - builds/voles-ee-3106268e9840.yaml
 - builds/chaperone-ee-0dff18abc65a.yaml
+- builds/mcp-gateway-ee-dd90031ad3d1.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
