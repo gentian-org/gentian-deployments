@@ -845,6 +845,7 @@ resources:
 - builds/notify-people-19ada17798e9.yaml
 - builds/odoo-agent-bridge-ee-b88a4704140a.yaml
 - builds/test-echo-f595d5d04298.yaml
+- builds/voles-agent-bridge-ee-0e4cdd56aa08.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
