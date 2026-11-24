@@ -809,6 +809,7 @@ resources:
 - builds/synapse-ce-f3ba8bf207ff.yaml
 - builds/chaperone-ee-0fa8dabc3ad4.yaml
 - builds/mcp-gateway-ee-aab0aa42f68c.yaml
+- builds/notary-ee-535db85d7f11.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
