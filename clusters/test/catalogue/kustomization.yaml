@@ -832,6 +832,7 @@ resources:
 - builds/mcp-gateway-ee-12e41cab607d.yaml
 - builds/notary-ee-f97f35b8b18c.yaml
 - builds/notify-me-cf80a112337c.yaml
+- builds/notify-people-51d3b70c21ca.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
