@@ -837,6 +837,7 @@ resources:
 - builds/test-echo-dd21a8a3ed66.yaml
 - builds/voles-agent-bridge-ee-8d1c6a907ae2.yaml
 - builds/voles-ee-78e54db34400.yaml
+- builds/openproject-ce-294e4c170ae0.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
