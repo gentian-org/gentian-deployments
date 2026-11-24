@@ -70,9 +70,9 @@ spec:
     movedBy: policy:latest
     defaultGrant: true
   - profile: odoo-agent-bridge-ee
-    digest: sha256:b88a4704140ae89afb30347c9527b4cd90dc10f7885f51c6a37547ab30667b0a
+    digest: sha256:d7cc5b0b25189cdc6b5fd7f6ebcf26cadce2660b3b36fa79826665a166c048e0
     catalogue: aluvian
-    movedAt: 2026-11-24T10:30:47Z
+    movedAt: 2026-11-24T11:07:15Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: voles-agent-bridge-ee
