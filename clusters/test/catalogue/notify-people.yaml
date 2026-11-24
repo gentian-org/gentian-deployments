@@ -1,5 +1,5 @@
 # notify-people: an action that puts a notice in the desktop inbox of the
-# people and groups its step names
+# people and positions its step names
 # (services/notify). Its run holds no credential and reaches nothing but
 # the chaperone that started it: it hands the notice over there, and the
 # chaperone decides whom this action may tell and publishes the notice
@@ -22,13 +22,13 @@ spec:
   # Nobody opens it: a graph's step runs it.
   launch: none
   trustTier: certified
-  version: "0.1.0"
+  version: "0.2.0"
   package:
     # The one build a run starts. Publishing replaces this digest with that
     # of the image built with this commit.
     images:
       - repository: registry.aluvian.io/aluvian-hq/notify
-        digest: sha256:5dee872e30d4c4d0862147af2a5938a6cbd309d83adef9f6e0949f8b75f84d90
+        digest: sha256:519598e56986748664c20869d9a996ef4c98a9314a8c8ec6238c15f7de9cb422
   action:
     # Reads the inputs on standard input, writes the outputs to standard
     # output.
@@ -45,10 +45,10 @@ spec:
         linkUrl: {type: string}
         linkLabel: {type: string, maxLength: 100}
         # Whom to tell: a person by user name, e-mail address or subject, a
-        # group by its path (gentian:tenant:<tenant>:…). Naming nobody tells
-        # the person who started the run.
+        # position of the tenant by name (user is everyone). Naming nobody
+        # tells the person who started the run.
         people: {type: array, maxItems: 50, items: {type: string}}
-        groups: {type: array, maxItems: 20, items: {type: string}}
+        positions: {type: array, maxItems: 20, items: {type: string, pattern: "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$", maxLength: 63}}
     outputs:
       type: object
       properties:
