@@ -51,12 +51,15 @@ spec:
     # none is the one setting that leaves the records to somebody else.
     # caBundleSecretRef:         only read when issuerMode is private-ca
 
-  # Where mail goes.
-  #   external  relay through an SMTP provider; supply the smtp-relay
-  #             credential to the custodian after install
-  #   system    in-cluster Postfix/Dovecot; requires networkMode static-ip
+  # Where mail is.
+  #   relay     send through an SMTP provider, no mailboxes; supply the
+  #             smtp-relay credential to the custodian after install
+  #   external  a mail server outside the cluster holds the mailboxes:
+  #             host is where mail is submitted, imap.host where it is
+  #             read; the same credential, for the login it sends with
+  #   internal  in-cluster Postfix/Dovecot; requires networkMode static-ip
   mail:
-    serviceMode: external
+    serviceMode: relay
     host: smtp.gmail.com
     # port: 587                 defaults to 587
     # starttls: true            defaults to true
