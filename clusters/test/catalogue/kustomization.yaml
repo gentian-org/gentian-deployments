@@ -892,6 +892,7 @@ resources:
 - builds/gridcraft-ce-e6ae81c01c61.yaml
 - builds/nextcloud-base-ce-d8f5463cfefc.yaml
 - builds/nextcloud-sync-ce-b143c30654fd.yaml
+- builds/odoo-base-ce-ecb8fd59a33f.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
