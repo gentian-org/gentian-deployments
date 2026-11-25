@@ -899,6 +899,7 @@ resources:
 - builds/odoo-employees-ce-213da3205896.yaml
 - builds/odoo-invoicing-ce-505bbb3d86b0.yaml
 - builds/odoo-meeting-transcripts-ce-2df8ceee66e2.yaml
+- builds/odoo-mrp-ce-f4860cda0200.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
