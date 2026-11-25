@@ -41,9 +41,9 @@ spec:
     catalogue: gentian
     positions: [core-team]
   - profile: openproject-ce
-    digest: sha256:bbe053f646c2050fc59392d17ee54c5e1cda95ff5074bd05590b14edeb0b6e4e
+    digest: sha256:517cfeabaaaee4c026870595596630b6a07f9ace00378f429a1665e66069f747
     catalogue: gentian
-    movedAt: 2026-11-24T10:35:06Z
+    movedAt: 2026-11-25T08:59:14Z
     movedBy: policy:latest
   - profile: gridcraft-ce
     digest: sha256:e6ae81c01c6129d44cf516e68f2f6beb6d71a03a26d28597f2c1c0015092ef78
