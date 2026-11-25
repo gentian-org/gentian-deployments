@@ -88,9 +88,9 @@ spec:
   - profile: homesync
     placed: true
   - profile: nextcloud-sync-ce
-    digest: sha256:16d67fcccdd56a1c0867b664f53f6a4fa9ae38fe0626687264e48be35c48a124
+    digest: sha256:b143c30654fd29b115608c407cf35b6072370c15a5ffff4e135a80d4783eeaef
     catalogue: gentian
-    movedAt: 2026-11-17T17:22:17Z
+    movedAt: 2026-11-25T08:58:06Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: voles-ee
