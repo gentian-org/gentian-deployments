@@ -70,9 +70,9 @@ spec:
     digest: sha256:e7528b8f956032fe4b3e9fb9611cbd763aa0a0941199091e131d3dacce2417a1
     catalogue: aluvian
   - profile: wordcraft-ce
-    digest: sha256:eb72db04692b54bd66c5726235506ee24643194ac0a7552d6980806e711ee5dc
+    digest: sha256:f1a50cd01a2786f20d853d4ad5c3eb45cbb53e7a581bf46b22542e0bf33a1a03
     catalogue: gentian
-    movedAt: 2026-11-22T09:45:09Z
+    movedAt: 2026-11-25T08:59:42Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: odoo-agent-bridge-ee
