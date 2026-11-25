@@ -160,9 +160,9 @@ spec:
   - profile: admin-console
     placed: true
   - profile: open-webui-ce
-    digest: sha256:f60f1acd5e05ae0e76afb9de4649d2a7dc6e41d1320cae38b8972d1c06b28160
+    digest: sha256:51eb88b1fce3c1505304d2146fba1ee5f1ff5aa36820694f6e9e4b3d5312aaab
     catalogue: gentian
-    movedAt: 2026-11-22T12:28:53Z
+    movedAt: 2026-11-25T08:59:07Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: odoo-base-ce
