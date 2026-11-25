@@ -46,8 +46,10 @@ spec:
     movedAt: 2026-11-24T10:35:06Z
     movedBy: policy:latest
   - profile: gridcraft-ce
-    digest: sha256:9ed45b4190a7ba527f18540edc620da83feea12f648783959959e1702302b5ce
+    digest: sha256:e6ae81c01c6129d44cf516e68f2f6beb6d71a03a26d28597f2c1c0015092ef78
     catalogue: gentian
+    movedAt: 2026-11-25T08:57:51Z
+    movedBy: policy:latest
   - profile: super-productivity-ce
     digest: sha256:af5f399b2537ccf674eeb72a70d360fc1733b46ba2463fcca2eadd8e67227745
     catalogue: gentian
