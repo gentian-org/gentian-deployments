@@ -207,27 +207,8 @@ spec:
       digest: sha256:e6754f3d97fd5a91c44d8db7b76f1e0a02d36aa8cd356fd220f65369728378f5
       catalogue: gentian
     - name: odoo-calendar-ce
-      digest: sha256:7ed7933a15b28da9a3a4b30658dd085ff90ead9de019e2613b2d9e8c16fe93e7
+      digest: sha256:ccdbaaad4da236016fdc4c25b7b6102b844995e3f0ec252bb1d41a1d96c3e5be
       catalogue: gentian
-    addonGrants:
-    - name: odoo-contacts-ce
-      defaultGrant: true
-    - name: odoo-crm-ce
-      defaultGrant: true
-    - name: odoo-employees-ce
-      defaultGrant: true
-    - name: odoo-sales-ce
-      defaultGrant: true
-    - name: odoo-purchase-ce
-      defaultGrant: true
-    - name: odoo-meeting-transcripts-ce
-      defaultGrant: true
-    - name: odoo-invoicing-ce
-      defaultGrant: true
-    - name: odoo-mrp-ce
-      defaultGrant: true
-    - name: odoo-calendar-ce
-      defaultGrant: true
   - profile: paperless-ngx-ce
     digest: sha256:46f783a5bb84cfcb755bfc17a9932ba1f4e402da560c3f4488bff0c22e5b46d0
     catalogue: gentian
