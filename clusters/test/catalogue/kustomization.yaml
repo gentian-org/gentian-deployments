@@ -894,6 +894,7 @@ resources:
 - builds/nextcloud-sync-ce-b143c30654fd.yaml
 - builds/odoo-base-ce-ecb8fd59a33f.yaml
 - builds/odoo-calendar-ce-ccdbaaad4da2.yaml
+- builds/odoo-contacts-ce-81331f1f9766.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
