@@ -195,7 +195,7 @@ spec:
       digest: sha256:d4982d78fb2cd75bbc9d66a173802696995ab5bb1a7cd228a575dad297061c20
       catalogue: gentian
     - name: odoo-purchase-ce
-      digest: sha256:88cdb207bd4660def93b097c2ab424efe7bad95f3fef1a49475dd94b0b0ad1ee
+      digest: sha256:60caedc39dea72b9f721229b07a19bd7e6d4cb84f243e0b7037020104dfdba64
       catalogue: gentian
     - name: odoo-meeting-transcripts-ce
       digest: sha256:2df8ceee66e201b2d99e9f113b3c8a7d8de335d17f5dc810ce6a6363476292cf
