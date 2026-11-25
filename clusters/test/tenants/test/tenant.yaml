@@ -201,7 +201,7 @@ spec:
       digest: sha256:0d7be199170c5a77e674728598b5f66a5c6107c4117ea477301bd89dab22489a
       catalogue: gentian
     - name: odoo-invoicing-ce
-      digest: sha256:e2b913eb8d62d53dde8684cc73701c802ae8e0d0e00c4d4acc26902561385dfa
+      digest: sha256:505bbb3d86b04689ddfdb677ffc2d4debcb23738d7880bd7ebedb9cc798c39cb
       catalogue: gentian
     - name: odoo-mrp-ce
       digest: sha256:e6754f3d97fd5a91c44d8db7b76f1e0a02d36aa8cd356fd220f65369728378f5
