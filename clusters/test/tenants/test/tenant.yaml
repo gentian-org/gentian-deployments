@@ -37,8 +37,10 @@ spec:
   # Apps are installed through the director, which appends to this list.
   apps:
   - profile: vikunja-ce
-    digest: sha256:e5c7328045db05be12200ca75ef915a35d6cb84f05e5191f41d22b8f596b69ce
+    digest: sha256:ad9392800fc4d18bfb05cfd5023fa36abbcea5b3381f60cf828a30c0af243579
     catalogue: gentian
+    movedAt: 2026-11-25T08:59:35Z
+    movedBy: policy:latest
     positions: [core-team]
   - profile: openproject-ce
     digest: sha256:517cfeabaaaee4c026870595596630b6a07f9ace00378f429a1665e66069f747
