@@ -904,6 +904,7 @@ resources:
 - builds/odoo-sales-ce-6d5e4ab08af5.yaml
 - builds/open-webui-ce-51eb88b1fce3.yaml
 - builds/openproject-ce-517cfeabaaae.yaml
+- builds/paperless-ngx-ce-7925d27ade38.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
