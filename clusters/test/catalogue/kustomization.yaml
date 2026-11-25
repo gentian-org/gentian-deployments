@@ -906,6 +906,7 @@ resources:
 - builds/openproject-ce-517cfeabaaae.yaml
 - builds/paperless-ngx-ce-7925d27ade38.yaml
 - builds/super-productivity-ce-268302fce137.yaml
+- builds/vikunja-ce-ad9392800fc4.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
