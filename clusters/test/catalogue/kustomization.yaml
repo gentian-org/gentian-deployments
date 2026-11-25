@@ -908,6 +908,7 @@ resources:
 - builds/super-productivity-ce-268302fce137.yaml
 - builds/vikunja-ce-ad9392800fc4.yaml
 - builds/wordcraft-ce-f1a50cd01a27.yaml
+- builds/rehearsal-946d39709a00.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml

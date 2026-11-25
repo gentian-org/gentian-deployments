@@ -13,7 +13,7 @@
 # The image is built by cluster-provisioning, a private package of
 # ghcr.io/aluvian-hq, pulled through registry.aluvian.io by a tenant that
 # holds this action. Its digest is written here by hand: this one is the
-# build of cluster-provisioning ec9b3ca.
+# build of cluster-provisioning 40e504d.
 apiVersion: gentianos.io/v1alpha1
 kind: ComponentProfile
 metadata:
@@ -26,11 +26,11 @@ spec:
   # Nobody opens it: a process's step runs it.
   launch: none
   trustTier: certified
-  version: "0.1.4"
+  version: "0.1.5"
   package:
     images:
       - repository: registry.aluvian.io/aluvian-hq/rehearsal
-        digest: sha256:4289dea17e1e03e487278477e88bb8a04478431c347e31ead7a3e97e49500a26
+        digest: sha256:58340ffe26e7bc16595cb0db6d7a99f7f906f1526e76d720b3e44c1ced902a22
   action:
     # Reads the inputs on standard input, writes the outputs to standard
     # output. Without an argument: the phase the input `stage` names, or
