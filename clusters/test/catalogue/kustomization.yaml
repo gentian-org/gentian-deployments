@@ -896,6 +896,7 @@ resources:
 - builds/odoo-calendar-ce-ccdbaaad4da2.yaml
 - builds/odoo-contacts-ce-81331f1f9766.yaml
 - builds/odoo-crm-ce-576db0266a27.yaml
+- builds/odoo-employees-ce-213da3205896.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
