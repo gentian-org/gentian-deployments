@@ -886,6 +886,7 @@ resources:
 - nextcloud-base-ce.yaml
 - builds/nextcloud-base-ce-92622291e2de.yaml
 - builds/voles-ee-f0b2df49dc58.yaml
+- builds/nextcloud-base-ce-dcb79f953306.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
