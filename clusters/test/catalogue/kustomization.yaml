@@ -890,6 +890,7 @@ resources:
 - builds/deckcraft-ce-f70829296231.yaml
 - builds/flowable-ce-add7b6c8592e.yaml
 - builds/gridcraft-ce-e6ae81c01c61.yaml
+- builds/nextcloud-base-ce-d8f5463cfefc.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
