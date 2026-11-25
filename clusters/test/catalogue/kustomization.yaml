@@ -888,6 +888,7 @@ resources:
 - builds/voles-ee-f0b2df49dc58.yaml
 - builds/nextcloud-base-ce-dcb79f953306.yaml
 - builds/deckcraft-ce-f70829296231.yaml
+- builds/flowable-ce-add7b6c8592e.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
