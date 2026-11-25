@@ -204,7 +204,7 @@ spec:
       digest: sha256:505bbb3d86b04689ddfdb677ffc2d4debcb23738d7880bd7ebedb9cc798c39cb
       catalogue: gentian
     - name: odoo-mrp-ce
-      digest: sha256:e6754f3d97fd5a91c44d8db7b76f1e0a02d36aa8cd356fd220f65369728378f5
+      digest: sha256:f4860cda0200bc43f69abbdde4ce24b1156fb544f698104e802a76221535cdf2
       catalogue: gentian
     - name: odoo-calendar-ce
       digest: sha256:ccdbaaad4da236016fdc4c25b7b6102b844995e3f0ec252bb1d41a1d96c3e5be
