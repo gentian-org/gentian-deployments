@@ -43,6 +43,12 @@ spec:
   - profile: nextcloud-base-ce
     digest: sha256:d8f5463cfefc6217ef3ed022dbf6a7db6186f0594ce269cc8c16dfb67d485d76
     catalogue: gentian
+    addons:
+    - nextcloud-calendar-ce
+    addonPins:
+    - name: nextcloud-calendar-ce
+      digest: sha256:75483158b31105b852ca0f20d7d42fd5e7e2160acd0abbe952d6cd79881a4aab
+      catalogue: gentian
   - profile: deckcraft-ce
     digest: sha256:f708292962316bc896334bcb1ab71e3a8e0e4cd2e63b3b0edcbcf9f3e70cb754
     catalogue: gentian
