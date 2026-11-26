@@ -37,6 +37,9 @@ spec:
     storage: 50Gi
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: odoo-base-ce
+    digest: sha256:ecb8fd59a33f9640644d5b26a2ad56c4da2d416d8d89deada0ffc8f02f1b8fc2
+    catalogue: gentian
   - profile: nextcloud-base-ce
     digest: sha256:d8f5463cfefc6217ef3ed022dbf6a7db6186f0594ce269cc8c16dfb67d485d76
     catalogue: gentian
