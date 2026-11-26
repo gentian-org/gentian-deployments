@@ -915,6 +915,7 @@ resources:
 - builds/voles-ee-619a9341d727.yaml
 - builds/rehearsal-f091236ec35c.yaml
 - builds/voles-ee-6f4f1d0f1829.yaml
+- builds/voles-ee-234652a233fb.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
