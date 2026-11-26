@@ -104,9 +104,9 @@ spec:
     movedBy: policy:latest
     defaultGrant: true
   - profile: rehearsal
-    digest: sha256:f091236ec35cdaf942c84ca4bf5560f3af8f6da69f29d61959c5327d0accf759
+    digest: sha256:15a0d759abaf38256304c5ca93c9f1d73609541cdec143448872455f54e45dc0
     catalogue: aluvian
-    movedAt: 2026-11-26T09:35:05Z
+    movedAt: 2026-11-26T16:19:48Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: notify-me
