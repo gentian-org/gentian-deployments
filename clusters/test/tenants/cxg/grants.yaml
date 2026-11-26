@@ -30,6 +30,9 @@ spec:
     - contract: central-navigation
       granted:
       - navigation:register
+    - contract: office-editor
+      granted:
+      - wopi:edit
     grantedAt: "2026-11-26T11:58:39Z"
     grantedBy: 350b367c-5118-45c1-8cba-0a35faf7044c
     reason: granted with the install of the app
