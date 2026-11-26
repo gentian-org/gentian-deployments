@@ -32,7 +32,7 @@ spec:
   # Nobody opens it: agents call it.
   launch: none
   trustTier: certified
-  version: "0.1.0-main.c47281e"
+  version: "0.1.0-main.b4ad2c0"
   requires:
     platform: ">=0.5"
   bridge:
@@ -58,7 +58,7 @@ spec:
     chart:
       repository: "oci://registry.aluvian.io/aluvian-hq/charts"
       name: voles-agent-bridge
-      version: "0.1.0-main.c47281e"
+      version: "0.1.0-main.b4ad2c0"
     extraValues:
       # The Service callers reach the agent bridge at.
       fullnameOverride: voles-agent-bridge
