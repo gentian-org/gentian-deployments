@@ -16,3 +16,12 @@ spec:
     grantedAt: "2026-11-26T11:41:54Z"
     grantedBy: platform:placement
     reason: 'pre-approved by the platform: both components are placed by it'
+  - app: deckcraft-ce
+    consume:
+    - contract: file-store
+      granted:
+      - webdav:read
+      - webdav:write
+    grantedAt: "2026-11-26T11:56:03Z"
+    grantedBy: 350b367c-5118-45c1-8cba-0a35faf7044c
+    reason: granted with the install of the app
