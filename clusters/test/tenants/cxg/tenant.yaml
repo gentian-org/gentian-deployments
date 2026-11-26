@@ -9,6 +9,7 @@ metadata:
   name: cxg
   annotations:
     argocd.argoproj.io/sync-wave: "2"
+    gentianos.io/purge-requested: "2026-11-26T22:02:12Z"
 spec:
   displayName: City Expert Group (CXG)
   # The administrator account has no password until its holder sets one,
@@ -26,7 +27,7 @@ spec:
     s3Prefix: cxg-
   # Retain, so retiring the tenant does not take its data with it. Changing
   # this to Delete is a deliberate, reviewable edit.
-  deletionPolicy: Retain
+  deletionPolicy: Delete
   # The base plan's capacity, which is what every tenant starts on. A tenant
   # that needs more gets it by editing this block, which is one more commit.
   quotas:
