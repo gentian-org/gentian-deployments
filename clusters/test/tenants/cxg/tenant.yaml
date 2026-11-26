@@ -46,12 +46,16 @@ spec:
     addons:
     - nextcloud-calendar-ce
     - nextcloud-contacts-ce
+    - nextcloud-mail-ce
     addonPins:
     - name: nextcloud-calendar-ce
       digest: sha256:75483158b31105b852ca0f20d7d42fd5e7e2160acd0abbe952d6cd79881a4aab
       catalogue: gentian
     - name: nextcloud-contacts-ce
       digest: sha256:dbd3718fd197140d9984675851d3344d002383e578ea7706ae86d9aaad22173a
+      catalogue: gentian
+    - name: nextcloud-mail-ce
+      digest: sha256:31587e8ddafec728c0beaf7dc46fe5d17f6765425db1c8e3936e13c1f42b9401
       catalogue: gentian
   - profile: deckcraft-ce
     digest: sha256:f708292962316bc896334bcb1ab71e3a8e0e4cd2e63b3b0edcbcf9f3e70cb754
