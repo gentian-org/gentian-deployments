@@ -100,8 +100,8 @@ spec:
   - profile: voles-ee
     digest: sha256:2cc52531b5650f8a15c6c255abb0e9afd77244b6b60da5524c69243808d01d98
     catalogue: aluvian
-    movedAt: 2026-11-26T17:43:35Z
-    movedBy: policy:latest
+    movedAt: 2026-11-26T22:50:15Z
+    movedBy: admin@gentian-os.org
     defaultGrant: true
   - profile: rehearsal
     digest: sha256:15a0d759abaf38256304c5ca93c9f1d73609541cdec143448872455f54e45dc0
