@@ -14,24 +14,16 @@ spec:
   classes: [bridge]
   launch: none
   trustTier: certified
-  version: "0.1.0"
+  version: "0.1.1"
   requires:
     platform: ">=0.5"
     privileges:
       egress:
         - name: plaud
+          hosts: [mcp.plaud.ai]
           reason: >-
             Calls Plaud's tool server, mcp.plaud.ai, over https, as the
-            person a call is made for. A network rule names addresses, not
-            hosts.
-          rule:
-            to:
-              - ipBlock:
-                  cidr: 0.0.0.0/0
-                  except: [10.0.0.0/8, 100.64.0.0/10, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/12, 192.168.0.0/16]
-            ports:
-              - protocol: TCP
-                port: 443
+            person a call is made for.
   package:
     api:
       baseUrl: https://mcp.plaud.ai/mcp
