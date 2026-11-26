@@ -41,6 +41,8 @@ spec:
     - contract: central-navigation
       granted:
       - navigation:register
-    grantedAt: "2026-11-26T11:59:11Z"
+    - contract: file-store
+      granted:
+      - dialog:pick
+    grantedAt: "2026-11-26T12:24:49Z"
     grantedBy: 350b367c-5118-45c1-8cba-0a35faf7044c
-    reason: granted with the install of the app
