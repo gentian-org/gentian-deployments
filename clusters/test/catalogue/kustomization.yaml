@@ -941,6 +941,7 @@ resources:
 - builds/odoo-agent-bridge-ee-2041cf28b81b.yaml
 - builds/test-echo-b9349556d1a0.yaml
 - builds/voles-agent-bridge-ee-b3ff1d02afa5.yaml
+- builds/voles-ee-2cc52531b565.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
