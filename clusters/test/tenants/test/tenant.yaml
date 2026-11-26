@@ -98,9 +98,9 @@ spec:
     movedBy: policy:latest
     defaultGrant: true
   - profile: voles-ee
-    digest: sha256:d602b55a46081a299deaec4d8dea86425c0086e9500a8a5082788d5177576919
+    digest: sha256:ba76f86f8881f1e2ac9c387394e02219cc2005d713a1580d607452abf7ac0e62
     catalogue: aluvian
-    movedAt: 2026-11-26T07:34:53Z
+    movedAt: 2026-11-26T08:50:05Z
     movedBy: policy:latest
     defaultGrant: true
   - profile: rehearsal
