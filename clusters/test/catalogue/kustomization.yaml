@@ -910,6 +910,7 @@ resources:
 - builds/wordcraft-ce-f1a50cd01a27.yaml
 - builds/rehearsal-946d39709a00.yaml
 - builds/plaud-agent-bridge-ee-727396463f3a.yaml
+- builds/voles-ee-d602b55a4608.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
