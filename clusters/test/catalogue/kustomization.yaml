@@ -933,6 +933,7 @@ resources:
 - builds/voles-agent-bridge-ee-655c2bb2f18a.yaml
 - builds/rehearsal-15a0d759abaf.yaml
 - builds/voles-ee-e7970485aeab.yaml
+- builds/chaperone-ee-cf6d94637238.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
