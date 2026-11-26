@@ -934,6 +934,7 @@ resources:
 - builds/rehearsal-15a0d759abaf.yaml
 - builds/voles-ee-e7970485aeab.yaml
 - builds/chaperone-ee-cf6d94637238.yaml
+- builds/mcp-gateway-ee-a68bcf819939.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
