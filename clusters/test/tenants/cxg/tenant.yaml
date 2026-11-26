@@ -37,6 +37,9 @@ spec:
     storage: 50Gi
   # Apps are installed through the director, which appends to this list.
   apps:
+  - profile: open-webui-ce
+    digest: sha256:51eb88b1fce3c1505304d2146fba1ee5f1ff5aa36820694f6e9e4b3d5312aaab
+    catalogue: gentian
   - profile: porter
     placed: true
   - profile: homesync
