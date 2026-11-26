@@ -234,7 +234,6 @@ resources:
 - builds/operations-console-ee-707c69dd4f9e.yaml
 - backup-scheduler-ee.yaml
 - builds/backup-scheduler-ee-d6b71721a4b9.yaml
-- operations-sync-ee.yaml
 - builds/operations-sync-ee-03c274f034d5.yaml
 - builds/app-store-pe-607a3c9ecba0.yaml
 - builds/aluvian-center-pe-d5da183a4e31.yaml
@@ -960,7 +959,6 @@ patches:
 - path: odoo-purchase-ce.bundle.yaml
 - path: odoo-sales-ce.bundle.yaml
 - path: backup-scheduler-ee.bundle.yaml
-- path: operations-sync-ee.bundle.yaml
 - path: flowable-ce.bundle.yaml
 - path: chaperone-ee.bundle.yaml
 - path: notary-ee.bundle.yaml
