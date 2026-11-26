@@ -36,8 +36,6 @@ spec:
     placed: true
   - profile: homesync
     placed: true
-  - profile: operations-sync-ee
-    placed: true
   - profile: backup-scheduler-ee
     placed: true
   - profile: operations-console-ee
