@@ -60,6 +60,12 @@ spec:
       reason: "Needed for the app"
       digest: sha256:70bc38a6883372b1990de82ade7b30dafd7fc4c685ac2fa44008eb94046fb2bd
     - install: voles-ee
+      privilege: egress/store
+      approver: a9beb3d3-a909-46da-9841-6eb210a7ca01
+      approvedAt: 2026-11-26T22:02:36Z
+      hosts:
+        - "store-service.aluvian.io"
+    - install: voles-ee
       privilege: egress/usage-reports
       approver: 0ba53245-73b8-4649-a405-e09122ea84d1
       approvedAt: 2026-11-16T22:37:39Z
