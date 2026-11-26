@@ -104,6 +104,11 @@ spec:
       # app, whose address the chart takes from the editor's host.
       store:
         url: https://store-service.aluvian.io
+      # The Secret the platform writes for the partner call below: with it
+      # Voles asks the store for a person, to publish their graphs and
+      # runsets and to take listed ones.
+      partner:
+        secretName: partners-voles-ee
       runner:
         enabled: true
         image:
@@ -136,8 +141,20 @@ spec:
       # run that needs one.
       llm:
         optional: true
+      # Publishing a person's graph or runset to the store, and taking a
+      # listed one, are done as that person: Voles exchanges their token for
+      # an assertion towards Aluvian's realm, once per call, and holds no
+      # credential for the store.
+      partners:
+        call: [aluvian]
+        serviceAccount: voles
     privileges:
       egress:
+        - name: store
+          hosts: [store-service.aluvian.io]
+          reason: >-
+            Publishes a person's graphs and runsets to the Aluvian store and
+            fetches the ones they take from it, as that person.
         - name: usage-reports
           reason: >-
             Sends what was run, signed, to Aluvian's commerce service, which

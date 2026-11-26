@@ -912,6 +912,7 @@ resources:
 - builds/plaud-agent-bridge-ee-727396463f3a.yaml
 - builds/voles-ee-d602b55a4608.yaml
 - builds/voles-ee-ba76f86f8881.yaml
+- builds/voles-ee-619a9341d727.yaml
 patches:
 - path: fellwort-ee.bundle.yaml
 - path: docmost-ce.bundle.yaml
